@@ -1,0 +1,35 @@
+[package]
+name = "surge-modulation"
+version = "0.1.0"
+authors = ["klebs <none>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+prometheus = "*"
+enhanced_enum = "*"
+
+[dependencies.surge-constants]
+path = "../surge-constants"
+
+[dependencies.surge-samplerate]
+path = "../surge-samplerate"
+
+[dependencies.surge-adsr]
+path = "../surge-adsr"
+
+[dependencies.surge-lfo]
+path = "../surge-lfo"
+
+[dependencies.surge-traits]
+path = "../surge-traits"
+
+[dependencies.surge-macros]
+path = "../surge-macros"
+
+[dependencies.surge-types]
+path = "../surge-types"
+
+[dependencies.surge-param]
+path = "../surge-param"

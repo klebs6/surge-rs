@@ -1,0 +1,50 @@
+[package]
+name = "surgeosc-wavetable"
+version = "0.1.0"
+authors = ["klebs <none>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies.surge-param]
+path = "../surge-param"
+
+[dependencies.surge-constants]
+path = "../surge-constants"
+
+[dependencies.surge-math]
+path = "../surge-math"
+
+[dependencies.surge-blitter]
+path = "../surge-blitter"
+
+[dependencies.surge-lag]
+path = "../surge-lag"
+
+[dependencies.surge-lipol]
+path = "../surge-lipol"
+
+[dependencies.surge-tables]
+path = "../surge-tables"
+
+[dependencies.surge-tuning]
+path = "../surge-tuning"
+
+[dependencies.surge-samplerate]
+path = "../surge-samplerate"
+
+[dependencies.surge-wavetable]
+path = "../surge-wavetable"
+
+[dependencies.surge-traits]
+path = "../surge-traits"
+
+[dependencies.surge-types]
+path = "../surge-types"
+
+[dependencies.surge-macros]
+path = "../surge-macros"
+
+[dependencies]
+enhanced_enum = "*"
+paste = "*"

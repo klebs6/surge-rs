@@ -1,0 +1,55 @@
+[package]
+name = "surgefx"
+version = "0.1.0"
+authors = ["klebs <none>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+enum_dispatch = "*"
+
+[dependencies.surgefx-allpass]
+path = "../surgefx-allpass"
+
+[dependencies.surgefx-chorus]
+path = "../surgefx-chorus"
+
+[dependencies.surgefx-conditioner]
+path = "../surgefx-conditioner"
+
+[dependencies.surgefx-distortion]
+path = "../surgefx-distortion"
+
+[dependencies.surgefx-dualdelay]
+path = "../surgefx-dualdelay"
+
+[dependencies.surgefx-emphasize]
+path = "../surgefx-emphasize"
+
+[dependencies.surgefx-eq3band]
+path = "../surgefx-eq3band"
+
+[dependencies.surgefx-flanger]
+path = "../surgefx-flanger"
+
+[dependencies.surgefx-freqshift]
+path = "../surgefx-freqshift"
+
+[dependencies.surgefx-phaser]
+path = "../surgefx-phaser"
+
+[dependencies.surgefx-reverb]
+path = "../surgefx-reverb"
+
+[dependencies.surgefx-ringmod]
+path = "../surgefx-ringmod"
+
+[dependencies.surgefx-rotary]
+path = "../surgefx-rotary"
+
+[dependencies.surgefx-vocoder]
+path = "../surgefx-vocoder"
+
+[dependencies.surge-traits]
+path = "../surge-traits"

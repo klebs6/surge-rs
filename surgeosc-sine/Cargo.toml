@@ -1,0 +1,47 @@
+[package]
+name = "surgeosc-sine"
+version = "0.1.0"
+authors = ["klebs <none>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies.surge-param]
+path = "../surge-param"
+
+[dependencies.surge-input]
+path = "../surge-input"
+
+[dependencies.surge-math]
+path = "../surge-math"
+
+[dependencies.surge-tables]
+path = "../surge-tables"
+
+[dependencies.surge-tuning]
+path = "../surge-tuning"
+
+[dependencies.surge-quadrosc]
+path = "../surge-quadrosc"
+
+[dependencies.surge-lag]
+path = "../surge-lag"
+
+[dependencies.surge-samplerate]
+path = "../surge-samplerate"
+
+[dependencies.surge-constants]
+path = "../surge-constants"
+
+[dependencies.surge-types]
+path = "../surge-types"
+
+[dependencies.surge-traits]
+path = "../surge-traits"
+
+[dependencies.surge-macros]
+path = "../surge-macros"
+
+[dependencies]
+enhanced_enum = "*"
+paste = "*"

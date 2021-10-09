@@ -1,0 +1,21 @@
+[package]
+name = "surgeshaper-asym"
+version = "0.1.0"
+authors = ["klebs <none>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies.surge-filter]
+path = "../surge-filter"
+
+[dependencies.surge-math]
+path = "../surge-math"
+
+[dependencies.surge-tables]
+path = "../surge-tables"
+
+[dependencies.surge-samplerate]
+path = "../surge-samplerate"
+
+[dependencies]

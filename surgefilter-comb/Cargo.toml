@@ -1,0 +1,31 @@
+[package]
+name = "surgefilter-comb"
+version = "0.1.0"
+authors = ["klebs <none>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies.surge-constants]
+path = "../surge-constants"
+
+[dependencies.surge-filter]
+path = "../surge-filter"
+
+[dependencies.surge-coeffmaker]
+path = "../surge-coeffmaker"
+
+[dependencies.surge-math]
+path = "../surge-math"
+
+[dependencies.surge-qfunit]
+path = "../surge-qfunit"
+
+[dependencies.surge-tuning]
+path = "../surge-tuning"
+
+[dependencies.surge-samplerate]
+path = "../surge-samplerate"
+
+[dependencies.surge-types]
+path = "../surge-types"

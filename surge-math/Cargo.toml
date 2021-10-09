@@ -1,0 +1,26 @@
+[package]
+name = "surge-math"
+version = "0.1.0"
+authors = ["klebs <none>"]
+edition = "2018"
+
+[dependencies]
+atomic_float = "*"
+num-traits = "*"
+rand = "*"
+lazy_static = "*"
+enhanced_enum = "*"
+half = "*"
+float-ord = "*"
+float-cmp = "*"
+num-complex = "*"
+bitflags = "1.0"
+bincode = "*"
+byteorder = "*"
+ndarray = "*"
+paste = "*"
+derive_more = "*"
+getset = "*"
+num = "*"
+libc = "*"
+approx = "*"

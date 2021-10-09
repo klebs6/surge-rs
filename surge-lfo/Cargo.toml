@@ -1,0 +1,41 @@
+[package]
+name = "surge-lfo"
+version = "0.1.0"
+authors = ["klebs <none>"]
+edition = "2018"
+
+[dependencies]
+enhanced_enum = "*"
+float-ord = "*"
+paste = "*"
+
+[dependencies.surge-param]
+path = "../surge-param"
+
+[dependencies.surge-macros]
+path = "../surge-macros"
+
+[dependencies.surge-traits]
+path = "../surge-traits"
+
+[dependencies.surge-types]
+path = "../surge-types"
+
+[dependencies.surge-constants]
+path = "../surge-constants"
+
+[dependencies.surge-math]
+path = "../surge-math"
+
+[dependencies.surge-timeunit]
+path = "../surge-timeunit"
+
+[dependencies.surge-tables]
+path = "../surge-tables"
+
+[dependencies.surge-samplerate]
+path = "../surge-samplerate"
+
+[dependencies.surge-quadrosc]
+path = "../surge-quadrosc"
+

@@ -1,0 +1,32 @@
+signal routing
+hooks to accept and handle integral type conversions
+fxp parser
+hook filter/waveshaper selection into "voice"
+fix "#[allow(unreachable_code)]"
+
+uncomment:
+
+vocoder test
+surge-input fix up interface
+lfo modsource
+param -- counted set percent
+patch
+impl patch update controls
+impl qfunit get_quad_filter_ptr get_quad_filter_waveshaper_ptr
+impl synth load_initial_wavetable
+impl synth modunit_clear
+impl synth modunit_get
+impl synth modunit_query
+impl synth modunit_set
+impl synth get_parameter_meta
+impl synth load_patch_by_path
+impl synth load_oscalgos
+impl synth load_fx
+impl synth set_parameter01
+impl synth play_voice
+impl synth process_control
+impl voice get generator pair
+
+////
+get_generator_pair
+try_from_datafile

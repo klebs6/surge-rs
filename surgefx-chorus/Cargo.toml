@@ -1,0 +1,59 @@
+[package]
+name = "surgefx-chorus"
+version = "0.1.0"
+authors = ["klebs <none>"]
+edition = "2018"
+
+[build]
+rustflags = ["-C", "link-args=-Wl,-stack_size,0x100000000"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies.surge-biquad]
+path = "../surge-biquad"
+
+[dependencies.surge-constants]
+path = "../surge-constants"
+
+[dependencies.surge-param]
+path = "../surge-param"
+
+[dependencies.surge-tuning]
+path = "../surge-tuning"
+
+[dependencies.surge-lipol]
+path = "../surge-lipol"
+
+[dependencies.surge-lag]
+path = "../surge-lag"
+
+[dependencies.surge-math]
+path = "../surge-math"
+
+[dependencies.surge-samplerate]
+path = "../surge-samplerate"
+
+[dependencies.surge-tables]
+path = "../surge-tables"
+
+[dependencies.surge-types]
+path = "../surge-types"
+
+[dependencies.surge-traits]
+path = "../surge-traits"
+
+[dependencies.surge-timeunit]
+path = "../surge-timeunit"
+
+[dependencies.surge-quadrosc]
+path = "../surge-quadrosc"
+
+[dependencies.surge-halfrate]
+path = "../surge-halfrate"
+
+[dependencies.surge-macros]
+path = "../surge-macros"
+
+[dependencies]
+enhanced_enum = "*"
+paste = "*"

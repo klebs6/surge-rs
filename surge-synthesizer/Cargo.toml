@@ -1,0 +1,271 @@
+[package]
+name = "surge-synthesizer"
+version = "0.1.0"
+authors = ["klebs <none>"]
+edition = "2018"
+
+[dependencies]
+dirs = "*"
+serde = { version = "1.0", features = ["derive"] }
+automod = "*"
+vst = "*"
+coreaudio-rs = "*"
+jack = "*"
+lazy_static = "*"
+atomic_float = "*"
+num-traits = "*"
+rand = "*"
+libc = "*"
+derive_more = "*"
+prometheus = "*"
+num = "*"
+approx = "*"
+getset = "*"
+enhanced_enum = "*"
+half = "*"
+float-ord = "*"
+float-cmp = "*"
+xml-rs = "*"
+num-complex = "*"
+indoc = "*"
+bitflags = "1.0"
+lockfree = "*"
+downcast-rs = "*"
+paste = "*"
+regex = "*"
+#query_interface = "*"
+mopa = "*"
+bincode = "*"
+byteorder = "*"
+libxml = "*"
+enum_dispatch = "*"
+riff-wave = "*"
+ndarray = "*"
+
+#[dependencies.ndarray]
+#path = "./vendor/ndarray"
+
+[dependencies.bytemuck]
+version = "*"
+features = ['extern_crate_alloc']
+
+[lib]
+path = "src/lib.rs"
+name = "surge432"
+crate-type = ["cdylib", "lib"]
+
+[[bin]]
+path = "src/main.rs"
+name = "surge432_host"
+
+[patch.crates-io]
+#vst = { path = "vendor/vst" }
+
+[dependencies.surge-adsr]
+path = "../surge-adsr"
+
+[dependencies.surge-biquad]
+path = "../surge-biquad"
+
+[dependencies.surge-blitter]
+path = "../surge-blitter"
+
+[dependencies.surge-coeffmaker]
+path = "../surge-coeffmaker"
+
+[dependencies.surge-constants]
+path = "../surge-constants"
+
+[dependencies.surge-filter]
+path = "../surge-filter"
+
+[dependencies.surge-halfrate]
+path = "../surge-halfrate"
+
+[dependencies.surge-input]
+path = "../surge-input"
+
+[dependencies.surge-lag]
+path = "../surge-lag"
+
+[dependencies.surge-lfo]
+path = "../surge-lfo"
+
+[dependencies.surge-lipol]
+path = "../surge-lipol"
+
+[dependencies.surge-math]
+path = "../surge-math"
+
+[dependencies.surge-output]
+path = "../surge-output"
+
+[dependencies.surge-param]
+path = "../surge-param"
+
+[dependencies.surge-qfunit]
+path = "../surge-qfunit"
+
+[dependencies.surge-quadrosc]
+path = "../surge-quadrosc"
+
+[dependencies.surge-samplerate]
+path = "../surge-samplerate"
+
+[dependencies.surge-svf]
+path = "../surge-svf"
+
+[dependencies.surge-tables]
+path = "../surge-tables"
+
+[dependencies.surge-timeunit]
+path = "../surge-timeunit"
+
+[dependencies.surge-tuning]
+path = "../surge-tuning"
+
+[dependencies.surge-wavetable]
+path = "../surge-wavetable"
+
+[dependencies.surgefilter-comb]
+path = "../surgefilter-comb"
+
+[dependencies.surgefilter-diode]
+path = "../surgefilter-diode"
+
+[dependencies.surgefilter-iir]
+path = "../surgefilter-iir"
+
+[dependencies.surgefilter-k35]
+path = "../surgefilter-k35"
+
+[dependencies.surgefilter-moog]
+path = "../surgefilter-moog"
+
+[dependencies.surgefilter-nlfeedback]
+path = "../surgefilter-nlfeedback"
+
+[dependencies.surgefilter-nlstates]
+path = "../surgefilter-nlstates"
+
+[dependencies.surgefilter-obxd]
+path = "../surgefilter-obxd"
+
+[dependencies.surgefilter-snh]
+path = "../surgefilter-snh"
+
+[dependencies.surgefilter-svf]
+path = "../surgefilter-svf"
+
+[dependencies.surgefilter-huovilainen]
+path = "../surgefilter-huovilainen"
+
+[dependencies.surgefilter-rungekutta]
+path = "../surgefilter-rungekutta"
+
+[dependencies.surgefx]
+path = "../surgefx"
+
+[dependencies.surgefx-allpass]
+path = "../surgefx-allpass"
+
+[dependencies.surgefx-chorus]
+path = "../surgefx-chorus"
+
+[dependencies.surgefx-conditioner]
+path = "../surgefx-conditioner"
+
+[dependencies.surgefx-distortion]
+path = "../surgefx-distortion"
+
+[dependencies.surgefx-dualdelay]
+path = "../surgefx-dualdelay"
+
+[dependencies.surgefx-emphasize]
+path = "../surgefx-emphasize"
+
+[dependencies.surgefx-eq3band]
+path = "../surgefx-eq3band"
+
+[dependencies.surgefx-flanger]
+path = "../surgefx-flanger"
+
+[dependencies.surgefx-freqshift]
+path = "../surgefx-freqshift"
+
+[dependencies.surgefx-phaser]
+path = "../surgefx-phaser"
+
+[dependencies.surgefx-reverb]
+path = "../surgefx-reverb"
+
+[dependencies.surgefx-ringmod]
+path = "../surgefx-ringmod"
+
+[dependencies.surgefx-rotary]
+path = "../surgefx-rotary"
+
+[dependencies.surgefx-vocoder]
+path = "../surgefx-vocoder"
+
+[dependencies.surgeosc-audioin]
+path = "../surgeosc-audioin"
+
+[dependencies.surgeosc-fm]
+path = "../surgeosc-fm"
+
+[dependencies.surgeosc-fm2]
+path = "../surgeosc-fm2"
+
+[dependencies.surgeosc-sine]
+path = "../surgeosc-sine"
+
+[dependencies.surgeosc-snh]
+path = "../surgeosc-snh"
+
+[dependencies.surgeosc-super]
+path = "../surgeosc-super"
+
+[dependencies.surgeosc-wavetable]
+path = "../surgeosc-wavetable"
+
+[dependencies.surgeosc-window]
+path = "../surgeosc-window"
+
+[dependencies.surgeshaper-asym]
+path = "../surgeshaper-asym"
+
+[dependencies.surgeshaper-clip]
+path = "../surgeshaper-clip"
+
+[dependencies.surgeshaper-digi]
+path = "../surgeshaper-digi"
+
+[dependencies.surgeshaper-sine]
+path = "../surgeshaper-sine"
+
+[dependencies.surgeshaper-tanh]
+path = "../surgeshaper-tanh"
+
+[dependencies.surge-midi]
+path = "../surge-midi"
+
+[dependencies.surge-modulation]
+path = "../surge-modulation"
+
+[dependencies.surge-mpe]
+path = "../surge-mpe"
+
+[dependencies.surge-scene]
+path = "../surge-scene"
+
+[dependencies.surge-traits]
+path = "../surge-traits"
+
+[dependencies.surge-types]
+path = "../surge-types"
+
+[dependencies.surge-macros]
+path = "../surge-macros"
+
+

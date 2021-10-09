@@ -1,0 +1,106 @@
+[package]
+name = "surge-voice"
+version = "0.1.0"
+authors = ["klebs <none>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+enhanced_enum = "*"
+paste = "*"
+regex = "*"
+uuid = { version = "*", features = ["serde", "v4"] }
+serde = { version = "1.0", features = ["derive"] }
+auto_impl = "*"
+
+[dependencies.surge-adsr]         
+path = "../surge-adsr"
+
+[dependencies.surge-biquad]       
+path = "../surge-biquad"
+
+[dependencies.surge-coeffmaker]   
+path = "../surge-coeffmaker"
+
+[dependencies.surge-constants]    
+path = "../surge-constants"
+
+[dependencies.surge-filter]       
+path = "../surge-filter"
+
+[dependencies.surge-halfrate]     
+path = "../surge-halfrate"
+
+[dependencies.surge-input]        
+path = "../surge-input"
+
+[dependencies.surge-lfo]          
+path = "../surge-lfo"
+
+[dependencies.surge-lipol]        
+path = "../surge-lipol"
+
+[dependencies.surge-macros]       
+path = "../surge-macros"
+
+[dependencies.surge-math]         
+path = "../surge-math"
+
+[dependencies.surge-midi]         
+path = "../surge-midi"
+
+[dependencies.surge-modulation]   
+path = "../surge-modulation"
+
+[dependencies.surge-mpe]          
+path = "../surge-mpe"
+
+[dependencies.surge-param]        
+path = "../surge-param"
+
+[dependencies.surge-qfunit]       
+path = "../surge-qfunit"
+
+[dependencies.surge-samplerate]   
+path = "../surge-samplerate"
+
+[dependencies.surge-tables]       
+path = "../surge-tables"
+
+[dependencies.surge-timeunit]     
+path = "../surge-timeunit"
+
+[dependencies.surge-traits]       
+path = "../surge-traits"
+
+[dependencies.surge-tuning]       
+path = "../surge-tuning"
+
+[dependencies.surge-types]        
+path = "../surge-types"
+
+[dependencies.surgeosc-audioin]   
+path = "../surgeosc-audioin"
+
+[dependencies.surgeosc-fm2]       
+path = "../surgeosc-fm2"
+
+[dependencies.surgeosc-fm]        
+path = "../surgeosc-fm"
+
+[dependencies.surgeosc-sine]      
+path = "../surgeosc-sine"
+
+[dependencies.surgeosc-snh]       
+path = "../surgeosc-snh"
+
+[dependencies.surgeosc-super]     
+path = "../surgeosc-super"
+
+[dependencies.surgeosc-wavetable] 
+path = "../surgeosc-wavetable"
+
+[dependencies.surgeosc-window]    
+path = "../surgeosc-window"
+

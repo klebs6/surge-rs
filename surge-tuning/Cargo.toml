@@ -1,0 +1,29 @@
+[package]
+name = "surge-tuning"
+version = "0.1.0"
+authors = ["klebs <none>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+indoc = "*"
+getset = "*"
+enhanced_enum = "*"
+num-traits = "*"
+float-ord = "*"
+
+[dependencies.surge-constants]
+path = "../surge-constants"
+
+[dependencies.surge-traits]
+path = "../surge-traits"
+
+[dependencies.surge-math]
+path = "../surge-math"
+
+[dependencies.surge-samplerate]
+path = "../surge-samplerate"
+
+[dependencies.surge-types]
+path = "../surge-types"

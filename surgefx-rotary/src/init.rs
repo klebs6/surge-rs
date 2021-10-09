@@ -1,0 +1,27 @@
+ix!();
+
+use crate::{
+    RotarySpeaker,
+};
+
+impl Suspend for RotarySpeaker<'sr> {
+
+    fn suspend(&mut self) {
+        self.buffer.fill(0.0);
+        self.xover.suspend();
+        self.lowbass.suspend();
+        self.wpos = 0;
+    }
+}
+
+impl Init for RotarySpeaker<'sr> {
+
+    fn init(&mut self) {
+        self.buffer.fill(0.0);
+        self.xover.suspend();
+        self.lowbass.suspend();
+        self.xover.coeff_lp2b(self.xover.calc_omega(0.862496), 0.707);
+        self.lowbass.coeff_lp2b(self.xover.calc_omega(-1.14), 0.707);
+        self.wpos = 0;
+    }
+}

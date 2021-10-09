@@ -1,0 +1,2 @@
+pub const SSO_INTEGRATOR_HPF: f32 = 0.9982;
+pub const SSO_HPF_CYCLE_LOSS: f32 = 0.995;
