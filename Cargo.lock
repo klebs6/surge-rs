@@ -21,6 +21,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "approx_eq"
+version = "0.1.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b3f9eb837c6a783fbf002e3e5cc7925a3aa6893d6d42f9169517528983777590"
+
+[[package]]
 name = "atomic_float"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -934,6 +940,7 @@ name = "surge-math"
 version = "0.1.0"
 dependencies = [
  "approx",
+ "approx_eq",
  "atomic_float",
  "bincode",
  "bitflags",

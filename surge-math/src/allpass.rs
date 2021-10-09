@@ -36,8 +36,3 @@ impl<const N: usize> AllpassFilter<N> {
         self.a = a;
     }
 }
-
-#[test] fn test_allpass() {
-    todo!();
-    assert!(false);
-}

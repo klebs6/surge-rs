@@ -32,8 +32,8 @@ impl<'sr> Chorus<'sr> {
                 );
 
             let rp: usize = 
-                (((self.wpos as usize) - (i_dtime as usize) + k as usize) - FIR_IPOL_N as usize) & 
-                ((CHORUS_MAX_DELAY_LENGTH - 1) as usize);
+                ((((self.wpos as isize) - (i_dtime as isize) + k as isize) - FIR_IPOL_N as isize) & 
+                ((CHORUS_MAX_DELAY_LENGTH - 1) as isize)).try_into().unwrap();
 
             let sinc: usize = FIR_IPOL_N * 
                 limit_range(

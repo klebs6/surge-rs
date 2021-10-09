@@ -9,7 +9,6 @@ macro_rules! ix { () =>
 }
 
 #[macro_use] pub mod imports;
-#[cfg(test)] pub mod tests;
 
 x![runge_kutta];
 x![runge_kutta_coeff];

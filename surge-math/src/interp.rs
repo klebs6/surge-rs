@@ -21,6 +21,11 @@ pub fn cubic_interpolate(
 
 #[inline] 
 pub fn lerp<T: MyFloat>(x: T, a: T, b: T) -> T {
-   (T::from(1.0).unwrap() - x) * a + x * b
+    {
+        let valid_range = T::from(0.0)..T::from(1.0);
+        assert!(valid_range.contains(&Some(x)));
+    }
+
+    (T::from(1.0).unwrap() - x) * a + x * b
 }
 

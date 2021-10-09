@@ -44,9 +44,9 @@ impl SurgeSuperOscillator<'sr> {
             coeff_b0:          0.0,
             coeff_b1:          0.0,
             coeff_a1:          0.0,
-            tables,
-            tuner,
-            srunit,
+            tables:            tables.clone(),
+            tuner:             tuner.clone(),
+            srunit:            srunit.clone(),
         }
     }
 }

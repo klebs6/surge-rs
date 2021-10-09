@@ -28,4 +28,4 @@ pub use std::time;
 pub use lazy_static::lazy_static;
 pub use std::ops::AddAssign;
 pub use num::Float;
-
+pub use approx_eq::assert_approx_eq;

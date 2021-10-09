@@ -15,16 +15,18 @@ x![sse1];
 x![sse2];
 
 #[test] fn smoke() {
-    ix!();
 
-    let srunit = SampleRateHandle::new();
+    ix!();
+    use surge_math::simd_m128;
+
+    let srunit = SampleRateHandle::default();
     let tables = TablesHandle::new(&srunit);
 
     let shaper = AsymShaper::new(&tables);
 
-    let result = shaper.shape(m128_one![], m128_half![]);
+    let result = shaper.shape(simd_m128::one(), simd_m128::half());
     println!("result: {:?}", result);
 
-    let result = shaper.shape(result, m128_half![]);
+    let result = shaper.shape(result, simd_m128::half());
     println!("result: {:?}", result);
 }

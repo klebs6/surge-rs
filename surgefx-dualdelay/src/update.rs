@@ -69,13 +69,6 @@ impl Update for DualDelay<'sr> {
 
         if maxfeedback < 1.0 {
 
-            #[test] fn test_log() {
-                let maxfeedback: f64 = 1323.434;
-                let f1: f64 = 1.0 + db96![].log10() / maxfeedback.log10();
-                let f2: f64 = 1.0 + db96![].log(maxfeedback);
-                assert!(f1 == f2);
-            }
-
             let f: f32 = BLOCK_SIZE_INV * 
                 maxf(self.time_l.v, self.time_r.v) * 
                 ((1.0 + db96![].log(maxfeedback as f64)) as f32);
@@ -106,3 +99,11 @@ impl Update for DualDelay<'sr> {
         self.lp.coeff_lp2b(lp_omega, 0.707);
     }
 }
+
+#[test] fn test_log() {
+    let maxfeedback: f64 = 1323.434;
+    let f1: f64 = 1.0 + db96![].log10() / maxfeedback.log10();
+    let f2: f64 = 1.0 + db96![].log(maxfeedback);
+    assert!(f1 == f2);
+}
+

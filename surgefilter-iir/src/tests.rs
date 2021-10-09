@@ -2,7 +2,7 @@ ix!();
 
 #[test] fn construct_iir_filter() {
 
-    let srunit = SampleRateHandle::new();
+    let srunit = SampleRateHandle::default();
     let tuner  = TunerHandle::new(&srunit);
     let tables = TablesHandle::new(&srunit);
 

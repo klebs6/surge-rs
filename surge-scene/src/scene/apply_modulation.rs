@@ -105,17 +105,22 @@ impl SurgeScene<'sr> {
             }
         }
     }
+
 }
 
-///want to conform to something like this interface
+/**
+  want to conform to something like this interface
+  */
 #[test] fn modulation_if() {
 
-    let envelope = self.modsources[ModSource::Amp_EG];
+   /* 
+    let envelope = scene.modsources[ModSource::Amp_EG];
 
     let depth = 0.1;
 
-    let routing = self.fx_unit.fx[FXType::Distortion].params[DistortionParam::Gnar].add_modsource(envelope, depth);
+    let routing = scene.fx_unit.fx[FXType::Distortion].params[DistortionParam::Gnar].add_modsource(envelope, depth);
 
     self.routings.push(routing);
+   */
 
 }

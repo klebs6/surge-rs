@@ -33,13 +33,13 @@ impl Waveshaper for TanhShaper {
 }
 
 #[test] fn smoke() {
-    use surge_math::{m128_one, m128_half};
+    use surge_math::simd_m128;
 
     let shaper = TanhShaper::default();
 
-    let result = shaper.shape(m128_one![], m128_half![]);
+    let result = shaper.shape(simd_m128::one(), simd_m128::half());
     println!("shaper: {:?}, result: {:?}", shaper, result);
 
-    let result = shaper.shape(result, m128_half![]);
+    let result = shaper.shape(result, simd_m128::half());
     println!("shaper: {:?}, result: {:?}", shaper, result);
 }

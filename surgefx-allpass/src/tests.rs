@@ -4,17 +4,22 @@ use crate::AllpassVerb;
 
 #[test] pub fn allpass_smoke() {
 
-    const S: usize = 32 ;
+    const N: usize = 32 ;
 
-    let mut L: Vec<f32> = (0..S).map(|x| surge_math::correlated_noise(0.0, 0.0) as f32).collect();
-    let mut R: Vec<f32> = (0..S).map(|x| surge_math::correlated_noise(0.0, 0.0) as f32).collect();
+    let mut l: Vec<f32> = (0..N).map(|_x| surge_math::correlated_noise(0.0, 0.0) as f32).collect();
+    let mut r: Vec<f32> = (0..N).map(|_x| surge_math::correlated_noise(0.0, 0.0) as f32).collect();
 
-    let srunit = SampleRateHandle::new();
+    let srunit = SampleRateHandle::default();
     let mut x = AllpassVerb::new(&srunit);
 
-    for iter in 0..24{
-        x.process(L.as_mut_ptr(), R.as_mut_ptr());
-        println!("L: {:?}",L); 
-        println!("R: {:?}",R); 
+    for _ in 0..24{
+
+        x.process::<N>(
+            l.as_mut_slice().try_into().unwrap(), 
+            r.as_mut_slice().try_into().unwrap()
+        );
+
+        println!("l: {:?}",l); 
+        println!("r: {:?}",r); 
     }
 }

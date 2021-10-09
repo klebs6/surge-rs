@@ -1,8 +1,9 @@
-ix!();
-
-use crate::SineWaveOscillator;
 
 #[test] fn smoke() {
+    ix!();
+
+    use crate::SineWaveOscillator;
+
     let srunit = SampleRateHandle::default();
     let tuner  = TunerHandle::new(&srunit);
     let mut osc = SineWaveOscillator::new(tuner);
@@ -19,4 +20,3 @@ use crate::SineWaveOscillator;
     //println!("osc: {:?}", osc);
 
 }
-

@@ -54,9 +54,12 @@ impl Waveshaper for DigiShaper {
 
     let shaper = DigiShaper::default();
 
-    let result = shaper.shape(m128_one![], m128_half![]);
+    let one  = unsafe { m128_one!{} };
+    let half = unsafe { m128_half!{} };
+
+    let result = shaper.shape(one, half);
     println!("shaper: {:?}, result: {:?}", shaper, result);
 
-    let result = shaper.shape(result, m128_half![]);
+    let result = shaper.shape(result, half);
     println!("shaper: {:?}, result: {:?}", shaper, result);
 }

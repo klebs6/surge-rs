@@ -17,7 +17,7 @@ impl Process for Distortion<'sr> {
         data_r: &mut [f32; N]) 
     {
         assert!(DISTORTION_OS_BITS == 2);
-        assert!(32 == N );
+        assert!(32 == N);
 
         let drive:     f32 = self.pvalf_extended(DistortionParam::Drive);
         let outgain:   f32 = self.pvalf(DistortionParam::OutGain);

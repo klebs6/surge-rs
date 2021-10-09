@@ -2,19 +2,19 @@ ix!();
 
 #[test] fn vocoder_smoke() {
 
-    const s: usize = 2048;
+    const N: usize = 2048;
 
-    let l: Vec<f32> = (0..s).map(|x| surge_math::correlated_noise(0.0, x as f64 / 16.0) as f32).collect();
-    let r: Vec<f32> = (0..s).map(|x| surge_math::correlated_noise(0.0, x as f64 / 16.0) as f32).collect();
+    let l: Vec<f32> = (0..N).map(|x| surge_math::correlated_noise(0.0, x as f64 / 16.0) as f32).collect();
+    let r: Vec<f32> = (0..N).map(|x| surge_math::correlated_noise(0.0, x as f64 / 16.0) as f32).collect();
 
     println!("l: {:?}",l); 
     println!("r: {:?}",r); 
 
-    let srunit    = SampleRateHandle::new();
+    let srunit    = SampleRateHandle::default();
     let tables    = TablesHandle::new(&srunit);
-    let synth_in  = SynthInputHandle::new();
+    let synth_in  = SynthInputHandle::default();
 
-    let mut x     = crate::Vocoder::new(&tables, &srunit, &synth_in);
+    let mut x     = crate::Vocoder::new::<N>(&tables, &srunit, &synth_in);
     x.init();
 
     /*TODO: fix synth_in memory access error
