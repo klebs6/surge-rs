@@ -21,6 +21,7 @@ pub use proc_macro::*;
 pub use atomic_float::{AtomicF64,AtomicF32};
 pub use coreaudio::audio_unit::render_callback::{self, data};
 pub use coreaudio::audio_unit::{AudioUnit, IOType, SampleFormat};
+pub use coreaudio::audio_unit::*;
 pub use derive_more::{DerefMut,Deref};
 pub use enhanced_enum::enhanced_enum;
 pub use float_ord::*;

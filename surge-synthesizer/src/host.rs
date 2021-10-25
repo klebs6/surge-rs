@@ -2,6 +2,8 @@ ix!();
 
 const BUFFER_SIZE: usize = 512;
 
+use coreaudio::audio_unit::*;
+
 #[allow(dead_code)]
 pub struct SampleHost;
 
