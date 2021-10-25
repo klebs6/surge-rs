@@ -6,4 +6,4 @@ description = "surge synthesizer -- simple single frequency oscillator computati
 edition = "2018"
 license = "GPL-3.0"
 name = "surge-quadrosc"
-version = "0.1.22-alpha.0"
+version = "0.1.23-alpha.0"
