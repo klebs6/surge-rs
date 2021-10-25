@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- lag struct used for smoothing changes"
+license = "GPL-3.0"
 name = "surge-lag"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

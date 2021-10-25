@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- structs to specify synth parameters"
+license = "GPL-3.0"
 name = "surge-param"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

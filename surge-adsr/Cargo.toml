@@ -1,4 +1,6 @@
 [package]
+description = "adsr envelopes from the surge synthesizer"
+license = "GPL-3.0"
 name = "surge-adsr"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

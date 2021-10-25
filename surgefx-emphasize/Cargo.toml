@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- emphasize effect"
+license = "GPL-3.0"
 name = "surgefx-emphasize"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

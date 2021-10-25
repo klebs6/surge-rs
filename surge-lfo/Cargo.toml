@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- lfos used for modulation"
+license = "GPL-3.0"
 name = "surge-lfo"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]
@@ -48,4 +50,3 @@ version = "0.1.1-alpha.0"
 [dependencies.surge-quadrosc]
 path = "../surge-quadrosc"
 version = "0.1.1-alpha.0"
-

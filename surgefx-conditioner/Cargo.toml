@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- conditioner effect"
+license = "GPL-3.0"
 name = "surgefx-conditioner"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]
@@ -57,4 +59,3 @@ vendor = "0.1.0"
 [dependencies.surge-traits]
 path = "../surge-traits"
 vendor = "0.1.0"
-

@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- a scene represents a configuration of parameters and routing"
+license = "GPL-3.0"
 name = "surge-scene"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]
@@ -141,4 +143,3 @@ version = "0.1.1-alpha.0"
 [dependencies.surgefx]    
 path = "../surgefx"
 version = "0.1.1-alpha.0"
-

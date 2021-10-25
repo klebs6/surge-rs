@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- rotary speaker effect"
+license = "GPL-3.0"
 name = "surgefx-rotary"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

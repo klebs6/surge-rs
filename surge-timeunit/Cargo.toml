@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- handle to timeunit, used for tempo synchronization"
+license = "GPL-3.0"
 name = "surge-timeunit"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

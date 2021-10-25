@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- obxd filter"
+license = "GPL-3.0"
 name = "surgefilter-obxd"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

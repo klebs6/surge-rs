@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- create filter coefficients for various filter types"
+license = "GPL-3.0"
 name = "surge-coeffmaker"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

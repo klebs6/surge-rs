@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- fm oscillator"
+license = "GPL-3.0"
 name = "surgeosc-fm"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

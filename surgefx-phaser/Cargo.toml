@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- phaser effect"
+license = "GPL-3.0"
 name = "surgefx-phaser"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

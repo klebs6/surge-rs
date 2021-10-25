@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- access synthesizer inputs"
+license = "GPL-3.0"
 name = "surge-input"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

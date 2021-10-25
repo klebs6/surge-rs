@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- structure to represent a synthesizer voice"
+license = "GPL-3.0"
 name = "surge-voice"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]
@@ -133,4 +135,3 @@ version = "0.1.1-alpha.0"
 [dependencies.surgeosc-window]    
 path = "../surgeosc-window"
 version = "0.1.1-alpha.0"
-

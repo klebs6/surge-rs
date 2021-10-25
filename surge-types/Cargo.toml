@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- primarily comprised of enumerations used to select between synth features"
+license = "GPL-3.0"
 name = "surge-types"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- toplevel synthesizer virtual instrument"
+license = "GPL-3.0"
 name = "surge-synthesizer"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]
@@ -336,5 +338,4 @@ version = "0.1.1-alpha.0"
 [dependencies.surge-macros]
 path = "../surge-macros"
 version = "0.1.1-alpha.0"
-
 

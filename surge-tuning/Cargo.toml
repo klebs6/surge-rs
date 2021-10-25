@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- handle to the surge tuner, allowing microtunig.  contains various tuning configurations"
+license = "GPL-3.0"
 name = "surge-tuning"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- midi polyphonic expression"
+license = "GPL-3.0"
 name = "surge-mpe"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

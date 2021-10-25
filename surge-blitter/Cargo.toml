@@ -1,4 +1,6 @@
 [package]
+description = "blitter used for surge synthesizer oscillator processing"
+license = "GPL-3.0"
 name = "surge-blitter"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

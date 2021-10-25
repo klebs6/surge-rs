@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- handle for managing the sample rate"
+license = "GPL-3.0"
 name = "surge-samplerate"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

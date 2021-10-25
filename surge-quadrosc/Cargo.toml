@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- simple single frequency oscillator computation"
+license = "GPL-3.0"
 name = "surge-quadrosc"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

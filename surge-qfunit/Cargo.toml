@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- quad filter unit used for voice processing"
+license = "GPL-3.0"
 name = "surge-qfunit"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

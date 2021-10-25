@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- flanger effect"
+license = "GPL-3.0"
 name = "surgefx-flanger"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]

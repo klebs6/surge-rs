@@ -1,4 +1,6 @@
 [package]
+description = "surge synthesizer -- tanh waveshaper"
+license = "GPL-3.0"
 name = "surgeshaper-tanh"
 version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]
@@ -13,4 +15,3 @@ vendor = "0.1.0"
 [dependencies.surge-math]
 path = "../surge-math"
 vendor = "0.1.0"
-
