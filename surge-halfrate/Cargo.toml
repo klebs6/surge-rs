@@ -2,7 +2,7 @@
 description = "surge synthesizer -- halfrate filter"
 license = "GPL-3.0"
 name = "surge-halfrate"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 authors = [ 
     "Adam Raisbeck <sense@i2pi.com>",
     "Alec DiAstra <alecdiastra@gmail.com>",
@@ -52,15 +52,15 @@ edition = "2018"
 
 [dependencies.surge-math]
 path = "../surge-math"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies.surge-traits]
 path = "../surge-traits"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies]
 ndarray = "*"

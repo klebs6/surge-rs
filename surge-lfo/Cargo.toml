@@ -2,7 +2,7 @@
 description = "surge synthesizer -- lfos used for modulation"
 license = "GPL-3.0"
 name = "surge-lfo"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 authors = [ 
     "Adam Raisbeck <sense@i2pi.com>",
     "Alec DiAstra <alecdiastra@gmail.com>",
@@ -55,40 +55,40 @@ paste = "*"
 
 [dependencies.surge-param]
 path = "../surge-param"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies.surge-macros]
 path = "../surge-macros"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies.surge-traits]
 path = "../surge-traits"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies.surge-types]
 path = "../surge-types"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies.surge-math]
 path = "../surge-math"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies.surge-timeunit]
 path = "../surge-timeunit"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies.surge-tables]
 path = "../surge-tables"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies.surge-samplerate]
 path = "../surge-samplerate"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies.surge-quadrosc]
 path = "../surge-quadrosc"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"

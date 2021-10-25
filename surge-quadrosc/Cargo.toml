@@ -2,7 +2,7 @@
 description = "surge synthesizer -- simple single frequency oscillator computation"
 license = "GPL-3.0"
 name = "surge-quadrosc"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 authors = [ 
     "Adam Raisbeck <sense@i2pi.com>",
     "Alec DiAstra <alecdiastra@gmail.com>",

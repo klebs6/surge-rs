@@ -2,7 +2,7 @@
 description = "surge synthesizer -- surge super oscillator (SSO)"
 license = "GPL-3.0"
 name = "surgeosc-super"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 authors = [ 
     "Adam Raisbeck <sense@i2pi.com>",
     "Alec DiAstra <alecdiastra@gmail.com>",

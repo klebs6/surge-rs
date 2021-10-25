@@ -2,7 +2,7 @@
 description = "surge synthesizer -- midi handling"
 license = "GPL-3.0"
 name = "surge-midi"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 authors = [ 
     "Adam Raisbeck <sense@i2pi.com>",
     "Alec DiAstra <alecdiastra@gmail.com>",
@@ -52,16 +52,16 @@ edition = "2018"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies.surge-types]
 path = "../surge-types"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies.surge-macros]
 path = "../surge-macros"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
 
 [dependencies.surge-quadrosc]
 path = "../surge-quadrosc"
-version = "0.1.2-alpha.0"
+version = "0.1.10-alpha.0"
