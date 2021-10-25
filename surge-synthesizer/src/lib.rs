@@ -10,7 +10,6 @@
 #![feature(stdsimd)]
 #![feature(associated_type_bounds)]
 #![feature(box_syntax)]
-#![feature(const_fn)]
 #![feature(box_patterns)]
 #![feature(asm)]
 #![feature(stdarch)]

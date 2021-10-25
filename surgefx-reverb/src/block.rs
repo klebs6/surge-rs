@@ -37,7 +37,7 @@ impl Reverb<'sr> {
 
         let predelay = self.pvalf(ReverbParam::PreDelay);
 
-        let pitch    = self.tuner.n2p::<true,f32>(12.0 * predelay);
+        let pitch    = self.tuner.n2p::<f32,true>(12.0 * predelay);
 
         let tsr_inv  = self.maybe_temposyncratio_inv(ReverbParam::PreDelay);
 

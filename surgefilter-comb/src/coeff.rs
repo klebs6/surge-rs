@@ -9,7 +9,7 @@ impl CoeffMake for CombFilter<'sr> {
         let dtime: f32 = {
 
             let note_pitch_ignoring_tuning =
-                self.tuner.n2p::<true,f64>(-freq as f64);
+                self.tuner.n2p::<f64,true>(-freq as f64);
 
             let mut result: f32 = 
                 (1.0 / CONCERT_A_HZ as f32) * 

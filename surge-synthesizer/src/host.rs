@@ -83,8 +83,6 @@ impl SampleHost{
             }
         }
 
-
         Ok(())
-
     }
 }

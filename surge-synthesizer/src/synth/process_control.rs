@@ -61,9 +61,11 @@ impl SurgeSynthesizer< 'sr, 'plugin_layer, 'synth_out > {
             scene.maybe_release(play_b);
         }
 
-        //note: channelmask was causing problems so i took it out
-        //we can figure out a different way to do this later
-
+        /*
+          note: channelmask was causing problems
+          so i took it out we can figure out
+          a different way to do this later
+          */
         if !self.controller.halt_engine {
 
             self.active_patch.scene[0].maybe_play_note(play_a, 1);

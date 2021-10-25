@@ -29,9 +29,9 @@ impl Default for MPEUnit<'sr> {
             num_voices:                NumVoices(0),
 
             //getUserDefaultValue(&storage, "mpePitchBendRange", 48);
-            pitchbend_range:          PitchBendRange(48.0),
+            pitchbend_range:           PitchBendRange(48.0),
             global_pitchbend_range:    PitchBendRange(0.0),
-            pitchbend:                PitchBendValue(0.0),
+            pitchbend:                 PitchBendValue(0.0),
             poly_aftertouch:           [0.0; 128],
             last_key:                  0,
             phantom:                   Default::default(),

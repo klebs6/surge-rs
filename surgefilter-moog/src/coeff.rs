@@ -5,7 +5,7 @@ impl CoeffMake for crate::LpMoogFilter<'sr> {
     fn coeff_make(&self, freq: f32, reso: f32) -> [f32; N_COEFFMAKER_COEFFS]
     {
         let note_pitch_ignoring_tuning = 
-            self.tuner.n2p::<true,f64>(freq as f64);
+            self.tuner.n2p::<f64,true>(freq as f64);
 
         let gg: f64 = limit_range(
             (

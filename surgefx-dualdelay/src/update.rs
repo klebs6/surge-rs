@@ -51,7 +51,7 @@ impl Update for DualDelay<'sr> {
             self.srunit.samplerate() 
             * (
                 self.maybe_temposyncratio_inv(DualDelayParam::Left) *
-                self.tuner.n2p::<true,f32>(12.0 * l)
+                self.tuner.n2p::<f32,true>(12.0 * l)
             ) 
             + self.lfo_val - FIR_OFFSET_F32
         );
@@ -60,7 +60,7 @@ impl Update for DualDelay<'sr> {
             self.srunit.samplerate()
             * (
                 self.maybe_temposyncratio_inv(DualDelayParam::Right) *
-                self.tuner.n2p::<true,f32>(12.0 * r)
+                self.tuner.n2p::<f32,true>(12.0 * r)
             ) 
             + self.lfo_val - FIR_OFFSET_F32
         );

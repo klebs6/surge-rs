@@ -23,7 +23,7 @@ pub struct NonlinearStatesFilter<'sr> {
 impl NonlinearStatesFilter<'sr> {
     pub fn clamped_frequency(&self, pitch: f32) -> f32
     {
-        let freq = self.tuner.n2p::<true,f32>(pitch + 69.0) * (MIDI_0_FREQ as f32);
+        let freq = self.tuner.n2p::<f32,true>(pitch + 69.0) * (MIDI_0_FREQ as f32);
         limit_range(freq, 5.0, self.srunit.samplerate_os() * 0.3)
     }
 }

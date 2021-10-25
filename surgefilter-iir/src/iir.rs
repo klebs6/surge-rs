@@ -41,7 +41,7 @@ impl CoeffMake for IIRFilter<'sr> {
         );
 
         let (cosi, sinu): 
-            (f64, f64) = self.tuner.note_to_omega::<true, f64>(freq.into());
+            (f64, f64) = self.tuner.note_to_omega::<f64,true>(freq.into());
 
         let alpha = FilterCoeffs::alpha(sinu, cosi, q2inv, self.subtype);
 

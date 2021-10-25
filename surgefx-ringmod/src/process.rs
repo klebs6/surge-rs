@@ -62,7 +62,7 @@ impl Process for RingModulator<'sr> {
                 unison_detune * self.detune_offset[u as usize]
             );
 
-            let pitch = self.tuner.n2p::<false,f64>( (carrierfreq + detune_extended) as f64 );
+            let pitch = self.tuner.n2p::<f64,false>( (carrierfreq + detune_extended) as f64 );
 
             dphase[u as usize]  = (pitch * MIDI_0_FREQ * sri) as f32;
         }

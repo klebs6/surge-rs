@@ -5,7 +5,7 @@ ix!();
 ///
 /// usage would be
 ///
-/// ```
+/// ```cpp
 /// lipol_ps mypol;
 ///
 /// ...
@@ -17,7 +17,7 @@ ix!();
 ///
 /// then later in the code
 ///
-/// ```
+/// ```cpp
 /// float values alignas(16)[SIZE]
 /// mypol.store_block(values, SIZE_OVER_FOUR);
 /// ```

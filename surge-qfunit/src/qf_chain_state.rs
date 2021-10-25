@@ -2,8 +2,11 @@ ix!();
 
 use crate::{QuadFilterUnitState};
 
-///typically used with MAX_VOICES >> 2 elements
-///ie, each QuadFilterChainState performs filtering for four voices
+/**
+  typically used with MAX_VOICES >> 2 elements ie,
+  each QuadFilterChainState performs filtering for
+  four voices
+  */
 #[derive(Debug)]
 pub struct QuadFilterChain<'tables> {
     pub state: Align16<Vec<QuadFilterChainState<'tables>>>,
@@ -47,13 +50,18 @@ pub struct QuadFilterChainState<'tables> {
 }
 
 impl Init for QuadFilterChainState<'tables> {
-    ///
-    /// Original note on the out-of-line function performing this function:
-    ///
-    /// I originally had this as a member but since moved it out of line so as to
-    /// not run any risk of alignment problems in QuadFilterChainState where
-    /// only the head of the array is __align_malloced
-    /// 
+
+    /**
+      | Original note on the out-of-line function
+      | performing this function:
+      |
+      | I originally had this as a member but
+      | since moved it out of line so as to not
+      | run any risk of alignment problems in
+      | QuadFilterChainState where only the head
+      | of the array is __align_malloced
+      |
+      */
     fn init(&mut self) {
         self.gain            = unsafe { z128![] };
         self.feedback        = unsafe { z128![] };

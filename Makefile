@@ -10,7 +10,7 @@ TAIL_FLAGS :=
 RUSTFLAGS := ""
 
 #ACTIVE_PACKAGE := surge-synthesizer
-#ACTIVE_PACKAGE := surge-voice
+ACTIVE_PACKAGE := surge-voice
 #ACTIVE_PACKAGE := surge-scene
 
 #ACTIVE_PACKAGE := surge-adsr
@@ -56,7 +56,7 @@ RUSTFLAGS := ""
 #ACTIVE_PACKAGE := surgefx-allpass
 #ACTIVE_PACKAGE := surgefx-chorus
 #ACTIVE_PACKAGE := surgefx-conditioner
-ACTIVE_PACKAGE := surgefx-distortion
+#ACTIVE_PACKAGE := surgefx-distortion
 #ACTIVE_PACKAGE := surgefx-dualdelay
 #ACTIVE_PACKAGE := surgefx-emphasize
 #ACTIVE_PACKAGE := surgefx-eq3band
@@ -97,7 +97,7 @@ bench:
 	RUST_BACKTRACE=1 RUSTFLAGS=$(RUSTFLAGS) cargo bench -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS) -- --nocapture
 
 test_all:
-	RUSTFLAGS=$(RUSTFLAGS) cargo test
+	RUST_BACKTRACE=full RUSTFLAGS=$(RUSTFLAGS) cargo test
 
 vendor:
 	cargo vendor

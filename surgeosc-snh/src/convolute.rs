@@ -69,8 +69,8 @@ impl Convolute for SampleAndHoldOscillator<'sr> {
             if self.params[SampleAndHoldOscillatorParam::UniCount].absolute {
 
                 // see the comment in SurgeSuperOscillator in the absolute branch
-                let t = self.tuner.n2pinv::<true,f32>(
-                    detune * self.tuner.n2pinv::<true,f32>( self.pitch ) * 
+                let t = self.tuner.n2pinv::<f32,true>(
+                    detune * self.tuner.n2pinv::<f32,true>( self.pitch ) * 
                     16.0 / 0.9443 
                 );
 

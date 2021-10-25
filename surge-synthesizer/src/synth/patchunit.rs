@@ -13,7 +13,11 @@ impl SurgeSynthesizer<'sr,'plugin_layer,'synth_out> {
 
     pub fn process_threadunsafe_operations(&mut self) {
         if !self.audio_processing_active {
-            // if the audio processing is inactive, patchloading should occur anyway
+
+            /*
+              if the audio processing is inactive,
+              patchloading should occur anyway
+              */
             if self.patchid_queue.unwrap() >= 0 {
 
                 //self.load_patch(self.patchid_queue);

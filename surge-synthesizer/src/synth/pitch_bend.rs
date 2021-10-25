@@ -33,11 +33,22 @@ impl SurgeSynthesizer<'sr,'plugin_layer,'synth_out> {
             }
         }
 
-        // So here's the thing. We want global pitch bend modulation to work for other things in MPE mode.
-        // This code has beenhere forever. But that means we need to ignore the channel[0] mpe pitchbend
-        // elsewhere, especially since the range was hardwired to 2 (but is now 0). As far as I know the
-        // main MPE devices don't have a global pitch bend anyway so this just screws up regular keyboards
-        // sending channel 0 pitch bend in MPE mode.
+        /*
+          | So here's the thing. We want global
+          | pitch bend modulation to work for other
+          | things in MPE mode.
+          |
+          | This code has beenhere forever. But
+          | that means we need to ignore the
+          | channel[0] mpe pitchbend elsewhere,
+          | especially since the range was
+          | hardwired to 2 (but is now 0). As far
+          | as I know the main MPE devices don't
+          | have a global pitch bend anyway so this
+          | just screws up regular keyboards
+          | sending channel 0 pitch bend in MPE
+          | mode.
+          */
         if !self.mpe_unit.enabled() || channel == 0 {
 
             self.mpe_unit.set_pitchbend((value as f32) / 8192.0);

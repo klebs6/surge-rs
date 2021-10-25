@@ -1,10 +1,10 @@
 use crate::*;
 
 pub struct SpencaPlugin {
-    sample_rate: f64,
-    time: f64,
+    sample_rate:   f64,
+    time:          f64,
     note_duration: f64,
-    note: Option<u8>,
+    note:          Option<u8>,
 }
 
 impl SpencaPlugin {
@@ -12,16 +12,26 @@ impl SpencaPlugin {
         1.0 / self.sample_rate
     }
 
-    /// Process an incoming midi event.
-    ///
-    /// The midi data is split up like so:
-    ///
-    /// `data[0]`: Contains the status and the channel. Source: [source]
-    /// `data[1]`: Contains the supplemental data for the message - so, if this was a NoteOn then
-    ///            this would contain the note.
-    /// `data[2]`: Further supplemental data. Would be velocity in the case of a NoteOn message.
-    ///
-    /// [source]: http://www.midimountain.com/midi/midi_status.htm
+    /**
+      | Process an incoming midi event.
+      |
+      | The midi data is split up like so:
+      |
+      | `data[0]`: Contains the status and the
+      |            channel. Source: [source]
+      |
+      | `data[1]`: Contains the supplemental data
+      |            for the message - so, if this
+      |            was a NoteOn then this would
+      |            contain the note.
+      |
+      | `data[2]`: Further supplemental
+      |            data. Would be velocity in the
+      |            case of a NoteOn message.
+      |
+      | [source]:
+      | http://www.midimountain.com/midi/midi_status.htm
+      */
     fn process_midi_event(&mut self, data: [u8; 3]) {
         match data[0] {
             128 => self.note_off(data[1]),

@@ -8,9 +8,12 @@ edition = "2018"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
+version = "0.1.0"
 
 [dependencies.surge-traits]
 path = "../surge-traits"
+version = "0.1.0"
 
 [dependencies.surge-samplerate]
 path = "../surge-samplerate"
+version = "0.1.0"

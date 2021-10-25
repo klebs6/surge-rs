@@ -63,7 +63,7 @@ impl Flanger<'sr> {
 
         }
 
-        let pitchinv: f32 = self.tuner.n2pinv::<false,f32>(v0pitch + (comb_idx as f32) * 6.0);
+        let pitchinv: f32 = self.tuner.n2pinv::<f32,false>(v0pitch + (comb_idx as f32) * 6.0);
 
         self.lfoval[[channel_idx,comb_idx]].new_value(lfoout);
         self.delaybase[[channel_idx,comb_idx]].new_value( 

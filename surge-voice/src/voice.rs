@@ -71,3 +71,4 @@ pub struct SurgeVoice<'sr> {
 }
 
 compare_by![SurgeVoice<'sr>, uuid];
+

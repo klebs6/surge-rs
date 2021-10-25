@@ -42,7 +42,7 @@ impl CoeffMake for crate::ObxdFilter<'sr> {
         let   _rcor: f32 = (500.0 / 44000.0) * rcrate;
 
         let cutoff: f32 = std::cmp::min(
-            FloatOrd(self.tuner.n2p::<false,f32>(freq + 69.0) * (MIDI_0_FREQ as f32)), 
+            FloatOrd(self.tuner.n2p::<f32,false>(freq + 69.0) * (MIDI_0_FREQ as f32)), 
             FloatOrd(22000.0)).0 
             * samplerate_os_inv * PI_32;
 

@@ -8,12 +8,16 @@ edition = "2018"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
+version = "0.1.0"
 
 [dependencies.surge-types]
 path = "../surge-types"
+version = "0.1.0"
 
 [dependencies.surge-macros]
 path = "../surge-macros"
+version = "0.1.0"
 
 [dependencies.surge-quadrosc]
 path = "../surge-quadrosc"
+version = "0.1.0"

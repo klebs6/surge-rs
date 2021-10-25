@@ -46,8 +46,8 @@ impl WTOscillator<'sr> {
             /*TODO: is UniSpread the right parameter? match with p[5] from the C*/
             true => {
                 // See the comment in SurgeSuperOscillator.cpp at the absolute treatment
-                let tempt = self.tuner.n2pinv::<true,f64>( 
-                    detune * self.tuner.n2pinv::<true,f64>( self.pitch_t as f64) * 16.0 / 0.9443 
+                let tempt = self.tuner.n2pinv::<f64,true>( 
+                    detune * self.tuner.n2pinv::<f64,true>( self.pitch_t as f64) * 16.0 / 0.9443 
                 );
 
                 maxd(tempt,0.1)

@@ -8,7 +8,10 @@ pub struct FXUnit<'sr> {
     pub fx_suspend_bitmask: i32,
     pub fx_enable:          [bool; 8],
 
-    /// if true, reload new effect parameters from fxsync
+    /*
+       if true, reload new effect parameters from
+       fxsync
+      */
     pub fx_reload:          [bool; 8],
 }
 
@@ -38,8 +41,12 @@ impl FXUnit<'sr> {
         }
     }
 
-    //this function was different when we had fx_sync
-    //todo: do we still need fx_sync?
+    /*
+      |this function was different when we had
+      |fx_sync
+      |
+      |todo: do we still need fx_sync?
+      */
     pub fn load_fx(&mut self, initp: bool, force_reload_all: bool) -> bool 
     {
         self.load_fx_needed = false;
@@ -59,5 +66,4 @@ impl FXUnit<'sr> {
         }
         something_changed
     }
-
 }

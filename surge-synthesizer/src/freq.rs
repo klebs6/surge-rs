@@ -2,9 +2,12 @@ ix!();
 
 pub const TAU: f64 = PI * 2.0;
 
-/// Convert the midi note's pitch into the equivalent frequency.
-///
-/// This function assumes A4 is 440hz.
+/**
+  | Convert the midi note's pitch into the
+  | equivalent frequency.
+  |
+  | This function assumes A4 is 440hz.
+  */
 pub fn midi_pitch_to_freq(note: u8) -> f64 {
     assert!(note <= 127);
 

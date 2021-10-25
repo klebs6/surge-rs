@@ -56,7 +56,6 @@ enhanced_enum![
     }
 ];
 
-#[allow(non_camel_case_types)]
 enhanced_enum![
     FilterType {
         Off,

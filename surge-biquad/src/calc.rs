@@ -10,7 +10,7 @@ impl BiquadCalcFreq for BiquadFilter<'sr> {
     fn calc_omega(&self, scfreq: f64) -> f64 {
         (2.0 * PI) 
             * CONCERT_A_HZ
-            * self.tuner.n2p::<true,f64>((12.0 * scfreq) as f64) 
+            * self.tuner.n2p::<f64,true>((12.0 * scfreq) as f64) 
             * self.srunit.dsamplerate_inv() 
     }
 

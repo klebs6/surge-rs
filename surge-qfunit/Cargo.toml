@@ -8,21 +8,27 @@ edition = "2018"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
+version = "0.1.0"
 
 [dependencies.surge-param]
 path = "../surge-param"
+version = "0.1.0"
 
 [dependencies.surge-math]
 path = "../surge-math"
+version = "0.1.0"
 
 [dependencies.surge-tables]
 path = "../surge-tables"
+version = "0.1.0"
 
 [dependencies.surge-types]
 path = "../surge-types"
+version = "0.1.0"
 
 [dependencies.surge-traits]
 path = "../surge-traits"
+version = "0.1.0"
 
 [dependencies]
 enhanced_enum = "*"

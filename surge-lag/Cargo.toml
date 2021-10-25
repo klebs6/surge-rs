@@ -11,3 +11,4 @@ num-traits = "*"
 
 [dependencies.surge-math]
 path = "../surge-math"
+version = "0.1.0"

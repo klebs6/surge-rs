@@ -32,10 +32,10 @@ impl crate::SurgeSuperOscillator<'sr> {
                 // over a bunch of tests.
                 let note: f64 = 
                     detune as f64 * 
-                    self.tuner.n2pinv::<true,f64>( self.pitch as f64) * 
+                    self.tuner.n2pinv::<f64,true>( self.pitch as f64) * 
                     16.0 / 0.9443 + sync;
 
-                let mut t = self.tuner.n2pinv::<true,f64>(note);
+                let mut t = self.tuner.n2pinv::<f64,true>(note);
 
                 // With extended range and low frequencies we can have an implied 
                 // negative frequency; cut that off by setting a lower bound here.

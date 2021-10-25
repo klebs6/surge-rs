@@ -40,7 +40,7 @@ x![release];
 x![runtime];
 x![set_qfb];
 x![state];
-x![surge_voice];
+x![voice];
 x![sync_from_qfb];
 x![toggle];
 x![toggle_filter];

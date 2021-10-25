@@ -65,7 +65,7 @@ impl Note2Pitch for SurgeTuner<'sr> {
         let scale_constant_note      = T::from(self.scale_constant_note()).unwrap();
         let scale_constant_pitch_inv = T::from(self.scale_constant_pitch_inv()).unwrap();
 
-        self.n2p::<false,T>( x + scale_constant_note ) * scale_constant_pitch_inv
+        self.n2p::<T,false>( x + scale_constant_note ) * scale_constant_pitch_inv
     }
 
     #[inline] fn n2pinv_tuningctr<T: MyFloat>(&self, x: T) -> T 
@@ -73,10 +73,10 @@ impl Note2Pitch for SurgeTuner<'sr> {
         let scale_constant_note      = T::from(self.scale_constant_note()).unwrap();
         let scale_constant_pitch_inv = T::from(self.scale_constant_pitch_inv()).unwrap();
 
-        self.n2pinv::<false,T>( x + scale_constant_note ) * scale_constant_pitch_inv
+        self.n2pinv::<T,false>( x + scale_constant_note ) * scale_constant_pitch_inv
     }
 
-    fn n2p<const IGNORE_TUNING: bool, T: MyFloat>(&self, mut x: T) -> T 
+    fn n2p<T: MyFloat, const IGNORE_TUNING: bool>(&self, mut x: T) -> T 
     {
         x += T::from(256.0).unwrap();
         let f: f64 = x.into();
@@ -101,7 +101,7 @@ impl Note2Pitch for SurgeTuner<'sr> {
         lerp(lerpx,lerpa,lerpb)
     }
 
-    fn n2pinv<const IGNORE_TUNING: bool, T: MyFloat>(&self, mut x: T) -> T 
+    fn n2pinv<T: MyFloat, const IGNORE_TUNING: bool>(&self, mut x: T) -> T 
     {
         x += T::from(256.0).unwrap();
         let f: f64 = x.into();
@@ -126,7 +126,7 @@ impl Note2Pitch for SurgeTuner<'sr> {
         lerp(lerpx,lerpa,lerpb)
     }
 
-    fn note_to_omega<const IGNORE_TUNING: bool, T: MyFloat>(&self, mut x: T) -> (T, T) 
+    fn note_to_omega<T: MyFloat, const IGNORE_TUNING: bool>(&self, mut x: T) -> (T, T) 
     {
         x += T::from(256.0).unwrap();
 
@@ -166,7 +166,7 @@ impl Note2Pitch for SurgeTuner<'sr> {
 
         T::from(PI).unwrap() * 
             T::from(NOTE_FREQ_C0).unwrap() * 
-            self.n2p::<false,T>(x) * 
+            self.n2p::<T,false>(x) * 
             T::from(sros64_inv).unwrap()
     }
 }

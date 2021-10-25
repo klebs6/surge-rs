@@ -5,9 +5,14 @@ use crate::{PData,BoundValue,ControlType,Param,ParamRT};
 impl<P: Param + ?Sized> BoundValue for ParamRT<P> {
 
     fn limit_range(&mut self) {
-        //!clamp value between parameter minimum and maximum
-        //!should not need to be called from the outside, because a limited range is 
-        //!and invariant which should be upheld internally
+
+        /*
+           |clamp value between parameter minimum
+           |and maximum should not need to be
+           |called from the outside, because
+           |a limited range is and invariant which
+           |should be upheld internally
+           */
         match (self.val, self.min_value(), self.max_value()) {
             (PData::Float(f), PData::Float(min), PData::Float(max)) => {
                 self.val = PData::Float(limit_range(f,min,max));

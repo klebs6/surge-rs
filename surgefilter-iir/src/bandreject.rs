@@ -52,7 +52,7 @@ impl CoeffMake for BandRejectFilter<'sr> {
             }
         };
 
-        let (cosi, sinu) = self.tuner.note_to_omega::<true,f64>(freq as f64) ;
+        let (cosi, sinu) = self.tuner.note_to_omega::<f64,true>(freq as f64) ;
 
         let alpha: f64 = sinu * q2inv;
 

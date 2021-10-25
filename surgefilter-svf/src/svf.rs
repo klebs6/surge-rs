@@ -19,7 +19,7 @@ impl CoeffMake for SvfFilter<'sr> {
 
     fn coeff_make(&self, freq: f32, mut reso: f32) -> [f32; N_COEFFMAKER_COEFFS]
     {
-        let f: f64 = CONCERT_A_HZ * self.tuner.n2p::<true,f64>(freq as f64);
+        let f: f64 = CONCERT_A_HZ * self.tuner.n2p::<f64,true>(freq as f64);
 
         let f1: f64 = 2.0 * 
             ( PI * 

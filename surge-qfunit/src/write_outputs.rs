@@ -2,9 +2,12 @@ ix!();
 
 use crate::QuadFilterChainState;
 
-///# Safety
-///
-///need to be able to access distance k away from out_r and out_l
+/**
+  |# Safety
+  |
+  |need to be able to access distance k away from
+  |out_r and out_l
+  */
 pub unsafe fn qfc_write_outputs(
     qfcs:  &mut QuadFilterChainState<'_>,
     x:     __m128,
@@ -22,9 +25,12 @@ pub unsafe fn qfc_write_outputs(
     _mm_store_ss(out_r.add(k), _mm_add_ss(_mm_load_ss(out_r.add(k)), sum_ps_to_ss(new_out_r)));
 }
 
-///# Safety
-///
-///need to be able to access distance k away from out_r and out_l
+/**
+  |# Safety
+  |
+  |need to be able to access distance k away from
+  |out_r and out_l
+  */
 pub unsafe fn qfc_write_outputs_dual(
     qfcs:  &mut QuadFilterChainState<'_>,
     x:     __m128,

@@ -1,6 +1,6 @@
-ix!();
 
 #[test] fn test_lipol() {
+    ix!();
     let mut x = LiPol::new();
     x.set_blocksize(BLOCK_SIZE);
     x.instantize();

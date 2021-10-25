@@ -8,6 +8,8 @@ edition = "2018"
 
 [dependencies.surge-filter]
 path = "../surge-filter"
+vendor = "0.1.0"
 
 [dependencies.surge-math]
 path = "../surge-math"
+vendor = "0.1.0"

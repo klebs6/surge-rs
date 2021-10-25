@@ -12,3 +12,4 @@ enum_dispatch = "*"
 
 [dependencies.surge-types]
 path = "../surge-types"
+version = "0.1.0"

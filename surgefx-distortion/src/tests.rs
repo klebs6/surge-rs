@@ -1,7 +1,8 @@
-ix!();
 
 #[test] fn distortion_smoke() {
 
+    /*
+    ix!();
     const N: usize = 32;
 
     let mut l: Vec<f32> = (0..N).map(|x| surge_math::correlated_noise(0.0, x as f64) as f32).collect();
@@ -26,5 +27,7 @@ ix!();
 
         println!("l: {:?}",l); 
         println!("r: {:?}",r); 
+
     }
+    */
 }

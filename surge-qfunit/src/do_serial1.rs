@@ -4,11 +4,13 @@ use crate::{
     qfc_write_outputs,
 };
 
-
-///# Safety
-///
-///Need to ensure we can at least access BLOCK_SIZE_OS elements starting
-///from valid out_l and out_r
+/**
+  |# Safety
+  |
+  |Need to ensure we can at least access
+  |BLOCK_SIZE_OS elements starting from valid
+  |out_l and out_r
+  */
 #[allow(clippy::not_unsafe_ptr_arg_deref)]
 pub fn do_serial1<const A_FILTER_ACTIVE: bool, const WAVESHAPER_ACTIVE: bool, const B_FILTER_ACTIVE: bool>(
     mut wss:  &mut crate::WaveshaperState<'tables>, 

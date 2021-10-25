@@ -14,7 +14,7 @@ impl Update for FreqShift<'sr> {
         self.time.new_value(
             (self.maybe_temposyncratio_inv(FreqShiftParam::Delay))
             * self.srunit.samplerate() 
-            * (self.tuner.n2p::<true,f32>( 
+            * (self.tuner.n2p::<f32,true>( 
                     12.0_f32 
                     * (self.pvalf(FreqShiftParam::Delay))
             )) 

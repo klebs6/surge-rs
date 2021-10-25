@@ -45,7 +45,7 @@ pub use surge_constants::{
 
 pub use std::fs::File;
 pub use std::convert::TryInto;
-pub use hound;
+pub use surge_hound as hound;
 pub use std::ops::Mul;
 
 pub trait MaybeSaturatingMul {

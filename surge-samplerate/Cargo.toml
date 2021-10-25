@@ -11,3 +11,4 @@ atomic_float = "*"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
+version = "0.1.0"

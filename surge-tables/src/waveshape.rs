@@ -98,6 +98,5 @@ impl Init for WaveshapeTables {
             self.table[3][[i]] = (t * PI / 512.0).sin() as f32;     //wst_sine
             self.table[4][[i]] = (t * mult).tanh() as f32;          //wst_digi
         }
-
     }
 }

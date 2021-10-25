@@ -51,7 +51,7 @@ impl<'sr> Update for Chorus<'sr> {
             self.maybe_temposyncratio(ChorusParam::Time);
 
         let tm: f32 = { 
-            self.tuner.n2p::<true,f32>(12.0 * time) * 
+            self.tuner.n2p::<f32,true>(12.0 * time) * 
                 self.maybe_temposyncratio_inv(ChorusParam::Time)
         };
 

@@ -37,7 +37,7 @@ impl CoeffMake for SnhFilter<'_> {
     fn coeff_make(&self, freq: f32, reso: f32) -> [f32; N_COEFFMAKER_COEFFS]
     {
         let note_pitch_ignoring_tuning =
-            self.tuner.n2p::<true,f64>(-freq as f64);
+            self.tuner.n2p::<f64,true>(-freq as f64);
 
         let dtime: f64 = (1.0 / CONCERT_A_HZ) * 
             note_pitch_ignoring_tuning * 

@@ -79,20 +79,22 @@ pub fn tempo_sync_notation_value(val: f32) -> String {
     return format!("{} {}", nn, t)
 }
 
-///the reason these are commented is because they create circular 
-///references between crates. Param should not need to know 
-///the implementation details of its users.
-///We can refactor this, or simply get rid of it.
-///
-///I think it makes sense to create printing functions associated with 
-///each relevant ControlType, and dispatch to these for the param 
-///implementors that need them.
-///
-///To me, it seems better to implement a display function (if desired)
-///for a param implementor at the point of implementation
-///
-///
-///
+/*
+  |the reason these are commented is because they
+  |create circular references between
+  |crates. Param should not need to know the
+  |implementation details of its users.  We can
+  |refactor this, or simply get rid of it.
+  |
+  |I think it makes sense to create printing
+  |functions associated with each relevant
+  |ControlType, and dispatch to these for the
+  |param implementors that need them.
+  |
+  |To me, it seems better to implement a display
+  |function (if desired) for a param implementor
+  |at the point of implementation
+  */
 impl<P: Param> ParameterDisplay for ParamRT<P> {
 
     #[allow(unused_variables)]

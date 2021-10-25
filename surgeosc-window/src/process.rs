@@ -22,7 +22,7 @@ impl OscillatorProcess for WindowOscillator<'sr> {
             // See comment in SurgeSuperOscillator
             true => {
                 self.pvalf_extended(WindowOscillatorParam::UniSpread) *
-                    self.tuner.n2pinv::<true,f32>( minf( 148.0, pitch ) ) * 16.0 / 0.9443
+                    self.tuner.n2pinv::<f32,true>( minf( 148.0, pitch ) ) * 16.0 / 0.9443
             },
             false => {
                 self.pvalf_extended(WindowOscillatorParam::UniSpread) 
@@ -37,7 +37,7 @@ impl OscillatorProcess for WindowOscillator<'sr> {
 
             /* This original code uses note 57 as a center point with a frequency of 220.  */
 
-            let f: f32 = self.tuner.n2p::<false,f32>(pitch + 
+            let f: f32 = self.tuner.n2p::<f32,false>(pitch + 
                 drift * 
                 self.drift_lfo[[l,0]] +
                 detune * 
@@ -62,7 +62,7 @@ impl OscillatorProcess for WindowOscillator<'sr> {
                         self.fm_depth[l].v * (master_osc![self,i]  as f64)
                     ) as f32;
 
-                    let f: f32 = self.tuner.n2p::<false,f32>(
+                    let f: f32 = self.tuner.n2p::<f32,false>(
                         pitch + 
                         drift * self.drift_lfo[[l,0]] +
                         detune * 

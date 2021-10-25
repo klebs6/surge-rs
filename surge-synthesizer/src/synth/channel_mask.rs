@@ -12,16 +12,22 @@ impl SurgeSynthesizer<'sr,'plugin_layer,'synth_out> {
         pvali![self.active_patch.params[PatchParam::SceneActive]]
     }
 
-    /// For split/dual
-    /// MIDI Channel 1 plays the split/dual
-    /// MIDI Channel 2 plays A
-    /// MIDI Channel 3 plays B
+    /**
+      | For split/dual
+      | MIDI Channel 1 plays the split/dual
+      | MIDI Channel 2 plays A
+      | MIDI Channel 3 plays B
+      */
     pub fn calculate_channel_mask(&mut self, channel: u8, key: u8) -> u8 {
 
-        //A voice is routed to scene n if channelmask & n. 
-        //So "1" means scene A, 
-        //"2" means scene B and 
-        //"3" (= 2 | 1 ) = both.
+        /*
+          |A voice is routed to scene n if
+          |channelmask & n.
+          |
+          |So "1" means scene A,
+          |"2" means scene B and
+          |"3" (= 2 | 1 ) = both.
+          */
         let mut channelmask: u8 = channel;
 
         let scene_mode   = self.get_scene_mode();

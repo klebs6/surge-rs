@@ -21,7 +21,7 @@ impl OscillatorProcess for SampleAndHoldOscillator<'sr> {
             1.0_f64, 
             self.srunit.dsamplerate_os()
             * (1.0 / 8.175798915) 
-            * self.tuner.n2pinv::<false,f64>(self.pitch as f64)
+            * self.tuner.n2pinv::<f64,false>(self.pitch as f64)
         ) as f32;
 
         // This must be a real division, reciprocal-approximation is not precise enough

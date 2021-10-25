@@ -4,27 +4,39 @@ use crate::SampleHost;
 #[no_mangle]
 pub extern fn run_host() {
 
-    // This is an example of a plugin being loaded. Change this to the appropriate path.
+    /*
+       This is an example of a plugin being
+       loaded. Change this to the appropriate
+       path.
+      */
     let path = Path::new(
         "/Users/klebs/sunnyvale/work/repo/spenca_plugin/target/debug/libspenca_plugin.dylib",
     );
 
-    // Create the host
+    /*
+       Create the host
+      */
     let host = Arc::new(Mutex::new(SampleHost));
 
     println!("Loading {}...", path.to_str().unwrap());
 
-    // Load the plugin
+    /*
+       Load the plugin
+      */
     let mut loader = PluginLoader::load(path, Arc::clone(&host)).unwrap_or_else(
         |e| {
             panic!("Failed to load plugin: {}", e)
         },
     );
 
-    // Create an instance of the plugin
+    /*
+      Create an instance of the plugin
+      */
     let mut instance = loader.instance().unwrap();
 
-    // Get the plugin information
+    /*
+      Get the plugin information
+      */
     let info = instance.get_info();
 
     println!(
@@ -44,7 +56,9 @@ pub extern fn run_host() {
               info.initial_delay
     );
 
-    // Initialize the instance
+    /*
+       Initialize the instance
+      */
     instance.init();
     println!("Initialized instance!");
 
@@ -52,8 +66,12 @@ pub extern fn run_host() {
     host.run(instance).unwrap();
 
     println!("Closing instance...");
-    // Close the instance. This is not necessary as the instance is shut down when
-    // it is dropped as it goes out of scope.
-    // drop(instance);
+
+    /*
+      | Close the instance. This is not necessary
+      | as the instance is shut down when it is
+      | dropped as it goes out of scope.
+      | drop(instance);
+      */
 }
 

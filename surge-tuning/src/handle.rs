@@ -65,14 +65,14 @@ impl TunerHandle<'sr> {
     #[inline] pub fn remap_to_standard_keyboard(&mut self) -> bool {
         self.inner.borrow_mut().remap_to_standard_keyboard()
     }
-    #[inline] pub fn n2p<const IGNORE_TUNING: bool, T: MyFloat>(&self, x: T) -> T {
-        self.inner.borrow().n2p::<IGNORE_TUNING,T>(x)
+    #[inline] pub fn n2p<T:MyFloat, const IGNORE_TUNING: bool>(&self, x: T) -> T {
+        self.inner.borrow().n2p::<T,IGNORE_TUNING>(x)
     }
-    #[inline] pub fn n2pinv<const IGNORE_TUNING: bool, T: MyFloat>(&self, x: T) -> T {
-        self.inner.borrow().n2pinv::<IGNORE_TUNING,T>(x)
+    #[inline] pub fn n2pinv<T: MyFloat, const IGNORE_TUNING: bool>(&self, x: T) -> T {
+        self.inner.borrow().n2pinv::<T,IGNORE_TUNING>(x)
     }
-    #[inline] pub fn note_to_omega<const IGNORE_TUNING: bool, T: MyFloat>(&self, x: T) -> (T, T) {
-        self.inner.borrow().note_to_omega::<IGNORE_TUNING,T>(x)
+    #[inline] pub fn note_to_omega<T: MyFloat, const IGNORE_TUNING: bool>(&self, x: T) -> (T, T) {
+        self.inner.borrow().note_to_omega::<T,IGNORE_TUNING>(x)
     }
     #[inline] pub fn n2p_tuningctr<T: MyFloat>(&self, x: T) -> T {
         self.inner.borrow().n2p_tuningctr::<T>(x)

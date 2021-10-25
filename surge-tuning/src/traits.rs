@@ -4,13 +4,13 @@ use crate::{Scale,KeyboardMapping};
 
 pub trait Note2Pitch {
 
-    fn n2p<const IGNORE_TUNING: bool,    T: MyFloat>(&self,x: T) -> T;
-    fn n2pinv<const IGNORE_TUNING: bool, T: MyFloat>(&self,x: T) -> T;
+    fn n2p<T: MyFloat, const IGNORE_TUNING: bool>(&self,x: T) -> T;
+    fn n2pinv<T: MyFloat,const IGNORE_TUNING: bool>(&self,x: T) -> T;
 
     fn n2p_tuningctr<   T: MyFloat>(&self,x: T) -> T;
     fn n2pinv_tuningctr<T: MyFloat>(&self,x: T) -> T;
 
-    fn note_to_omega<const IGNORE_TUNING: bool, T: MyFloat>(&self,x: T) -> (T, T);
+    fn note_to_omega<T: MyFloat, const IGNORE_TUNING: bool>(&self,x: T) -> (T, T);
     fn pitch2omega<T: MyFloat>(&self, x: T) -> T;
 }
 

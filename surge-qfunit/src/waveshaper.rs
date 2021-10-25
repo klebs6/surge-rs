@@ -1,10 +1,13 @@
 ix!();
 
-//this is implemented as a bunch of function pointers which 
-//could potentially be passed back up to the caller
-
-//TODO: eventually make a type of param which is just a selector for one of several enum options
-
+/*
+  |this is implemented as a bunch of function
+  |pointers which could potentially be passed back
+  |up to the caller
+  |
+  |TODO: eventually make a type of param which is
+  |just a selector for one of several enum options
+  */
 enhanced_enum![
     WaveshaperParam {
         Type,

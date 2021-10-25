@@ -1,7 +1,5 @@
 #![allow(incomplete_features)]
 #![feature(in_band_lifetimes)]
-#![feature(const_evaluatable_checked)]
-#![feature(const_generics)]
 
 macro_rules! x  { ($x:ident) => { mod $x; pub use $x::*; } }
 macro_rules! ix { 
