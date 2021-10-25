@@ -8,7 +8,7 @@ path = "../surge-biquad"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
-version = "0.1.11-alpha.0"
+version = "0.1.12-alpha.0"
 
 [dependencies.surge-halfrate]
 path = "../surge-halfrate"
@@ -55,4 +55,4 @@ description = "surge synthesizer -- chorus effect"
 edition = "2018"
 license = "GPL-3.0"
 name = "surgefx-chorus"
-version = "0.1.11-alpha.0"
+version = "0.1.12-alpha.0"
