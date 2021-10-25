@@ -2,7 +2,7 @@
 description = "surge synthesizer -- window oscillator"
 license = "GPL-3.0"
 name = "surgeosc-window"
-version = "0.1.4-alpha.0"
+version = "0.1.5-alpha.0"
 authors = [ 
     "Adam Raisbeck <sense@i2pi.com>",
     "Alec DiAstra <alecdiastra@gmail.com>",
