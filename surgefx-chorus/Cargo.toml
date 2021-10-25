@@ -2,7 +2,7 @@
 description = "surge synthesizer -- chorus effect"
 license = "GPL-3.0"
 name = "surgefx-chorus"
-version = "0.1.1-alpha.0"
+version = "0.1.2-alpha.0"
 authors = [ 
     "Adam Raisbeck <sense@i2pi.com>",
     "Alec DiAstra <alecdiastra@gmail.com>",

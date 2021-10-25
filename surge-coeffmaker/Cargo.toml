@@ -2,7 +2,7 @@
 description = "surge synthesizer -- create filter coefficients for various filter types"
 license = "GPL-3.0"
 name = "surge-coeffmaker"
-version = "0.1.1-alpha.0"
+version = "0.1.2-alpha.0"
 authors = [ 
     "Adam Raisbeck <sense@i2pi.com>",
     "Alec DiAstra <alecdiastra@gmail.com>",
@@ -56,32 +56,32 @@ enhanced_enum = "*"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
-version = "0.1.1-alpha.0"
+version = "0.1.2-alpha.0"
 
 [dependencies.surge-math]
 path = "../surge-math"
-version = "0.1.1-alpha.0"
+version = "0.1.2-alpha.0"
 
 [dependencies.surge-tables]
 path = "../surge-tables"
-version = "0.1.1-alpha.0"
+version = "0.1.2-alpha.0"
 
 [dependencies.surge-tuning]
 path = "../surge-tuning"
-version = "0.1.1-alpha.0"
+version = "0.1.2-alpha.0"
 
 [dependencies.surge-samplerate]
 path = "../surge-samplerate"
-version = "0.1.1-alpha.0"
+version = "0.1.2-alpha.0"
 
 [dependencies.surge-filter]
 path = "../surge-filter"
-version = "0.1.1-alpha.0"
+version = "0.1.2-alpha.0"
 
 [dependencies.surge-traits]
 path = "../surge-traits"
-version = "0.1.1-alpha.0"
+version = "0.1.2-alpha.0"
 
 [dependencies.surge-types]
 path = "../surge-types"
-version = "0.1.1-alpha.0"
+version = "0.1.2-alpha.0"
