@@ -2,7 +2,7 @@
 description = "surge synthesizer -- structure to represent a wavetable"
 license = "GPL-3.0"
 name = "surge-wavetable"
-version = "0.1.7-alpha.0"
+version = "0.1.8-alpha.0"
 authors = [ 
     "Adam Raisbeck <sense@i2pi.com>",
     "Alec DiAstra <alecdiastra@gmail.com>",
@@ -75,7 +75,7 @@ enum_dispatch = "*"
 
 [dependencies.surge-hound]
 path = "./surge-hound"
-version = "0.1.7-alpha.0"
+version = "0.1.8-alpha.0"
 
 #[patch.crates-io]
 #hound = { path = "vendor/hound" }
