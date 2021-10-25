@@ -1,0 +1,114 @@
+#!/usr/bin/env raku
+use v6;
+
+my @descriptions = [
+    ("surge-adsr/Cargo.toml"              , "adsr envelopes from the surge synthesizer"),
+    ("surge-biquad/Cargo.toml"            , "biquad filters from the surge synthesizer"),
+    ("surge-blitter/Cargo.toml"           , "blitter used for surge synthesizer oscillator processing"),
+    ("surge-coeffmaker/Cargo.toml"        , "surge synthesizer -- create filter coefficients for various filter types"),
+    ("surge-constants/Cargo.toml"         , "surge synthesizer -- shared constants"),
+    ("surge-filter/Cargo.toml"            , "surge synthesizer -- traits for filter implementations"),
+    ("surge-halfrate/Cargo.toml"          , "surge synthesizer -- halfrate filter"),
+    ("surge-input/Cargo.toml"             , "surge synthesizer -- access synthesizer inputs"),
+    ("surge-lag/Cargo.toml"               , "surge synthesizer -- lag struct used for smoothing changes"),
+    ("surge-lfo/Cargo.toml"               , "surge synthesizer -- lfos used for modulation"),
+    ("surge-lipol/Cargo.toml"             , "surge synthesizer -- linear interpolation struct"),
+    ("surge-macros/Cargo.toml"            , "surge synthesizer -- common macros"),
+    ("surge-math/Cargo.toml"              , "surge synthesizer -- dsp math used in synthesis"),
+    ("surge-midi/Cargo.toml"              , "surge synthesizer -- midi handling"),
+    ("surge-modulation/Cargo.toml"        , "surge synthesizer -- modulation unit"),
+    ("surge-mpe/Cargo.toml"               , "surge synthesizer -- midi polyphonic expression"),
+    ("surge-output/Cargo.toml"            , "surge synthesizer -- access synthesizer outputs"),
+    ("surge-param/Cargo.toml"             , "surge synthesizer -- structs to specify synth parameters"),
+    ("surge-qfunit/Cargo.toml"            , "surge synthesizer -- quad filter unit used for voice processing"),
+    ("surge-quadrosc/Cargo.toml"          , "surge synthesizer -- simple single frequency oscillator computation"),
+    ("surge-samplerate/Cargo.toml"        , "surge synthesizer -- handle for managing the sample rate"),
+    ("surge-scene/Cargo.toml"             , "surge synthesizer -- a scene represents a configuration of parameters and routing"),
+    ("surge-svf/Cargo.toml"               , "surge synthesizer -- state variable filter"),
+    ("surge-synthesizer/Cargo.toml"       , "surge synthesizer -- toplevel synthesizer virtual instrument"),
+    ("surge-tables/Cargo.toml"            , "surge synthesizer -- handle to lookup tables for various dsp functions"),
+    ("surge-timeunit/Cargo.toml"          , "surge synthesizer -- handle to timeunit, used for tempo synchronization"),
+    ("surge-traits/Cargo.toml"            , "surge synthesizer -- traits for various synthesizer components"),
+    ("surge-tuning/Cargo.toml"            , "surge synthesizer -- handle to the surge tuner, allowing microtunig.  contains various tuning configurations"),
+    ("surge-types/Cargo.toml"             , "surge synthesizer -- primarily comprised of enumerations used to select between synth features"),
+    ("surge-voice/Cargo.toml"             , "surge synthesizer -- structure to represent a synthesizer voice"),
+    ("surge-wavetable/Cargo.toml"         , "surge synthesizer -- structure to represent a wavetable"),
+    ("surgefilter-comb/Cargo.toml"        , "surge synthesizer -- comb filter"),
+    ("surgefilter-diode/Cargo.toml"       , "surge synthesizer -- diode filter"),
+    ("surgefilter-huovilainen/Cargo.toml" , "surge synthesizer -- huovilainen filter"),
+    ("surgefilter-iir/Cargo.toml"         , "surge synthesizer -- iir filter"),
+    ("surgefilter-k35/Cargo.toml"         , "surge synthesizer -- k35 filter"),
+    ("surgefilter-moog/Cargo.toml"        , "surge synthesizer -- moog filter"),
+    ("surgefilter-nlfeedback/Cargo.toml"  , "surge synthesizer -- nonlinear feedback filter"),
+    ("surgefilter-nlstates/Cargo.toml"    , "surge synthesizer -- nonlinear states filter"),
+    ("surgefilter-obxd/Cargo.toml"        , "surge synthesizer -- obxd filter"),
+    ("surgefilter-rungekutta/Cargo.toml"  , "surge synthesizer -- rungekutta filter"),
+    ("surgefilter-snh/Cargo.toml"         , "surge synthesizer -- sample and hold fitler"),
+    ("surgefilter-svf/Cargo.toml"         , "surge synthesizer -- state variable filter"),
+    ("surgefx-allpass/Cargo.toml"         , "surge synthesizer -- allpass effect"),
+    ("surgefx-chorus/Cargo.toml"          , "surge synthesizer -- chorus effect"),
+    ("surgefx-conditioner/Cargo.toml"     , "surge synthesizer -- conditioner effect"),
+    ("surgefx-distortion/Cargo.toml"      , "surge synthesizer -- distortion effect"),
+    ("surgefx-dualdelay/Cargo.toml"       , "surge synthesizer -- dual delay effect"),
+    ("surgefx-emphasize/Cargo.toml"       , "surge synthesizer -- emphasize effect"),
+    ("surgefx-eq3band/Cargo.toml"         , "surge synthesizer -- eq3band effect"),
+    ("surgefx-flanger/Cargo.toml"         , "surge synthesizer -- flanger effect"),
+    ("surgefx-freqshift/Cargo.toml"       , "surge synthesizer -- frequency shift effect"),
+    ("surgefx-phaser/Cargo.toml"          , "surge synthesizer -- phaser effect"),
+    ("surgefx-reverb/Cargo.toml"          , "surge synthesizer -- reverb effect"),
+    ("surgefx-ringmod/Cargo.toml"         , "surge synthesizer -- ring modulator effect"),
+    ("surgefx-rotary/Cargo.toml"          , "surge synthesizer -- rotary speaker effect"),
+    ("surgefx-vocoder/Cargo.toml"         , "surge synthesizer -- vocoder effect"),
+    ("surgefx/Cargo.toml"                 , "surge synthesizer -- toplevel unit for effects"),
+    ("surgeosc-audioin/Cargo.toml"        , "surge synthesizer -- audio input oscillator"),
+    ("surgeosc-fm/Cargo.toml"             , "surge synthesizer -- fm oscillator"),
+    ("surgeosc-fm2/Cargo.toml"            , "surge synthesizer -- fm2 oscillator"),
+    ("surgeosc-sine/Cargo.toml"           , "surge synthesizer -- sine oscillator"),
+    ("surgeosc-snh/Cargo.toml"            , "surge synthesizer -- sample and hold oscillator"),
+    ("surgeosc-super/Cargo.toml"          , "surge synthesizer -- surge super oscillator (SSO)"),
+    ("surgeosc-wavetable/Cargo.toml"      , "surge synthesizer -- wavetable oscillator"),
+    ("surgeosc-window/Cargo.toml"         , "surge synthesizer -- window oscillator"),
+    ("surgeshaper-asym/Cargo.toml"        , "surge synthesizer -- asymmetric waveshaper"),
+    ("surgeshaper-clip/Cargo.toml"        , "surge synthesizer -- clipping waveshaper"),
+    ("surgeshaper-digi/Cargo.toml"        , "surge synthesizer -- digital waveshaper"),
+    ("surgeshaper-sine/Cargo.toml"        , "surge synthesizer -- sine waveshaper"),
+    ("surgeshaper-tanh/Cargo.toml"        , "surge synthesizer -- tanh waveshaper"),
+];
+
+sub get-first-hot-idx(@items) {
+
+    my $idx = 0;
+
+    for @items {
+        if $_ ne 1 {
+            $idx += 1;
+        } else {
+            return $idx;
+        }
+    }
+
+    $idx
+}
+
+sub get-first-line-idx-for-kw($file, $kw) {
+    get-first-hot-idx($file.IO.lines>>.grep(/package/)>>.[0]>>.Bool>>.Int)
+}
+
+sub ensure-description-installed-in-cargo-toml($toml, $desc) {
+    die if not $toml.IO.e and $toml.split("/")[*-1] ~~ "Cargo.toml";
+
+    my @lines = $toml.IO.lines;
+
+    my $description = $toml.IO.lines.grep: /description/;
+
+    if not $description {
+        my $pack-idx = get-first-line-idx-for-kw($toml, /package/);
+        @lines.splice($pack-idx + 1, 0, "description = \"$desc\"");
+    }
+
+    $toml.IO.spurt: @lines.join("\n")
+}
+
+for @descriptions -> ($toml, $desc) {
+    ensure-description-installed-in-cargo-toml($toml,$desc);
+}
