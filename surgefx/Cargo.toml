@@ -55,60 +55,60 @@ enum_dispatch = "*"
 
 [dependencies.surgefx-allpass]
 path = "../surgefx-allpass"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surgefx-chorus]
 path = "../surgefx-chorus"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surgefx-conditioner]
 path = "../surgefx-conditioner"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surgefx-distortion]
 path = "../surgefx-distortion"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surgefx-dualdelay]
 path = "../surgefx-dualdelay"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surgefx-emphasize]
 path = "../surgefx-emphasize"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surgefx-eq3band]
 path = "../surgefx-eq3band"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surgefx-flanger]
 path = "../surgefx-flanger"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surgefx-freqshift]
 path = "../surgefx-freqshift"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surgefx-phaser]
 path = "../surgefx-phaser"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surgefx-reverb]
 path = "../surgefx-reverb"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surgefx-ringmod]
 path = "../surgefx-ringmod"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surgefx-rotary]
 path = "../surgefx-rotary"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surgefx-vocoder]
 path = "../surgefx-vocoder"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-traits]
 path = "../surge-traits"
-vendor = "0.1.0"
+version = "0.1.0"

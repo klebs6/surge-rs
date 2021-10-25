@@ -50,10 +50,6 @@ edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[dependencies]
-prometheus = "*"
-enhanced_enum = "*"
-
 [dependencies.surge-constants]
 path = "../surge-constants"
 version = "0.1.10-alpha.0"
@@ -85,3 +81,8 @@ version = "0.1.10-alpha.0"
 [dependencies.surge-param]
 path = "../surge-param"
 version = "0.1.10-alpha.0"
+
+[dependencies]
+prometheus = "*"
+enhanced_enum = "*"
+

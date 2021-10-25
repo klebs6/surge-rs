@@ -57,36 +57,36 @@ derivative = "*"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-filter]
 path = "../surge-filter"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-coeffmaker]
 path = "../surge-coeffmaker"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-math]
 path = "../surge-math"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-qfunit]
 path = "../surge-qfunit"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-tuning]
 path = "../surge-tuning"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-samplerate]
 path = "../surge-samplerate"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-tables]
 path = "../surge-tables"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-types]
 path = "../surge-types"
-vendor = "0.1.0"
+version = "0.1.0"

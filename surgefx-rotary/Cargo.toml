@@ -52,55 +52,55 @@ edition = "2018"
 
 [dependencies.surge-biquad]
 path = "../surge-biquad"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-param]
 path = "../surge-param"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-tuning]
 path = "../surge-tuning"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-lipol]
 path = "../surge-lipol"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-math]
 path = "../surge-math"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-samplerate]
 path = "../surge-samplerate"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-tables]
 path = "../surge-tables"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-traits]
 path = "../surge-traits"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-types]
 path = "../surge-types"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-macros]
 path = "../surge-macros"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-timeunit]
 path = "../surge-timeunit"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies.surge-quadrosc]
 path = "../surge-quadrosc"
-vendor = "0.1.0"
+version = "0.1.0"
 
 [dependencies]
 enhanced_enum = "*"

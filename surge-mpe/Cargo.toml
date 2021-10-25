@@ -62,4 +62,3 @@ version = "0.1.10-alpha.0"
 path = "../surge-types"
 version = "0.1.10-alpha.0"
 
-[dependencies]
