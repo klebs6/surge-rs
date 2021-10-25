@@ -1,6 +1,6 @@
 [package]
 name = "surge-output"
-version = "0.1.0"
+version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]
 edition = "2018"
 
@@ -11,12 +11,12 @@ ndarray = "*"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
-version = "0.1.0"
+version = "0.1.1-alpha.0"
 
 [dependencies.surge-macros]
 path = "../surge-macros"
-version = "0.1.0"
+version = "0.1.1-alpha.0"
 
 [dependencies.surge-math]
 path = "../surge-math"
-version = "0.1.0"
+version = "0.1.1-alpha.0"

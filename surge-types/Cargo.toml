@@ -1,6 +1,6 @@
 [package]
 name = "surge-types"
-version = "0.1.0"
+version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]
 edition = "2018"
 
@@ -13,16 +13,16 @@ serde = { version = "*", features = ["derive"] }
 
 [dependencies.surge-macros]
 path = "../surge-macros"
-version = "0.1.0"
+version = "0.1.1-alpha.0"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
-version = "0.1.0"
+version = "0.1.1-alpha.0"
 
 [dependencies.surge-math]
 path = "../surge-math"
-version = "0.1.0"
+version = "0.1.1-alpha.0"
 
 [dependencies.surge-param]
 path = "../surge-param"
-version = "0.1.0"
+version = "0.1.1-alpha.0"

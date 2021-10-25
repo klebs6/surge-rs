@@ -1,6 +1,6 @@
 [package]
 name = "surge-samplerate"
-version = "0.1.0"
+version = "0.1.1-alpha.0"
 authors = ["klebs <none>"]
 edition = "2018"
 
@@ -11,4 +11,4 @@ atomic_float = "*"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
-version = "0.1.0"
+version = "0.1.1-alpha.0"
