@@ -75,6 +75,7 @@ enum_dispatch = "*"
 
 [dependencies.surge-hound]
 path = "./surge-hound"
+version = "0.1.7-alpha.0"
 
 #[patch.crates-io]
 #hound = { path = "vendor/hound" }
