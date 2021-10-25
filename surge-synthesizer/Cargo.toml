@@ -2,7 +2,7 @@
 description = "surge synthesizer -- toplevel synthesizer virtual instrument"
 license = "GPL-3.0"
 name = "surge-synthesizer"
-version = "0.1.8-alpha.0"
+version = "0.1.9-alpha.0"
 authors = [ 
     "Adam Raisbeck <sense@i2pi.com>",
     "Alec DiAstra <alecdiastra@gmail.com>",
