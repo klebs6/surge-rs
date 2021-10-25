@@ -1,112 +1,53 @@
-[package]
-description = "surge synthesizer -- ring modulator effect"
-license = "GPL-3.0"
-name = "surgefx-ringmod"
-version = "0.1.10-alpha.0"
-authors = [ 
-    "Adam Raisbeck <sense@i2pi.com>",
-    "Alec DiAstra <alecdiastra@gmail.com>",
-    "Alexandre Bique <bique.alexandre@gmail.com>",
-    "Amy Furniss <http://github.com/amyfurniss>",
-    "Brian Ginsburg <https://github.com/bgins>",
-    "Cale Gibbard <cgibbard@gmail.com>",
-    "Claes Johanson <claes@bitwig.com>",
-    "Dave Palmer <itsmedavep@gmail.com>",
-    "David Bata <https://github.com/tank-trax>",
-    "David Carlier <devnexen@gmail.com>",
-    "Erik-Jan Maalderink <fonkle@gmx.com>",
-    "Esa Juhani Ruoho <esaruoho@gmail.com>",
-    "Filipe Coelho <falktx@falktx.com>",
-    "Hendrik van Boetzelaer <http://opuswerk.com>",
-    "Jacky Ligon <http://jackyligon.com>",
-    "Jani Frilander <http://github.com/janifr>",
-    "Jarkko Sakkinen <jarkko.sakkinen@iki.fi>",
-    "Jatin Chowdhury <jatin@ccrma.stanford.edu>",
-    "Jean Pierre Cimalando <jp-dev@inbox.ru>",
-    "Jeff Smith <whydoubt@gmail.com>",
-    "Jeremy Sagan <info@sagantech.biz>",
-    "Jon Spruyt <http://jonspru.yt>",
-    "Keith Zantow <kzantow@gmail.com>",
-    "Kjetil Matheussen <k.s.matheussen@notam02.no>",
-    "Korridor <fabian.kempe@gmail.com>",
-    "Luna Langton <https://github.com/selenologist>",
-    "Mario Krušelj a.k.a. EvilDragon <http://github.com/mkruselj>",
-    "Markku Tavasti <tavasti@iki.fi>",
-    "Marty Lake <matthieu@talbot.audio>",
-    "Matthias von Faber <http://github.com/mvf>",
-    "Mikko Saarinki <https://github.com/kingston1>",
-    "Nathan Kopp <nk.sg@nathankopp.com>",
-    "Paul Walker <paul@pwjw.com>",
-    "Rich Elmes <richie@juic3.com>",
-    "Sebastian Schwarzhuber <https://github.com/cannero>",
-    "The Emu (J Riley Hill) <http://jrileyhill.com>",
-    "Vincent Zauhar <v.zauhar@bell.net>",
-    "klebs <none>",
-    "muhl <https://github.com/mynameismuhl>",
-    "簡志瑋 <dppss92132@gmail.com>",
-    ]
-
-edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
+[dependencies]
+enhanced_enum = "0.2.2"
+float-ord = "0.3.2"
+paste = "1.0.5"
 [dependencies.surge-biquad]
 path = "../surge-biquad"
-version = "0.1.0"
-
-[dependencies.surgeosc-sine]
-path = "../surgeosc-sine"
-version = "0.1.0"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
-version = "0.1.0"
-
-[dependencies.surge-param]
-path = "../surge-param"
-version = "0.1.0"
-
-[dependencies.surge-tables]
-path = "../surge-tables"
-version = "0.1.0"
-
-[dependencies.surge-tuning]
-path = "../surge-tuning"
-version = "0.1.0"
-
-[dependencies.surge-lipol]
-path = "../surge-lipol"
-version = "0.1.0"
-
-[dependencies.surge-math]
-path = "../surge-math"
-version = "0.1.0"
-
-[dependencies.surge-samplerate]
-path = "../surge-samplerate"
-version = "0.1.0"
-
-[dependencies.surge-timeunit]
-path = "../surge-timeunit"
-version = "0.1.0"
 
 [dependencies.surge-halfrate]
 path = "../surge-halfrate"
-version = "0.1.0"
 
-[dependencies.surge-types]
-path = "../surge-types"
-version = "0.1.0"
+[dependencies.surge-lipol]
+path = "../surge-lipol"
 
 [dependencies.surge-macros]
 path = "../surge-macros"
-version = "0.1.0"
+
+[dependencies.surge-math]
+path = "../surge-math"
+
+[dependencies.surge-param]
+path = "../surge-param"
+
+[dependencies.surge-samplerate]
+path = "../surge-samplerate"
+
+[dependencies.surge-tables]
+path = "../surge-tables"
+
+[dependencies.surge-timeunit]
+path = "../surge-timeunit"
 
 [dependencies.surge-traits]
 path = "../surge-traits"
-version = "0.1.0"
 
-[dependencies]
-enhanced_enum = "*"
-paste = "*"
-float-ord = "*"
+[dependencies.surge-tuning]
+path = "../surge-tuning"
+
+[dependencies.surge-types]
+path = "../surge-types"
+
+[dependencies.surgeosc-sine]
+path = "../surgeosc-sine"
+
+[package]
+authors = [ "Adam Raisbeck <sense@i2pi.com>", "Alec DiAstra <alecdiastra@gmail.com>", "Alexandre Bique <bique.alexandre@gmail.com>", "Amy Furniss <http://github.com/amyfurniss>", "Brian Ginsburg <https://github.com/bgins>", "Cale Gibbard <cgibbard@gmail.com>", "Claes Johanson <claes@bitwig.com>", "Dave Palmer <itsmedavep@gmail.com>", "David Bata <https://github.com/tank-trax>", "David Carlier <devnexen@gmail.com>", "Erik-Jan Maalderink <fonkle@gmx.com>", "Esa Juhani Ruoho <esaruoho@gmail.com>", "Filipe Coelho <falktx@falktx.com>", "Hendrik van Boetzelaer <http://opuswerk.com>", "Jacky Ligon <http://jackyligon.com>", "Jani Frilander <http://github.com/janifr>", "Jarkko Sakkinen <jarkko.sakkinen@iki.fi>", "Jatin Chowdhury <jatin@ccrma.stanford.edu>", "Jean Pierre Cimalando <jp-dev@inbox.ru>", "Jeff Smith <whydoubt@gmail.com>", "Jeremy Sagan <info@sagantech.biz>", "Jon Spruyt <http://jonspru.yt>", "Keith Zantow <kzantow@gmail.com>", "Kjetil Matheussen <k.s.matheussen@notam02.no>", "Korridor <fabian.kempe@gmail.com>", "Luna Langton <https://github.com/selenologist>", "Mario Krušelj a.k.a. EvilDragon <http://github.com/mkruselj>", "Markku Tavasti <tavasti@iki.fi>", "Marty Lake <matthieu@talbot.audio>", "Matthias von Faber <http://github.com/mvf>", "Mikko Saarinki <https://github.com/kingston1>", "Nathan Kopp <nk.sg@nathankopp.com>", "Paul Walker <paul@pwjw.com>", "Rich Elmes <richie@juic3.com>", "Sebastian Schwarzhuber <https://github.com/cannero>", "The Emu (J Riley Hill) <http://jrileyhill.com>", "Vincent Zauhar <v.zauhar@bell.net>", "klebs <none>", "muhl <https://github.com/mynameismuhl>", "簡志瑋 <dppss92132@gmail.com>" ]
+description = "surge synthesizer -- ring modulator effect"
+edition = "2018"
+license = "GPL-3.0"
+name = "surgefx-ringmod"
+version = "0.1.11-alpha.0"
