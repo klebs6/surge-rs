@@ -878,7 +878,7 @@ dependencies = [
 
 [[package]]
 name = "surge-hound"
-version = "0.1.6-alpha.0"
+version = "0.1.7-alpha.0"
 dependencies = [
  "cpal",
 ]
@@ -1041,7 +1041,7 @@ dependencies = [
 
 [[package]]
 name = "surge-scene"
-version = "0.1.6-alpha.0"
+version = "0.1.7-alpha.0"
 dependencies = [
  "enhanced_enum",
  "enum_dispatch",
@@ -1094,7 +1094,7 @@ dependencies = [
 
 [[package]]
 name = "surge-synthesizer"
-version = "0.1.6-alpha.0"
+version = "0.1.7-alpha.0"
 dependencies = [
  "approx",
  "atomic_float",
@@ -1264,7 +1264,7 @@ dependencies = [
 
 [[package]]
 name = "surge-voice"
-version = "0.1.6-alpha.0"
+version = "0.1.7-alpha.0"
 dependencies = [
  "auto_impl",
  "enhanced_enum",
@@ -1306,7 +1306,7 @@ dependencies = [
 
 [[package]]
 name = "surge-wavetable"
-version = "0.1.6-alpha.0"
+version = "0.1.7-alpha.0"
 dependencies = [
  "bitflags 1.3.2",
  "enhanced_enum",
@@ -1958,7 +1958,7 @@ dependencies = [
 
 [[package]]
 name = "surgeosc-wavetable"
-version = "0.1.6-alpha.0"
+version = "0.1.7-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -1979,7 +1979,7 @@ dependencies = [
 
 [[package]]
 name = "surgeosc-window"
-version = "0.1.6-alpha.0"
+version = "0.1.7-alpha.0"
 dependencies = [
  "enhanced_enum",
  "ndarray",

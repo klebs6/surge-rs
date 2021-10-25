@@ -2,7 +2,7 @@
 description = "surge synthesizer -- toplevel synthesizer virtual instrument"
 license = "GPL-3.0"
 name = "surge-synthesizer"
-version = "0.1.6-alpha.0"
+version = "0.1.7-alpha.0"
 authors = [ 
     "Adam Raisbeck <sense@i2pi.com>",
     "Alec DiAstra <alecdiastra@gmail.com>",
@@ -191,7 +191,7 @@ version = "0.1.2-alpha.0"
 
 [dependencies.surge-wavetable]
 path = "../surge-wavetable"
-version = "0.1.6-alpha.0"
+version = "0.1.7-alpha.0"
 
 [dependencies.surgefilter-comb]
 path = "../surgefilter-comb"
@@ -327,11 +327,11 @@ version = "0.1.2-alpha.0"
 
 [dependencies.surgeosc-wavetable]
 path = "../surgeosc-wavetable"
-version = "0.1.6-alpha.0"
+version = "0.1.7-alpha.0"
 
 [dependencies.surgeosc-window]
 path = "../surgeosc-window"
-version = "0.1.6-alpha.0"
+version = "0.1.7-alpha.0"
 
 [dependencies.surgeshaper-asym]
 path = "../surgeshaper-asym"
@@ -367,7 +367,7 @@ version = "0.1.2-alpha.0"
 
 [dependencies.surge-scene]
 path = "../surge-scene"
-version = "0.1.6-alpha.0"
+version = "0.1.7-alpha.0"
 
 [dependencies.surge-traits]
 path = "../surge-traits"
