@@ -2,63 +2,63 @@
 enum_dispatch = "0.3.7"
 [dependencies.surge-traits]
 path = "../surge-traits"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [dependencies.surgefx-allpass]
 path = "../surgefx-allpass"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [dependencies.surgefx-chorus]
 path = "../surgefx-chorus"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [dependencies.surgefx-conditioner]
 path = "../surgefx-conditioner"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [dependencies.surgefx-distortion]
 path = "../surgefx-distortion"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [dependencies.surgefx-dualdelay]
 path = "../surgefx-dualdelay"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [dependencies.surgefx-emphasize]
 path = "../surgefx-emphasize"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [dependencies.surgefx-eq3band]
 path = "../surgefx-eq3band"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [dependencies.surgefx-flanger]
 path = "../surgefx-flanger"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [dependencies.surgefx-freqshift]
 path = "../surgefx-freqshift"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [dependencies.surgefx-phaser]
 path = "../surgefx-phaser"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [dependencies.surgefx-reverb]
 path = "../surgefx-reverb"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [dependencies.surgefx-ringmod]
 path = "../surgefx-ringmod"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [dependencies.surgefx-rotary]
 path = "../surgefx-rotary"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [dependencies.surgefx-vocoder]
 path = "../surgefx-vocoder"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
 
 [package]
 metadata.cpp-authors = [ "Adam Raisbeck <sense@i2pi.com>", "Alec DiAstra <alecdiastra@gmail.com>", "Alexandre Bique <bique.alexandre@gmail.com>", "Amy Furniss <http://github.com/amyfurniss>", "Brian Ginsburg <https://github.com/bgins>", "Cale Gibbard <cgibbard@gmail.com>", "Claes Johanson <claes@bitwig.com>", "Dave Palmer <itsmedavep@gmail.com>", "David Bata <https://github.com/tank-trax>", "David Carlier <devnexen@gmail.com>", "Erik-Jan Maalderink <fonkle@gmx.com>", "Esa Juhani Ruoho <esaruoho@gmail.com>", "Filipe Coelho <falktx@falktx.com>", "Hendrik van Boetzelaer <http://opuswerk.com>", "Jacky Ligon <http://jackyligon.com>", "Jani Frilander <http://github.com/janifr>", "Jarkko Sakkinen <jarkko.sakkinen@iki.fi>", "Jatin Chowdhury <jatin@ccrma.stanford.edu>", "Jean Pierre Cimalando <jp-dev@inbox.ru>", "Jeff Smith <whydoubt@gmail.com>", "Jeremy Sagan <info@sagantech.biz>", "Jon Spruyt <http://jonspru.yt>", "Keith Zantow <kzantow@gmail.com>", "Kjetil Matheussen <k.s.matheussen@notam02.no>", "Korridor <fabian.kempe@gmail.com>", "Luna Langton <https://github.com/selenologist>", "Mario Krušelj a.k.a. EvilDragon <http://github.com/mkruselj>", "Markku Tavasti <tavasti@iki.fi>", "Marty Lake <matthieu@talbot.audio>", "Matthias von Faber <http://github.com/mvf>", "Mikko Saarinki <https://github.com/kingston1>", "Nathan Kopp <nk.sg@nathankopp.com>", "Paul Walker <paul@pwjw.com>", "Rich Elmes <richie@juic3.com>", "Sebastian Schwarzhuber <https://github.com/cannero>", "The Emu (J Riley Hill) <http://jrileyhill.com>", "Vincent Zauhar <v.zauhar@bell.net>", "klebs <none>", "muhl <https://github.com/mynameismuhl>", "簡志瑋 <dppss92132@gmail.com>" ]
@@ -67,4 +67,4 @@ description = "surge synthesizer -- toplevel unit for effects"
 edition = "2018"
 license = "GPL-3.0"
 name = "surgefx"
-version = "0.1.28-alpha.0"
+version = "0.1.29-alpha.0"
