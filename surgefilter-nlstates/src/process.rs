@@ -9,7 +9,7 @@ impl FilterProcessQuad for crate::NonlinearStatesFilter {
 
     #[inline] fn process_quad(
         &self, 
-        qfu: &mut QuadFilterUnitState<'_>, 
+        qfu: &mut QuadFilterUnitState, 
         mut input: __m128) -> __m128 
     {
         // lower 2 bits of subtype is the stage count

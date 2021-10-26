@@ -20,7 +20,7 @@ enhanced_enum![
 ];
 
 pub type BoxedModRoutingIter 
-= Box<dyn Iterator<Item = & ModulationRouting>>;
+= Box<dyn Iterator<Item = Rc<ModulationRouting>>>;
 
 pub type VoiceOscLevels 
 = LagEntryArray::<LipolPs>;

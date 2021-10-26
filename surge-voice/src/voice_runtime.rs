@@ -33,8 +33,8 @@ pub struct VoiceRuntime {
     pub voice_update_qfcs_cfg:    VoiceUpdateQFCSCfg,
 
     pub update_lfo:               [bool; 6],
-    pub modulation_voice:         & Vec<ModulationRouting>,
-    pub modulation_scene:         & Vec<ModulationRouting>,
+    pub modulation_voice:         Rc<Vec<ModulationRouting>>,
+    pub modulation_scene:         Rc<Vec<ModulationRouting>>,
     pub portamento:               f32,
     pub portamento_min:           f32,
     pub portamento_temposync:     bool,

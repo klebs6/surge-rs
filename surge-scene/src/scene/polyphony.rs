@@ -40,7 +40,7 @@ impl SurgeScene {
                     break;
                 }
 
-                if voice.state.uberrelease {
+                if voice.borrow().state.uberrelease {
 
                     excess_voices -= 1;
 

@@ -4,7 +4,7 @@ ix!();
 impl FilterProcessQuad for CombFilter {
 
     pub fn process_quad(&self, 
-        qfu: &mut QuadFilterUnitState<'tables>, 
+        qfu: &mut QuadFilterUnitState, 
         input: __m128) -> __m128 
     {
         unsafe {

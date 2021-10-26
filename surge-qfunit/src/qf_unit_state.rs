@@ -1,7 +1,7 @@
 ix!();
 
 #[derive(Debug,Clone)]
-pub struct QuadFilterUnitState<'tables> {
+pub struct QuadFilterUnitState {
 
     /// coefficients
     pub coeff:   [__m128; N_COEFFMAKER_COEFFS],
@@ -20,12 +20,12 @@ pub struct QuadFilterUnitState<'tables> {
     /// comb write position
     pub comb_write_position: [i32; 4], 
 
-    pub tables: TablesHandle<'tables>,
+    pub tables: TablesHandle,
 }
 
-impl QuadFilterUnitState<'tables> {
+impl QuadFilterUnitState {
     pub fn new(
-        tables: &'tables TablesHandle<'tables>
+        tables: &TablesHandle
     ) -> Self {
         Self {
             coeff:               [unsafe { z128![] }; N_COEFFMAKER_COEFFS],

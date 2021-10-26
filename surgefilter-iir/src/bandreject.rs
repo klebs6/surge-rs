@@ -12,7 +12,7 @@ impl FilterProcessQuad for BandRejectFilter {
 
     #[inline] fn process_quad(
         &self, 
-        qfu: &mut QuadFilterUnitState<'_>, 
+        qfu: &mut QuadFilterUnitState, 
         input: __m128) -> __m128 
     {
         crate::iir_12_b_quad(qfu, input)

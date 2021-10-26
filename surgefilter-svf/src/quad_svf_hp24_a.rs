@@ -3,7 +3,7 @@ ix!();
 use crate::C;
 
 #[cfg(target_arch = "x86_64")] 
-pub fn svf_hp24_a_quad(qfu: &mut QuadFilterUnitState<'_>, mut input: __m128) -> __m128 {
+pub fn svf_hp24_a_quad(qfu: &mut QuadFilterUnitState, mut input: __m128) -> __m128 {
 
     unsafe {
 

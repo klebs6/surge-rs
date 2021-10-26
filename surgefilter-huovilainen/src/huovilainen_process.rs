@@ -33,7 +33,7 @@ impl FilterProcessQuad for HuovilainenLadder {
      http://music.columbia.edu/pipermail/music-dsp/2005-February/062778.html
      http://www.synthmaker.co.uk/dokuwiki/doku.php?id=tutorials:oversampling
      */ 
-    fn process_quad(&self, qfu: &mut QuadFilterUnitState<'tables>, mut input: __m128) -> __m128 {
+    fn process_quad(&self, qfu: &mut QuadFilterUnitState, mut input: __m128) -> __m128 {
 
         unsafe {
 

@@ -8,7 +8,7 @@ use crate::{
 
 impl FilterProcessQuad for NonlinearFeedbackFilter {
 
-    fn process_quad(&self, qfu: &mut QuadFilterUnitState<'_>, input: __m128) -> __m128 {
+    fn process_quad(&self, qfu: &mut QuadFilterUnitState, input: __m128) -> __m128 {
         let mut input = input;
 
         // lower 2 bits of subtype is the stage count

@@ -1,4 +1,3 @@
-ix!();
 use crate::{
     MidiChannelState,
 };

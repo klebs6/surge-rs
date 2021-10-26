@@ -1,9 +1,9 @@
 ix!();
 
-use crate::{FbqGlobal,FBQFPtr};
+use crate::*;
 
-pub fn get_fn_process_quad(fbc: FilterBlockConfiguration, x: &FbqGlobal<'tables>) 
--> Box<FBQFPtr<'tables>> 
+pub fn get_fn_process_quad(fbc: FilterBlockConfiguration, x: &FbqGlobal) 
+-> Box<FBQFPtr> 
 {
     let a  = x.fu1ptr.is_some();
     let b  = x.fu2ptr.is_some();

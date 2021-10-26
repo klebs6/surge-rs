@@ -8,8 +8,8 @@ pub use std::rc::Rc;
 pub use std::cell::RefCell;
 
 pub use surge_param::*;
-pub use surge_lipol::*
-pub use surge_lag::*
+pub use surge_lipol::*;
+pub use surge_lag::*;
 pub use surge_tables::*;
 pub use surge_samplerate::*;
 pub use surge_tuning::*;

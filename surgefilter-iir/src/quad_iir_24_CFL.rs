@@ -3,7 +3,7 @@ ix!();
 #[cfg(target_arch = "x86_64")] 
 /// State-space with softer limiter
 pub fn iir_24_cfl_quad(
-    qfu: &mut QuadFilterUnitState<'_>, 
+    qfu: &mut QuadFilterUnitState, 
     input: __m128) -> __m128 
 {
     coeffidx![

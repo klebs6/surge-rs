@@ -7,7 +7,7 @@ use crate::{
 };
 
 #[derive(Debug)]
-pub struct SurgePatch<  > {
+pub struct SurgePatch {
     pub metadata:              PatchMetadata,
     pub params:                PatchParamArrayRT,
 

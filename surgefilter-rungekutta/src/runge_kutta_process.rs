@@ -58,7 +58,7 @@ impl FilterProcessQuad for crate::RungeKuttaLadder {
       | copyright notice. Thank you!
       |
       */
-    fn process_quad(&self, qfu: &mut QuadFilterUnitState<'tables>, 
+    fn process_quad(&self, qfu: &mut QuadFilterUnitState, 
         mut input: __m128) -> __m128 
     {
         unsafe {

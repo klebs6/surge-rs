@@ -2,22 +2,22 @@ ix!();
 
 use crate::{SurgeSynthesizer,PluginLayer,SynthControl,FXUnit};
 
-pub struct SynthEnvironment<,'synth_out> {
-    input:           & mut SynthInputHandle,
-    output:   &'synth_out mut SynthOutputHandle<'synth_out,BLOCK_SIZE>,
-    tuner:           & mut TunerHandle,
-    tables:          & mut TablesHandle,
-    srunit:          & mut SampleRateHandle,
-    timeunit:        & mut TimeUnitHandle,
-    hold_pedal_unit: & mut HoldPedalUnitHandle,
-    midi_unit:       & mut MIDIUnitHandle,
-    mpe_unit:        & mut MPEUnitHandle,
-    synth_in:        & mut SynthInputHandle,
+pub struct SynthEnvironment<'a> {
+    input:           &'a mut SynthInputHandle,
+    output:          &'a mut SynthOutputHandle<'a,BLOCK_SIZE>,
+    tuner:           &'a mut TunerHandle,
+    tables:          &'a mut TablesHandle,
+    srunit:          &'a mut SampleRateHandle,
+    timeunit:        &'a mut TimeUnitHandle,
+    hold_pedal_unit: &'a mut HoldPedalUnitHandle,
+    midi_unit:       &'a mut MIDIUnitHandle,
+    mpe_unit:        &'a mut MPEUnitHandle,
+    synth_in:        &'a mut SynthInputHandle,
 }
 
-impl SurgeSynthesizer<,'plugin_layer,'synth_out> {
+impl SurgeSynthesizer<'plugin_layer,'synth_out> {
 
-    pub fn new_default(environment: SynthEnvironment<,'synth_out>) -> Self {
+    pub fn new_default(environment: SynthEnvironment<'synth_out>) -> Self {
 
         let mut x = Self {
             synth_out:                 environment.output.clone(),

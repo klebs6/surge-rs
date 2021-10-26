@@ -30,7 +30,7 @@ pub struct SurgeScene {
     pub fbq:                  Box<QuadFilterChain>,
 
     ///voices are ephemeral, voices_array is not
-    pub voices:               Vec<& mut SurgeVoice>,
+    pub voices:               Vec<Rc<RefCell<SurgeVoice>>>,
     pub voices_array:         Pin<Box<[Option<SurgeVoice>; MAX_VOICES ]>>,
 
     pub out:                  WetBlock1Dual::<BLOCK_SIZE_OS>,

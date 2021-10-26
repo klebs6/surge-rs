@@ -18,7 +18,7 @@ lazy_static!{
 
 #[derive(Debug)]
 #[repr(align(16))]
-pub struct SurgeSynthesizer<,'plugin_layer,'synth_out> 
+pub struct SurgeSynthesizer<'plugin_layer,'synth_out> 
 {
     pub amp:                      Align16<LipolPs>,
     pub amp_mute:                 Align16<LipolPs>,

@@ -9,7 +9,7 @@ use crate::QuadFilterChainState;
   |out_r and out_l
   */
 pub unsafe fn qfc_write_outputs(
-    qfcs:  &mut QuadFilterChainState<'_>,
+    qfcs:  &mut QuadFilterChainState,
     x:     __m128,
     k:     usize,
     out_r: *mut f32,
@@ -32,7 +32,7 @@ pub unsafe fn qfc_write_outputs(
   |out_r and out_l
   */
 pub unsafe fn qfc_write_outputs_dual(
-    qfcs:  &mut QuadFilterChainState<'_>,
+    qfcs:  &mut QuadFilterChainState,
     x:     __m128,
     y:     __m128,
     k:     usize,

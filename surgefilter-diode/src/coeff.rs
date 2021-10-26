@@ -5,7 +5,7 @@ use crate::{
     DiodeLadderFilter,
 };
 
-impl CoeffMake for DiodeLadderFilter<'_> {
+impl CoeffMake for DiodeLadderFilter {
 
     fn coeff_make(&self, freq: f32, reso: f32) -> [f32; N_COEFFMAKER_COEFFS]
     {

@@ -6,7 +6,7 @@ impl FilterProcessQuad for LpMoogFilter {
 
     #[cfg(target_arch = "x86_64")] 
     fn process_quad(&self, 
-        qfu: &mut QuadFilterUnitState<'_>, 
+        qfu: &mut QuadFilterUnitState, 
         input: __m128) -> __m128 
     {
 

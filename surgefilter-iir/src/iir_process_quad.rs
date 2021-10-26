@@ -39,7 +39,7 @@ hook![bandpass_process_quad_medium4p, iir_24_cfl_quad];
 impl FilterProcessQuad for IIRFilter {
     #[inline] fn process_quad(
         &self, 
-        qfu: &mut QuadFilterUnitState<'_>, 
+        qfu: &mut QuadFilterUnitState, 
         input: __m128) -> __m128 
     {
         match (self.iirtype, self.subtype, self.pole) {

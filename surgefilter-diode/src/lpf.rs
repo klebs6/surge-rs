@@ -11,7 +11,7 @@ pub struct DiodeLpfConfig<'a> {
     pub output:           &'a mut __m128,
 }
 
-impl crate::DiodeLadderFilter<'_> {
+impl crate::DiodeLadderFilter {
 
     #[inline] pub fn do_lpf(
         cfg: DiodeLpfConfig) -> __m128

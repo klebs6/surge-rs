@@ -1,4 +1,5 @@
 pub use surge_traits::*;
+pub use surge_traits::imports::*;
 pub use surgefx_allpass::*;
 pub use surgefx_chorus::*;
 pub use surgefx_conditioner::*;

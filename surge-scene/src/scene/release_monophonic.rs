@@ -44,15 +44,15 @@ impl SurgeScene {
         // input MPE mode, where each note is per channel, that means
         // scanning all non-main channels rather than ourself for the
         // highest note
-        if voice.state.key == (cfg.key as i32) && 
-            voice.state.channel == (cfg.channel as i32) 
+        if voice.borrow().state.key == (cfg.key as i32) && 
+            voice.borrow().state.channel == (cfg.channel as i32) 
         {
 
             //these will be overridden
             let mut active_voice_key = 60;
             let mut active_voice_channel = 0;
 
-            voice.release();
+            voice.borrow_mut().release();
 
             let channel_range = 1_usize..16_usize;
             let lowkey = 0;
@@ -95,7 +95,7 @@ impl SurgeScene {
             match do_switch {
                 true => {
                     // confirm that no notes are active
-                    voice.uber_release();
+                    voice.borrow_mut().uber_release();
 
                     if scene_non_ultra_release_voices == 0 {
                         play_configs.push(
@@ -111,7 +111,7 @@ impl SurgeScene {
                 false => {
 
                     if polymode != PolyMode::LatchMonophonic {
-                        voice.release(); 
+                        voice.borrow_mut().release(); 
                     }
                 },
             }

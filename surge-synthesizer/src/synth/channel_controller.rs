@@ -2,7 +2,7 @@ ix!();
 
 use crate::SurgeSynthesizer;
 
-impl SurgeSynthesizer<,'plugin_layer,'synth_out> {
+impl SurgeSynthesizer<'plugin_layer,'synth_out> {
 
     pub fn store_learn_custom(&mut self, cc_encoded: usize) {
 

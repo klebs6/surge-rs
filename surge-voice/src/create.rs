@@ -23,8 +23,8 @@ pub fn some_new_boxed_lfo(
 }
 
 pub fn some_new_boxed_controller(
-    srunit:    SampleRateHandle<'_>
-) -> Option<Box<ModulationSource<'_>>> 
+    srunit:    SampleRateHandle
+) -> Option<Box<ModulationSource>> 
 {
     Some(
         Box::new(

@@ -20,7 +20,7 @@ pub trait Waveshaper {
   */
 pub trait FilterProcessQuad {
     fn process_quad(&self, 
-        qfu: &mut QuadFilterUnitState<'_>, 
+        qfu: &mut QuadFilterUnitState, 
         input: __m128) -> __m128;
 }
 

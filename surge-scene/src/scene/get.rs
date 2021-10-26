@@ -12,7 +12,7 @@ impl SurgeScene {
         let mut count = 0;
 
         for item in self.voices.iter() {
-            if !item.state.uberrelease {
+            if !item.borrow().state.uberrelease {
                 count += 1;
             }
         }
@@ -25,7 +25,7 @@ impl SurgeScene {
         let mut count = 0;
 
         for item in self.voices.iter() {
-            if item.state.gate {
+            if item.borrow().state.gate {
                 count += 1;
             }
         }
@@ -105,12 +105,12 @@ impl SurgeScene {
         self.modsources[ms].as_ref().unwrap().enabled()
     }
 
-    #[inline] pub fn modulation_voice(&self) -> & Vec<ModulationRouting> {
+    #[inline] pub fn modulation_voice(&self) -> Rc<Vec<ModulationRouting>> {
         todo!();
         //&self.modulation_voice
     }
 
-    #[inline] pub fn modulation_scene(&self) -> & Vec<ModulationRouting> {
+    #[inline] pub fn modulation_scene(&self) -> Rc<Vec<ModulationRouting>> {
         todo!();
         //&self.modulation_voice
     }

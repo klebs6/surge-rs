@@ -1,7 +1,7 @@
 ix!();
 
 #[cfg(target_arch = "x86_64")] 
-pub fn iir_12_cfc_quad(qfu: &mut QuadFilterUnitState<'_>, input: __m128) -> __m128 {
+pub fn iir_12_cfc_quad(qfu: &mut QuadFilterUnitState, input: __m128) -> __m128 {
 
     coeffidx![C;
         Ar,

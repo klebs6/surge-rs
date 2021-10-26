@@ -1,8 +1,8 @@
 ix!();
 
-use crate::SSOParam;
+use crate::*;
 
-impl crate::SurgeSuperOscillator {
+impl SurgeSuperOscillator {
 
     pub fn update_lagvals(&mut self, is_init: bool) {
 

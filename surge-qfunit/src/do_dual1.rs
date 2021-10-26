@@ -16,9 +16,9 @@ use crate::{
   */
 #[allow(clippy::not_unsafe_ptr_arg_deref)]
 pub fn do_dual1<const A_FILTER_ACTIVE: bool, const WAVESHAPER_ACTIVE: bool, const B_FILTER_ACTIVE: bool>(
-    mut wss: &mut WaveshaperState<'tables>, 
-    qfcs:    &mut QuadFilterChainState<'tables>, 
-    fbq:     &mut FbqGlobal<'tables>, 
+    mut wss: &mut WaveshaperState, 
+    qfcs:    &mut QuadFilterChainState, 
+    fbq:     &mut FbqGlobal, 
     out_l:   *mut f32, 
     out_r:   *mut f32) 
 {

@@ -2,7 +2,7 @@ ix!();
 
 use crate::SurgeSynthesizer;
 
-impl SurgeSynthesizer<,'plugin_layer,'synth_out> {
+impl SurgeSynthesizer<'plugin_layer,'synth_out> {
 
     pub fn pitchbend(&mut self, channel: usize, value: i32) {
 

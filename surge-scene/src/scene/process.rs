@@ -142,7 +142,7 @@ impl SurgeScene {
         let voice_runtime = self.create_voice_runtime();
 
         for voice in self.voices.iter_mut() {
-            voice.switch_toggled(voice_runtime.clone());
+            voice.borrow_mut().switch_toggled(voice_runtime.clone());
         }
     }
 
@@ -173,7 +173,7 @@ impl SurgeScene {
 
         for (idx, voice) in self.voices.iter_mut().enumerate() {
 
-            let resume: ShouldKeepPlaying = voice.process_block(
+            let resume: ShouldKeepPlaying = voice.borrow_mut().process_block(
                 voice_runtime.clone(), 
                 &mut self.fbq.state[(fb_entry >> 2) as usize], 
                 fb_entry & 3
@@ -275,7 +275,7 @@ impl SurgeScene {
 
         for voice in self.voices.iter_mut() {
             // save filter state in voices after quad processing is done
-            voice.sync_registers_from_qfb(&sync_registers_from_qfb_cfg); 
+            voice.borrow_mut().sync_registers_from_qfb(&sync_registers_from_qfb_cfg); 
         }
     }
 

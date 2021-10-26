@@ -7,10 +7,10 @@ use crate::{
     R,
 };
 
-impl DiodeLadderFilter<'_> {
+impl DiodeLadderFilter {
 
     #[cfg(target_arch = "x86_64")] 
-    unsafe fn update_qfu(qfu: &mut QuadFilterUnitState<'tables>) {
+    unsafe fn update_qfu(qfu: &mut QuadFilterUnitState) {
 
         for i in 0..N_COEFFMAKER_COEFFS {
             qfu.coeff[i] = _mm_add_ps(qfu.coeff[i], qfu.dcoeff[i]); 
@@ -18,10 +18,10 @@ impl DiodeLadderFilter<'_> {
     }
 }
 
-impl FilterProcessQuad for DiodeLadderFilter<'_> {
+impl FilterProcessQuad for DiodeLadderFilter {
 
     #[cfg(target_arch = "x86_64")] 
-    fn process_quad(&self, qfu: &mut QuadFilterUnitState<'tables>, input: __m128) -> __m128 {
+    fn process_quad(&self, qfu: &mut QuadFilterUnitState, input: __m128) -> __m128 {
 
         unsafe {
 

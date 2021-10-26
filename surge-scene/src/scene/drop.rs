@@ -9,7 +9,7 @@ impl SurgeScene {
     pub fn free_voice(&mut self, idx: usize) {
 
         //TODO: does this work? 
-        self.voices[idx].free_allocated_elements();
+        self.voices[idx].borrow_mut().free_allocated_elements();
 
         self.voices.remove(idx);
     }

@@ -10,7 +10,7 @@ use crate::{
 
 impl SurgePatch {
 
-    pub fn new(ctor: SceneConstructorHandles) -> Self {
+    pub fn new(ctor: SceneConstructorHandles<'a>) -> Self {
         let mut x = Self {
             metadata:              PatchMetadata::default(),
             scene:                 vec![SurgeScene::new(ctor)],

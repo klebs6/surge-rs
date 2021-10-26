@@ -5,11 +5,11 @@ pub use std::sync::atomic;
 pub use enhanced_enum::enhanced_enum;
 pub use std::convert::TryInto;
 
-pub use surge_tables::*
-pub use surge_timeunit::*
-pub use surge_tuning::*
-pub use surge_samplerate::*
-pub use surge_halfrate::*
+pub use surge_tables::*;
+pub use surge_timeunit::*;
+pub use surge_tuning::*;
+pub use surge_samplerate::*;
+pub use surge_halfrate::*;
 pub use surge_lipol::*;
 pub use surge_lag::*;
 pub use surge_types::*;

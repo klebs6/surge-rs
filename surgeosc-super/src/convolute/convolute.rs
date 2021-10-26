@@ -2,9 +2,9 @@ ix!();
 
 pub const CONVOLVE_NODC: bool = false;
 
-use crate::SSOParam;
+use crate::*;
 
-impl Convolute for crate::SurgeSuperOscillator {
+impl Convolute for SurgeSuperOscillator {
 
     /**
       | I've carefully documented the non-fm

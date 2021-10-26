@@ -18,7 +18,7 @@ hook![bandpass_svf4p, svf_bp24_a_quad];
 
 impl FilterProcessQuad for crate::SvfFilter {
 
-    #[inline] fn process_quad( &self, qfu: &mut QuadFilterUnitState<'_>, input: __m128) -> __m128 
+    #[inline] fn process_quad( &self, qfu: &mut QuadFilterUnitState, input: __m128) -> __m128 
     {
         match (self.iirtype, self.pole_type) {
 

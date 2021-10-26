@@ -7,7 +7,6 @@ pub struct HoldPedalUnit {
     pub hold_buffer:  Vec<(i32, i32)>,
     pub sine:         QuadrOsc,
     pub demo_counter: i32,
-    pub phantom:      PhantomData<& u8>,
 }
 
 impl Default for HoldPedalUnit {
@@ -17,7 +16,6 @@ impl Default for HoldPedalUnit {
             hold_buffer:  Vec::new(), 
             sine:         QuadrOsc::new(),
             demo_counter: 10,
-            phantom:       Default::default(),
         }
     }
 }

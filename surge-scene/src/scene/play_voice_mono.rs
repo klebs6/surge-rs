@@ -18,10 +18,11 @@ impl SurgeScene {
 
         for voice in voices.iter_mut() {
 
-            if voice.state.gate {
+            if voice.borrow().state.gate {
                 glide = true;
             }
-            voice.uber_release();
+
+            voice.borrow_mut().uber_release();
         }
 
         let mut do_set_last_key = false;

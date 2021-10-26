@@ -2,7 +2,7 @@ ix!();
 
 use crate::SurgeSynthesizer;
 
-impl SurgeSynthesizer<,'plugin_layer,'synth_out> {
+impl SurgeSynthesizer<'plugin_layer,'synth_out> {
 
     pub fn all_notes_off(&mut self) {
 
@@ -37,7 +37,7 @@ impl SurgeSynthesizer<,'plugin_layer,'synth_out> {
 }
 
 //TODO eliminate this
-impl Drop for SurgeSynthesizer<,'plugin_layer,'synth_out>  {
+impl Drop for SurgeSynthesizer<'plugin_layer,'synth_out>  {
 
     fn drop(&mut self) {
 

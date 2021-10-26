@@ -5,7 +5,7 @@ use crate::{
 };
 
 #[cfg(target_arch = "x86_64")] 
-pub fn svf_bp12_a_quad(qfu: &mut QuadFilterUnitState<'_>, input: __m128) -> __m128 {
+pub fn svf_bp12_a_quad(qfu: &mut QuadFilterUnitState, input: __m128) -> __m128 {
 
     unsafe {
 

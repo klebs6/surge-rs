@@ -2,7 +2,7 @@ ix!();
 
 use crate::SurgeSynthesizer;
 
-impl SurgeSynthesizer<,'plugin_layer,'synth_out> {
+impl SurgeSynthesizer<'plugin_layer,'synth_out> {
 
     #[inline] pub fn channel_controller_cc0(&mut self, _channel: u8, _cc: u8, value: i32) -> bool {
         self.cc0 = value;

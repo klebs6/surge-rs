@@ -1,8 +1,8 @@
 ix!();
 
-use crate::SurgeSynthesizer;
+use crate::*;
 
-impl SurgeSynthesizer<,'plugin_layer,'synth_out> {
+impl SurgeSynthesizer<'plugin_layer,'synth_out> {
 
     /**
       | If I am changing my sample rate I will

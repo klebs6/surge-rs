@@ -8,12 +8,12 @@ use crate::{QuadFilterUnitState};
   four voices
   */
 #[derive(Debug)]
-pub struct QuadFilterChain<'tables> {
-    pub state: Align16<Vec<QuadFilterChainState<'tables>>>,
+pub struct QuadFilterChain {
+    pub state: Align16<Vec<QuadFilterChainState>>,
 }
 
-impl QuadFilterChain<'tables> {
-    pub fn new(len: usize, tables: &'tables TablesHandle<'tables>) -> Self {
+impl QuadFilterChain {
+    pub fn new(len: usize, tables: &TablesHandle) -> Self {
         Self {
             state: Align16(vec![QuadFilterChainState::new(tables); len]),
         }
@@ -22,8 +22,8 @@ impl QuadFilterChain<'tables> {
 
 #[derive(Debug,Clone)]
 #[repr(align(16))]
-pub struct QuadFilterChainState<'tables> {
-    pub unit_state:       [QuadFilterUnitState<'tables>; 4],
+pub struct QuadFilterChainState {
+    pub unit_state:       [QuadFilterUnitState; 4],
     pub gain:             __m128 , 
     pub feedback:         __m128 , 
     pub mix1:             __m128 , 
@@ -49,7 +49,7 @@ pub struct QuadFilterChainState<'tables> {
     pub dout_2r:           __m128 , // fb_stereo only
 }
 
-impl Init for QuadFilterChainState<'tables> {
+impl Init for QuadFilterChainState {
 
     /**
       | Original note on the out-of-line function
@@ -93,8 +93,8 @@ impl Init for QuadFilterChainState<'tables> {
     }
 }
 
-impl QuadFilterChainState<'tables> {
-    pub fn new( tables: &'tables TablesHandle<'tables>) -> Self {
+impl QuadFilterChainState {
+    pub fn new( tables: &TablesHandle) -> Self {
         Self {
             unit_state:       [
                 QuadFilterUnitState::new(tables),

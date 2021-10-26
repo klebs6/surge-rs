@@ -11,8 +11,8 @@ impl SurgeScene {
         voice_idx: usize,
         mut cfg: ReleaseCfg) 
     {
-        let channel = self.voices[voice_idx].state.channel;
-        let key     = self.voices[voice_idx].state.key;
+        let channel = self.voices[voice_idx].borrow().state.channel;
+        let key     = self.voices[voice_idx].borrow().state.key;
 
         /* input these modes the note will collide on the main channel */
         let state_channel: u8 = 
@@ -39,7 +39,7 @@ impl SurgeScene {
             }
 
             if cfg.do_release {
-                self.voices[voice_idx].release();
+                self.voices[voice_idx].borrow_mut().release();
             }
         }
     }
@@ -48,7 +48,7 @@ impl SurgeScene {
         voice_idx: usize,
         cfg: &mut ReleaseCfg) 
     {
-        let voice = &mut self.voices[voice_idx];
+        let mut voice = self.voices[voice_idx].borrow_mut();
 
         // search downwards
         for k in cfg.keyrange.clone() { 
@@ -95,7 +95,7 @@ impl SurgeScene {
 
             if self.midi_unit.keystate(channel.try_into().unwrap(),k.try_into().unwrap()) != 0 {
 
-                voice.legato(k as i32, 
+                voice.borrow_mut().legato(k as i32, 
                     cfg.velocity as i32, 
                     self.midi_unit.lastdetune(channel.try_into().unwrap(),k.try_into().unwrap())
                 );

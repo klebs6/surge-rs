@@ -83,6 +83,7 @@ pub use surge_scene::*;
 pub use surge_qfunit::*;
 pub use surge_quadrosc::*;
 pub use surge_samplerate::*;
+pub use surge_samplerate::SetSampleRate;
 pub use surge_svf::*;
 pub use surge_tables::*;
 pub use surge_timeunit::*;

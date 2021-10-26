@@ -89,10 +89,10 @@ impl SurgeScene {
     {
         for voice in self.voices.iter_mut() 
         {
-            if voice.state.key == (key as i32) 
-                && voice.state.channel == (channel as i32) 
+            if voice.borrow().state.key == (key as i32) 
+                && voice.borrow().state.channel == (channel as i32) 
             {
-                voice.state.releasevelocity = velocity as i32;
+                voice.borrow_mut().state.releasevelocity = velocity as i32;
             }
         }
 
@@ -125,10 +125,10 @@ impl SurgeScene {
     {
         let voice = &mut self.voices[voice_idx];
 
-        if (voice.state.key, voice.state.channel) == 
+        if (voice.borrow().state.key, voice.borrow().state.channel) == 
             (cfg.key as i32, cfg.channel as i32) 
         {
-            voice.release();
+            voice.borrow_mut().release();
         }
     }
 }

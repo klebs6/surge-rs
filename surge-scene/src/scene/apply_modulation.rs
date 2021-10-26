@@ -101,7 +101,9 @@ impl SurgeScene {
                 let dst = 
                     &mut self.modulation_scene[i].dst;
 
-                dst.set_modulation_val(PData::Float(dst.get_value_f01() + depth * src_output));
+                let new_val = PData::Float(dst.borrow().get_value_f01() + depth * src_output);
+
+                dst.borrow_mut().set_modulation_val(new_val);
             }
         }
     }

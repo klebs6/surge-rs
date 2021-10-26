@@ -19,9 +19,9 @@ impl SurgeScene {
 
         for voice in voices.iter_mut() {
 
-            if voice.state.gate {
+            if voice.borrow().state.gate {
 
-                voice.legato(key as i32, velocity as i32, detune as usize);
+                voice.borrow_mut().legato(key as i32, velocity as i32, detune as usize);
 
                 found_one = true;
 
@@ -31,9 +31,9 @@ impl SurgeScene {
                     // so it needs to borrow the channel and 
                     // self.midi_unit.channel_state. Obviously this can only
                     // happen in MPE mode.
-                    voice.state.channel = channel as i32;
+                    voice.borrow_mut().state.channel = channel as i32;
 
-                    voice.state.voice_channel_state = self.midi_unit.channel_state_ptr(channel as u8);
+                    voice.borrow_mut().state.voice_channel_state = self.midi_unit.channel_state_ptr(channel as u8);
                 }
 
                 break;
@@ -41,7 +41,7 @@ impl SurgeScene {
             } else {
 
                 // make this optional for poly legato
-                voice.uber_release(); 
+                voice.borrow_mut().uber_release(); 
             }
         }
 

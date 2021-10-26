@@ -33,7 +33,7 @@ impl Default for WaveshaperUnit {
 }
 
 #[derive(Debug)]
-pub struct WaveshaperState<'tables> {
-    pub tables: TablesHandle<'tables>,
+pub struct WaveshaperState {
+    pub tables: TablesHandle,
 }
 

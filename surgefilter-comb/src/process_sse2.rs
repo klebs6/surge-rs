@@ -7,7 +7,7 @@ impl FilterProcessQuad for CombFilter {
 
     #[allow(clippy::assertions_on_constants)]
     fn process_quad(&self, 
-        qfu: &mut QuadFilterUnitState<'tables>, 
+        qfu: &mut QuadFilterUnitState, 
         input: __m128) -> __m128 
     {
         unsafe {

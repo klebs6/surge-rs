@@ -13,9 +13,9 @@ use crate::{
   */
 #[allow(clippy::not_unsafe_ptr_arg_deref)]
 pub fn do_serial1<const A_FILTER_ACTIVE: bool, const WAVESHAPER_ACTIVE: bool, const B_FILTER_ACTIVE: bool>(
-    mut wss:  &mut crate::WaveshaperState<'tables>, 
-    qfcs:     &mut crate::QuadFilterChainState<'tables>, 
-    fbq:      &mut crate::FbqGlobal<'tables>, 
+    mut wss:  &mut crate::WaveshaperState, 
+    qfcs:     &mut crate::QuadFilterChainState, 
+    fbq:      &mut crate::FbqGlobal, 
     out_l:     *mut f32, 
     out_r:     *mut f32) 
 {

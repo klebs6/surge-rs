@@ -2,27 +2,27 @@ ix!();
 
 use crate::{WaveshaperState,QuadFilterUnitState,QuadFilterChainState};
 
-pub type WaveshaperQFPtr<'tables> 
-= fn(&mut WaveshaperState<'tables>, input: __m128, drive: __m128) -> __m128;
+pub type WaveshaperQFPtr 
+= fn(&mut WaveshaperState, input: __m128, drive: __m128) -> __m128;
 
-pub type FilterUnitQFPtr<'tables> 
-= fn(&mut QuadFilterUnitState<'tables>, __m128) -> __m128;
+pub type FilterUnitQFPtr 
+= fn(&mut QuadFilterUnitState, __m128) -> __m128;
 
-pub struct FbqGlobal<'tables> {
-    pub fu1ptr:   Option<FilterUnitQFPtr<'tables>>,
-    pub fu2ptr:   Option<FilterUnitQFPtr<'tables>>,
-    pub wsptr:    Option<WaveshaperQFPtr<'tables>>,
+pub struct FbqGlobal {
+    pub fu1ptr:   Option<FilterUnitQFPtr>,
+    pub fu2ptr:   Option<FilterUnitQFPtr>,
+    pub wsptr:    Option<WaveshaperQFPtr>,
 }
 
-pub type FBQFPtr<'tables> = dyn Fn(
-    &mut WaveshaperState<'tables>,
-    &mut QuadFilterChainState<'tables>, 
-    &mut FbqGlobal<'tables>, 
+pub type FBQFPtr = dyn Fn(
+    &mut WaveshaperState,
+    &mut QuadFilterChainState, 
+    &mut FbqGlobal, 
     *mut f32, *mut f32);
 
 
 #[allow(unused_variables)]
-pub fn get_quad_filter_waveshaper_ptr(ty: WaveshapeType) -> WaveshaperQFPtr<'tables> {
+pub fn get_quad_filter_waveshaper_ptr(ty: WaveshapeType) -> WaveshaperQFPtr {
     todo!();
     /*
     match ty {
@@ -49,7 +49,7 @@ pub fn get_quad_filter_waveshaper_ptr(ty: WaveshapeType) -> WaveshaperQFPtr<'tab
 }
 
 #[allow(unused_variables)]
-pub fn get_quad_filter_ptr(ty: FilterType, subty: Option<FilterSubType>) -> FilterUnitQFPtr<'tables> {
+pub fn get_quad_filter_ptr(ty: FilterType, subty: Option<FilterSubType>) -> FilterUnitQFPtr {
     todo!();
     /*
     match ty {

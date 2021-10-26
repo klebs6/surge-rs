@@ -22,7 +22,7 @@ pub struct ConditionerProcessCfg {
 }
  
 impl ConditionerProcessCfg {
-    pub fn new(xxx: &Conditioner<'_>) -> Self {
+    pub fn new(xxx: &Conditioner) -> Self {
 
         let attack_rate_f:  f32 = xxx.pvalf(ConditionerParam::AttackRate);
         let release_rate_f: f32 = xxx.pvalf(ConditionerParam::ReleaseRate);

@@ -3,7 +3,6 @@
 use std::fmt::Debug;
 use std::rc::Rc;
 use std::cell::RefCell;
-use std::marker::PhantomData;
 use core::convert::TryInto;
 use surge_traits::Init;
 use surge_math::{A2d,Align16};
@@ -17,39 +16,37 @@ use surge_constants::{
 
 #[derive(Debug)]
 #[repr(align(16))]
-pub struct SynthInput<'synth_in> {
+pub struct SynthInput {
     pub buffer:          Align16<A2d::<f32>>,
     pub audio_in:        Align16<A2d::<f32>>,
     pub audio_in_non_os: Align16<A2d::<f32>>,
-    phantom:             PhantomData<&'synth_in i32>,
 }
 
-impl Init for SynthInput<'synth_in> {
+impl Init for SynthInput {
     fn init(&mut self) {
         self.audio_in.fill(0.0);
     }
 }
 
-impl Default for SynthInput<'synth_in> {
+impl Default for SynthInput {
     fn default() -> Self {
         Self {
             buffer:          Align16(A2d::<f32>::zeros(( BLOCK_SIZE,    N_INPUTS ))),
             audio_in:        Align16(A2d::<f32>::zeros(( BLOCK_SIZE_OS, 2 ))),
             audio_in_non_os: Align16(A2d::<f32>::zeros(( BLOCK_SIZE,    2 ))),
-            phantom:         Default::default()
         }
     }
 }
 
 #[derive(Debug,Clone)] 
-pub struct SynthInputHandle<'synth_in> {
-    inner: Rc<RefCell<SynthInput<'synth_in>>>,
+pub struct SynthInputHandle {
+    inner: Rc<RefCell<SynthInput>>,
 }
 
 //TODO: check these index_axis_mut commands --> basically we just want to index 
 // properly into the buffers, although if we can do what we want without handing out
 // raw pointers, that is way better
-impl Default for SynthInputHandle<'synth_in> {
+impl Default for SynthInputHandle {
     fn default() -> Self {
         Self {
             inner: Rc::new(RefCell::new(SynthInput::default())),
@@ -57,7 +54,7 @@ impl Default for SynthInputHandle<'synth_in> {
     }
 }
 
-impl SynthInputHandle<'synth_in> {
+impl SynthInputHandle {
     //mutators
 
     #[inline] pub fn in_left(&self) -> *mut f32 {
@@ -109,7 +106,7 @@ impl SynthInputHandle<'synth_in> {
     }
 }
 
-impl SynthInputHandle<'synth_in> {
+impl SynthInputHandle {
 
     #[inline] pub fn non_os_audio_in0_ptr<IDX>(&mut self, idx: IDX) -> *const f32 
     where 
