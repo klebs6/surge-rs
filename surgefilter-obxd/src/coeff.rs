@@ -7,28 +7,65 @@ use crate::{
 };
 
 /**
-  |water always seeks the lowest level, which men abhor
-  |everyone wants to get to the top of the tree, but if they do, the tree would collapse
-  |you too might be president
-  |but who wants to be put in charge with a runaway truck?
-  |Lao Tzu says: the basic position is the most powerful
-  |you always get underneath the opponent
-  |if he goes to attack you, you either go lower than he goes, or move in a smaller circle
-  |if somebody comes into your field of centrifugal force, he gets flung out, but by his own bounce
-  |So therefore, the Watercourse Way, is the way of Tao
-  |We are always creating trouble by doing good to other people
-  |We educate the poor for their benefit, so they desire things which they cannot get
-  |But our rich people are not happy
-  |But the poor people of this country are, to be judged by the way they laugh
-  |So, a certain amount of doing nothing, of stopping rushing around, would cool everything
-  |But also, it must be remembered that passivity is the root of all action
-  |To have energy, you must sleep
-  |Much more important than sleep is what I showed you at the beginning:
-  |Passivity of mind, mental silence
-  |You can only get to that point by realizing there is nothing you can do
-  |So for God's sake don't cultivate passivity in the name of progress
-  |That's like playing because it is good for your work.  But then you never get to play!
-  |-Alan Watts
+  | water always seeks the lowest level, which men
+  | abhor
+  |
+  | everyone wants to get to the top of the tree,
+  | but if they do, the tree would collapse
+  |
+  | you too might be president
+  |
+  | but who wants to be put in charge with a runaway
+  | truck?
+  |
+  | Lao Tzu says: the basic position is the most
+  | powerful
+  |
+  | you always get underneath the opponent
+  |
+  | if he goes to attack you, you either go lower
+  | than he goes, or move in a smaller circle
+  |
+  | if somebody comes into your field of centrifugal
+  | force, he gets flung out, but by his own bounce
+  |
+  | So therefore, the Watercourse Way, is the way of
+  | Tao
+  |
+  | We are always creating trouble by doing good to
+  | other people
+  |
+  | We educate the poor for their benefit, so they
+  | desire things which they cannot get
+  |
+  | But our rich people are not happy
+  |
+  | But the poor people of this country are, to be
+  | judged by the way they laugh
+  |
+  | So, a certain amount of doing nothing, of
+  | stopping rushing around, would cool everything
+  |
+  | But also, it must be remembered that passivity
+  | is the root of all action
+  |
+  | To have energy, you must sleep
+  |
+  | Much more important than sleep is what I showed
+  | you at the beginning:
+  |
+  | Passivity of mind, mental silence
+  |
+  | You can only get to that point by realizing
+  | there is nothing you can do
+  |
+  | So for God's sake don't cultivate passivity in
+  | the name of progress
+  |
+  | That's like playing because it is good for your
+  | work.  But then you never get to play!
+  |
+  | -Alan Watts
   */
 impl CoeffMake for crate::ObxdFilter {
 

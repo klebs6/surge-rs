@@ -77,10 +77,10 @@ impl FilterProcessQuad for crate::RungeKuttaLadder {
 
             let oneoversix     = _mm_set_ps1( 1.0 / 6.0 );
             let two            = _mm_set_ps1(2.0);
-            let d_fac           = _mm_set_ps1(RUNGE_KUTTA_EXTRA_OVERSAMPLE_INV);
+            let d_fac          = _mm_set_ps1(RUNGE_KUTTA_EXTRA_OVERSAMPLE_INV);
 
             let saturation     = _mm_set_ps1(RUNGE_KUTTA_DEFAULT_SATURATION);
-            let saturation_inv  = _mm_set_ps1(RUNGE_KUTTA_DEFAULT_SATURATION_INV);
+            let saturation_inv = _mm_set_ps1(RUNGE_KUTTA_DEFAULT_SATURATION_INV);
 
             let mut output_os  = [ z128![]; (RUNGE_KUTTA_EXTRA_OVERSAMPLE as usize) ];
 
