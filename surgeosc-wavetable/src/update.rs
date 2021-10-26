@@ -5,7 +5,7 @@ use crate::{
     WTOscillatorParam,
 };
 
-impl WTOscillator<'sr> {
+impl WTOscillator {
 
     #[inline] pub fn distort_level(&mut self, mut x: f32) -> f32 
     {

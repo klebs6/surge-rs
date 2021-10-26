@@ -5,7 +5,7 @@ use crate::{
     REVERB_TAP_BITS,
 };
 
-impl Reverb<'sr> {
+impl Reverb {
 
     #[inline] pub fn do_post_tap(&mut self, 
         tap: usize, 

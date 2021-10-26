@@ -5,7 +5,7 @@ use crate::{
 
 };
 
-impl Flanger<'sr> {
+impl Flanger {
 
     pub fn init_comb(&mut self, 
         ty:           FlangerType, 

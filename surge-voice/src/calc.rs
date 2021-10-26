@@ -5,10 +5,10 @@ use crate::{
     VoiceRuntimeHandle,
 };
 
-impl<'sr> SurgeVoice<'sr> {
+impl SurgeVoice {
 
     pub fn calc_ctrldata<const B: bool>(&mut self, 
-        cfg: VoiceRuntimeHandle<'sr>,
+        cfg: VoiceRuntimeHandle,
         qfcs: Option<&mut QuadFilterChainState>, e: i32) 
     {
         self.calc_lfos(cfg.clone());

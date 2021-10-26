@@ -7,19 +7,19 @@ use crate::{
 
 //#[enum_dispatch(ModulationSourceControl)]
 #[derive(Debug)]
-pub enum ModulationSource<'sr> {
-    Lfo(Lfo<'sr>),
-    AdsrEnvelope(AdsrEnvelope<'sr>),
-    ControllerModulationSource(ControllerModulationSource<'sr>),
+pub enum ModulationSource {
+    Lfo(Lfo),
+    AdsrEnvelope(AdsrEnvelope),
+    ControllerModulationSource(ControllerModulationSource),
 }
 
-pub type MaybeBoxedModulationSource<'sr> 
-= Option<Box<ModulationSource<'sr>>>;
+pub type MaybeBoxedModulationSource 
+= Option<Box<ModulationSource>>;
 
-pub type ModulationSourceArray<'sr> 
-= ModSourceArray::<MaybeBoxedModulationSource<'sr>>;
+pub type ModulationSourceArray 
+= ModSourceArray::<MaybeBoxedModulationSource>;
 
-impl ModulationSourceControl for ModulationSource<'sr> {
+impl ModulationSourceControl for ModulationSource {
 
     fn get_type(&self) -> ModSrcType {
         match self {

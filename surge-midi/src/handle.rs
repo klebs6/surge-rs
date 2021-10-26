@@ -7,11 +7,11 @@ use crate::{
 };
 
 #[derive(Debug,Clone)]
-pub struct MIDIUnitHandle<'sr> {
-    inner: Rc<RefCell<MIDIUnit<'sr>>>,
+pub struct MIDIUnitHandle {
+    inner: Rc<RefCell<MIDIUnit>>,
 }
 
-impl Default for MIDIUnitHandle<'sr> {
+impl Default for MIDIUnitHandle {
     fn default() -> Self {
         Self {
             inner: Rc::new(RefCell::new(MIDIUnit::default())),
@@ -19,7 +19,7 @@ impl Default for MIDIUnitHandle<'sr> {
     }
 }
 
-impl MIDIUnitHandle<'sr> {
+impl MIDIUnitHandle {
 
     #[inline] pub fn channel_state_ptr(&mut self, channel: u8) -> *mut MidiChannelState {
         assert!(channel < 16);

@@ -4,7 +4,7 @@ use crate::{
     SurgeVoice,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     pub fn get_envelope_retrigger_gates(&self) -> (bool, bool) {
 

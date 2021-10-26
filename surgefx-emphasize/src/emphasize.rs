@@ -6,14 +6,14 @@ use crate::{
 };
 
 #[derive(Debug,Clone)]
-pub struct Emphasize<'sr> {
+pub struct Emphasize {
     pub ringout:           Ringout,
     pub params:            EmphasizeParamArrayRT,
     pub pre:               Align16<HalfRateFilterSSE>,
     pub post:              Align16<HalfRateFilterSSE>,
     pub ty:                Align16<LipolPs>,
     pub outgain:           Align16<LipolPs>,
-    pub eq:                BiquadFilter<'sr>,
+    pub eq:                BiquadFilter,
 
     ///(to keep track of events 
     ///not occurring every n blocks)
@@ -22,8 +22,8 @@ pub struct Emphasize<'sr> {
     pub right:             f32,
 }
 
-no_op!     [Emphasize<'sr>, ProcessOnlyControl];
-effect!    [Emphasize<'sr>,     EmphasizeParam];
-name!      [Emphasize<'sr>,        "emphasize"];
-no_op!     [Emphasize<'sr>,            Suspend];
-no_update! [Emphasize<'sr>                    ];
+no_op!     [Emphasize, ProcessOnlyControl];
+effect!    [Emphasize,     EmphasizeParam];
+name!      [Emphasize,        "emphasize"];
+no_op!     [Emphasize,            Suspend];
+no_update! [Emphasize                    ];

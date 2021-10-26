@@ -13,13 +13,13 @@ use crate::{
     VoiceRuntimeHandle,
 };
 
-pub struct VoiceConstructor<'sr> {
-    pub timeunit:                 TimeUnitHandle<'sr>,
-    pub tables:                   TablesHandle<'sr>,
-    pub tuner:                    TunerHandle<'sr>,
-    pub srunit:                   SampleRateHandle<'sr>,
-    pub synth_in:                 SynthInputHandle<'sr>,
-    pub mpe_unit:                 MPEUnitHandle<'sr>,
+pub struct VoiceConstructor {
+    pub timeunit:                 TimeUnitHandle,
+    pub tables:                   TablesHandle,
+    pub tuner:                    TunerHandle,
+    pub srunit:                   SampleRateHandle,
+    pub synth_in:                 SynthInputHandle,
+    pub mpe_unit:                 MPEUnitHandle,
     pub key:                      i32,
     pub velocity:                 i32,
     pub channel:                  i32,
@@ -34,12 +34,12 @@ pub struct VoiceConstructor<'sr> {
     pub filterunit_filtersubtype: Vec<FilterSubType>,
     pub voice_toggle_solo_cfg:    VoiceToggleSoloCfg,
     pub oscillator_type:          [OscillatorType; N_OSCS],
-    pub voice_runtime:            VoiceRuntimeHandle<'sr>,
+    pub voice_runtime:            VoiceRuntimeHandle,
 }
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
-    pub fn new(cfg: VoiceConstructor<'sr>) -> Self
+    pub fn new(cfg: VoiceConstructor) -> Self
     {
         let mut voice = Self {
             output:                   Align16([[0.0; BLOCK_SIZE_OS]; 2]),

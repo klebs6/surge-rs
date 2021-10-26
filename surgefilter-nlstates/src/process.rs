@@ -5,7 +5,7 @@ use crate::{
     R,C,
 };
 
-impl FilterProcessQuad for crate::NonlinearStatesFilter<'sr> {
+impl FilterProcessQuad for crate::NonlinearStatesFilter {
 
     #[inline] fn process_quad(
         &self, 

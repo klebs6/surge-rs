@@ -25,13 +25,13 @@ pub const RUNGE_KUTTA_DEFAULT_GAIN_COMPENSATION: f32 = 0.666;
  ** 2. SSe and so on
  ** 3. Model specici changes per model
  */
-pub struct RungeKuttaLadder<'sr> {
-    pub tuner:             TunerHandle<'sr>,
-    pub srunit:            SampleRateHandle<'sr>,
+pub struct RungeKuttaLadder {
+    pub tuner:             TunerHandle,
+    pub srunit:            SampleRateHandle,
     pub gain_compensation: Option<f32>,
 }
 
-impl RungeKuttaLadder<'sr> {
+impl RungeKuttaLadder {
 
     pub fn clamped_frequency(&self, pitch: f32) -> f32
     {

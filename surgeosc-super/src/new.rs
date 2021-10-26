@@ -5,12 +5,12 @@ use crate::{
     SSOParam,
 };
 
-impl SurgeSuperOscillator<'sr> {
+impl SurgeSuperOscillator {
 
     pub fn new(
-        tuner:    TunerHandle<'sr>,
-        tables:   TablesHandle<'sr>,
-        srunit:   SampleRateHandle<'sr>,
+        tuner:    TunerHandle,
+        tables:   TablesHandle,
+        srunit:   SampleRateHandle,
     ) -> Self {
 
         Self {

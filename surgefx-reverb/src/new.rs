@@ -8,13 +8,13 @@ use crate::{
     REVERB_MAX_DELAY,
 };
 
-impl Reverb<'sr> {
+impl Reverb {
 
     pub fn new( 
-        tuner:     &'sr TunerHandle<'sr>,
-        tables:    &'sr TablesHandle<'sr>,
-        srunit:    &'sr SampleRateHandle<'sr>,
-        time_unit: &'sr TimeUnitHandle<'sr>) -> Self {
+        tuner:     & TunerHandle,
+        tables:    & TablesHandle,
+        srunit:    & SampleRateHandle,
+        time_unit: & TimeUnitHandle) -> Self {
 
         Self {
             delay_pan_l:     Align16(Self::new_1d::<f32>(REVERB_TAPS)),

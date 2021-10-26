@@ -4,7 +4,7 @@ use crate::{
     WTOscillator,
 };
 
-impl WTOscillator<'sr> {
+impl WTOscillator {
 
     pub fn update_tables(&mut self) { 
 

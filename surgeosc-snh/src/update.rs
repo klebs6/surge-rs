@@ -5,7 +5,7 @@ use crate::{
     SampleAndHoldOscillatorParam,
 };
 
-impl SampleAndHoldOscillator<'sr> {
+impl SampleAndHoldOscillator {
 
     pub fn update_lagvals<const IS_INIT: bool>(&mut self)
     {

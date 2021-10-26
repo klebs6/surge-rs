@@ -6,7 +6,7 @@ use crate::{
     N_STEPSEQUENCER_STEPS,
 };
 
-impl Lfo<'sr> {
+impl Lfo {
 
     pub fn update_for_phase_over_one(&mut self, shape: LfoShape) {
 

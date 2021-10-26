@@ -6,7 +6,7 @@ use crate::{
     LfoEnvState,
 };
 
-impl Lfo<'sr> {
+impl Lfo {
 
     pub fn attack(&mut self) {
 

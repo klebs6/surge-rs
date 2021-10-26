@@ -6,7 +6,7 @@ use crate::{
     CHORUS_DEPTH,
 };
 
-impl<'sr> Chorus<'sr> {
+impl Chorus {
 
     pub fn initial_update(&mut self) {
 
@@ -35,7 +35,7 @@ impl<'sr> Chorus<'sr> {
     }
 }
 
-impl<'sr> Update for Chorus<'sr> {
+impl Update for Chorus {
 
     fn update(&mut self) {
 

@@ -6,7 +6,7 @@ use crate::{
     REVERB_DELAY_QUADS,
 };
 
-impl ClearBuffers for Reverb<'sr> {
+impl ClearBuffers for Reverb {
 
     fn clear_buffers(&mut self) {
         unsafe {

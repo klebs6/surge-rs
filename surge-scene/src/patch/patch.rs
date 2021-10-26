@@ -7,12 +7,12 @@ use crate::{
 };
 
 #[derive(Debug)]
-pub struct SurgePatch< 'sr > {
+pub struct SurgePatch<  > {
     pub metadata:              PatchMetadata,
     pub params:                PatchParamArrayRT,
 
-    pub scene:                 Vec<SurgeScene<'sr>>,
-    pub fx:                    Vec<SurgeEffect<'sr>>,
+    pub scene:                 Vec<SurgeScene>,
+    pub fx:                    Vec<SurgeEffect>,
 
     pub maybe_tuning:          Option<TuningData>,
     pub maybe_kbmapping:       Option<MappingData>,

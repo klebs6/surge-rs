@@ -7,7 +7,7 @@ use crate::{
     OnePoleLPFilterState,
 };
 
-impl Init for Flanger<'sr> {
+impl Init for Flanger {
 
     fn init(&mut self) {
 
@@ -31,12 +31,12 @@ impl Init for Flanger<'sr> {
     }
 }
 
-impl Flanger<'sr> {
+impl Flanger {
     pub fn new( 
-        tuner:     &'sr TunerHandle<'sr>,
-        tables:    &'sr TablesHandle<'sr>,
-        srunit:    &'sr SampleRateHandle<'sr>,
-        time_unit: &'sr TimeUnitHandle<'sr>) -> Self 
+        tuner:     & TunerHandle,
+        tables:    & TablesHandle,
+        srunit:    & SampleRateHandle,
+        time_unit: & TimeUnitHandle) -> Self 
     {
         let mut x = Self {
             ringout:        Ringout::blocks(1024),

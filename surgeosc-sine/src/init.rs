@@ -4,7 +4,7 @@ use crate::{
     SineWaveOscillator,
 };
 
-impl Init for SineWaveOscillator<'sr> {
+impl Init for SineWaveOscillator {
 
     fn init(&mut self) {
         self.phase       = 0.0;

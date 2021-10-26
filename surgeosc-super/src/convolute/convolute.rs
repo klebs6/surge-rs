@@ -4,7 +4,7 @@ pub const CONVOLVE_NODC: bool = false;
 
 use crate::SSOParam;
 
-impl Convolute for crate::SurgeSuperOscillator<'sr> {
+impl Convolute for crate::SurgeSuperOscillator {
 
     /**
       | I've carefully documented the non-fm

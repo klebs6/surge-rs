@@ -5,7 +5,7 @@ use crate::{
     FlangerParam,
 };
 
-impl Flanger<'sr> {
+impl Flanger {
 
     pub fn fill_weights(&mut self, 
         channel_idx: usize, 

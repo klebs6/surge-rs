@@ -6,7 +6,7 @@ use crate::{
     BiquadFilter,
 };
 
-impl BiquadCoeffEQ for BiquadFilter<'sr> {
+impl BiquadCoeffEQ for BiquadFilter {
 
     fn coeff_peak_eq(&mut self, 
         omega: f64, mut bandwidth: f64, gain: f64)

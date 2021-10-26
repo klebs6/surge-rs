@@ -8,7 +8,7 @@ use crate::{
 };
 
 #[derive(Debug,Clone)]
-pub struct Reverb<'sr> {
+pub struct Reverb {
     pub delay_pan_l: Align16<A1d::<f32>>,
     pub delay_pan_r: Align16<A1d::<f32>>,
     pub delay_fb:    Align16<A1d::<f32>>,
@@ -24,19 +24,19 @@ pub struct Reverb<'sr> {
     pub modphase:    f64,
     pub preset:      ReverbPreset,
     pub lastf:       A1d::<f32>,
-    pub band1:       BiquadFilter<'sr>,
-    pub locut:       BiquadFilter<'sr>,
-    pub hicut:       BiquadFilter<'sr>,
+    pub band1:       BiquadFilter,
+    pub locut:       BiquadFilter,
+    pub hicut:       BiquadFilter,
     pub b:           usize,
-    pub time_unit:   TimeUnitHandle<'sr>,
-    pub tables:      TablesHandle<'sr>,
-    pub tuner:       TunerHandle<'sr>,
-    pub srunit:      SampleRateHandle<'sr>,
+    pub time_unit:   TimeUnitHandle,
+    pub tables:      TablesHandle,
+    pub tuner:       TunerHandle,
+    pub srunit:      SampleRateHandle,
 }
 
-no_op!        [Reverb<'sr>, ProcessOnlyControl];
-effect!       [Reverb<'sr>,        ReverbParam];
-has_timeunit! [Reverb<'sr>,        ReverbParam];
-name!         [Reverb<'sr>,           "reverb"];
-no_op!        [Reverb<'sr>,            Suspend];
-no_update!    [Reverb<'sr>                    ];
+no_op!        [Reverb, ProcessOnlyControl];
+effect!       [Reverb,        ReverbParam];
+has_timeunit! [Reverb,        ReverbParam];
+name!         [Reverb,           "reverb"];
+no_op!        [Reverb,            Suspend];
+no_update!    [Reverb                    ];

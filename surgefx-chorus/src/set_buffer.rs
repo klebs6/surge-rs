@@ -4,7 +4,7 @@ use crate::{
     Chorus,
 };
 
-impl<'sr> Chorus<'sr> {
+impl Chorus {
 
     pub fn chorus_set_buffer<const N: usize>(&mut self, tbuffer: &mut TBuffer) {
 

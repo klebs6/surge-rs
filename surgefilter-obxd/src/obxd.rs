@@ -7,11 +7,11 @@ use crate::{
     Poles,
 };
 
-pub struct ObxdFilter<'sr> {
+pub struct ObxdFilter {
     pub poles:  Poles,
     pub sub:    i32,
-    pub tuner:  TunerHandle<'sr>,
-    pub srunit: SampleRateHandle<'sr>,
+    pub tuner:  TunerHandle,
+    pub srunit: SampleRateHandle,
 }
 
 pub mod obxd_filter {

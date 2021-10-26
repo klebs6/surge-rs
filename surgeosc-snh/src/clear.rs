@@ -4,7 +4,7 @@ use crate::{
     SampleAndHoldOscillator,
 };
 
-impl SampleAndHoldOscillator<'sr> {
+impl SampleAndHoldOscillator {
 
     pub fn clear_blocks(&mut self, stereo: bool) {
 

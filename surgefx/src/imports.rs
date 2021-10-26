@@ -1,31 +1,16 @@
-pub use surge_traits::{
-    Effect,
-    Process,
-    ProcessOnlyControl,
-    GetRingout,
-    SetRingout,
-    ProcessRingout,
-    Suspend,
-    Init,
-    Update,
-    ClearBuffers,
-    GetReturnLevel,
-    imports::Ringout,
-    imports::NumberOfBlocks,
-    imports::OutputDataPresent,
-};
-pub use surgefx_allpass::AllpassVerb;
-pub use surgefx_chorus::Chorus;
-pub use surgefx_conditioner::Conditioner;
-pub use surgefx_distortion::Distortion;
-pub use surgefx_dualdelay::DualDelay;
-pub use surgefx_emphasize::Emphasize;
-pub use surgefx_eq3band::Eq3Band;
-pub use surgefx_flanger::Flanger;
-pub use surgefx_freqshift::FreqShift;
-pub use surgefx_phaser::Phaser;
-pub use surgefx_reverb::Reverb;
-pub use surgefx_ringmod::RingModulator;
-pub use surgefx_rotary::RotarySpeaker;
-pub use surgefx_vocoder::Vocoder;
+pub use surge_traits::*;
+pub use surgefx_allpass::*;
+pub use surgefx_chorus::*;
+pub use surgefx_conditioner::*;
+pub use surgefx_distortion::*;
+pub use surgefx_dualdelay::*;
+pub use surgefx_emphasize::*;
+pub use surgefx_eq3band::*;
+pub use surgefx_flanger::*;
+pub use surgefx_freqshift::*;
+pub use surgefx_phaser::*;
+pub use surgefx_reverb::*;
+pub use surgefx_ringmod::*;
+pub use surgefx_rotary::*;
+pub use surgefx_vocoder::*;
 

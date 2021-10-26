@@ -4,7 +4,7 @@ use crate::{
     WTOscillator,
 };
 
-impl WTOscillator<'sr> {
+impl WTOscillator {
 
     pub fn get_magic(ipos: u32) -> (__m128, u32) {
 

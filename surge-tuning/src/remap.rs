@@ -2,7 +2,7 @@ ix!();
 
 use crate::*;
 
-impl RemapToStandardKeyboard for SurgeTuner<'tuner> {
+impl RemapToStandardKeyboard for SurgeTuner {
 
     fn remap_to_standard_keyboard(&mut self) -> bool 
     {
@@ -10,7 +10,7 @@ impl RemapToStandardKeyboard for SurgeTuner<'tuner> {
     }
 }
 
-impl RemapKeyboard for SurgeTuner<'tuner> {
+impl RemapKeyboard for SurgeTuner {
 
     fn remap_to_keyboard(&mut self, mapping: &KeyboardMapping) -> bool 
     {

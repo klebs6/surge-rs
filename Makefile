@@ -1,6 +1,6 @@
 .PHONY: default test vendor build all clippy
 
-default: test
+default: test_all
 
 #--release
 #--color always 
@@ -33,7 +33,7 @@ RUSTFLAGS := ""
 #ACTIVE_PACKAGE := surge-param
 #ACTIVE_PACKAGE := surge-qfunit
 #ACTIVE_PACKAGE := surge-quadrosc
-#ACTIVE_PACKAGE := surge-samplerate
+ACTIVE_PACKAGE := surge-samplerate
 #ACTIVE_PACKAGE := surge-svf
 #ACTIVE_PACKAGE := surge-tables
 #ACTIVE_PACKAGE := surge-timeunit
@@ -59,7 +59,7 @@ RUSTFLAGS := ""
 #ACTIVE_PACKAGE := surgefx-distortion
 #ACTIVE_PACKAGE := surgefx-dualdelay
 #ACTIVE_PACKAGE := surgefx-emphasize
-ACTIVE_PACKAGE := surgefx-eq3band
+#ACTIVE_PACKAGE := surgefx-eq3band
 #ACTIVE_PACKAGE := surgefx-flanger
 #ACTIVE_PACKAGE := surgefx-freqshift
 #ACTIVE_PACKAGE := surgefx-phaser

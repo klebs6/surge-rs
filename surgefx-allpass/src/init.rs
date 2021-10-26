@@ -8,9 +8,9 @@ use crate::{
     AllpassReverbParam,
 };
 
-impl crate::AllpassVerb<'sr> {
+impl crate::AllpassVerb {
 
-    pub fn new( srunit: &'sr SampleRateHandle<'sr> ) -> Self {
+    pub fn new( srunit: & SampleRateHandle ) -> Self {
         Self {
             mix:                    Align16(LipolPs::default()),
             width:                  Align16(LipolPs::default()),

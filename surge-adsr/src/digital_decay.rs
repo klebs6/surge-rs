@@ -5,7 +5,7 @@ use crate::{
     AdsrParam,
 };
 
-impl AdsrEnvelope<'sr> {
+impl AdsrEnvelope {
 
     fn decay_shape0_bounds(&mut self, rate: f32) -> (f32, f32) {
         (self.phase - rate, self.phase + rate)

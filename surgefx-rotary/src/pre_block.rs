@@ -4,7 +4,7 @@ use crate::{
     RotarySpeaker,
 };
 
-impl RotarySpeaker<'sr> {
+impl RotarySpeaker {
 
     pub fn do_rotaryspeaker_pre_block<const N: usize>(&mut self, 
         k:        usize,

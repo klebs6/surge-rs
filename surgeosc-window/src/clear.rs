@@ -4,7 +4,7 @@ use crate::{
     WindowOscillator,
 };
 
-impl WindowOscillator<'sr> {
+impl WindowOscillator {
     pub fn clear(&mut self) {
         self.pos.fill(0);
         self.sub_pos.fill(0);

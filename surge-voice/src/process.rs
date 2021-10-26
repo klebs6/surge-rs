@@ -6,7 +6,7 @@ use crate::{
     VoiceRuntimeHandle,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     pub fn clear_output_stereo(&mut self) {
         unsafe {
@@ -16,8 +16,8 @@ impl SurgeVoice<'sr> {
     }
 
     pub fn process_block(&mut self, 
-        cfg: VoiceRuntimeHandle<'sr>,
-        qfcs:   &mut QuadFilterChainState<'sr>, 
+        cfg: VoiceRuntimeHandle,
+        qfcs:   &mut QuadFilterChainState, 
         qfcs_idx:  i32) -> ShouldKeepPlaying 
     {
         self.calc_ctrldata::<false>(cfg.clone(), Some(qfcs), qfcs_idx);

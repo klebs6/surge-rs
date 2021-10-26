@@ -5,7 +5,7 @@ use crate::{
     AudioInputOscillatorParam,
 };
 
-impl OscillatorProcess for AudioInputOscillator<'sr> {
+impl OscillatorProcess for AudioInputOscillator {
 
     fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) { 
         match cfg.stereo {
@@ -15,7 +15,7 @@ impl OscillatorProcess for AudioInputOscillator<'sr> {
     }
 }
 
-impl AudioInputOscillator<'sr> {
+impl AudioInputOscillator {
 
     fn process_block_mono(&mut self, _cfg: OscillatorProcessBlockCfg) { 
 

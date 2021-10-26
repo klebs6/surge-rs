@@ -6,7 +6,7 @@ use crate::{
     LfoEnvState,
 };
 
-impl LfoProcess for Lfo<'sr> {
+impl LfoProcess for Lfo {
 
     fn process(&mut self) {
 

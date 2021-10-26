@@ -7,7 +7,7 @@ use crate::{
     N_STEPSEQUENCER_STEPS,
 };
 
-impl Lfo<'sr> {
+impl Lfo {
 
     pub fn maybe_update_env_state_for_attack(
         &mut self, 

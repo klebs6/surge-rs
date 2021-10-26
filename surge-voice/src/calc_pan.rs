@@ -5,10 +5,10 @@ use crate::{
     VoiceRuntimeHandle,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     pub fn calc_pan(&mut self, 
-        cfg: VoiceRuntimeHandle<'sr>,
+        cfg: VoiceRuntimeHandle,
         mut qfcs: Option<&mut QuadFilterChainState>, 
         e: i32) 
     {

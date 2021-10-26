@@ -4,7 +4,7 @@ use crate::{
     Lfo,
 };
 
-impl Lfo<'sr> {
+impl Lfo {
 
     pub fn get_phaseslider(
         &self, 

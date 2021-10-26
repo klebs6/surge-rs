@@ -23,14 +23,14 @@ coeffidx![
  ** This contains various adaptations of the models found at
  ** https://github.com/TheWaveWarden/odin2/blob/master/Source/audio/Filters/Korg35Filter.cpp
  */
-pub struct K35Filter<'sr> {
-    pub tuner:      TunerHandle<'sr>,
-    pub srunit:     SampleRateHandle<'sr>,
+pub struct K35Filter {
+    pub tuner:      TunerHandle,
+    pub srunit:     SampleRateHandle,
     pub is_lowpass: bool,
     pub saturation: f32,
 }
 
-impl K35Filter<'sr> {
+impl K35Filter {
     #[inline] pub fn clamped_frequency(&self, pitch: f32) -> f32 {
         let mut freq: f32 = self.tuner.n2p::<f32,true>( pitch + 69.0 ) * (MIDI_0_FREQ as f32);
         freq = limit_range( freq, 5.0, self.srunit.samplerate_os() * 0.3 );

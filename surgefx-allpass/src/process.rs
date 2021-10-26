@@ -2,7 +2,7 @@ ix!();
 
 use crate::AllpassReverbParam;
 
-impl Process for crate::AllpassVerb<'sr> {
+impl Process for crate::AllpassVerb {
 
     fn process<const N: usize>(&mut self, 
         data_l: &mut [f32; N], 

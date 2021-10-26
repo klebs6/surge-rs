@@ -11,7 +11,7 @@ pub struct SSOBlockCfg<'a> {
     pub char_b1:  &'a __m128
 }
 
-impl crate::SurgeSuperOscillator<'sr> {
+impl crate::SurgeSuperOscillator {
 
     pub fn do_block(&mut self, cfg: SSOBlockCfg<'_>) {
 

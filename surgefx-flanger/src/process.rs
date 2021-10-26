@@ -5,7 +5,7 @@ use crate::{
     FlangerParam,
 };
 
-impl Flanger<'sr> {
+impl Flanger {
 
     fn adjust_longphase(&mut self, rate: f32) {
 
@@ -17,7 +17,7 @@ impl Flanger<'sr> {
     }
 }
 
-impl Process for Flanger<'sr> {
+impl Process for Flanger {
 
     fn process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
 

@@ -6,7 +6,7 @@ use crate::{
     N_STEPSEQUENCER_STEPS,
 };
 
-impl Lfo<'sr> {
+impl Lfo {
 
     #[inline] pub fn attack_shape(&mut self, shape: LfoShape, start_phase: f32) {
         match shape {

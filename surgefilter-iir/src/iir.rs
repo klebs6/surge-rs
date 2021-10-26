@@ -3,21 +3,21 @@ ix!();
 use crate::FilterCoeffs;
 
 #[derive(Derivative)] #[derivative(Debug)]
-pub struct IIRFilter<'sr> {
+pub struct IIRFilter {
 
     #[derivative(Debug="ignore")]
-    pub tuner:   TunerHandle<'sr>,
+    pub tuner:   TunerHandle,
 
     #[derivative(Debug="ignore")]
-    pub tables:  TablesHandle<'sr>,
+    pub tables:  TablesHandle,
 
     pub subtype: FilterSubType,
     pub iirtype: FilterTypeIIR,
     pub pole:    PoleType,
 }
 
-impl IIRFilter<'sr> {
-    pub fn new_default(tables: &TablesHandle<'sr>, tuner: &TunerHandle<'sr>) -> Self 
+impl IIRFilter {
+    pub fn new_default(tables: &TablesHandle, tuner: &TunerHandle) -> Self 
     {
         Self {
             tuner:   tuner.clone(),
@@ -29,7 +29,7 @@ impl IIRFilter<'sr> {
     }
 }
 
-impl CoeffMake for IIRFilter<'sr> {
+impl CoeffMake for IIRFilter {
     fn coeff_make(&self, mut freq: f32, reso: f32) -> [f32; N_COEFFMAKER_COEFFS]
     {
         let gain: f64 = crate::resoscale(reso.into(), self.subtype);

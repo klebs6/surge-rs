@@ -5,7 +5,7 @@ use crate::{
     FreqShift,
 };
 
-impl FreqShift<'sr> {
+impl FreqShift {
 
     pub fn post_block<const N: usize>(&mut self, 
         k:       usize, 

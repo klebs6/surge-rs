@@ -3,14 +3,14 @@ ix!();
 use crate::MidiChannelState;
 
 #[derive(Debug)]
-pub struct HoldPedalUnit<'sr> {
+pub struct HoldPedalUnit {
     pub hold_buffer:  Vec<(i32, i32)>,
     pub sine:         QuadrOsc,
     pub demo_counter: i32,
-    pub phantom:      PhantomData<&'sr u8>,
+    pub phantom:      PhantomData<& u8>,
 }
 
-impl Default for HoldPedalUnit<'sr> {
+impl Default for HoldPedalUnit {
 
     fn default() -> Self {
         Self {
@@ -22,7 +22,7 @@ impl Default for HoldPedalUnit<'sr> {
     }
 }
 
-impl HoldPedalUnit<'sr> {
+impl HoldPedalUnit {
 
     pub fn reset(&mut self, channel: u8, key: u8) {
 
@@ -63,11 +63,11 @@ impl HoldPedalUnit<'sr> {
 }
 
 #[derive(Debug,Clone)]
-pub struct HoldPedalUnitHandle<'sr> {
-    inner: Rc<RefCell<HoldPedalUnit<'sr>>>,
+pub struct HoldPedalUnitHandle {
+    inner: Rc<RefCell<HoldPedalUnit>>,
 }
 
-impl Default for HoldPedalUnitHandle<'sr> {
+impl Default for HoldPedalUnitHandle {
     fn default() -> Self {
         Self {
             inner: Rc::new(RefCell::new(HoldPedalUnit::default())),
@@ -75,7 +75,7 @@ impl Default for HoldPedalUnitHandle<'sr> {
     }
 }
 
-impl HoldPedalUnitHandle<'sr> {
+impl HoldPedalUnitHandle {
 
     /// # Safety
     ///

@@ -5,7 +5,7 @@ use crate::{
     CHORUS_DEPTH,
 };
 
-impl<'sr> Chorus<'sr> {
+impl Chorus {
 
     pub fn do_chorus_block<const N: usize>(&mut self, 
         k:     usize, 

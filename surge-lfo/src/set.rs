@@ -4,7 +4,7 @@ use crate::{
     Lfo,
 };
 
-impl Lfo<'sr> {
+impl Lfo {
 
     pub fn set_phase_for_process(&mut self, temposyncratio: f32) 
     {

@@ -5,7 +5,7 @@ use crate::{
     WTOscillator,
 };
 
-impl WTOscillator<'sr> {
+impl WTOscillator {
 
     /// each block overlap FIR_IPOL_N samples into the next (due to impulses not being wrapped around
     /// the block edges copy the overlapping samples to the new block position

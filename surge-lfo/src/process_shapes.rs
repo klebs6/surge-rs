@@ -5,7 +5,7 @@ use crate::{
     LfoParam,
 };
 
-impl Lfo<'sr> {
+impl Lfo {
 
     #[inline] pub fn process_shape(&mut self,shape: LfoShape) {
         match shape {

@@ -6,7 +6,7 @@ use crate::{
     KeyRange,
 };
 
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
     #[inline] pub fn hold(&self, channel: u8) -> bool {
         let mut no_hold: bool = 

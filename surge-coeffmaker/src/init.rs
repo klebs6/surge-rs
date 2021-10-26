@@ -2,12 +2,12 @@ ix!();
 
 use crate::FilterCoefficientMaker;
 
-impl FilterCoefficientMaker<'sr> {
+impl FilterCoefficientMaker {
 
     pub fn new( 
-        tuner:  TunerHandle<'sr>,
-        tables: TablesHandle<'sr>,
-        srunit: SampleRateHandle<'sr>,
+        tuner:  TunerHandle,
+        tables: TablesHandle,
+        srunit: SampleRateHandle,
     ) -> Self {
 
         let mut x = Self {
@@ -24,7 +24,7 @@ impl FilterCoefficientMaker<'sr> {
     }
 }
 
-impl Reset for FilterCoefficientMaker<'sr> 
+impl Reset for FilterCoefficientMaker 
 {
     fn reset(&mut self) 
     {

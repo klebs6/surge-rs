@@ -5,7 +5,7 @@ use crate::{
     SurgeScene,
 };
 
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
     pub fn get_non_ultra_release_voices(&self) -> i32 {
 
@@ -58,7 +58,7 @@ impl SurgeScene<'sr> {
         FilterBlockConfiguration::try_from(idx as usize).unwrap()
     }
 
-    #[inline] pub fn get_unused_voice(&mut self) -> Option<&mut Option<SurgeVoice<'sr>>> 
+    #[inline] pub fn get_unused_voice(&mut self) -> Option<&mut Option<SurgeVoice>> 
     {
         for i in 0..MAX_VOICES 
         {
@@ -105,12 +105,12 @@ impl SurgeScene<'sr> {
         self.modsources[ms].as_ref().unwrap().enabled()
     }
 
-    #[inline] pub fn modulation_voice(&self) -> &'sr Vec<ModulationRouting<'sr>> {
+    #[inline] pub fn modulation_voice(&self) -> & Vec<ModulationRouting> {
         todo!();
         //&self.modulation_voice
     }
 
-    #[inline] pub fn modulation_scene(&self) -> &'sr Vec<ModulationRouting<'sr>> {
+    #[inline] pub fn modulation_scene(&self) -> & Vec<ModulationRouting> {
         todo!();
         //&self.modulation_voice
     }

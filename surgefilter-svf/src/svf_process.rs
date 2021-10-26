@@ -3,7 +3,7 @@ ix!();
 //------------------------------------------------------
 macro_rules! hook { 
     ($f:ident, $cb:ident) => { 
-        #[inline] fn $f(qfu: &mut QuadFilterUnitState<'sr>, input: __m128 ) -> __m128 { 
+        #[inline] fn $f(qfu: &mut QuadFilterUnitState, input: __m128 ) -> __m128 { 
             crate::$cb(qfu, input) 
         } 
     } 
@@ -16,7 +16,7 @@ hook![bandpass_svf2p, svf_bp12_a_quad];
 hook![bandpass_svf4p, svf_bp24_a_quad];
 //------------------------------------------------------
 
-impl FilterProcessQuad for crate::SvfFilter<'sr> {
+impl FilterProcessQuad for crate::SvfFilter {
 
     #[inline] fn process_quad( &self, qfu: &mut QuadFilterUnitState<'_>, input: __m128) -> __m128 
     {

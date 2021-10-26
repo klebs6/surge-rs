@@ -5,7 +5,7 @@ use crate::{
     ChorusParam
 };
 
-impl Chorus<'sr> {
+impl Chorus {
 
     #[inline] pub fn new_time_lag() -> A1d::<Lag::<f32>> {
         A1d::<Lag::<f32>>::from_elem(CHORUS_DEPTH, Lag::<f32>::default())
@@ -30,10 +30,10 @@ impl Chorus<'sr> {
     }
 
     pub fn new<const N: usize>( 
-        tuner:     &'sr TunerHandle<'sr>,
-        tables:    &'sr TablesHandle<'sr>,
-        srunit:    &'sr SampleRateHandle<'sr>,
-        time_unit: &'sr TimeUnitHandle<'sr>) -> Self 
+        tuner:     & TunerHandle,
+        tables:    & TablesHandle,
+        srunit:    & SampleRateHandle,
+        time_unit: & TimeUnitHandle) -> Self 
     {
         let lp = BiquadFilter::new(tuner,tables,srunit);
         let hp = BiquadFilter::new(tuner,tables,srunit);

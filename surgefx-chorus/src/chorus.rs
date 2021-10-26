@@ -5,7 +5,7 @@ use crate::{
 };
 
 #[derive(Debug,Clone)]
-pub struct Chorus<'sr> {
+pub struct Chorus {
 
     pub feedback:     Align16<Box<LipolPs>>,
     pub mix:          Align16<Box<LipolPs>>,
@@ -23,17 +23,17 @@ pub struct Chorus<'sr> {
     pub voicepan:     A2d::<f32>,
     pub envf:         f32,
     pub wpos:         i32,
-    pub lp:           BiquadFilter<'sr>,
-    pub hp:           BiquadFilter<'sr>,
+    pub lp:           BiquadFilter,
+    pub hp:           BiquadFilter,
     pub lfophase:     A1d::<f64>,
-    pub tables:       TablesHandle<'sr>,
-    pub tuner:        TunerHandle<'sr>,
-    pub time_unit:    TimeUnitHandle<'sr>,
-    pub srunit:       SampleRateHandle<'sr>,
+    pub tables:       TablesHandle,
+    pub tuner:        TunerHandle,
+    pub time_unit:    TimeUnitHandle,
+    pub srunit:       SampleRateHandle,
 }
 
-no_op!        [Chorus<'sr>, ProcessOnlyControl];
-effect!       [Chorus<'sr>,        ChorusParam];
-has_timeunit! [Chorus<'sr>,        ChorusParam];
-no_op!        [Chorus<'sr>,            Suspend];
-name!         [Chorus<'sr>,           "chorus"];
+no_op!        [Chorus, ProcessOnlyControl];
+effect!       [Chorus,        ChorusParam];
+has_timeunit! [Chorus,        ChorusParam];
+no_op!        [Chorus,            Suspend];
+name!         [Chorus,           "chorus"];

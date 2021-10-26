@@ -6,7 +6,7 @@ use crate::{
     REVERB_TAPS,
 };
 
-impl Reverb<'sr> {
+impl Reverb {
 
     pub fn need_recalc_coefficients(&mut self) -> bool {
         // periodically true

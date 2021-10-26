@@ -8,7 +8,7 @@ use crate::{
 //TODO: can we decompose this implementation into composable macros?
 //      the goal is to share this between SSO and SNH implementations
 //TODO: was p[5] UniCount? or UniSpread?
-impl Convolute for SampleAndHoldOscillator<'sr> {
+impl Convolute for SampleAndHoldOscillator {
 
     fn convolute(&mut self, cfg: ConvolutionCfg) {
 

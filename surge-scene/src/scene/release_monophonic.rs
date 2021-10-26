@@ -14,7 +14,7 @@ pub struct PlayConfig {
     pub lastdetune:               u8,
 }
 
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
     pub fn release_monophonic(&mut self, 
         voice_idx: usize,

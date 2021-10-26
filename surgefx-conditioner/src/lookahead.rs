@@ -6,7 +6,7 @@ use crate::{
     CONDITIONER_LOOKAHEAD_BITS,
 };
 
-impl Conditioner<'sr> {
+impl Conditioner {
 
     pub fn get_lookahead(&self) -> f32 {
         let mut la: f32 = self.lamax[CONDITIONER_LOOKAHEAD - 2];

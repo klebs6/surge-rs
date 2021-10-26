@@ -5,7 +5,7 @@ use crate::{
     PhaserParam,
 };
 
-impl Init for Phaser<'sr> {
+impl Init for Phaser {
 
     fn init(&mut self) {
         self.lfophase = 0.25;
@@ -19,13 +19,13 @@ impl Init for Phaser<'sr> {
     }
 }
 
-impl Phaser<'sr> {
+impl Phaser {
 
     pub fn new(
-        tuner:     &'sr TunerHandle<'sr>,
-        tables:    &'sr TablesHandle<'sr>,
-        srunit:    &'sr SampleRateHandle<'sr>,
-        time_unit: &'sr TimeUnitHandle<'sr>) -> Self 
+        tuner:     & TunerHandle,
+        tables:    & TablesHandle,
+        srunit:    & SampleRateHandle,
+        time_unit: & TimeUnitHandle) -> Self 
     {
         Self {
             ringout:      Ringout::blocks(1000),
@@ -47,10 +47,10 @@ impl Phaser<'sr> {
         A1d::<f32>::zeros(BLOCK_SIZE)
     }
     #[inline] pub fn new_biquads(
-        tuner:     &'sr       TunerHandle<'sr>,
-        tables:    &'sr       TablesHandle<'sr>,
-        srunit:    &'sr       SampleRateHandle<'sr>,
-    ) -> A1d::<BiquadFilter<'sr>> {
+        tuner:     &       TunerHandle,
+        tables:    &       TablesHandle,
+        srunit:    &       SampleRateHandle,
+    ) -> A1d::<BiquadFilter> {
         A1d::<BiquadFilter>::from_elem(8, BiquadFilter::new(tuner,tables,srunit))
     }
 }

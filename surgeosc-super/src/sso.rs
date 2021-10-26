@@ -6,7 +6,7 @@ use crate::{
 };
 
 #[derive(Debug)]
-pub struct SurgeSuperOscillator<'sr> {
+pub struct SurgeSuperOscillator {
     pub drift:             f32,
     pub master_osc:        *mut f32,
     pub out:               OscillatorOut,
@@ -38,13 +38,13 @@ pub struct SurgeSuperOscillator<'sr> {
     pub coeff_b0:          f32,
     pub coeff_b1:          f32,
     pub coeff_a1:          f32,
-    pub tables:            TablesHandle<'sr>,
-    pub tuner:             TunerHandle<'sr>,
-    pub srunit:            SampleRateHandle<'sr>,
+    pub tables:            TablesHandle,
+    pub tuner:             TunerHandle,
+    pub srunit:            SampleRateHandle,
 }
 
-oscillator!    [SurgeSuperOscillator<'sr>,                  SSOParam];
-name!          [SurgeSuperOscillator<'sr>,          "oscillator.sso"];
-no_op!         [SurgeSuperOscillator<'sr>, HandleStreamingMismatches];
-no_op!         [SurgeSuperOscillator<'sr>,                  AssignFM];
-allow_display! [SurgeSuperOscillator<'sr>,                      true];
+oscillator!    [SurgeSuperOscillator,                  SSOParam];
+name!          [SurgeSuperOscillator,          "oscillator.sso"];
+no_op!         [SurgeSuperOscillator, HandleStreamingMismatches];
+no_op!         [SurgeSuperOscillator,                  AssignFM];
+allow_display! [SurgeSuperOscillator,                      true];

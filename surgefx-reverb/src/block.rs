@@ -13,7 +13,7 @@ struct ReverbBlockCfg {
     pub predelay_time: i32,
 }
 
-impl Reverb<'sr> {
+impl Reverb {
 
     //TODO: fix this function
     #[inline] pub fn delay_idx(&self, tap: usize, offset: usize) -> usize {

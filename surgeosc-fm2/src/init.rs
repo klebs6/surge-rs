@@ -10,7 +10,7 @@ pub fn fm2_calcmd(x: f64) -> f64
     x * x * x * 8.0 * PI
 }
 
-impl Init for FM2Oscillator<'sr> {
+impl Init for FM2Oscillator {
     fn init(&mut self) {
 
         let ph:   f64 = 2.0_f64 * PI * (self.pvalf(FM2OscillatorParam::MxStartPhase) as f64);

@@ -4,7 +4,7 @@ use crate::{
     SurgeScene,
 };
 
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
     pub fn free_voice(&mut self, idx: usize) {
 
@@ -51,7 +51,7 @@ impl SurgeScene<'sr> {
 }
 
 //TODO eliminate this
-impl Drop for SurgeScene<'sr>  {
+impl Drop for SurgeScene  {
 
     fn drop(&mut self) {
         self.modsources[ModSource::ModWheel]          = None;

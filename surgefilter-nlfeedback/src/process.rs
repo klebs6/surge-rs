@@ -6,7 +6,7 @@ use crate::{
     R,C,
 };
 
-impl FilterProcessQuad for NonlinearFeedbackFilter<'sr> {
+impl FilterProcessQuad for NonlinearFeedbackFilter {
 
     fn process_quad(&self, qfu: &mut QuadFilterUnitState<'_>, input: __m128) -> __m128 {
         let mut input = input;

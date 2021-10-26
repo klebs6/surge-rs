@@ -21,7 +21,7 @@ enhanced_enum![
 ];
 
 #[derive(Debug)]
-pub struct Lfo<'sr> {
+pub struct Lfo {
     pub params:             LfoParamArray::<ParamRT::<LfoParam>>,
     pub output:             f64,
     pub stepsequencer:      StepSequencer,
@@ -42,12 +42,12 @@ pub struct Lfo<'sr> {
     pub step:               isize,
     pub shuffle_id:         isize,
     pub sine:               QuadrOsc,
-    pub time_unit:          TimeUnitHandle<'sr>,
-    pub tables:             TablesHandle<'sr>,
+    pub time_unit:          TimeUnitHandle,
+    pub tables:             TablesHandle,
     pub enabled:            bool,
 }
 
-name![Lfo<'sr>,"LFO"];
+name![Lfo,"LFO"];
 
 #[inline] pub fn lfo_phaseincrement(samples: i32 , mut rate: f32 ) -> f32 
 {

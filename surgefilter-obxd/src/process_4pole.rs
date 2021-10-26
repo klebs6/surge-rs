@@ -7,7 +7,7 @@ use crate::{
     OBXD_SSEW,
 };
 
-impl crate::ObxdFilter<'sr> {
+impl crate::ObxdFilter {
 
     pub unsafe fn process_4_pole(qfu: &mut QuadFilterUnitState, sample: __m128) -> __m128 {
 

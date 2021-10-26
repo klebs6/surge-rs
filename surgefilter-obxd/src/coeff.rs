@@ -30,7 +30,7 @@ use crate::{
   |That's like playing because it is good for your work.  But then you never get to play!
   |-Alan Watts
   */
-impl CoeffMake for crate::ObxdFilter<'sr> {
+impl CoeffMake for crate::ObxdFilter {
 
     fn coeff_make(&self, freq: f32, reso: f32) -> [f32; N_COEFFMAKER_COEFFS] {
 

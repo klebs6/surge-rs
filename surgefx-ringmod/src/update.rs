@@ -2,7 +2,7 @@ ix!();
 
 use crate::RingModulator;
 
-impl RingModulator<'sr> {
+impl RingModulator {
     pub fn update_unison_settings(&mut self, uni: i32) {
         self.last_unison = uni;
 

@@ -4,7 +4,7 @@ use crate::{
     FMOscillator,
 };
 
-impl FMOscillator<'sr> {
+impl FMOscillator {
 
     #[inline] pub fn do_fm_block(&mut self, k: usize, omega: f64, fm: bool) {
 

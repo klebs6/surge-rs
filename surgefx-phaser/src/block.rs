@@ -4,7 +4,7 @@ use crate::{
     Phaser,
 };
 
-impl Phaser<'sr> {
+impl Phaser {
 
     pub fn do_phaser_block<const N: usize>(&mut self, 
         k: usize, 

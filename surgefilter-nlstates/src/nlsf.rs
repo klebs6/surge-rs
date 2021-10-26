@@ -14,13 +14,13 @@ use crate::{
 ** could be merged, but for the time being they're separate and nothing is shared.
 */
 #[derive(Derivative)] #[derivative(Debug)]
-pub struct NonlinearStatesFilter<'sr> {
-    pub tuner:  TunerHandle<'sr>,
-    pub srunit: SampleRateHandle<'sr>,
+pub struct NonlinearStatesFilter {
+    pub tuner:  TunerHandle,
+    pub srunit: SampleRateHandle,
     pub ty:     NLSFType,
 }
 
-impl NonlinearStatesFilter<'sr> {
+impl NonlinearStatesFilter {
     pub fn clamped_frequency(&self, pitch: f32) -> f32
     {
         let freq = self.tuner.n2p::<f32,true>(pitch + 69.0) * (MIDI_0_FREQ as f32);

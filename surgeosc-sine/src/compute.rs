@@ -4,7 +4,7 @@ use crate::{
     SineWaveOscillator,
 };
 
-impl SineWaveOscillator<'sr> {
+impl SineWaveOscillator {
 
     pub fn value_from_sin_and_cos(svalue: f32, cvalue: f32, shape: i32) -> f32 
     {

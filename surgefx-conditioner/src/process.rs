@@ -14,7 +14,7 @@ macro_rules! write_vu_from_falloff {
     });
 }
 
-impl Process for Conditioner<'sr> {
+impl Process for Conditioner {
 
     fn process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
 
@@ -122,7 +122,7 @@ impl Process for Conditioner<'sr> {
     }
 }
 
-impl ProcessOnlyControl for Conditioner<'sr> {
+impl ProcessOnlyControl for Conditioner {
 
     fn process_only_control<const N: usize>(&mut self) { 
 

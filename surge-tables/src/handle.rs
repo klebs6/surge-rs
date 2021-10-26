@@ -24,75 +24,75 @@ use crate::*;
     GetWaveshaperPtr,
 )]
 #[derive(Debug,Clone)]
-pub enum MaybeOwningTablesHandle<'sr> {
-    Owning(SurgeTables<'sr>),
-    NonOwning(TablesHandle<'sr>),
+pub enum MaybeOwningTablesHandle {
+    Owning(SurgeTables),
+    NonOwning(TablesHandle),
 }
 
 #[derive(Debug,Clone)]
-pub struct TablesHandle<'sr> {
-    inner: Rc<RefCell<SurgeTables<'sr>>>,
+pub struct TablesHandle {
+    inner: Rc<RefCell<SurgeTables>>,
 }
 
-impl TablesHandle<'sr> {
+impl TablesHandle {
 
-    pub fn new(srunit: &'sr SampleRateHandle<'sr>) -> Self {
+    pub fn new(srunit: &SampleRateHandle) -> Self {
         Self {
             inner: Rc::new(RefCell::new(SurgeTables::new(srunit))),
         }
     }
 }
 
-impl DbToLinear for TablesHandle<'sr> {
+impl DbToLinear for TablesHandle {
 
     #[inline] fn db_to_linear(&self, x: f32) -> f32 { 
         self.inner.borrow().db_to_linear(x) 
     }
 }
 
-impl Init for TablesHandle<'sr> {
+impl Init for TablesHandle {
 
     #[inline] fn init(&mut self) { 
         self.inner.borrow_mut().init()
     }
 }
 
-impl ClipScale for TablesHandle<'sr> {
+impl ClipScale for TablesHandle {
 
     #[inline] fn clipscale(&self, freq: f32, subtype: FilterSubType) -> f32 { 
         self.inner.borrow().clipscale(freq,subtype) 
     }
 }
 
-impl LookupWaveshape for TablesHandle<'sr> {
+impl LookupWaveshape for TablesHandle {
 
     #[inline] fn lookup_waveshape(&self, entry: i32, x: f32) -> f32 {
         self.inner.borrow().lookup_waveshape(entry,x) 
     }
 }
 
-impl LookupWaveshapeWarp for TablesHandle<'sr> {
+impl LookupWaveshapeWarp for TablesHandle {
 
     #[inline] fn lookup_waveshape_warp(&self, entry: i32, x: f32) -> f32 {
         self.inner.borrow().lookup_waveshape_warp(entry,x) 
     }
 }
 
-impl EnvelopeRateLpf for TablesHandle<'sr> {
+impl EnvelopeRateLpf for TablesHandle {
 
     #[inline] fn envelope_rate_lpf(&self, x: f32) -> f32 {
         self.inner.borrow().envelope_rate_lpf(x) 
     }
 }
 
-impl EnvelopeRateLinear for TablesHandle<'sr> {
+impl EnvelopeRateLinear for TablesHandle {
 
     #[inline] fn envelope_rate_linear(&self, x: f32) -> f32 {
         self.inner.borrow().envelope_rate_linear(x) 
     }
 }
 
-impl SincTable1X for TablesHandle<'sr> {
+impl SincTable1X for TablesHandle {
 
     #[inline] fn _sinctable_1x(&self, idx: usize) -> f32  
     {
@@ -100,7 +100,7 @@ impl SincTable1X for TablesHandle<'sr> {
     }
 }
 
-impl SincTable for TablesHandle<'sr> {
+impl SincTable for TablesHandle {
 
     #[inline] fn _sinctable(&self, idx: usize) -> f32  
     {
@@ -108,7 +108,7 @@ impl SincTable for TablesHandle<'sr> {
     }
 }
 
-impl SincTableI16 for TablesHandle<'sr> {
+impl SincTableI16 for TablesHandle {
 
     #[inline] fn _sinctable_i16(&self, idx: usize) -> i16  
     {
@@ -116,7 +116,7 @@ impl SincTableI16 for TablesHandle<'sr> {
     }
 }
 
-impl SincTable1XPtr for TablesHandle<'sr> {
+impl SincTable1XPtr for TablesHandle {
 
     #[inline] fn _sinctable_1x_ptr(&self, idx: usize) -> *const f32  
     {
@@ -124,7 +124,7 @@ impl SincTable1XPtr for TablesHandle<'sr> {
     }
 }
 
-impl SincTablePtr for TablesHandle<'sr> {
+impl SincTablePtr for TablesHandle {
 
     #[inline] fn _sinctable_ptr(&self, idx: usize) -> *const f32  
     {
@@ -132,7 +132,7 @@ impl SincTablePtr for TablesHandle<'sr> {
     }
 }
 
-impl SincTableI16Ptr for TablesHandle<'sr> {
+impl SincTableI16Ptr for TablesHandle {
 
     #[inline] fn _sinctable_i16_ptr(&self, idx: usize) -> *const i16  
     {
@@ -140,7 +140,7 @@ impl SincTableI16Ptr for TablesHandle<'sr> {
     }
 }
 
-impl GetWaveshaperPtr for TablesHandle<'sr> {
+impl GetWaveshaperPtr for TablesHandle {
 
     #[inline] fn _get_waveshaper_ptr(&self, idx: usize, offset: isize) -> *const f32 
     {

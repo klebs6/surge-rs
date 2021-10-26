@@ -6,7 +6,7 @@ use crate::{
     ReverbParam,
 };
 
-impl Process for Reverb<'sr> {
+impl Process for Reverb {
 
     fn process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
 

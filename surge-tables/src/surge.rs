@@ -11,16 +11,16 @@ use crate::{
 
 #[derive(Debug,Clone)]
 #[repr(align(16))]
-pub struct SurgeTables<'sr> {
-    pub envelope:    Align16<EnvelopeTables<'sr>>,
+pub struct SurgeTables {
+    pub envelope:    Align16<EnvelopeTables>,
     pub gain:        Align16<GainTables>,
     pub sinc:        Align16<SincTables>,
     pub sine:        Align16<SineTables>,
     pub waveshape:   Align16<WaveshapeTables>,
 }
 
-impl SurgeTables<'sr> {
-    pub fn new(srunit: &'sr SampleRateHandle<'sr>) -> Self {
+impl SurgeTables {
+    pub fn new(srunit: & SampleRateHandle) -> Self {
         Self {
             envelope:   Align16(EnvelopeTables::new(srunit)),
             gain:       Align16(GainTables::default()),
@@ -31,49 +31,49 @@ impl SurgeTables<'sr> {
     }
 }
 
-impl EnvelopeRateLpf for SurgeTables<'sr> {
+impl EnvelopeRateLpf for SurgeTables {
 
     #[inline] fn envelope_rate_lpf(&self, x: f32) -> f32 {
         self.envelope.envelope_rate_lpf(x) 
     }
 }
 
-impl EnvelopeRateLinear for SurgeTables<'sr> {
+impl EnvelopeRateLinear for SurgeTables {
 
     #[inline] fn envelope_rate_linear(&self, x: f32) -> f32 {
         self.envelope.envelope_rate_linear(x) 
     }
 }
 
-impl DbToLinear for SurgeTables<'sr> {
+impl DbToLinear for SurgeTables {
 
     #[inline] fn db_to_linear(&self, x: f32) -> f32 { 
         self.gain.db_to_linear(x) 
     }
 }
 
-impl ClipScale for SurgeTables<'sr> {
+impl ClipScale for SurgeTables {
 
     #[inline] fn clipscale(&self, freq: f32, subtype: FilterSubType) -> f32 { 
         self.gain.clipscale(freq,subtype) 
     }
 }
 
-impl LookupWaveshape for SurgeTables<'sr> {
+impl LookupWaveshape for SurgeTables {
 
     #[inline] fn lookup_waveshape(&self, entry: i32, x: f32) -> f32 {
         self.waveshape.lookup_waveshape(entry,x) 
     }
 }
 
-impl LookupWaveshapeWarp for SurgeTables<'sr> {
+impl LookupWaveshapeWarp for SurgeTables {
 
     #[inline] fn lookup_waveshape_warp(&self, entry: i32, x: f32) -> f32 {
         self.waveshape.lookup_waveshape_warp(entry,x) 
     }
 }
 
-impl SincTable1X for SurgeTables<'sr> {
+impl SincTable1X for SurgeTables {
 
     #[inline] fn _sinctable_1x(&self, idx: usize) -> f32  
     {
@@ -81,7 +81,7 @@ impl SincTable1X for SurgeTables<'sr> {
     }
 }
 
-impl SincTable for SurgeTables<'sr> {
+impl SincTable for SurgeTables {
 
     #[inline] fn _sinctable(&self, idx: usize) -> f32  
     {
@@ -89,7 +89,7 @@ impl SincTable for SurgeTables<'sr> {
     }
 }
 
-impl SincTableI16 for SurgeTables<'sr> {
+impl SincTableI16 for SurgeTables {
 
     #[inline] fn _sinctable_i16(&self, idx: usize) -> i16  
     {
@@ -97,7 +97,7 @@ impl SincTableI16 for SurgeTables<'sr> {
     }
 }
 
-impl SincTable1XPtr for SurgeTables<'sr> {
+impl SincTable1XPtr for SurgeTables {
 
     #[inline] fn _sinctable_1x_ptr(&self, idx: usize) -> *const f32  
     {
@@ -105,7 +105,7 @@ impl SincTable1XPtr for SurgeTables<'sr> {
     }
 }
 
-impl SincTablePtr for SurgeTables<'sr> {
+impl SincTablePtr for SurgeTables {
 
     #[inline] fn _sinctable_ptr(&self, idx: usize) -> *const f32  
     {
@@ -113,7 +113,7 @@ impl SincTablePtr for SurgeTables<'sr> {
     }
 }
 
-impl SincTableI16Ptr for SurgeTables<'sr> {
+impl SincTableI16Ptr for SurgeTables {
 
     #[inline] fn _sinctable_i16_ptr(&self, idx: usize) -> *const i16  
     {
@@ -121,7 +121,7 @@ impl SincTableI16Ptr for SurgeTables<'sr> {
     }
 }
 
-impl GetWaveshaperPtr for SurgeTables<'sr> {
+impl GetWaveshaperPtr for SurgeTables {
 
     #[inline] fn _get_waveshaper_ptr(&self, idx: usize, offset: isize) -> *const f32 
     {
@@ -131,7 +131,7 @@ impl GetWaveshaperPtr for SurgeTables<'sr> {
     }
 }
 
-impl Init for SurgeTables<'sr> {
+impl Init for SurgeTables {
 
     fn init(&mut self) {
         self.envelope.init();

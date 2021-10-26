@@ -3,7 +3,7 @@ ix!();
 use crate::CombFilter;
 
 #[cfg(target_arch = "x86_64")] 
-impl FilterProcessQuad for CombFilter<'sr> {
+impl FilterProcessQuad for CombFilter {
 
     #[allow(clippy::assertions_on_constants)]
     fn process_quad(&self, 

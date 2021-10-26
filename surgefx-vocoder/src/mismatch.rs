@@ -7,7 +7,7 @@ use crate::{
     N_VOCODER_BANDS,
 };
 
-impl HandleStreamingMismatches for Vocoder<'sr> {
+impl HandleStreamingMismatches for Vocoder {
 
     fn handle_streaming_mismatches(&mut self, 
         streaming_revision: i32, 

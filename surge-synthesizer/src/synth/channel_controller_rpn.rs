@@ -2,7 +2,7 @@ ix!();
 
 use crate::SurgeSynthesizer;
 
-impl SurgeSynthesizer<'sr,'plugin_layer,'synth_out> {
+impl SurgeSynthesizer<,'plugin_layer,'synth_out> {
 
     #[inline] pub fn channel_controller_handle_rpn_nrpn(&mut self, 
         channel: u8, cc: u8, fval: &mut f32) -> usize 

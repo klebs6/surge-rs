@@ -2,13 +2,13 @@ ix!();
 
 use crate::FilterCoeffs;
 
-pub struct BandRejectFilter<'sr> {
-    pub tuner: TunerHandle<'sr>,
+pub struct BandRejectFilter {
+    pub tuner: TunerHandle,
     pub subtype: FilterSubType,
 
 }
 
-impl FilterProcessQuad for BandRejectFilter<'sr> {
+impl FilterProcessQuad for BandRejectFilter {
 
     #[inline] fn process_quad(
         &self, 
@@ -19,7 +19,7 @@ impl FilterProcessQuad for BandRejectFilter<'sr> {
     }
 }
 
-impl CoeffMake for BandRejectFilter<'sr> {
+impl CoeffMake for BandRejectFilter {
 
     fn coeff_make(&self, mut freq: f32, reso: f32) -> [f32; N_COEFFMAKER_COEFFS] {
 

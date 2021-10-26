@@ -8,7 +8,7 @@ use crate::{
 };
 
 #[derive(Debug,Clone)]
-pub struct Flanger<'sr> {
+pub struct Flanger {
 
     pub ringout:        Ringout,
     pub params:         FlangerParamArrayRT,
@@ -36,15 +36,15 @@ pub struct Flanger<'sr> {
     /// I want to smooth the edges
     pub saw_lfo_table:  A1d::<f32>, 
 
-    pub time_unit:      TimeUnitHandle<'sr>,
-    pub tables:         TablesHandle<'sr>,
-    pub tuner:          TunerHandle<'sr>,
-    pub srunit:         SampleRateHandle<'sr>,
+    pub time_unit:      TimeUnitHandle,
+    pub tables:         TablesHandle,
+    pub tuner:          TunerHandle,
+    pub srunit:         SampleRateHandle,
 }
 
-no_op!         [Flanger<'sr>, ProcessOnlyControl];
-effect!        [Flanger<'sr>,       FlangerParam];
-has_timeunit!  [Flanger<'sr>,       FlangerParam];
-name!          [Flanger<'sr>,          "flanger"];
-no_op!         [Flanger<'sr>,            Suspend];
-no_update!     [Flanger<'sr>                    ];
+no_op!         [Flanger, ProcessOnlyControl];
+effect!        [Flanger,       FlangerParam];
+has_timeunit!  [Flanger,       FlangerParam];
+name!          [Flanger,          "flanger"];
+no_op!         [Flanger,            Suspend];
+no_update!     [Flanger                    ];

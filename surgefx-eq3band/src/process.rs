@@ -5,7 +5,7 @@ use crate::{
     Eq3Band,
 };
 
-impl Process for Eq3Band<'sr> {
+impl Process for Eq3Band {
 
     fn process<const N: usize>(&mut self, 
         data_l: &mut [f32; N], 

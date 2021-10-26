@@ -5,12 +5,12 @@ use crate::{
     WindowOscillatorParam,
 };
 
-impl WindowOscillator<'sr> {
+impl WindowOscillator {
 
     pub fn new( 
-        tuner:  TunerHandle<'sr>,
-        tables: TablesHandle<'sr>,
-        srunit: SampleRateHandle<'sr>) -> Self {
+        tuner:  TunerHandle,
+        tables: TablesHandle,
+        srunit: SampleRateHandle) -> Self {
         Self {
             drift:              Align16(0.0),
             master_osc:         Align16(std::ptr::null_mut()),//TODO

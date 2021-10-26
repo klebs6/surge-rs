@@ -1,6 +1,6 @@
 ix!();
 
-impl crate::AllpassVerb<'sr> {
+impl crate::AllpassVerb {
 
     pub fn calc_size(&mut self, scale: f32) {
 

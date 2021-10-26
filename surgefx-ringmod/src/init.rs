@@ -5,7 +5,7 @@ use crate::{
     RingModulatorParam,
 };
 
-impl Init for RingModulator<'sr> {
+impl Init for RingModulator {
 
     fn init(&mut self) 
     {

@@ -19,9 +19,9 @@ use crate::*;
     GetTablePitch,
 )]
 #[derive(Debug,Clone)]
-pub enum MaybeOwningTunerHandle<'sr> {
-    Owning(SurgeTuner<'sr>),
-    NonOwning(TunerHandle<'sr>),
+pub enum MaybeOwningTunerHandle {
+    Owning(SurgeTuner),
+    NonOwning(TunerHandle),
 }
 
 /**
@@ -36,26 +36,26 @@ pub enum MaybeOwningTunerHandle<'sr> {
   |
   */
 #[derive(Debug,Clone)]
-pub struct TunerHandle<'sr> {
-    inner: Rc<RefCell<SurgeTuner<'sr>>>,
+pub struct TunerHandle {
+    inner: Rc<RefCell<SurgeTuner>>,
 }
 
-impl TunerHandle<'sr> {
-    pub fn new(srunit: &'sr SampleRateHandle<'sr>) -> Self {
+impl TunerHandle {
+    pub fn new(srunit: &SampleRateHandle) -> Self {
         Self {
             inner: Rc::new(RefCell::new(SurgeTuner::new(srunit))),
         }
     }
 }
 
-impl Init for TunerHandle<'sr> {
+impl Init for TunerHandle {
 
     fn init(&mut self) {
         self.inner.borrow_mut().init()
     }
 }
 
-impl Note2Pitch for TunerHandle<'sr> {
+impl Note2Pitch for TunerHandle {
 
     #[inline] fn n2p<T:MyFloat, const IGNORE_TUNING: bool>(&self, x: T) -> T {
         self.inner.borrow().n2p::<T,IGNORE_TUNING>(x)
@@ -82,7 +82,7 @@ impl Note2Pitch for TunerHandle<'sr> {
     }
 }
 
-impl CurrentScaleCount for TunerHandle<'sr> {
+impl CurrentScaleCount for TunerHandle {
 
     #[inline] fn current_scale_count<T>(&self) -> T 
     where 
@@ -95,77 +95,77 @@ impl CurrentScaleCount for TunerHandle<'sr> {
     }
 }
 
-impl CurrentScale for TunerHandle<'sr> {
+impl CurrentScale for TunerHandle {
 
     #[inline] fn current_scale(&self) -> Scale {
         self.inner.borrow().current_scale.0.clone()
     }
 }
 
-impl CurrentTuning for TunerHandle<'sr> {
+impl CurrentTuning for TunerHandle {
 
     #[inline] fn current_tuning(&self) -> SurgeTuning {
         self.inner.borrow().current_tuning.0.clone()
     }
 }
 
-impl CurrentTuningIsStandard for TunerHandle<'sr> {
+impl CurrentTuningIsStandard for TunerHandle {
 
     #[inline] fn current_tuning_is_standard(&self) -> bool {
         self.inner.borrow().current_tuning.is_standard_tuning
     }
 }
 
-impl CurrentMappingIsStandard for TunerHandle<'sr> {
+impl CurrentMappingIsStandard for TunerHandle {
 
     #[inline] fn current_mapping_is_standard(&self) -> bool {
         self.inner.borrow().current_mapping.is_standard_mapping
     }
 }
 
-impl CurrentScaleRawContents for TunerHandle<'sr> {
+impl CurrentScaleRawContents for TunerHandle {
 
     #[inline] fn current_scale_raw_contents(&self) -> TuningData {
         self.inner.borrow().current_scale.raw_text.clone()
     }
 }
 
-impl CurrentMappingRawContents for TunerHandle<'sr> {
+impl CurrentMappingRawContents for TunerHandle {
 
     #[inline] fn current_mapping_raw_contents(&self) -> MappingData {
         self.inner.borrow().current_mapping.raw_text.clone()
     }
 }
 
-impl RetuneToScale for TunerHandle<'sr> {
+impl RetuneToScale for TunerHandle {
 
     #[inline] fn retune_to_scale(&mut self, scale: &Scale) -> bool {
         self.inner.borrow_mut().retune_to_scale(scale)
     }
 }
 
-impl RetuneToStandardTuning for TunerHandle<'sr> { 
+impl RetuneToStandardTuning for TunerHandle { 
 
     #[inline] fn retune_to_standard_tuning(&mut self) {
         self.inner.borrow_mut().retune_to_standard_tuning()
     }
 }
 
-impl RemapKeyboard for TunerHandle<'sr> {
+impl RemapKeyboard for TunerHandle {
 
     #[inline] fn remap_to_keyboard(&mut self, kb: &KeyboardMapping) -> bool {
         self.inner.borrow_mut().remap_to_keyboard(kb)
     }
 }
 
-impl RemapToStandardKeyboard for TunerHandle<'sr> {
+impl RemapToStandardKeyboard for TunerHandle {
 
     #[inline] fn remap_to_standard_keyboard(&mut self) -> bool {
         self.inner.borrow_mut().remap_to_standard_keyboard()
     }
 }
 
-impl GetTablePitch for TunerHandle<'sr> {
+impl GetTablePitch for TunerHandle {
 
     #[inline] fn get_tablepitch<IDX>(&self, idx: IDX) -> f64 
     where 

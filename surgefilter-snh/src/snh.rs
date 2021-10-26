@@ -1,8 +1,8 @@
 ix!();
 
-pub struct SnhFilter<'sr> {
-    tuner:  TunerHandle<'sr>, 
-    srunit: SampleRateHandle<'sr>,
+pub struct SnhFilter {
+    tuner:  TunerHandle, 
+    srunit: SampleRateHandle,
 }
 
 impl FilterProcessQuad for SnhFilter<'_> {

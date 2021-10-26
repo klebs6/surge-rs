@@ -4,7 +4,7 @@ use crate::{
     RotarySpeaker,
 };
 
-impl Suspend for RotarySpeaker<'sr> {
+impl Suspend for RotarySpeaker {
 
     fn suspend(&mut self) {
         self.buffer.fill(0.0);
@@ -14,7 +14,7 @@ impl Suspend for RotarySpeaker<'sr> {
     }
 }
 
-impl Init for RotarySpeaker<'sr> {
+impl Init for RotarySpeaker {
 
     fn init(&mut self) {
         self.buffer.fill(0.0);

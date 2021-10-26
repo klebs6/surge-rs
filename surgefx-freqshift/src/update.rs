@@ -5,7 +5,7 @@ use crate::{
     FreqShiftParam,
 };
 
-impl Update for FreqShift<'sr> {
+impl Update for FreqShift {
 
     fn update(&mut self) {
 

@@ -6,15 +6,15 @@ use crate::{
 };
 
 #[derive(Debug,Clone)]
-pub struct Conditioner<'sr> {
+pub struct Conditioner {
     pub amp_l:             Align16<LipolPs>,
     pub amp_r:             Align16<LipolPs>,
     pub width:             Align16<LipolPs>,
     pub postamp:           Align16<LipolPs>,
     pub ringout:           Ringout,
     pub params:            ConditionerParamArrayRT,
-    pub band1:             BiquadFilter<'sr>,
-    pub band2:             BiquadFilter<'sr>,
+    pub band1:             BiquadFilter,
+    pub band2:             BiquadFilter,
     pub ef:                f32,
     pub a_rate:            LiPol<f32>,
     pub r_rate:            LiPol<f32>,
@@ -24,14 +24,14 @@ pub struct Conditioner<'sr> {
     pub filtered_lamax:    f32,
     pub filtered_lamax2:   f32,
     pub gain:              f32,
-    pub tables:            TablesHandle<'sr>,
-    pub srunit:            SampleRateHandle<'sr>,
+    pub tables:            TablesHandle,
+    pub srunit:            SampleRateHandle,
 
     /// stereo pairs, just use every other when mono
     pub vu:                A1d::<f32>, 
 }
 
-effect!          [Conditioner<'sr>, ConditionerParam];
-name!            [Conditioner<'sr>,    "conditioner"];
-no_op!           [Conditioner<'sr>,          Suspend];
-default_default! [Conditioner<'sr>                  ];
+effect!          [Conditioner, ConditionerParam];
+name!            [Conditioner,    "conditioner"];
+no_op!           [Conditioner,          Suspend];
+default_default! [Conditioner                  ];

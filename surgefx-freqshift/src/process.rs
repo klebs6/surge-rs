@@ -4,7 +4,7 @@ use crate::{
     FreqShift,
 };
 
-impl Process for FreqShift<'sr> {
+impl Process for FreqShift {
 
     fn process<const N: usize>(&mut self, 
         data_l: &mut [f32; N], data_r: &mut [f32; N]) 

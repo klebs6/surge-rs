@@ -9,7 +9,7 @@ pub struct AllpassBlockCfg<'a> {
     out_r: &'a mut f32,
 }
 
-impl crate::AllpassVerb<'sr> {
+impl crate::AllpassVerb {
 
     pub fn do_allpass_block(&mut self, cfg: AllpassBlockCfg ) 
     {

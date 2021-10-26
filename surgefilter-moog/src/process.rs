@@ -2,7 +2,7 @@ ix!();
 
 use crate::LpMoogFilter;
 
-impl FilterProcessQuad for LpMoogFilter<'sr> {
+impl FilterProcessQuad for LpMoogFilter {
 
     #[cfg(target_arch = "x86_64")] 
     fn process_quad(&self, 

@@ -5,7 +5,7 @@ use crate::{
     WindowOscillatorParam,
 };
 
-impl Init for WindowOscillator<'sr> {
+impl Init for WindowOscillator {
 
     fn init(&mut self) {
 

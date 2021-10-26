@@ -4,7 +4,7 @@ use crate::{
     SurgeScene,
 };
 
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
     #[allow(unreachable_code)]
     pub fn play_voice_portamento(&mut self, 

@@ -6,7 +6,7 @@ use crate::{
     VocoderBlockCfg,
 };
 
-impl Vocoder<'sr> {
+impl Vocoder {
     pub fn gain(&self) -> f32 {
         let f_gain: f32 = self.pvalf(VocoderParam::Gain);
         let gain:   f32 = f_gain + 24.0;
@@ -19,7 +19,7 @@ impl Vocoder<'sr> {
     }
 }
 
-impl Process for Vocoder<'sr> {
+impl Process for Vocoder {
 
     fn process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
 

@@ -1,11 +1,11 @@
 ix!();
 
-pub struct DiodeLadderFilter<'sr> {
-    pub tuner:  TunerHandle<'sr>,
-    pub srunit: SampleRateHandle<'sr>,
+pub struct DiodeLadderFilter {
+    pub tuner:  TunerHandle,
+    pub srunit: SampleRateHandle,
 }
 
-impl DiodeLadderFilter<'sr> {
+impl DiodeLadderFilter {
 
     pub fn clamped_frequency( &self, pitch: f32) -> f32
     {

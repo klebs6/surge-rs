@@ -5,7 +5,7 @@ use crate::{
     VoiceConstructor,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     pub fn init_portasrc(&mut self, cfg: &VoiceConstructor) {
 

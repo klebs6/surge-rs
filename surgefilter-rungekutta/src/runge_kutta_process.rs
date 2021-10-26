@@ -9,7 +9,7 @@ use crate::{
     RUNGE_KUTTA_DEFAULT_SATURATION_INV,
 };
 
-impl FilterProcessQuad for crate::RungeKuttaLadder<'sr> {
+impl FilterProcessQuad for crate::RungeKuttaLadder {
 
     /**
       | Imitates a Moog resonant filter by Runge-Kutte

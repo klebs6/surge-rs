@@ -4,7 +4,7 @@ use crate::{
     SurgeVoice,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     pub fn modsource_attack(&mut self) {
         macro_rules! attack {

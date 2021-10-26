@@ -5,7 +5,7 @@ use crate::{
     SSOParam,
 };
 
-impl SurgeSuperOscillator<'sr> {
+impl SurgeSuperOscillator {
 
     #[inline] pub fn get_character(&mut self) -> CharacterMode {
         CharacterMode::try_from(pvali![self.params[SSOParam::Character]] as usize).unwrap()

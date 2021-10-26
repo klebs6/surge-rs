@@ -4,7 +4,7 @@ use crate::{
     SurgeVoice,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     #[inline] pub fn init_modsources(&mut self) {
         self.init_lfos();

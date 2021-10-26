@@ -1,7 +1,7 @@
 ix!();
 
 #[cfg(not(target_arch = "x86_64"))] 
-impl FilterProcessQuad for CombFilter<'sr> {
+impl FilterProcessQuad for CombFilter {
 
     pub fn process_quad(&self, 
         qfu: &mut QuadFilterUnitState<'tables>, 

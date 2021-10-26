@@ -5,9 +5,9 @@ use crate::{
     VoiceRuntimeHandle,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
-    pub fn calc_routes(&mut self, cfg: VoiceRuntimeHandle<'sr>) {
+    pub fn calc_routes(&mut self, cfg: VoiceRuntimeHandle) {
 
         let cfg = cfg.borrow();
 

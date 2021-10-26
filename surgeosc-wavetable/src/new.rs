@@ -5,12 +5,12 @@ use crate::{
     WTOscillatorParam,
 };
 
-impl WTOscillator<'sr> {
+impl WTOscillator {
 
     pub fn new(
-        tuner:  TunerHandle<'sr>,
-        tables: TablesHandle<'sr>,
-        srunit: SampleRateHandle<'sr>,
+        tuner:  TunerHandle,
+        tables: TablesHandle,
+        srunit: SampleRateHandle,
     ) -> Self 
     {
         let mut x = Self {

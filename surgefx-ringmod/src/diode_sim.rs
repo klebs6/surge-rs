@@ -2,7 +2,7 @@ ix!();
 
 use crate::{RingModulator,RingModulatorParam};
 
-impl RingModulator<'sr> {
+impl RingModulator {
 
     pub fn diode_sim(&self, v: f32) -> f32 {
 

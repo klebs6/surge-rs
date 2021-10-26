@@ -8,7 +8,7 @@ use crate::{
 pub const DUAL_DELAY_MAX_DELAY_LENGTH: usize = 1 << 18;
 
 #[derive(Debug,Clone)]
-pub struct DualDelay<'sr> {
+pub struct DualDelay {
     pub feedback:        Align16<LipolPs>,
     pub crossfeed:       Align16<LipolPs>,
     pub aligpan:         Align16<LipolPs>,
@@ -23,8 +23,8 @@ pub struct DualDelay<'sr> {
     pub inithadtempo:    bool,
     pub envf:            f32,
     pub wpos:            i32,
-    pub lp:              BiquadFilter<'sr>,
-    pub hp:              BiquadFilter<'sr>,
+    pub lp:              BiquadFilter,
+    pub hp:              BiquadFilter,
     pub lfophase:        f64,
     pub lfo_val:         f32,
     pub lfo_direction:   bool,
@@ -37,13 +37,13 @@ pub struct DualDelay<'sr> {
     pub wetblock:        WetBlock2::<BLOCK_SIZE>,
 
     //--------------------------------------------
-    pub time_unit:       TimeUnitHandle<'sr>,
-    pub tuner:           TunerHandle<'sr>,
-    pub tables:          TablesHandle<'sr>,
-    pub srunit:          SampleRateHandle<'sr>,
+    pub time_unit:       TimeUnitHandle,
+    pub tuner:           TunerHandle,
+    pub tables:          TablesHandle,
+    pub srunit:          SampleRateHandle,
 }
 
-name!        [DualDelay<'sr>, "dualdelay"   ]; 
-effect!      [DualDelay<'sr>, DualDelayParam];
-no_op!       [DualDelay<'sr>, Suspend       ];
-has_timeunit![DualDelay<'sr>, DualDelayParam];
+name!        [DualDelay, "dualdelay"   ]; 
+effect!      [DualDelay, DualDelayParam];
+no_op!       [DualDelay, Suspend       ];
+has_timeunit![DualDelay, DualDelayParam];

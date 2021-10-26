@@ -6,7 +6,7 @@ use crate::{
 };
 
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     #[inline(always)] pub fn get_table_pitch(&mut self, 
         idx: i32) -> f32 

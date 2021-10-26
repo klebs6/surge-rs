@@ -2,7 +2,7 @@ ix!();
 
 use crate::SurgeSynthesizer;
 
-impl SurgeSynthesizer<'sr,'plugin_layer,'synth_out> {
+impl SurgeSynthesizer<,'plugin_layer,'synth_out> {
 
     #[inline] pub fn get_split_key(&self) -> u8 {
         pvali![self.active_patch.params[PatchParam::SplitKey]].try_into().unwrap()

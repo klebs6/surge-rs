@@ -28,11 +28,11 @@ pub trait ModUnitPrepare {
     fn prepare_modsource_do_process(&mut self, scenemask: i32);
 }
 
-pub trait ModUnitGet<'sr> {
+pub trait ModUnitGet {
     fn get_modulation(&mut self, ptag: usize, modsource: ModSource) -> f32;
     fn get_mod_depth(&mut self, ptag: i64, modsource: ModSource) -> f32;
     fn get_mod_routing(&mut self, index: usize, modsource: ModSource) -> Option<&mut ModulationRouting>;
-    fn get_control_interpolator(&mut self, id: i32) -> Option<&mut ControllerModulationSource<'sr>>;
+    fn get_control_interpolator(&mut self, id: i32) -> Option<&mut ControllerModulationSource>;
     fn get_free_control_interpolator_index(&mut self) -> i32;
     fn get_control_interpolator_index(&mut self, id: i32) -> i32;
 }
@@ -42,10 +42,10 @@ pub trait ModUnitClear {
     fn clear_modulation(&mut self, ptag: i64, modsource: ModSource);
 }
 
-pub trait ModUnit<'sr> {
+pub trait ModUnit {
     fn release_control_interpolator(&mut self, id: i32);
     fn add_control_interpolator(&mut self, id: i32, already_existed: &bool) 
-        -> Option<&mut ControllerModulationSource<'sr>>;
+        -> Option<&mut ControllerModulationSource>;
 }
 
 //----------------------------------------------synth

@@ -5,7 +5,7 @@ use crate::{
     SurgeScene,
 };
 
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
     pub fn release_single_triggered(&mut self, 
         voice_idx: usize,

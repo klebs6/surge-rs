@@ -1,6 +1,6 @@
 ix!();
 
-impl CoeffMake for crate::LpMoogFilter<'sr> {
+impl CoeffMake for crate::LpMoogFilter {
 
     fn coeff_make(&self, freq: f32, reso: f32) -> [f32; N_COEFFMAKER_COEFFS]
     {

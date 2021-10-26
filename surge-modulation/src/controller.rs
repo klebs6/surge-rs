@@ -1,7 +1,7 @@
 ix!();
 
 #[derive(Debug)]
-pub struct ControllerModulationSource<'sr> {
+pub struct ControllerModulationSource {
     pub output:   f64,
     pub target:   f64,
     pub bipolar:  bool,
@@ -10,12 +10,12 @@ pub struct ControllerModulationSource<'sr> {
 
     //can be used to assign the controller to a parameter id 
     pub id:       i32, 
-    srunit: SampleRateHandle<'sr>,
+    srunit: SampleRateHandle,
 }
 
-name![ControllerModulationSource<'sr>,"ControllerModulationSource"];
+name![ControllerModulationSource,"ControllerModulationSource"];
 
-impl ModulationSourceControl for ControllerModulationSource<'sr> {
+impl ModulationSourceControl for ControllerModulationSource {
     fn get_type(&self) -> ModSrcType {
         ModSrcType::Controller
     }
@@ -64,9 +64,9 @@ impl ModulationSourceControl for ControllerModulationSource<'sr> {
     }
 }
 
-impl ControllerModulationSource<'sr> {
+impl ControllerModulationSource {
 
-    pub fn new(srunit: SampleRateHandle<'sr>) -> Self {
+    pub fn new(srunit: SampleRateHandle) -> Self {
         Self {
             target:     0.0,
             output:     0.0,

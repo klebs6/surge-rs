@@ -5,7 +5,7 @@ use crate::{
     SineWaveOscillatorParam,
 };
 
-impl HandleStreamingMismatches for SineWaveOscillator<'sr> {
+impl HandleStreamingMismatches for SineWaveOscillator {
 
     fn handle_streaming_mismatches(&mut self, 
         streaming_revision: i32, 

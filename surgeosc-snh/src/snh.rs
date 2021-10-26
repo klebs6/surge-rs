@@ -6,7 +6,7 @@ use crate::{
 };
 
 #[derive(Debug)]
-pub struct SampleAndHoldOscillator<'sr> {
+pub struct SampleAndHoldOscillator {
     pub out:                 OscillatorOut,
     pub params:              SampleAndHoldOscillatorParamArrayRT,
     pub osc_params:          OscillatorParamArrayRT,
@@ -34,14 +34,14 @@ pub struct SampleAndHoldOscillator<'sr> {
     pub l_sync:              Lag<f64>,
     pub fm_delay:            i32,
     pub fm_mul_inv:          f32,
-    pub tables:              TablesHandle<'sr>,
-    pub tuner:               TunerHandle<'sr>,
-    pub srunit:              SampleRateHandle<'sr>,
+    pub tables:              TablesHandle,
+    pub tuner:               TunerHandle,
+    pub srunit:              SampleRateHandle,
 }
 
-oscillator!      [SampleAndHoldOscillator<'sr>,  SampleAndHoldOscillatorParam];
-no_op!           [SampleAndHoldOscillator<'sr>,     HandleStreamingMismatches];
-name!            [SampleAndHoldOscillator<'sr>,              "oscillator.snh"];
-no_op!           [SampleAndHoldOscillator<'sr>,                      AssignFM];
-allow_display!   [SampleAndHoldOscillator<'sr>,                          true];
-default_default! [SampleAndHoldOscillator<'sr>                                ];
+oscillator!      [SampleAndHoldOscillator,  SampleAndHoldOscillatorParam];
+no_op!           [SampleAndHoldOscillator,     HandleStreamingMismatches];
+name!            [SampleAndHoldOscillator,              "oscillator.snh"];
+no_op!           [SampleAndHoldOscillator,                      AssignFM];
+allow_display!   [SampleAndHoldOscillator,                          true];
+default_default! [SampleAndHoldOscillator                                ];

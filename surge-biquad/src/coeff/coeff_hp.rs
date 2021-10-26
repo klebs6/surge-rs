@@ -6,7 +6,7 @@ use crate::{
     BiquadFilter
 };
 
-impl BiquadCoeffHP for BiquadFilter<'sr> {
+impl BiquadCoeffHP for BiquadFilter {
 
     fn coeff_hp(&mut self, omega: f64, q: f64) {
 

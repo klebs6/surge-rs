@@ -6,7 +6,7 @@ use crate::{
     DistortionParam,
 };
 
-impl Init for Distortion<'sr> {
+impl Init for Distortion {
 
     fn init(&mut self) {
 
@@ -24,12 +24,12 @@ impl Init for Distortion<'sr> {
     }
 }
 
-impl Distortion<'sr> {
+impl Distortion {
 
     pub fn new(
-        tuner:  &'sr TunerHandle<'sr>,
-        tables: &'sr TablesHandle<'sr>,
-        srunit: &'sr SampleRateHandle<'sr>) -> Self 
+        tuner:  & TunerHandle,
+        tables: & TablesHandle,
+        srunit: & SampleRateHandle) -> Self 
     {
         Self {
             hr_a:     Align16(HalfRateFilterSSE::new(3,false)),

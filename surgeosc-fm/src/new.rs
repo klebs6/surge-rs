@@ -5,9 +5,9 @@ use crate::{
     FMOscillatorParam,
 };
 
-impl FMOscillator<'sr> {
+impl FMOscillator {
 
-    pub fn new( tuner: TunerHandle<'sr>) -> Self {
+    pub fn new( tuner: TunerHandle) -> Self {
         Self {
             tuner,
             out:             OscillatorOut::default(),

@@ -5,7 +5,7 @@ use crate::{
     BiquadCalcFreq,
 };
 
-impl BiquadCalcFreq for BiquadFilter<'sr> {
+impl BiquadCalcFreq for BiquadFilter {
 
     fn calc_omega(&self, scfreq: f64) -> f64 {
         (2.0 * PI) 
@@ -24,7 +24,7 @@ impl BiquadCalcFreq for BiquadFilter<'sr> {
     }
 }
 
-impl PlotMagnitude for BiquadFilter<'sr> {
+impl PlotMagnitude for BiquadFilter {
 
     fn plot_magnitude(&self, freq: f32) -> f32 {
         let ca0 = Complex64::new(1.0, 0.0);

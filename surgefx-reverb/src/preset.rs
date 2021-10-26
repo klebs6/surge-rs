@@ -103,7 +103,7 @@ impl ReverbPreset {
     }
 }
 
-impl LoadPreset for Reverb<'sr> {
+impl LoadPreset for Reverb {
 
     type PresetType = ReverbPreset;
 

@@ -4,7 +4,7 @@ use crate::{
     FMOscillator,
 };
 
-impl Init for FMOscillator<'sr> {
+impl Init for FMOscillator {
 
     fn init(&mut self) {
         self.phase      = 0.0;

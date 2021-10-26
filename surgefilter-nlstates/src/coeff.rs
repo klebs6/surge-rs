@@ -5,7 +5,7 @@ use crate::{
     NLSFType,
 };
 
-impl CoeffMake for crate::NonlinearStatesFilter<'sr> {
+impl CoeffMake for crate::NonlinearStatesFilter {
 
     fn coeff_make(&self, freq: f32, mut reso: f32) -> [f32; N_COEFFMAKER_COEFFS] {
 

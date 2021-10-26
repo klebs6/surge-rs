@@ -4,7 +4,7 @@ use crate::{
     WTOscillator,
 };
 
-impl WTOscillator<'sr> {
+impl WTOscillator {
 
     #[inline] pub fn get_ipos(&mut self, fm: bool, vidx: usize) -> u32
     {

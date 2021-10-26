@@ -6,7 +6,7 @@ use crate::{
 };
 
 #[derive(Debug,Clone)]
-pub struct FreqShift<'sr> {
+pub struct FreqShift {
     pub fr:            Align16<HalfRateFilterSSE>,
     pub fi:            Align16<HalfRateFilterSSE>,
     pub mix:           Align16<LipolPs>,
@@ -23,13 +23,13 @@ pub struct FreqShift<'sr> {
     pub o2_l:          QuadrOsc,
     pub o1_r:          QuadrOsc,
     pub o2_r:          QuadrOsc,
-    pub tables:        TablesHandle<'sr>,
-    pub time_unit:     TimeUnitHandle<'sr>,
-    pub tuner:         TunerHandle<'sr>,
-    pub srunit:        SampleRateHandle<'sr>,
+    pub tables:        TablesHandle,
+    pub time_unit:     TimeUnitHandle,
+    pub tuner:         TunerHandle,
+    pub srunit:        SampleRateHandle,
 }
 
-effect!       [FreqShift<'sr>,  FreqShiftParam];
-has_timeunit! [FreqShift<'sr>,  FreqShiftParam];
-no_op!        [FreqShift<'sr>,  ProcessOnlyControl];
-name!         [FreqShift<'sr>,  "freqshift"];
+effect!       [FreqShift,  FreqShiftParam];
+has_timeunit! [FreqShift,  FreqShiftParam];
+no_op!        [FreqShift,  ProcessOnlyControl];
+name!         [FreqShift,  "freqshift"];

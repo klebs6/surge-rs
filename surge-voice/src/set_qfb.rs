@@ -21,12 +21,12 @@ pub struct VoiceUpdateQFCSCfg {
     pub waveshaper0_drive_db:     f32,
 }
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     /// Set the parameters & registers
     pub fn set_quad_filterblock(&mut self, 
         cfg: &VoiceUpdateQFCSCfg,
-        mut qfcs: Option<&mut QuadFilterChainState<'sr>>, 
+        mut qfcs: Option<&mut QuadFilterChainState>, 
         e: i32) 
     {
         // qfcs == None means init(ialise)

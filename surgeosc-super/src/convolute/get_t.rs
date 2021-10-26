@@ -1,8 +1,8 @@
 ix!();
 
-use crate::SSOParam;
+use crate::*;
 
-impl crate::SurgeSuperOscillator<'sr> {
+impl SurgeSuperOscillator {
     #[inline] pub fn get_t(&self, sync: f64, detune: f64) -> (f32, f32) {
         let t: f32 = {
             if self.params[SSOParam::UniSpread].absolute {

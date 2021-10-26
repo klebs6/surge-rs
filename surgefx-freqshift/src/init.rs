@@ -5,7 +5,7 @@ use crate::{
     FreqShiftParam,
 };
 
-impl Init for FreqShift<'sr> {
+impl Init for FreqShift {
 
     fn init(&mut self) {
 
@@ -27,13 +27,13 @@ impl Init for FreqShift<'sr> {
     }
 }
 
-impl FreqShift<'sr> {
+impl FreqShift {
 
     pub fn new(
-        tuner:     &'sr TunerHandle<'sr>,
-        tables:    &'sr TablesHandle<'sr>,
-        srunit:    &'sr SampleRateHandle<'sr>,
-        time_unit: &'sr TimeUnitHandle<'sr>) -> Self {
+        tuner:     & TunerHandle,
+        tables:    & TablesHandle,
+        srunit:    & SampleRateHandle,
+        time_unit: & TimeUnitHandle) -> Self {
 
         let mut x = Self {
             fr:             Align16(HalfRateFilterSSE::new(6, true)),
@@ -67,7 +67,7 @@ impl FreqShift<'sr> {
 
 }
 
-impl Suspend for FreqShift<'sr> {
+impl Suspend for FreqShift {
     fn suspend(&mut self) {
         self.init();
         self.ringout = Ringout::blocks(10000000);

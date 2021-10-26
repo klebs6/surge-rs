@@ -13,7 +13,7 @@ pub struct CalculateDerivativesCfg {
     pub gain_compensation:   __m128,
 }
 
-impl RungeKuttaLadder<'sr> {
+impl RungeKuttaLadder {
 
     #[inline] pub fn calculate_derivatives(cfg: CalculateDerivativesCfg)
     {

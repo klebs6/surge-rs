@@ -5,7 +5,7 @@ use crate::{
     WTOscillatorParam,
 };
 
-impl Init for WTOscillator<'sr> {
+impl Init for WTOscillator {
 
     fn init(&mut self) { 
 

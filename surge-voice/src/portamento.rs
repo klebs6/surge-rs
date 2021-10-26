@@ -4,7 +4,7 @@ use crate::{
     SurgeVoice,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     pub fn legato(&mut self, 
         key: i32, velocity: i32, _detune: usize) 

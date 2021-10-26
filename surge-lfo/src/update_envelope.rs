@@ -6,7 +6,7 @@ use crate::{
     LfoEnvState,
 };
 
-impl Lfo<'sr> {
+impl Lfo {
     pub fn update_envelope_for_process(&mut self,temposyncratio: f32) {
 
         let mut envrate: f32 = 0.0;

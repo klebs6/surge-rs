@@ -5,7 +5,7 @@ use crate::{
     VoiceRuntimeHandle,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     #[inline] pub fn get_pitchbend(&self, cfg: &PitchBendCfg) -> f64 {
 
@@ -37,7 +37,7 @@ impl SurgeVoice<'sr> {
     }
 
     pub fn calc_pitch(&mut self, 
-        cfg: VoiceRuntimeHandle<'sr>) 
+        cfg: VoiceRuntimeHandle) 
     {
         let cfg = cfg.borrow();
 

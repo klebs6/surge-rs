@@ -4,7 +4,7 @@ use crate::{
     SurgeScene,
 };
 
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
     pub fn voice_toggle_solo_cfg(&self) -> VoiceToggleSoloCfg {
         VoiceToggleSoloCfg {
@@ -27,7 +27,7 @@ impl SurgeScene<'sr> {
         channel: u8, 
         key: u8, 
         velocity: u8, 
-        detune: u8) -> VoiceConstructor<'sr> 
+        detune: u8) -> VoiceConstructor 
     {
         let mpe_main_channel: u8 = self.mpe_unit.get_mpe_main_channel(channel, key);
 

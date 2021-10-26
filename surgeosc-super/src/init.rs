@@ -5,7 +5,7 @@ use crate::{
     SSOParam,
 };
 
-impl Init for SurgeSuperOscillator<'sr> {
+impl Init for SurgeSuperOscillator {
 
     fn init(&mut self) {
 

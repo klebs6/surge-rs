@@ -9,17 +9,17 @@ use crate::*;
     SetSampleRate,
 )]
 #[derive(Debug)]
-pub enum MaybeOwningSampleRateUnit<'sr> {
-    Owning(SampleRateUnit<'sr>),
-    NonOwning(SampleRateHandle<'sr>),
+pub enum MaybeOwningSampleRateUnit {
+    Owning(SampleRateUnit),
+    NonOwning(SampleRateHandle),
 }
 
 #[derive(Debug,Clone)]
-pub struct SampleRateHandle<'sr> {
-    inner: Rc<RefCell<SampleRateUnit<'sr>>>,
+pub struct SampleRateHandle {
+    inner: Rc<RefCell<SampleRateUnit>>,
 }
 
-impl SampleRateHandle<'sr> {
+impl SampleRateHandle {
 
     pub fn new_with_samplerate(sr: f64) -> Self {
         Self {
@@ -28,7 +28,7 @@ impl SampleRateHandle<'sr> {
     }
 }
 
-impl Default for SampleRateHandle<'sr> {
+impl Default for SampleRateHandle {
     fn default() -> Self {
         Self {
             inner: Rc::new(RefCell::new(SampleRateUnit::new_with_samplerate(48_000.0_f64))),
@@ -36,13 +36,13 @@ impl Default for SampleRateHandle<'sr> {
     }
 }
 
-impl GetVuFalloff for SampleRateHandle<'sr> {
+impl GetVuFalloff for SampleRateHandle {
     #[inline] fn vu_falloff(&self) -> f32 {
         self.inner.borrow().vu_falloff
     }
 }
 
-impl Ms2Samples for SampleRateHandle<'sr> {
+impl Ms2Samples for SampleRateHandle {
 
     /**
       from allpass filter
@@ -59,7 +59,7 @@ impl Ms2Samples for SampleRateHandle<'sr> {
     }
 }
 
-impl GetSampleRate for SampleRateHandle<'sr> {
+impl GetSampleRate for SampleRateHandle {
 
     #[inline] fn dsamplerate_os(&self)      -> f64 { self.inner.borrow().dsamplerate_os.load( atomic::Ordering::SeqCst ) }
     #[inline] fn dsamplerate(&self)         -> f64 { self.inner.borrow().dsamplerate.load( atomic::Ordering::SeqCst ) }
@@ -82,7 +82,7 @@ impl GetSampleRate for SampleRateHandle<'sr> {
     */
 }
 
-impl SetSampleRate for SampleRateHandle<'sr> {
+impl SetSampleRate for SampleRateHandle {
 
     #[inline] fn set_samplerate(&self, sr: f64) 
     {

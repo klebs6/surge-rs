@@ -5,7 +5,7 @@ use crate::{
     //FM2OscillatorParam,
 };
 
-impl FM2Oscillator<'sr> {
+impl FM2Oscillator {
 
     pub fn do_fm2_block(&mut self, k: usize, omega_clamped: f64, fm: bool) {
 

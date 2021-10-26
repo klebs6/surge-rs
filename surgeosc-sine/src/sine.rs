@@ -6,8 +6,8 @@ use crate::{
 };
 
 #[derive(Debug)]
-pub struct SineWaveOscillator<'sr> {
-    pub tuner:       TunerHandle<'sr>,
+pub struct SineWaveOscillator {
+    pub tuner:       TunerHandle,
     pub master_osc:  *mut f32,
     pub params:      SineWaveOscillatorParamArrayRT,
     pub osc_params:  OscillatorParamArrayRT,
@@ -21,8 +21,8 @@ pub struct SineWaveOscillator<'sr> {
     pub lastvalue:   f32,
 }
 
-oscillator!    [SineWaveOscillator<'sr>, SineWaveOscillatorParam];
-name!          [SineWaveOscillator<'sr>,       "oscillator.sine"];
-no_op!         [SineWaveOscillator<'sr>,                SetPitch];
-no_op!         [SineWaveOscillator<'sr>,                AssignFM];
-allow_display! [SineWaveOscillator<'sr>,                    true];
+oscillator!    [SineWaveOscillator, SineWaveOscillatorParam];
+name!          [SineWaveOscillator,       "oscillator.sine"];
+no_op!         [SineWaveOscillator,                SetPitch];
+no_op!         [SineWaveOscillator,                AssignFM];
+allow_display! [SineWaveOscillator,                    true];

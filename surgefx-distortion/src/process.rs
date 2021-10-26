@@ -8,7 +8,7 @@ use crate::{
 
 //pub const DISTORTION_OVERSAMPLE_BLOCK_SIZE: usize = BLOCK_SIZE << DISTORTION_OS_BITS;
 
-impl Process for Distortion<'sr> {
+impl Process for Distortion {
 
     // eventually loosen the constraint on N
     #[allow(clippy::assertions_on_constants)] 

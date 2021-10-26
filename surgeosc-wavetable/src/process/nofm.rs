@@ -4,7 +4,7 @@ use crate::{
     WTOscillator,
 };
 
-impl WTOscillator<'sr> {
+impl WTOscillator {
 
     #[inline] pub fn process_block_nofm(&mut self, stereo: bool) { 
 

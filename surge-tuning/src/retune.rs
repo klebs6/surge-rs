@@ -2,14 +2,14 @@ ix!();
 
 use crate::*;
 
-impl RetuneToStandardTuning for SurgeTuner<'tuner> {
+impl RetuneToStandardTuning for SurgeTuner {
 
     fn retune_to_standard_tuning(&mut self) {
         self.init();
     }
 }
 
-impl RetuneToScale for SurgeTuner<'tuner> {
+impl RetuneToScale for SurgeTuner {
 
     fn retune_to_scale(&mut self, scale: &crate::Scale) -> bool {
 

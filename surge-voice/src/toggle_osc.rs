@@ -6,9 +6,9 @@ use crate::{
     VoiceRuntimeHandle,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
-    pub fn spawn_osc(&self, oscty: OscillatorType) -> MaybeVoiceOscillator<'sr> {
+    pub fn spawn_osc(&self, oscty: OscillatorType) -> MaybeVoiceOscillator {
 
         let tables   = self.tables.clone();
         let synth_in = self.synth_in.clone();
@@ -29,7 +29,7 @@ impl SurgeVoice<'sr> {
     }
 
     pub fn maybe_toggle_osc(&mut self, 
-        cfg: VoiceRuntimeHandle<'sr>) 
+        cfg: VoiceRuntimeHandle) 
     {
         let cfg = cfg.borrow();
 

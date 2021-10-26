@@ -6,7 +6,7 @@ use std::rc::Rc;
 use std::cell::RefCell;
 
 #[derive(Debug,Clone)]
-pub struct TimeUnit<'sr> {
+pub struct TimeUnit {
     pub ppq_pos:              f64,
     pub tempo:                f64,
     pub time_sig_numerator:   i32,
@@ -14,10 +14,10 @@ pub struct TimeUnit<'sr> {
     pub temposyncratio:       f32,
     pub temposyncratio_inv:   f32, //1.0 is 120 BPM
     pub songpos:              f64,
-    pub srunit:               SampleRateHandle<'sr>,
+    pub srunit:               SampleRateHandle,
 }
 
-impl Init for TimeUnit<'sr> {
+impl Init for TimeUnit {
     fn init(&mut self) {
         self.temposyncratio = 1.0;
 
@@ -30,8 +30,8 @@ impl Init for TimeUnit<'sr> {
     }
 }
 
-impl TimeUnit<'sr> {
-    pub fn new(srunit: &'sr SampleRateHandle<'sr>) -> Self {
+impl TimeUnit {
+    pub fn new(srunit: & SampleRateHandle) -> Self {
         let mut x = Self {
             ppq_pos:                0.0,
             tempo:                  0.0,
@@ -54,12 +54,12 @@ impl TimeUnit<'sr> {
 }
 
 #[derive(Debug,Clone)]
-pub struct TimeUnitHandle<'sr> {
-    inner: Rc<RefCell<TimeUnit<'sr>>>,
+pub struct TimeUnitHandle {
+    inner: Rc<RefCell<TimeUnit>>,
 }
 
-impl TimeUnitHandle<'sr> {
-    pub fn new(srunit: &'sr SampleRateHandle<'sr>) -> Self {
+impl TimeUnitHandle {
+    pub fn new(srunit: & SampleRateHandle) -> Self {
         Self {
             inner: Rc::new(RefCell::new(TimeUnit::new(srunit))),
         }

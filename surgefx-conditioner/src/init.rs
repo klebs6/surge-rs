@@ -5,7 +5,7 @@ use crate::{
     ConditionerParam,
 };
 
-impl Init for Conditioner<'sr> {
+impl Init for Conditioner {
 
     fn init(&mut self) {
 
@@ -27,11 +27,11 @@ impl Init for Conditioner<'sr> {
     }
 }
 
-impl Conditioner<'sr> {
+impl Conditioner {
     pub fn new(
-        tuner:  &'sr TunerHandle<'sr>,
-        tables: &'sr TablesHandle<'sr>,
-        srunit: &'sr SampleRateHandle<'sr>)  -> Self {
+        tuner:  & TunerHandle,
+        tables: & TablesHandle,
+        srunit: & SampleRateHandle)  -> Self {
         Self {
             ringout:          Ringout::blocks(100),
             params:           ConditionerParam::new_runtime(),

@@ -5,7 +5,7 @@ use crate::{
     BiquadFilter,
 };
 
-impl ProcessSampleStereo for BiquadFilter<'sr> {
+impl ProcessSampleStereo for BiquadFilter {
 
     #[inline] fn process_sample_stereo(&mut self, 
         l: f32, r: f32, l_out: &mut f32, r_out: &mut f32)

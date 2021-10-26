@@ -7,7 +7,7 @@ use crate::{
     BiquadFilter,
 };
 
-impl ProcessSampleNolag for BiquadFilter<'sr> {
+impl ProcessSampleNolag for BiquadFilter {
 
     #[inline] fn process_sample_nolag(&mut self, 
         l: &mut f32, r: &mut f32)
@@ -28,7 +28,7 @@ impl ProcessSampleNolag for BiquadFilter<'sr> {
     }
 }
 
-impl ProcessSampleStereoNolag for BiquadFilter<'sr> {
+impl ProcessSampleStereoNolag for BiquadFilter {
 
     #[inline] fn process_sample_stereo_nolag(&mut self, 
         l: &mut f32, r: &mut f32, l_out: &mut f32, r_out: &mut f32)
@@ -49,7 +49,7 @@ impl ProcessSampleStereoNolag for BiquadFilter<'sr> {
     }
 }
 
-impl ProcessSampleNolagNoinput for BiquadFilter<'sr> {
+impl ProcessSampleNolagNoinput for BiquadFilter {
 
     #[inline] fn process_sample_nolag_noinput(&mut self, 
         l_out: &mut f32, r_out: &mut f32)

@@ -5,7 +5,7 @@ use crate::{
     SceneParam,
 };
 
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
     pub fn handle_boolsolo<P: Param + ?Sized>(&mut self, param: &mut ParamRT<P>) 
     {
@@ -70,22 +70,22 @@ impl SurgeScene<'sr> {
         };
     }
 
-    pub fn new_controller_modsource(srunit: SampleRateHandle<'sr>) -> MaybeBoxedModulationSource<'sr> {
+    pub fn new_controller_modsource(srunit: SampleRateHandle) -> MaybeBoxedModulationSource {
         Some(box ModulationSource::ControllerModulationSource(ControllerModulationSource::new(srunit.clone())))
     }
 
     pub fn new_lfo_modsource(
-        timeunit: TimeUnitHandle<'sr>, 
-        tables:   TablesHandle<'sr>,
-    ) -> MaybeBoxedModulationSource<'sr> {
+        timeunit: TimeUnitHandle, 
+        tables:   TablesHandle,
+    ) -> MaybeBoxedModulationSource {
         Some(box ModulationSource::Lfo(Lfo::new(timeunit.clone(),tables.clone())))
     }
 
     pub fn new_modsources(
-        srunit:   SampleRateHandle<'sr>,
-        timeunit: TimeUnitHandle<'sr>,
-        tables:   TablesHandle<'sr>
-    ) -> ModulationSourceArray<'sr> {
+        srunit:   SampleRateHandle,
+        timeunit: TimeUnitHandle,
+        tables:   TablesHandle
+    ) -> ModulationSourceArray {
         ModulationSourceArray::new_with( |x| match x {
             ModSource::Original             => None,
             ModSource::Velocity             => None,

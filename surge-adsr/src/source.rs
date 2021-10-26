@@ -6,7 +6,7 @@ use crate::{
     AdsrState,
 };
 
-impl ModulationSourceControl for AdsrEnvelope<'sr> {
+impl ModulationSourceControl for AdsrEnvelope {
 
     fn get_type(&self) -> ModSrcType
     {

@@ -6,7 +6,7 @@ use crate::{
 };
 
 #[derive(Debug)]
-pub struct WindowOscillator<'sr> {
+pub struct WindowOscillator {
     pub drift:             Align16<f32>,
     pub master_osc:        Align16<*mut f32>,
     pub out:               Align16<OscillatorOut>,
@@ -32,18 +32,18 @@ pub struct WindowOscillator<'sr> {
     pub active_sub_oscs:   i32,
     pub window_wavetable:  WaveTableBase::<i16>,
     pub wave_wavetable:    WaveTableBase::<i16>,
-    pub tables:            TablesHandle<'sr>,
-    pub tuner:             TunerHandle<'sr>,
-    pub srunit:            SampleRateHandle<'sr>,
+    pub tables:            TablesHandle,
+    pub tuner:             TunerHandle,
+    pub srunit:            SampleRateHandle,
 }
 
-name!          [WindowOscillator<'sr>, "oscillator.window_oscillator"];
-no_op!         [WindowOscillator<'sr>,      HandleStreamingMismatches];
-oscillator!    [WindowOscillator<'sr>,          WindowOscillatorParam];
-no_op!         [WindowOscillator<'sr>,                       AssignFM];
-allow_display! [WindowOscillator<'sr>,                           true];
+name!          [WindowOscillator, "oscillator.window_oscillator"];
+no_op!         [WindowOscillator,      HandleStreamingMismatches];
+oscillator!    [WindowOscillator,          WindowOscillatorParam];
+no_op!         [WindowOscillator,                       AssignFM];
+allow_display! [WindowOscillator,                           true];
 
-impl SetPitch for WindowOscillator<'sr> {
+impl SetPitch for WindowOscillator {
     fn set_pitch(&mut self, _pitch: f32, is_display: bool) {
         if is_display {
             self.active_sub_oscs = 1;

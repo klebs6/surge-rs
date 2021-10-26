@@ -5,7 +5,7 @@ use crate::{
     SampleAndHoldOscillatorParam,
 };
 
-impl SetPitch for SampleAndHoldOscillator<'sr> {
+impl SetPitch for SampleAndHoldOscillator {
 
     fn set_pitch(&mut self, pitch: f32, is_display: bool) {
 

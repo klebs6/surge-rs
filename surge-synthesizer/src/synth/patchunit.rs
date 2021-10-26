@@ -5,7 +5,7 @@ use crate::{
     traits::PluginLayerIF,
 };
 
-impl SurgeSynthesizer<'sr,'plugin_layer,'synth_out> {
+impl SurgeSynthesizer<,'plugin_layer,'synth_out> {
 
     pub fn reset_patch(&mut self) {
         self.active_patch.init();

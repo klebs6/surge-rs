@@ -2,7 +2,7 @@ ix!();
 
 use crate::CombFilter;
 
-impl CoeffMake for CombFilter<'sr> {
+impl CoeffMake for CombFilter {
 
     fn coeff_make(&self, freq: f32, mut reso: f32) -> [f32; N_COEFFMAKER_COEFFS]
     {

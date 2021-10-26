@@ -5,7 +5,7 @@ use crate::{
     BiquadFilter,
 };
 
-impl ProcessBlockSlowlag for BiquadFilter<'sr> {
+impl ProcessBlockSlowlag for BiquadFilter {
 
     /**
       |# Safety

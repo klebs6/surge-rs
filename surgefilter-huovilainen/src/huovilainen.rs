@@ -37,13 +37,13 @@ pub type R = HuovilainenRegOffsets;
 ** 2. SSe and so on
 ** 3. Model specici changes per model
 */
-pub struct HuovilainenLadder<'sr> {
-    pub tuner:                   TunerHandle<'sr>,
-    pub srunit:                  SampleRateHandle<'sr>,
+pub struct HuovilainenLadder {
+    pub tuner:                   TunerHandle,
+    pub srunit:                  SampleRateHandle,
     pub gain_compensation:       Option<f32>,
 }
 
-impl HuovilainenLadder<'sr> {
+impl HuovilainenLadder {
 
     pub fn clamped_frequency(&self, pitch: f32) -> f32
     {

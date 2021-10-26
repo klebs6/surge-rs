@@ -7,7 +7,7 @@ use crate::{
 //----------------------------------------------------
 macro_rules! hook {
     ($f:ident, $cb:ident) => {
-        #[inline] fn $f(qfu: &mut QuadFilterUnitState<'sr>, input: __m128 ) -> __m128 { crate::$cb(qfu, input) }
+        #[inline] fn $f(qfu: &mut QuadFilterUnitState, input: __m128 ) -> __m128 { crate::$cb(qfu, input) }
     }
 }
 
@@ -36,7 +36,7 @@ hook![bandpass_process_quad_smooth4p, iir_24_b_quad];
 hook![bandpass_process_quad_medium4p, iir_24_cfl_quad];
 //----------------------------------------------------
 
-impl FilterProcessQuad for IIRFilter<'sr> {
+impl FilterProcessQuad for IIRFilter {
     #[inline] fn process_quad(
         &self, 
         qfu: &mut QuadFilterUnitState<'_>, 

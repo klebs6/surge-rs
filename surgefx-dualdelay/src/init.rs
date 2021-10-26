@@ -6,7 +6,7 @@ use crate::{
     DUAL_DELAY_MAX_DELAY_LENGTH,
 };
 
-impl DualDelay<'sr> {
+impl DualDelay {
 
     pub fn instantize_all(&mut self) {
         self.time_l.instantize();
@@ -25,7 +25,7 @@ impl DualDelay<'sr> {
     }
 }
 
-impl Init for DualDelay<'sr> {
+impl Init for DualDelay {
 
     fn init(&mut self) {
 
@@ -52,13 +52,13 @@ impl Init for DualDelay<'sr> {
     }
 }
 
-impl DualDelay<'sr> {
+impl DualDelay {
 
     pub fn new( 
-        tuner:     &'sr TunerHandle<'sr>,
-        tables:    &'sr TablesHandle<'sr>,
-        srunit:    &'sr SampleRateHandle<'sr>,
-        time_unit: &'sr TimeUnitHandle<'sr>) -> Self {
+        tuner:     &TunerHandle,
+        tables:    &TablesHandle,
+        srunit:    &SampleRateHandle,
+        time_unit: &TimeUnitHandle) -> Self {
 
         Self {
             feedback:           Align16(LipolPs::new_with_blocksize(BLOCK_SIZE)),

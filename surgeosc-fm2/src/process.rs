@@ -6,7 +6,7 @@ use crate::{
     fm2_calcmd,
 };
 
-impl OscillatorProcess for FM2Oscillator<'sr> {
+impl OscillatorProcess for FM2Oscillator {
 
     fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) { 
 

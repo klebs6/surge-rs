@@ -5,7 +5,7 @@ use crate::{
     SineWaveOscillatorParam,
 };
 
-impl SineWaveOscillator<'sr> {
+impl SineWaveOscillator {
 
     pub fn do_sine_block(&mut self, k: usize, omega: f64, fm: bool) {
 

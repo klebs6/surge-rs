@@ -5,7 +5,7 @@ use crate::{
     WTOscillatorParam,
 };
 
-impl SetPitch for WTOscillator<'sr> {
+impl SetPitch for WTOscillator {
 
     fn set_pitch(&mut self, pitch: f32, is_display: bool) { 
 

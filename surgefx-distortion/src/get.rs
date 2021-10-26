@@ -5,7 +5,7 @@ use crate::{
     DistortionParam,
 };
 
-impl Distortion<'sr> {
+impl Distortion {
 
     #[inline] pub fn get_waveshape_idx(&self) -> i32 {
 

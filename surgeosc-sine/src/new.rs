@@ -5,9 +5,9 @@ use crate::{
     SineWaveOscillatorParam,
 };
 
-impl SineWaveOscillator<'sr> {
+impl SineWaveOscillator {
 
-    pub fn new( tuner: TunerHandle<'sr>) -> Self 
+    pub fn new( tuner: TunerHandle) -> Self 
     {
         Self {
             tuner,

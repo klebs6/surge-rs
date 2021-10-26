@@ -6,7 +6,7 @@ use crate::{
     N_VOCODER_BANDS,
 };
 
-impl Update for Vocoder<'sr> {
+impl Update for Vocoder {
 
     fn update(&mut self) {
 

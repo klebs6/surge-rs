@@ -5,7 +5,7 @@ use crate::{
     AdsrState,
 };
 
-impl AdsrEnvelope<'sr> {
+impl AdsrEnvelope {
 
     pub fn process_block_digital(&mut self) {
 

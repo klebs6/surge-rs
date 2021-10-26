@@ -6,7 +6,7 @@ use crate::{
     N_VOCODER_BANDS,
 };
 
-impl Vocoder<'sr> {
+impl Vocoder {
 
     pub fn do_vocoder_block<const N: usize>(&mut self, 
         k:            usize, 

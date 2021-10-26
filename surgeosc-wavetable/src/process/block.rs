@@ -5,7 +5,7 @@ use crate::{
     WTOscillator,
 };
 
-impl WTOscillator<'sr> {
+impl WTOscillator {
 
     #[inline] pub fn do_block(&mut self, k: usize, stereo: bool, hpfblock: &mut WetBlock1::<BLOCK_SIZE_OS>) { 
 

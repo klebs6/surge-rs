@@ -4,7 +4,7 @@ use crate::{
     FreqShift,
 };
 
-impl FreqShift<'sr> {
+impl FreqShift {
     pub fn maybe_do_commented_c_process<const DO: bool>(&mut self) {
         if DO {
             //this was commented in the C

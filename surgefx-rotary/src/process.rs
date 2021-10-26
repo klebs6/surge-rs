@@ -6,7 +6,7 @@ use crate::{
     ROTARY_SPEAKER_MAX_DELAY_LENGTH,
 };
 
-impl Process for RotarySpeaker<'sr> {
+impl Process for RotarySpeaker {
 
     fn process<const N: usize>(&mut self, 
         data_l: &mut [f32; N], 
@@ -90,7 +90,7 @@ impl Process for RotarySpeaker<'sr> {
     }
 }
 
-impl ProcessOnlyControl for RotarySpeaker<'sr> {
+impl ProcessOnlyControl for RotarySpeaker {
 
     fn process_only_control<const N: usize>(&mut self) {
 

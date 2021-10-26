@@ -2,7 +2,7 @@ ix!();
 
 use crate::SineShaper;
 
-impl Waveshaper for SineShaper<'sr> {
+impl Waveshaper for SineShaper {
     fn shape(&self, input: __m128, drive: __m128) -> __m128 {
         unsafe {
             let one: __m128 = _mm_set1_ps(1.0);

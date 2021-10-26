@@ -5,19 +5,19 @@ use crate::{
     SceneParam,
 };
 
-pub struct SceneConstructorHandles<'sr> {
-    pub timeunit:        &'sr  TimeUnitHandle<'sr>,
-    pub tables:          &'sr  TablesHandle<'sr>,
-    pub tuner:           &'sr  TunerHandle<'sr>,
-    pub srunit:          &'sr  SampleRateHandle<'sr>,
-    pub hold_pedal_unit: &'sr  HoldPedalUnitHandle<'sr>,
-    pub midi_unit:       &'sr  MIDIUnitHandle<'sr>,
-    pub mpe_unit:        &'sr  MPEUnitHandle<'sr>,
-    pub synth_in:        &'sr  SynthInputHandle<'sr>,
+pub struct SceneConstructorHandles {
+    pub timeunit:        &  TimeUnitHandle,
+    pub tables:          &  TablesHandle,
+    pub tuner:           &  TunerHandle,
+    pub srunit:          &  SampleRateHandle,
+    pub hold_pedal_unit: &  HoldPedalUnitHandle,
+    pub midi_unit:       &  MIDIUnitHandle,
+    pub mpe_unit:        &  MPEUnitHandle,
+    pub synth_in:        &  SynthInputHandle,
 }
 
-impl SurgeScene<'sr> {
-    pub fn new(ctor: SceneConstructorHandles<'sr>) -> Self {
+impl SurgeScene {
+    pub fn new(ctor: SceneConstructorHandles) -> Self {
         Self {
             osc:                 vec![
                 box SurgeSuperOscillator::new(ctor.tuner.clone(),ctor.tables.clone(),ctor.srunit.clone()),

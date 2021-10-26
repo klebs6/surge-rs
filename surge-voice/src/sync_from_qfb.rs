@@ -9,7 +9,7 @@ pub struct SyncQFBRegistersCfg {
     filterblock_cfg:  FilterBlockConfiguration,
 }
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     /// get the updated registers from the QuadFB
     pub fn sync_registers_from_qfb(&mut self, cfg: &SyncQFBRegistersCfg) {

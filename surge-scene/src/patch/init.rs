@@ -8,9 +8,9 @@ use crate::{
     PatchParam,
 };
 
-impl SurgePatch<'sr> {
+impl SurgePatch {
 
-    pub fn new(ctor: SceneConstructorHandles<'sr>) -> Self {
+    pub fn new(ctor: SceneConstructorHandles) -> Self {
         let mut x = Self {
             metadata:              PatchMetadata::default(),
             scene:                 vec![SurgeScene::new(ctor)],
@@ -26,27 +26,27 @@ impl SurgePatch<'sr> {
     }
 }
 
-impl SurgePatch<'sr> {
+impl SurgePatch {
 
     pub fn get_param_by_idx(&self, _idx: usize) -> ParamRT<dyn Param> {
         todo!();
     }
 }
 
-impl Init for SurgePatch<'sr> {
+impl Init for SurgePatch {
     fn init(&mut self) {
         todo!();
     }
 }
 
-impl SaveInto for SurgePatch<'sr> {
+impl SaveInto for SurgePatch {
     fn save_into(&mut self, _bytes: &mut Vec<u8>) -> PatchDataSize {
         todo!();
     }
 
 }
 
-impl crate::PatchLoad for SurgePatch<'sr> {
+impl crate::PatchLoad for SurgePatch {
     fn load_patch(&mut self, 
         _data: c_void, 
         _size: i32, 

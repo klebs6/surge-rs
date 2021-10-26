@@ -5,7 +5,7 @@ use crate::{
     DUAL_DELAY_MAX_DELAY_LENGTH,
 };
 
-impl Process for DualDelay<'sr> {
+impl Process for DualDelay {
 
     fn process<const N: usize>(&mut self, 
         data_l: &mut [f32; N], data_r: &mut [f32; N]) 
@@ -42,7 +42,7 @@ impl Process for DualDelay<'sr> {
     }
 }
 
-impl DualDelay<'sr> {
+impl DualDelay {
 
     #[inline] pub fn clear_scratch_buffers(&mut self) {
         self.scratch_left.fill(0.0);
@@ -161,7 +161,7 @@ impl DualDelay<'sr> {
     }
 }
 
-impl ProcessOnlyControl for DualDelay<'sr> {
+impl ProcessOnlyControl for DualDelay {
     fn process_only_control<const N: usize>(&mut self) 
     { 
         todo!();

@@ -7,7 +7,7 @@ use crate::{
     BiquadFilter
 };
 
-impl BiquadCoeffBP for BiquadFilter<'sr> {
+impl BiquadCoeffBP for BiquadFilter {
 
     fn coeff_bp(&mut self, omega: f64, quality_factor: f64)
     {
@@ -24,7 +24,7 @@ impl BiquadCoeffBP for BiquadFilter<'sr> {
     }
 }
 
-impl BiquadCoeffBP2A for BiquadFilter<'sr> {
+impl BiquadCoeffBP2A for BiquadFilter {
 
     fn coeff_bp2a(&mut self, omega: f64, bandwidth: f64)
     {

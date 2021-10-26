@@ -6,7 +6,7 @@ use crate::{
     BiquadFilter,
 };
 
-impl BiquadCoeffPKA for BiquadFilter<'sr> {
+impl BiquadCoeffPKA for BiquadFilter {
 
     fn coeff_pka(&mut self, omega: f64, qq: f64)
     {

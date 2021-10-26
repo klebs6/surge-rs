@@ -5,7 +5,7 @@ use crate::{
     PHASER_N_BQ_UNITS,
 };
 
-impl Phaser<'sr> {
+impl Phaser {
 
     pub fn suspend_all_biquads(&mut self) {
         for i in 0_usize..(PHASER_N_BQ_UNITS as usize) {

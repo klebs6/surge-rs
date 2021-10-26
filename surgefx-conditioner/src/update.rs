@@ -5,14 +5,14 @@ use crate::{
     ConditionerParam,
 };
 
-impl Update for Conditioner<'sr> {
+impl Update for Conditioner {
 
     fn update(&mut self) {
         self.update_bands();
     }
 }
 
-impl Conditioner<'sr> {
+impl Conditioner {
 
     pub fn update_bands(&mut self) {
 

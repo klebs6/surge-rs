@@ -5,7 +5,7 @@ use crate::{
     SampleAndHoldOscillatorParam,
 };
 
-impl Init for SampleAndHoldOscillator<'sr> {
+impl Init for SampleAndHoldOscillator {
 
     fn init(&mut self) {
 

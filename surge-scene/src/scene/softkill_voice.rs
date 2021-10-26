@@ -4,7 +4,7 @@ use crate::{
     SurgeScene,
 };
 
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
     pub fn softkill_voice(&mut self) {
 

@@ -5,7 +5,7 @@ use crate::{
     WindowOscillatorParam,
 };
 
-impl WindowOscillator<'sr> {
+impl WindowOscillator {
 
     fn get_formant_mul(&self, formant: f64) -> i32 {
 

@@ -1,7 +1,7 @@
 ix!();
 
 #[derive(Debug,Clone)]
-pub struct BiquadFilter<'sr> {
+pub struct BiquadFilter {
     pub a1:         Align16<VLag>,
     pub a2:         Align16<VLag>,
     pub b0:         Align16<VLag>,
@@ -10,14 +10,14 @@ pub struct BiquadFilter<'sr> {
     pub reg0:       Align16<VDouble>,
     pub reg1:       Align16<VDouble>,
     pub first_run:  bool,
-    pub tuner:      TunerHandle<'sr>,
-    pub tables:     TablesHandle<'sr>,
-    pub srunit:     SampleRateHandle<'sr>,
+    pub tuner:      TunerHandle,
+    pub tables:     TablesHandle,
+    pub srunit:     SampleRateHandle,
 }
 
-impl Suspend for BiquadFilter<'sr> {}
+impl Suspend for BiquadFilter {}
 
-impl BiquadFilter<'sr> {
+impl BiquadFilter {
 
     pub fn coeff_process(&mut self) {
         self.a1.process();
@@ -37,7 +37,7 @@ impl BiquadFilter<'sr> {
     }
 }
 
-impl SetBlockSize for BiquadFilter<'sr> {
+impl SetBlockSize for BiquadFilter {
 
     fn set_blocksize(&mut self, _bs: i32) {
         //this was commented in the C

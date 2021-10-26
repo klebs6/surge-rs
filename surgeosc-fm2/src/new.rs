@@ -5,11 +5,11 @@ use crate::{
     FM2OscillatorParam,
 };
 
-impl FM2Oscillator<'sr> {
+impl FM2Oscillator {
 
     pub fn new( 
-        tuner:  TunerHandle<'sr>, 
-        srunit: SampleRateHandle<'sr>,) -> Self {
+        tuner:  TunerHandle, 
+        srunit: SampleRateHandle,) -> Self {
         Self {
             tuner,
             srunit,

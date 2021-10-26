@@ -5,7 +5,7 @@ use crate::{
     Eq3BandParam,
 };
 
-impl Init for Eq3Band<'sr> {
+impl Init for Eq3Band {
 
     fn init(&mut self) {
 
@@ -23,12 +23,12 @@ impl Init for Eq3Band<'sr> {
     }
 }
 
-impl Eq3Band<'sr> {
+impl Eq3Band {
 
     pub fn new(
-        tuner:  &'sr  TunerHandle<'sr>,
-        tables: &'sr TablesHandle<'sr>,
-        srunit: &'sr SampleRateHandle<'sr>,
+        tuner:  &  TunerHandle,
+        tables: & TablesHandle,
+        srunit: & SampleRateHandle,
     ) -> Self {
 
         let mut x = Self {

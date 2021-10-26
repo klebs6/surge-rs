@@ -1,12 +1,12 @@
 ix!();
 
 #[derive(Debug)]
-pub struct SineShaper<'sr> { 
-    pub tables: TablesHandle<'sr>,
+pub struct SineShaper { 
+    pub tables: TablesHandle,
 }
 
-impl SineShaper<'sr> {
-    pub fn new(tables: &TablesHandle<'sr>) -> Self {
+impl SineShaper {
+    pub fn new(tables: &TablesHandle) -> Self {
         Self {
             tables: tables.clone()
         }

@@ -4,7 +4,7 @@ use crate::{
     Chorus,
 };
 
-impl<'sr> Process for Chorus<'sr> {
+impl Process for Chorus {
 
     fn process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
 

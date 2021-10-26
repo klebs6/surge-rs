@@ -2,7 +2,7 @@ ix!();
 
 use crate::SurgeScene;
 
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
     pub fn release_old_notes_if_previous_polymode_was_latch<P: Param + ?Sized>(
         &mut self, 

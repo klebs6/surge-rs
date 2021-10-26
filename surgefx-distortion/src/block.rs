@@ -6,7 +6,7 @@ use crate::{
     DISTORTION_OS_BITS,
 };
 
-impl Distortion<'sr> {
+impl Distortion {
 
     #[inline] pub fn do_distortion_block<const N: usize, const T: usize>(
         &mut self, 

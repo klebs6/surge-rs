@@ -5,17 +5,17 @@ pub const ENVELOPE_TABLE_SIZE_U:  usize = 512;
 
 #[derive(Debug,Clone)]
 #[repr(align(16))]
-pub struct EnvelopeTables<'sr> {
+pub struct EnvelopeTables {
 
     pub table_envrate_lpf:    Align16<A1d::<f32>>,
     pub table_envrate_linear: Align16<A1d::<f32>>,
 
-    srunit: SampleRateHandle<'sr>,
+    srunit: SampleRateHandle,
 }
 
-impl EnvelopeTables<'sr> {
+impl EnvelopeTables {
 
-    pub fn new(srunit: &'sr SampleRateHandle<'sr>) -> Self {
+    pub fn new(srunit: &SampleRateHandle) -> Self {
         Self {
             table_envrate_lpf:     Align16(A1d::<f32>::zeros(ENVELOPE_TABLE_SIZE_U)),
             table_envrate_linear:  Align16(A1d::<f32>::zeros(ENVELOPE_TABLE_SIZE_U)),
@@ -48,7 +48,7 @@ impl EnvelopeTables<'sr> {
     }
 }
 
-impl Init for EnvelopeTables<'sr> {
+impl Init for EnvelopeTables {
     fn init(&mut self) {
 
         let sr = self.srunit.dsamplerate_os();

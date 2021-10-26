@@ -5,7 +5,7 @@ use crate::{
     PhaserParam,
 };
 
-impl Process for Phaser<'sr> {
+impl Process for Phaser {
 
     fn process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
 
@@ -37,7 +37,7 @@ impl Process for Phaser<'sr> {
     }
 }
 
-impl ProcessOnlyControl for Phaser<'sr> {
+impl ProcessOnlyControl for Phaser {
 
     fn process_only_control<const N: usize>(&mut self) { 
 

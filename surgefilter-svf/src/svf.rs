@@ -4,18 +4,18 @@ ix!();
 coeffidx![ C; X0, X1, X2, X3, X4, X5, X6, X7 ];
 
 #[derive(Derivative)] #[derivative(Debug)]
-pub struct SvfFilter<'sr> {
+pub struct SvfFilter {
     #[derivative(Debug="ignore")]
-    pub tuner:   TunerHandle<'sr>,
+    pub tuner:   TunerHandle,
 
     #[derivative(Debug="ignore")]
-    pub srunit:  SampleRateHandle<'sr>,
+    pub srunit:  SampleRateHandle,
 
     pub pole_type:    PoleType,
     pub iirtype: FilterTypeIIR,
 }
 
-impl CoeffMake for SvfFilter<'sr> {
+impl CoeffMake for SvfFilter {
 
     fn coeff_make(&self, freq: f32, mut reso: f32) -> [f32; N_COEFFMAKER_COEFFS]
     {

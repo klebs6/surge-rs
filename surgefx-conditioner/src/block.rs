@@ -6,7 +6,7 @@ use crate::{
     CONDITIONER_LOOKAHEAD,
 };
 
-impl Conditioner<'sr> {
+impl Conditioner {
 
     pub fn do_conditioner_block<const N: usize>(&mut self, 
         k: usize, 

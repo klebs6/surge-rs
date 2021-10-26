@@ -2,18 +2,18 @@ ix!();
 
 #[derive(Debug,Clone)] 
 #[repr(align(16))]
-pub struct TuningTables<'sr> {
+pub struct TuningTables {
     pub table_pitch:                        Align16<A1d::<f64>>,
     pub table_pitch_inv:                    Align16<A1d::<f64>>,
     pub table_note_omega:                   Align16<A2d::<f64>>,
     pub table_pitch_ignoring_tuning:        Align16<A1d::<f64>>,
     pub table_pitch_inv_ignoring_tuning:    Align16<A1d::<f64>>,
     pub table_note_omega_ignoring_tuning:   Align16<A2d::<f64>>,
-    srunit: SampleRateHandle<'sr>,
+    srunit: SampleRateHandle,
 }
 
-impl TuningTables<'sr> {
-    pub fn new(srunit: &'sr SampleRateHandle<'sr>) -> Self {
+impl TuningTables {
+    pub fn new(srunit: &SampleRateHandle) -> Self {
         Self {
             table_pitch:                      Align16(A1d::<f64>::zeros(512)),
             table_pitch_inv:                  Align16(A1d::<f64>::zeros(512)),
@@ -26,7 +26,7 @@ impl TuningTables<'sr> {
     }
 }
 
-impl Init for TuningTables<'sr> {
+impl Init for TuningTables {
     fn init(&mut self) {
 
         for i in 0..512 {

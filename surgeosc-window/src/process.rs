@@ -5,7 +5,7 @@ use crate::{
     WindowOscillatorParam,
 };
 
-impl OscillatorProcess for WindowOscillator<'sr> {
+impl OscillatorProcess for WindowOscillator {
 
     fn process_block(&mut self, 
         cfg: OscillatorProcessBlockCfg)

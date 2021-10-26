@@ -3,19 +3,19 @@ ix!();
 pub const SMOOTH: f32 = 0.2;
 
 #[derive(Debug)]
-pub struct FilterCoefficientMaker<'sr> 
+pub struct FilterCoefficientMaker 
 {
     //K1,K2,Q1,Q2,V1,V2,V3,etc
     pub coeff:      A1d::<f32>,
     pub dcoeff:     A1d::<f32>,
     pub tcoeff:     A1d::<f32>,
     pub first_run:  bool,
-    pub tuner:      TunerHandle<'sr>,
-    pub tables:     TablesHandle<'sr>,
-    pub srunit:     SampleRateHandle<'sr>,
+    pub tuner:      TunerHandle,
+    pub tables:     TablesHandle,
+    pub srunit:     SampleRateHandle,
 }
 
-impl FilterCoefficientMaker<'sr> {
+impl FilterCoefficientMaker {
 
     pub fn make_coeffs(
         &mut self, 

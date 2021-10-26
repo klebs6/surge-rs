@@ -4,17 +4,17 @@ use crate::*;
 
 #[derive(Debug,Clone)]
 #[repr(align(16))]
-pub struct SurgeTuner<'sr> {
+pub struct SurgeTuner {
     pub current_tuning:  Align16<SurgeTuning>,
     pub current_mapping: Align16<KeyboardMapping>,
     pub current_scale:   Align16<Scale>,
-    pub tables:          Align16<TuningTables<'sr>>,
-    pub srunit:          SampleRateHandle<'sr>,
+    pub tables:          Align16<TuningTables>,
+    pub srunit:          SampleRateHandle,
 }
 
-impl SurgeTuner<'sr> {
+impl SurgeTuner {
 
-    pub fn new(srunit: &'sr SampleRateHandle<'sr>) -> Self {
+    pub fn new(srunit: &SampleRateHandle) -> Self {
         Self {
             current_tuning:  Align16(SurgeTuning::default()),
             current_mapping: Align16(KeyboardMapping::default()),
@@ -31,7 +31,7 @@ impl SurgeTuner<'sr> {
     }
 }
 
-impl ScaleNote for SurgeTuner<'sr> {
+impl ScaleNote for SurgeTuner {
 
     #[inline] fn scale_constant_note(&self) -> i32 { 
         self.current_mapping.tuning_constant_note
@@ -42,7 +42,7 @@ impl ScaleNote for SurgeTuner<'sr> {
     }
 }
 
-impl Init for SurgeTuner<'sr> {
+impl Init for SurgeTuner {
     fn init(&mut self) {
         self.current_tuning.init();
         self.current_mapping.init();
@@ -51,7 +51,7 @@ impl Init for SurgeTuner<'sr> {
     }
 }
 
-impl Note2Pitch for SurgeTuner<'sr> {
+impl Note2Pitch for SurgeTuner {
 
     #[inline] fn n2p_tuningctr<T: MyFloat>(&self, x: T) -> T 
     {
@@ -164,7 +164,7 @@ impl Note2Pitch for SurgeTuner<'sr> {
     }
 }
 
-impl CurrentScaleCount for SurgeTuner<'sr> {
+impl CurrentScaleCount for SurgeTuner {
 
     #[inline] fn current_scale_count<T>(&self) -> T 
     where 
@@ -177,43 +177,43 @@ impl CurrentScaleCount for SurgeTuner<'sr> {
     }
 }
 
-impl CurrentScale for SurgeTuner<'sr> {
+impl CurrentScale for SurgeTuner {
     #[inline] fn current_scale(&self) -> Scale {
         self.current_scale.0.clone()
     }
 }
 
-impl CurrentTuning for SurgeTuner<'sr> {
+impl CurrentTuning for SurgeTuner {
     #[inline] fn current_tuning(&self) -> SurgeTuning {
         self.current_tuning.0.clone()
     }
 }
 
-impl CurrentTuningIsStandard for SurgeTuner<'sr> {
+impl CurrentTuningIsStandard for SurgeTuner {
     #[inline] fn current_tuning_is_standard(&self) -> bool {
         self.current_tuning.is_standard_tuning
     }
 }
 
-impl CurrentMappingIsStandard for SurgeTuner<'sr> {
+impl CurrentMappingIsStandard for SurgeTuner {
     #[inline] fn current_mapping_is_standard(&self) -> bool {
         self.current_mapping.is_standard_mapping
     }
 }
 
-impl CurrentScaleRawContents for SurgeTuner<'sr> {
+impl CurrentScaleRawContents for SurgeTuner {
     #[inline] fn current_scale_raw_contents(&self) -> TuningData {
         self.current_scale.raw_text.clone()
     }
 }
 
-impl CurrentMappingRawContents for SurgeTuner<'sr> {
+impl CurrentMappingRawContents for SurgeTuner {
     #[inline] fn current_mapping_raw_contents(&self) -> MappingData {
         self.current_mapping.raw_text.clone()
     }
 }
 
-impl GetTablePitch for SurgeTuner<'sr> {
+impl GetTablePitch for SurgeTuner {
 
     #[inline] fn get_tablepitch<IDX>(&self, idx: IDX) -> f64 
     where 

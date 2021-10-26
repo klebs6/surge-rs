@@ -9,7 +9,7 @@ pub fn new_integrator_hpf(samplerate_inv: f32) -> f32 {
 
 impl AbstractBlitter {
 
-    pub fn new(srunit: &'_ SampleRateHandle<'_>) -> Self {
+    pub fn new(srunit: & SampleRateHandle) -> Self {
         Self {
             oscbuffer_l:          Align16(A1d::<f32>::zeros( OB_LENGTH + FIR_IPOL_N )),
             oscbuffer_r:          Align16(A1d::<f32>::zeros( OB_LENGTH + FIR_IPOL_N )),

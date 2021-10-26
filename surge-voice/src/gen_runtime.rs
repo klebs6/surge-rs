@@ -7,10 +7,10 @@ use crate::{
     VoiceRuntimeHandle,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     pub fn gen_oscillator_runtime(&mut self, 
-        cfg: VoiceRuntimeHandle<'sr>) 
+        cfg: VoiceRuntimeHandle) 
         -> OscillatorRuntime 
     {
         let cfg = cfg.borrow();

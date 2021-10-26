@@ -1,12 +1,12 @@
 ix!();
 
-pub struct CombFilter<'sr> {
+pub struct CombFilter {
     pub subtype: FilterSubType,
-    pub tuner:   TunerHandle<'sr>,
-    pub srunit:  SampleRateHandle<'sr>,
+    pub tuner:   TunerHandle,
+    pub srunit:  SampleRateHandle,
 }
 
-impl CombFilter<'sr> {
+impl CombFilter {
 
     pub fn reso_factor(&self) -> f32 {
         match self.subtype == FilterSubType::Smooth 

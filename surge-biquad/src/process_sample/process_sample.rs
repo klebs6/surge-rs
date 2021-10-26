@@ -5,7 +5,7 @@ use crate::{
     BiquadFilter,
 };
 
-impl ProcessSample for BiquadFilter<'sr> {
+impl ProcessSample for BiquadFilter {
 
     #[inline] fn process_sample(&mut self, input: f32) -> f32 
     {

@@ -6,7 +6,7 @@ use crate::{
     AdsrState,
 };
 
-impl AdsrEnvelope<'sr> {
+impl AdsrEnvelope {
 
     /**
       | This is the "analog" mode of the

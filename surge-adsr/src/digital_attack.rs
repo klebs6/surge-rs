@@ -6,7 +6,7 @@ use crate::{
     AdsrParam,
 };
 
-impl AdsrEnvelope<'sr> {
+impl AdsrEnvelope {
 
     pub fn process_block_digital_attack(&mut self) 
     {

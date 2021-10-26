@@ -4,7 +4,7 @@ use crate::{
     WTOscillator,
 };
 
-impl WTOscillator<'sr> {
+impl WTOscillator {
 
     pub fn convolute_stereo(&mut self, g: f32, delay: u32, ipos: u32) {
 

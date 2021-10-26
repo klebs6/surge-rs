@@ -5,7 +5,7 @@ use crate::{
     DistortionParam,
 };
 
-impl Distortion<'sr> {
+impl Distortion {
 
     pub fn update_all_lp(&mut self) {
         let pre_hc:        f64 = self.pvalf(DistortionParam::PreHighCut).into();
@@ -47,7 +47,7 @@ impl Distortion<'sr> {
     }
 }
 
-impl Update for Distortion<'sr> {
+impl Update for Distortion {
 
     fn update(&mut self) {
         self.update_all_bands();

@@ -10,7 +10,7 @@ use crate::{
 };
 
 #[derive(Debug,Clone)]
-pub struct AllpassVerb<'sr> {
+pub struct AllpassVerb {
     pub mix                 : Align16<LipolPs>,
     pub width               : Align16<LipolPs>,
     pub ringout             : Ringout,
@@ -34,13 +34,13 @@ pub struct AllpassVerb<'sr> {
     pub modulation          : LiPol<f32>,
     pub lfo                 : QuadrOsc,
     pub last_decay_time     : f32,
-    pub srunit              : SampleRateHandle<'sr>,
+    pub srunit              : SampleRateHandle,
 }
 
-name!             [AllpassVerb<'sr>, "reverb2"];
-effect!           [AllpassVerb<'sr>, AllpassReverbParam];
-update_on_init!   [AllpassVerb<'sr>];
-default_default!  [AllpassVerb<'sr>];
-no_op!            [AllpassVerb<'sr>, Suspend];
-no_op!            [AllpassVerb<'sr>, ProcessOnlyControl];
+name!             [AllpassVerb, "reverb2"];
+effect!           [AllpassVerb, AllpassReverbParam];
+update_on_init!   [AllpassVerb];
+default_default!  [AllpassVerb];
+no_op!            [AllpassVerb, Suspend];
+no_op!            [AllpassVerb, ProcessOnlyControl];
 

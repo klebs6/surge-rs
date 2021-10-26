@@ -6,7 +6,7 @@ use crate::{
     NLFFType,
 };
 
-impl CoeffMake for NonlinearFeedbackFilter<'sr> {
+impl CoeffMake for NonlinearFeedbackFilter {
 
     fn coeff_make(&self, freq: f32, mut reso: f32) -> [f32; N_COEFFMAKER_COEFFS] {
 

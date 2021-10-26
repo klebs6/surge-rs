@@ -7,7 +7,7 @@ use crate::{
     VocoderParam,
 };
 
-impl Vocoder<'sr> {
+impl Vocoder {
 
     #[inline] pub fn new_svf_vec() -> A1d::<VectorizedSvfFilter> {
         A1d::<VectorizedSvfFilter>::from_elem(N_VOCODER_VEC, VectorizedSvfFilter::default())
@@ -20,9 +20,9 @@ impl Vocoder<'sr> {
     }
 
     pub fn new<const N: usize>( 
-        tables:   &'sr TablesHandle<'sr>,
-        srunit:   &'sr SampleRateHandle<'sr>,
-        synth_in: &'sr SynthInputHandle<'sr>) -> Self {
+        tables:   & TablesHandle,
+        srunit:   & SampleRateHandle,
+        synth_in: & SynthInputHandle) -> Self {
 
         Self {
             carrier_l:     Align16(Self::new_svf_vec()),

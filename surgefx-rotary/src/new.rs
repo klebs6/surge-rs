@@ -7,13 +7,13 @@ use crate::{
     ROTARY_SPEAKER_RINGOUT,
 };
 
-impl RotarySpeaker<'sr> {
+impl RotarySpeaker {
 
     pub fn new( 
-        tuner:     &'sr TunerHandle<'sr>,
-        tables:    &'sr TablesHandle<'sr>,
-        srunit:    &'sr SampleRateHandle<'sr>,
-        time_unit: &'sr TimeUnitHandle<'sr>) -> Self {
+        tuner:     & TunerHandle,
+        tables:    & TablesHandle,
+        srunit:    & SampleRateHandle,
+        time_unit: & TimeUnitHandle) -> Self {
 
         Self {
             ringout:       Ringout::blocks(ROTARY_SPEAKER_RINGOUT as NumberOfBlocks),

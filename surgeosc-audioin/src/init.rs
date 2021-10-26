@@ -5,11 +5,11 @@ use crate::{
     AudioInputOscillatorParam,
 };
 
-impl AudioInputOscillator<'sr> {
+impl AudioInputOscillator {
 
     pub fn new( 
-        tables:   TablesHandle<'sr>,
-        synth_in: SynthInputHandle<'sr>) -> Self {
+        tables:   TablesHandle,
+        synth_in: SynthInputHandle) -> Self {
         Self {
             tables,
             synth_in,

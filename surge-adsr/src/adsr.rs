@@ -17,7 +17,7 @@ enhanced_enum![
 ];
 
 #[derive(Debug)]
-pub struct AdsrEnvelope<'sr> {
+pub struct AdsrEnvelope {
     pub params:        AdsrParamArrayRT,
     pub output:        f32,
     pub phase:         f32,
@@ -28,15 +28,15 @@ pub struct AdsrEnvelope<'sr> {
     pub _v_c1:         f32,
     pub _v_c1_delayed: f32,
     pub _discharge:    f32,
-    pub time_unit:     TimeUnitHandle<'sr>,
-    pub tables:        TablesHandle<'sr>,
-    pub srunit:        SampleRateHandle<'sr>,
+    pub time_unit:     TimeUnitHandle,
+    pub tables:        TablesHandle,
+    pub srunit:        SampleRateHandle,
     pub enabled:       bool,
 }
 
-name![AdsrEnvelope<'sr>, "envelope"];
+name![AdsrEnvelope, "envelope"];
 
-impl AdsrEnvelope<'sr> {
+impl AdsrEnvelope {
 
     pub fn get_env_state(&self) -> AdsrState { 
         self.envstate

@@ -5,7 +5,7 @@ use crate::{
     CONVOLVE_NODC
 };
 
-impl SurgeSuperOscillator<'sr> {
+impl SurgeSuperOscillator {
 
     /// Delay is the number of samples ahead of bufpos that oscstate implies at current pitch.
     /// Basically the 'integer part' of the position.

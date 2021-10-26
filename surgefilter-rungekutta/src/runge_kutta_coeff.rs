@@ -5,7 +5,7 @@ use crate::{
     RungeKuttaLadder,
 };
 
-impl CoeffMake for RungeKuttaLadder<'sr> {
+impl CoeffMake for RungeKuttaLadder {
 
     fn coeff_make(&self, freq: f32, reso: f32) -> [f32; N_COEFFMAKER_COEFFS] 
     {

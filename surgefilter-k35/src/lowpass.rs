@@ -1,6 +1,6 @@
 ix!();
 
-impl crate::K35Filter<'sr> {
+impl crate::K35Filter {
 
     pub fn process_lp(
         f: &mut QuadFilterUnitState, 

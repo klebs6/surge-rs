@@ -5,7 +5,7 @@ use crate::{
     RotarySpeakerParam,
 };
 
-impl RotarySpeaker<'sr> {
+impl RotarySpeaker {
 
     #[inline] pub fn set_lfos(&mut self) {
 

@@ -32,7 +32,7 @@ pub struct ReleaseCfg {
   (_, _) => { /* no-op */ },
 }
 */
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
     pub fn get_release_voice_cfg(&self, 
         channel: u8, 

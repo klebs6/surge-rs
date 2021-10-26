@@ -50,14 +50,14 @@ pub type C = NLFFCoeff;
 ** with coefficient calculation from
 ** https://webaudio.github.io/Audio-EQ-Cookbook/audio-eq-cookbook.html
 */
-pub struct NonlinearFeedbackFilter<'sr> {
-    pub tuner:  TunerHandle<'sr>,
-    pub srunit: SampleRateHandle<'sr>,
+pub struct NonlinearFeedbackFilter {
+    pub tuner:  TunerHandle,
+    pub srunit: SampleRateHandle,
     pub ty:     NLFFType,
     pub subty:  FilterSubType,
 }
 
-impl NonlinearFeedbackFilter<'sr> {
+impl NonlinearFeedbackFilter {
 
     #[inline] pub fn clamped_frequency(&self, pitch: f32) -> f32 {
         let freq = self.tuner.n2p::<f32,true>(pitch + 69.0) * (MIDI_0_FREQ as f32);

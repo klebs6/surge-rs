@@ -60,58 +60,9 @@ pub use surge_adsr::*;
 pub use surge_biquad::*;
 pub use surge_blitter::*;
 pub use surge_coeffmaker::*;
-
-pub use surge_traits::{
-    SaveInto,
-    Init,
-    MaybeEffects,
-    ModulationSourceControl,
-    ProcessBlock,
-    ProcessBlockU2,
-    ProcessBlockD2,
-    Reset,
-    Suspend,
-    WaveTableController,
-};
-
-pub use surge_types::{
-    FilterBlockConfiguration,
-    FilterSubType,
-    FilterType,
-    FxBypassType,
-    MpeEnableSwitch,
-    NumVoices,
-    OscillatorType,
-    PatchDataSize,
-    PitchBendRange,
-    PitchBendValue,
-    PolyMode,
-    SceneMode,
-    ShouldKeepPlaying,
-    WaveshapeType,
-};
-
-pub use surge_constants::{
-    BLOCK_SIZE,
-    BLOCK_SIZE_OS,
-    BLOCK_SIZE_QUAD,
-    BLOCK_SIZE_OS_QUAD,
-    MAX_MIPMAP_LEVELS,
-    MAX_SUBTABLES,
-    MAX_VOICES,
-    METAPARAM_OFFSET,
-    NUM_CONTROLINTERPOLATORS,
-    N_CUSTOMCONTROLLERS,
-    N_GLOBAL_PARAMS,
-    N_INPUTS,
-    N_LFOS_PER_SCENE,
-    N_OSCS,
-    N_OUTPUTS,
-    N_SCENES,
-    N_SCENE_PARAMS,
-    N_TOTAL_PARAMS,
-};
-
+pub use surge_traits::*;
+pub use surge_types::*;
+pub use surge_constants::*;
 pub use surge_filter::*;
 pub use surge_halfrate::*;
 pub use surge_input::*;
@@ -120,14 +71,7 @@ pub use surge_lfo::*;
 pub use surge_lipol::*;
 pub use surge_math::*;
 pub use surge_midi::*;
-pub use surge_modulation::{
-    ModSource,
-    ModSourceArray,
-    ModulationSource,
-    ModulationRouting,
-    ControllerModulationSource,
-};
-
+pub use surge_modulation::*;
 pub use surge_mpe::*;
 pub use surge_types::*;
 pub use surge_traits::*;
@@ -156,7 +100,7 @@ pub use surgefilter_snh::*;
 pub use surgefilter_svf::*;
 pub use surgefilter_huovilainen::*;
 pub use surgefilter_rungekutta::*;
-pub use surgefx::SurgeEffect;
+pub use surgefx::*;
 pub use surgefx_allpass::*;
 pub use surgefx_chorus::*;
 pub use surgefx_conditioner::*;
@@ -184,4 +128,3 @@ pub use surgeshaper_clip::*;
 pub use surgeshaper_digi::*;
 pub use surgeshaper_sine::*;
 pub use surgeshaper_tanh::*;
-

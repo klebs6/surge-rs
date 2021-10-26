@@ -5,12 +5,12 @@ use crate::{
     EmphasizeParam,
 };
 
-impl Emphasize<'sr> {
+impl Emphasize {
 
     pub fn new(
-        tuner:  &'sr TunerHandle<'sr>,
-        tables: &'sr TablesHandle<'sr>,
-        srunit: &'sr SampleRateHandle<'sr>) -> Self 
+        tuner:  & TunerHandle,
+        tables: & TablesHandle,
+        srunit: & SampleRateHandle) -> Self 
     {
         Self {
             pre:              Align16(HalfRateFilterSSE::default()),
@@ -27,7 +27,7 @@ impl Emphasize<'sr> {
     }
 }
 
-impl Init for Emphasize<'sr> {
+impl Init for Emphasize {
     fn init(&mut self) {
         todo!();
     }

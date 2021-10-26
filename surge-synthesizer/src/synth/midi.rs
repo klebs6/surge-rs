@@ -2,7 +2,7 @@ ix!();
 
 use crate::SurgeSynthesizer;
 
-impl SurgeSynthesizer<'sr,'plugin_layer,'synth_out> {
+impl SurgeSynthesizer<,'plugin_layer,'synth_out> {
 
     pub fn on_nrpn(&mut self, 
         channel: u8, 

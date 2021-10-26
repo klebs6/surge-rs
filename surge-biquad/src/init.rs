@@ -4,7 +4,7 @@ use crate::{
     BiquadFilter,
 };
 
-impl Init for BiquadFilter<'sr> {
+impl Init for BiquadFilter {
 
     fn init(&mut self) {
         self.a1        = Align16(VLag::new_x87());
@@ -18,12 +18,12 @@ impl Init for BiquadFilter<'sr> {
     }
 }
 
-impl BiquadFilter<'sr> {
+impl BiquadFilter {
 
     pub fn new(
-        tuner:  &'sr TunerHandle<'sr>,
-        tables: &'sr TablesHandle<'sr>,
-        srunit: &'sr SampleRateHandle<'sr>,
+        tuner:  & TunerHandle,
+        tables: & TablesHandle,
+        srunit: & SampleRateHandle,
     ) -> Self {
 
         Self {
@@ -42,9 +42,9 @@ impl BiquadFilter<'sr> {
     }
 
     pub fn new_with_blocksize<T: TryInto<i32>>(
-        tuner:  &'sr TunerHandle<'sr>,
-        tables: &'sr TablesHandle<'sr>,
-        srunit: &'sr SampleRateHandle<'sr>,
+        tuner:  & TunerHandle,
+        tables: & TablesHandle,
+        srunit: & SampleRateHandle,
         bs: T) -> Self 
         where <T as std::convert::TryInto<i32>>::Error: std::fmt::Debug
     {

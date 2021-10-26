@@ -4,7 +4,7 @@ use crate::{
     Lfo,
 };
 
-impl ModulationSourceControl for Lfo<'sr> {
+impl ModulationSourceControl for Lfo {
 
     fn get_type(&self) -> ModSrcType {
         ModSrcType::LFO

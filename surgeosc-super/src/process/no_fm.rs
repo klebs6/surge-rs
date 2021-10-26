@@ -2,7 +2,7 @@ ix!();
 
 use crate::SurgeSuperOscillator;
 
-impl SurgeSuperOscillator<'sr> {
+impl SurgeSuperOscillator {
 
     pub fn process_block_nofm(&mut self, cfg: &OscillatorProcessBlockCfg) {
 

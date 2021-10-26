@@ -6,7 +6,7 @@ use crate::{
     HUOVILAINEN_EXTRA_OVERSAMPLE_INV,
 };
 
-impl CoeffMake for HuovilainenLadder<'sr> {
+impl CoeffMake for HuovilainenLadder {
 
     fn coeff_make(&self, freq: f32, mut reso: f32) 
         -> [f32; N_COEFFMAKER_COEFFS]

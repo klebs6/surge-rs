@@ -4,7 +4,7 @@ use crate::{
     AllpassReverbParam,
 };
 
-impl crate::AllpassVerb<'sr> {
+impl crate::AllpassVerb {
 
     pub fn update_rtime<const N: usize>(&mut self) {
 
@@ -23,7 +23,7 @@ impl crate::AllpassVerb<'sr> {
     }
 }
 
-impl Update for crate::AllpassVerb<'sr> {
+impl Update for crate::AllpassVerb {
     fn update(&mut self) {
         // TODO, balance the gains from the 
         // calculated decay coefficient?

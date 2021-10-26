@@ -8,10 +8,10 @@ use crate::{
     MaybeVoiceOscillators,
 };
 
-pub fn some_new_boxed_lfo<'sr>(
-    time_unit: TimeUnitHandle<'sr>,
-    tables:    TablesHandle<'sr>
-) -> Option<Box<ModulationSource<'sr>>> 
+pub fn some_new_boxed_lfo(
+    time_unit: TimeUnitHandle,
+    tables:    TablesHandle
+) -> Option<Box<ModulationSource>> 
 {
     Some(
         Box::new(
@@ -35,11 +35,11 @@ pub fn some_new_boxed_controller(
     )
 }
 
-pub fn some_new_boxed_envelope<'sr>(
-    time_unit: TimeUnitHandle<'sr>,
-    tables:    TablesHandle<'sr>,
-    srunit:    SampleRateHandle<'sr>,
-) -> Option<Box<ModulationSource<'sr>>> 
+pub fn some_new_boxed_envelope(
+    time_unit: TimeUnitHandle,
+    tables:    TablesHandle,
+    srunit:    SampleRateHandle,
+) -> Option<Box<ModulationSource>> 
 {
     Some(
         Box::new(
@@ -54,13 +54,13 @@ pub fn some_new_boxed_envelope<'sr>(
     )
 }
 
-pub fn create_voice_modsources<'sr>(
-    time_unit: TimeUnitHandle<'sr>,
-    tables:    TablesHandle<'sr>,
-    srunit:    SampleRateHandle<'sr>,
-) -> VoiceModSourceArray<'sr> 
+pub fn create_voice_modsources(
+    time_unit: TimeUnitHandle,
+    tables:    TablesHandle,
+    srunit:    SampleRateHandle,
+) -> VoiceModSourceArray 
 {
-    let mut x = ModSourceArray::<Option<Box<ModulationSource<'sr>>>>::new_with(|_x| {
+    let mut x = ModSourceArray::<Option<Box<ModulationSource>>>::new_with(|_x| {
         None
     });
     x[ModSource::VoiceLfo1]            = some_new_boxed_lfo(time_unit.clone(),tables.clone());
@@ -93,8 +93,8 @@ pub fn create_voice_osclevels() -> VoiceOscLevels {
     })
 }
 
-pub fn create_voice_oscillators<'sr>( tuner: TunerHandle<'sr>) 
--> MaybeVoiceOscillators<'sr> 
+pub fn create_voice_oscillators( tuner: TunerHandle) 
+-> MaybeVoiceOscillators 
 {
     [
         Some(box SineWaveOscillator::new(tuner.clone())),

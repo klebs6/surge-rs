@@ -1,12 +1,12 @@
 ix!();
 
 #[derive(Debug)]
-pub struct AsymShaper<'sr> {
-    pub tables: TablesHandle<'sr>,
+pub struct AsymShaper {
+    pub tables: TablesHandle,
 }
 
-impl AsymShaper<'sr> {
-    pub fn new(tables: &TablesHandle<'sr>) -> Self {
+impl AsymShaper {
+    pub fn new(tables: &TablesHandle) -> Self {
         Self {
             tables: tables.clone()
         }

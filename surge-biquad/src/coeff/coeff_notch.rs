@@ -6,7 +6,7 @@ use crate::{
     BiquadFilter
 };
 
-impl BiquadCoeffNotch for BiquadFilter<'sr> {
+impl BiquadCoeffNotch for BiquadFilter {
 
     fn coeff_notch(&mut self, omega: f64, qq: f64)
     {

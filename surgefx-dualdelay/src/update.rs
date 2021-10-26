@@ -5,7 +5,7 @@ use crate::{
     DualDelayParam,
 };
 
-impl Update for DualDelay<'sr> {
+impl Update for DualDelay {
 
     fn update(&mut self) {
 

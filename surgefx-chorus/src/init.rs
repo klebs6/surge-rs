@@ -5,7 +5,7 @@ use crate::{
     CHORUS_DEPTH,
 };
 
-impl<'sr> Init for Chorus<'sr> {
+impl Init for Chorus {
 
     fn init(&mut self) {
 

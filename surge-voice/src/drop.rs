@@ -4,7 +4,7 @@ use crate::{
     SurgeVoice,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     //TODO: can we factor this out?
     pub fn free_allocated_elements(&mut self) 

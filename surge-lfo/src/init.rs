@@ -7,13 +7,13 @@ use crate::{
     StepSequencer,
 };
 
-impl Lfo<'sr> {
+impl Lfo {
 
     pub fn new( 
         //time_unit: &'timeunit TimeUnitHandle<'timeunit>,
-        //tables: &'sr TablesHandle<'sr>) -> Self 
-        time_unit: TimeUnitHandle<'sr>,
-        tables:    TablesHandle<'sr>) -> Self 
+        //tables: & TablesHandle) -> Self 
+        time_unit: TimeUnitHandle,
+        tables:    TablesHandle) -> Self 
     {
         Self {
             params:             LfoParam::new_runtime(),

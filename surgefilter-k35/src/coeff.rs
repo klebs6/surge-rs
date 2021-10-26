@@ -5,7 +5,7 @@ use crate::{
     C,
 };
 
-impl CoeffMake for K35Filter<'sr> {
+impl CoeffMake for K35Filter {
 
     fn coeff_make(&self, 
         freq: f32, reso: f32) -> [f32; N_COEFFMAKER_COEFFS] 

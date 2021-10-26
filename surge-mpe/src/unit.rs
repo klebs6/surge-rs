@@ -1,7 +1,7 @@
 ix!();
 
 #[derive(Debug)]
-pub struct MPEUnit<'sr> {
+pub struct MPEUnit {
     pub enabled:                   MpeEnableSwitch,
     pub num_voices:                NumVoices,
     pub pitchbend_range:           PitchBendRange,
@@ -9,10 +9,9 @@ pub struct MPEUnit<'sr> {
     pub pitchbend:                 PitchBendValue,
     pub poly_aftertouch:           [f32; 128],
     pub last_key:                  i32,
-    pub phantom:                   PhantomData<&'sr u8>,
 }
 
-impl Init for MPEUnit<'sr> {
+impl Init for MPEUnit {
     fn init(&mut self) {
         self.last_key = 60;
         self.pitchbend = PitchBendValue(0.0);
@@ -22,7 +21,7 @@ impl Init for MPEUnit<'sr> {
     }
 }
 
-impl Default for MPEUnit<'sr> {
+impl Default for MPEUnit {
     fn default() -> Self {
         let mut x = Self {
             enabled:                   MpeEnableSwitch(false),
@@ -34,14 +33,13 @@ impl Default for MPEUnit<'sr> {
             pitchbend:                 PitchBendValue(0.0),
             poly_aftertouch:           [0.0; 128],
             last_key:                  0,
-            phantom:                   Default::default(),
         };
         x.init();
         x
     }
 }
 
-impl MPEUnit<'sr> {
+impl MPEUnit {
     pub fn get_mpe_main_channel(&self, voice_channel: u8, _key: u8) -> u8 {
         match self.enabled {
             MpeEnableSwitch(true)  => 0,

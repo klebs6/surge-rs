@@ -4,26 +4,26 @@ use crate::imports::*;
 
 ///probably better to use something like the crate enum_dispatch for this, but how?
 #[derive(Debug)]
-pub enum SurgeEffect<'sr> {
-    Eq3Band(Box<Eq3Band<'sr>>),
-    Distortion(Box<Distortion<'sr>>),
-    Conditioner(Box<Conditioner<'sr>>),
-    AllpassVerb(Box<AllpassVerb<'sr>>),
-    DualDelay(Box<DualDelay<'sr>>),
-    Flanger(Box<Flanger<'sr>>),
-    Phaser(Box<Phaser<'sr>>),
-    Reverb(Box<Reverb<'sr>>),
-    Chorus(Box<Chorus<'sr>>),
-    Emphasize(Box<Emphasize<'sr>>),
-    FreqShift(Box<FreqShift<'sr>>),
-    RingModulator(Box<RingModulator<'sr>>),
-    RotarySpeaker(Box<RotarySpeaker<'sr>>),
-    Vocoder(Box<Vocoder<'sr>>),
+pub enum SurgeEffect {
+    Eq3Band(Box<Eq3Band>),
+    Distortion(Box<Distortion>),
+    Conditioner(Box<Conditioner>),
+    AllpassVerb(Box<AllpassVerb>),
+    DualDelay(Box<DualDelay>),
+    Flanger(Box<Flanger>),
+    Phaser(Box<Phaser>),
+    Reverb(Box<Reverb>),
+    Chorus(Box<Chorus>),
+    Emphasize(Box<Emphasize>),
+    FreqShift(Box<FreqShift>),
+    RingModulator(Box<RingModulator>),
+    RotarySpeaker(Box<RotarySpeaker>),
+    Vocoder(Box<Vocoder>),
 }
 
-impl Effect for SurgeEffect<'sr> { }
+impl Effect for SurgeEffect { }
 
-impl Process for SurgeEffect<'sr> { 
+impl Process for SurgeEffect { 
     fn process<const N: usize>(&mut self, 
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N])
@@ -47,7 +47,7 @@ impl Process for SurgeEffect<'sr> {
     }
 }
 
-impl ProcessOnlyControl for SurgeEffect<'sr> { 
+impl ProcessOnlyControl for SurgeEffect { 
     fn process_only_control<const N: usize>(&mut self) {
         match self {
             SurgeEffect::Eq3Band(x)       => x.process_only_control::<N>(),
@@ -68,7 +68,7 @@ impl ProcessOnlyControl for SurgeEffect<'sr> {
     }
 }
 
-impl GetRingout for SurgeEffect<'sr> { 
+impl GetRingout for SurgeEffect { 
 
     fn get_ringout(&self)         -> Ringout {
         match self {
@@ -109,7 +109,7 @@ impl GetRingout for SurgeEffect<'sr> {
     }
 }
 
-impl SetRingout for SurgeEffect<'sr> { 
+impl SetRingout for SurgeEffect { 
 
     fn ringout_counter_incr(&mut self) {
         match self {
@@ -150,7 +150,7 @@ impl SetRingout for SurgeEffect<'sr> {
     }
 }
 
-impl ProcessRingout for SurgeEffect<'sr> { 
+impl ProcessRingout for SurgeEffect { 
     unsafe fn process_ringout<const N: usize>(&mut self, 
         data_l: *mut f32, 
         data_r: *mut f32, 
@@ -175,7 +175,7 @@ impl ProcessRingout for SurgeEffect<'sr> {
     }
 }
 
-impl Suspend for SurgeEffect<'sr> { 
+impl Suspend for SurgeEffect { 
     fn suspend(&mut self) {
         match self {
             SurgeEffect::Eq3Band(x)       => x.suspend(),
@@ -196,7 +196,7 @@ impl Suspend for SurgeEffect<'sr> {
     }
 }
 
-impl Init for SurgeEffect<'sr> {
+impl Init for SurgeEffect {
     fn init(&mut self) {
         match self {
             SurgeEffect::Eq3Band(x)       => x.init(),
@@ -217,7 +217,7 @@ impl Init for SurgeEffect<'sr> {
     }
 }
 
-impl Update for SurgeEffect<'sr> {
+impl Update for SurgeEffect {
     fn update(&mut self) {
         match self {
             SurgeEffect::Eq3Band(x)       => x.update(),
@@ -238,7 +238,7 @@ impl Update for SurgeEffect<'sr> {
     }
 }
 
-impl ClearBuffers for SurgeEffect<'sr> {
+impl ClearBuffers for SurgeEffect {
     fn clear_buffers(&mut self) {
         match self {
             SurgeEffect::Eq3Band(_x)       => {},
@@ -259,7 +259,7 @@ impl ClearBuffers for SurgeEffect<'sr> {
     }
 }
 
-impl GetReturnLevel for SurgeEffect<'sr> {
+impl GetReturnLevel for SurgeEffect {
     fn returnlevel(&self) -> f32 {
         match self {
             SurgeEffect::Eq3Band(x)       => x.returnlevel(),

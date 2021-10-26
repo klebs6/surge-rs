@@ -5,7 +5,7 @@ use crate::{
     FMOscillatorParam,
 };
 
-impl OscillatorProcess for FMOscillator<'sr> {
+impl OscillatorProcess for FMOscillator {
 
     fn process_block(&mut self, cfg: OscillatorProcessBlockCfg)
     {

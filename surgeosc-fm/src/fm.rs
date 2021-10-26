@@ -6,8 +6,8 @@ use crate::{
 };
 
 #[derive(Debug)]
-pub struct FMOscillator<'sr> {
-    pub tuner:           TunerHandle<'sr>,
+pub struct FMOscillator {
+    pub tuner:           TunerHandle,
     pub out:             OscillatorOut,
     pub master_osc:      *mut f32,
     pub params:          FMOscillatorParamArrayRT,
@@ -26,9 +26,9 @@ pub struct FMOscillator<'sr> {
     pub feedback_depth:  Lag<f64>,
 }
 
-no_op!         [FMOscillator<'sr>, HandleStreamingMismatches];
-oscillator!    [FMOscillator<'sr>,         FMOscillatorParam];
-name!          [FMOscillator<'sr>,           "oscillator.fm"];
-no_op!         [FMOscillator<'sr>,                  SetPitch];
-no_op!         [FMOscillator<'sr>,                  AssignFM];
-allow_display! [FMOscillator<'sr>,                      true];
+no_op!         [FMOscillator, HandleStreamingMismatches];
+oscillator!    [FMOscillator,         FMOscillatorParam];
+name!          [FMOscillator,           "oscillator.fm"];
+no_op!         [FMOscillator,                  SetPitch];
+no_op!         [FMOscillator,                  AssignFM];
+allow_display! [FMOscillator,                      true];

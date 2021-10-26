@@ -6,9 +6,9 @@ use crate::{
 };
 
 #[derive(Debug)]
-pub struct FM2Oscillator<'sr> {
-    pub tuner:           TunerHandle<'sr>,
-    pub srunit:          SampleRateHandle<'sr>,
+pub struct FM2Oscillator {
+    pub tuner:           TunerHandle,
+    pub srunit:          SampleRateHandle,
     pub out:             OscillatorOut,
     pub master_osc:      *mut f32,
     pub params:          FM2OscillatorParamArrayRT,
@@ -26,9 +26,9 @@ pub struct FM2Oscillator<'sr> {
     pub phase_offset:    Lag<f64>,
 }
 
-no_op!         [FM2Oscillator<'sr>, HandleStreamingMismatches];
-oscillator!    [FM2Oscillator<'sr>,        FM2OscillatorParam];
-name!          [FM2Oscillator<'sr>,          "oscillator.fm2"];
-no_op!         [FM2Oscillator<'sr>,                  SetPitch];
-no_op!         [FM2Oscillator<'sr>,                  AssignFM];
-allow_display! [FM2Oscillator<'sr>,                      true];
+no_op!         [FM2Oscillator, HandleStreamingMismatches];
+oscillator!    [FM2Oscillator,        FM2OscillatorParam];
+name!          [FM2Oscillator,          "oscillator.fm2"];
+no_op!         [FM2Oscillator,                  SetPitch];
+no_op!         [FM2Oscillator,                  AssignFM];
+allow_display! [FM2Oscillator,                      true];

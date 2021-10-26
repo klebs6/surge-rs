@@ -5,10 +5,10 @@ use crate::{
     VoiceRuntimeHandle,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     pub fn calc_keytrack(&mut self,
-        cfg: VoiceRuntimeHandle<'sr>
+        cfg: VoiceRuntimeHandle
     ) {
         let cfg = cfg.borrow();
 

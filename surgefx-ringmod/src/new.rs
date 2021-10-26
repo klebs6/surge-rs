@@ -6,12 +6,12 @@ use crate::{
     RINGMOD_MAX_UNISON,
 };
 
-impl RingModulator<'sr> {
+impl RingModulator {
 
     pub fn new(
-        tuner:     &'sr       TunerHandle<'sr>,
-        tables:    &'sr       TablesHandle<'sr>,
-        srunit:    &'sr       SampleRateHandle<'sr>,
+        tuner:     &       TunerHandle,
+        tables:    &       TablesHandle,
+        srunit:    &       SampleRateHandle,
     ) -> Self {
         Self {
             ringout:       Ringout::blocks(1000),

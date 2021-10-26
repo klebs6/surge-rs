@@ -6,7 +6,7 @@ use crate::{
     OscillatorRuntime,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     pub fn process_ring(&mut self,
         runtime: &mut OscillatorRuntime, 

@@ -4,7 +4,7 @@ use crate::{
     Reverb,
 };
 
-impl Reverb<'sr> {
+impl Reverb {
 
     #[inline] pub fn do_pre_tap(&mut self, 
         tap: usize,

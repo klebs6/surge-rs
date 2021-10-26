@@ -4,7 +4,7 @@ use crate::{
     SurgeVoice,
 };
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     pub fn maybe_toggle_fm(&mut self, 
         cfg: &FmConfiguration) 

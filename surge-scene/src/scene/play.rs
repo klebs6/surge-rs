@@ -4,7 +4,7 @@ use crate::{
     SurgeScene,
 };
 
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
     #[inline] pub fn maybe_play_note(&mut self, play: bool, channel: u8) {
 

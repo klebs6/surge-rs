@@ -13,7 +13,7 @@ const OSC0:  usize = 0;
 const OSC1:  usize = 1;
 const OSC2:  usize = 2;
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     pub fn process_osc(&mut self,runtime: &mut OscillatorRuntime, idx: usize) {
 

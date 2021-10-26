@@ -6,7 +6,7 @@ use crate::{
 };
 
 #[derive(Debug)]
-pub struct WTOscillator<'sr> {
+pub struct WTOscillator {
     pub drift:               f32,
     pub master_osc:          *mut f32,
     pub blitter:             AbstractBlitter,
@@ -44,17 +44,17 @@ pub struct WTOscillator<'sr> {
     pub fm_delay:            i32,
     pub fm_mul_inv:          f32,
     pub sampleloop:          i32,
-    pub tables:              TablesHandle<'sr>,
-    pub tuner:               TunerHandle<'sr>,
-    pub srunit:              SampleRateHandle<'sr>,
+    pub tables:              TablesHandle,
+    pub tuner:               TunerHandle,
+    pub srunit:              SampleRateHandle,
     pub wave_wavetable:      WaveTableBase::<i16>,
     //pub FMFilter:          BiquadFilter,
     //float wavetable[wavetable_steps];
 }
 
-name!             [WTOscillator<'sr>, "oscillator.wavetable_oscillator"];
-no_op!            [WTOscillator<'sr>, HandleStreamingMismatches];
-oscillator!       [WTOscillator<'sr>, WTOscillatorParam];
-no_op!            [WTOscillator<'sr>, AssignFM];
-allow_display!    [WTOscillator<'sr>, true];
-default_default!  [WTOscillator<'sr>  ];
+name!             [WTOscillator, "oscillator.wavetable_oscillator"];
+no_op!            [WTOscillator, HandleStreamingMismatches];
+oscillator!       [WTOscillator, WTOscillatorParam];
+no_op!            [WTOscillator, AssignFM];
+allow_display!    [WTOscillator, true];
+default_default!  [WTOscillator  ];

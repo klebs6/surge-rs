@@ -11,8 +11,8 @@ Debug
 + Update
 + Suspend { }
 
-pub type MaybeEffect<'sr> = Option<Box<dyn Effect + 'sr>>;
-pub type MaybeEffects<'sr> = Vec<MaybeEffect<'sr>>;
+pub type MaybeEffect = Option<Box<dyn Effect>>;
+pub type MaybeEffects = Vec<MaybeEffect>;
 
 #[enum_dispatch]
 pub trait Init {

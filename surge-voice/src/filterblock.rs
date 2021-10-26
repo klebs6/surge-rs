@@ -1,12 +1,12 @@
 ix!();
 
 #[derive(Debug)]
-pub struct FilterBlockState<'sr> {
-    pub fbq:    *mut QuadFilterChainState<'sr>,
+pub struct FilterBlockState {
+    pub fbq:    *mut QuadFilterChainState,
     pub fbqi:   i32,
 }
 
-impl Default for FilterBlockState<'sr> {
+impl Default for FilterBlockState {
     fn default() -> Self {
         todo!();
     }

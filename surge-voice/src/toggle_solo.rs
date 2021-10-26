@@ -35,7 +35,7 @@ impl VoiceToggleSoloCfg {
     }
 }
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     pub fn set_path(&mut self, 
         osc0: bool, 
@@ -51,7 +51,7 @@ impl SurgeVoice<'sr> {
     }
 
     pub fn maybe_toggle_solo(&mut self, 
-        cfg: VoiceRuntimeHandle<'sr>) 
+        cfg: VoiceRuntimeHandle) 
     {
         let cfg = cfg.borrow();
 

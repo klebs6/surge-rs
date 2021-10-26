@@ -5,7 +5,7 @@ use crate::{
     SineWaveOscillatorParam,
 };
 
-impl OscillatorProcess for SineWaveOscillator<'sr> {
+impl OscillatorProcess for SineWaveOscillator {
 
     fn process_block(&mut self, 
         cfg: OscillatorProcessBlockCfg)

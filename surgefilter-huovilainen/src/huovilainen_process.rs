@@ -9,7 +9,7 @@ use crate::{
     HUOVILAINEN_EXTRA_OVERSAMPLE_INV,
 };
 
-impl FilterProcessQuad for HuovilainenLadder<'sr> {
+impl FilterProcessQuad for HuovilainenLadder {
 
     /**
       Huovilainen developed an improved and physically correct model of the Moog Ladder

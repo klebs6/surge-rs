@@ -20,7 +20,7 @@ use crate::{
 ///better to leverage a struct which does not require circular 
 ///dependency with SurgeScene.
 ///
-pub struct VoiceRuntime<'sr> {
+pub struct VoiceRuntime {
     pub filterblock_cfg:          FilterBlockConfiguration,
     pub drift:                    f32,
     pub fm_depth:                 f32,
@@ -33,8 +33,8 @@ pub struct VoiceRuntime<'sr> {
     pub voice_update_qfcs_cfg:    VoiceUpdateQFCSCfg,
 
     pub update_lfo:               [bool; 6],
-    pub modulation_voice:         &'sr Vec<ModulationRouting<'sr>>,
-    pub modulation_scene:         &'sr Vec<ModulationRouting<'sr>>,
+    pub modulation_voice:         & Vec<ModulationRouting>,
+    pub modulation_scene:         & Vec<ModulationRouting>,
     pub portamento:               f32,
     pub portamento_min:           f32,
     pub portamento_temposync:     bool,
@@ -73,4 +73,4 @@ pub struct VoiceRuntime<'sr> {
     pub fm_cfg:                   FmConfiguration,
 }
 
-pub type VoiceRuntimeHandle<'sr> = Rc<RefCell<VoiceRuntime<'sr>>>;
+pub type VoiceRuntimeHandle = Rc<RefCell<VoiceRuntime>>;

@@ -5,7 +5,7 @@ use crate::{
     LfoParam,
 };
 
-impl Lfo<'sr> {
+impl Lfo {
 
     #[inline] pub fn get_shape(&self) -> LfoShape {
         LfoShape::try_from(

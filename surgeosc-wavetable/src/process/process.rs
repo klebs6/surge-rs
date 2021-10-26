@@ -4,7 +4,7 @@ use crate::{
     WTOscillator,
 };
 
-impl OscillatorProcess for WTOscillator<'sr> {
+impl OscillatorProcess for WTOscillator {
 
     fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) { 
 

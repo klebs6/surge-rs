@@ -5,7 +5,7 @@ use crate::{
     SSOBlockCfg,
 };
 
-impl OscillatorProcess for SurgeSuperOscillator<'sr> {
+impl OscillatorProcess for SurgeSuperOscillator {
 
     fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) {
         let pitch0 = cfg.pitch;

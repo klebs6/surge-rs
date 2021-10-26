@@ -1,6 +1,6 @@
 ix!();
 
-impl crate::RotarySpeaker<'sr> {
+impl crate::RotarySpeaker {
 
     pub fn do_rotaryspeaker_post_block<const N: usize>(&mut self, 
         k: usize,

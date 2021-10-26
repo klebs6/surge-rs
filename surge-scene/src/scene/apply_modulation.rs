@@ -4,7 +4,7 @@ use crate::{
     SurgeScene,
 };
 
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
     pub fn reset_ctrl_modsources(&mut self) {
         for i in 0..N_CUSTOMCONTROLLERS {

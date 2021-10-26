@@ -6,7 +6,7 @@ use crate::{
     REVERB_TAPS,
 };
 
-impl Reverb<'sr> {
+impl Reverb {
 
     pub fn get_fb(&mut self, predelay_time: i32) -> __m128 {
 

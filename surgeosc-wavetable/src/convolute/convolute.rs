@@ -5,7 +5,7 @@ use crate::{
     WTOscillatorParam,
 };
 
-impl WTOscillator<'sr> {
+impl WTOscillator {
 
     pub fn convolute(&mut self, voice: i32, fm: bool, stereo: bool) 
     {

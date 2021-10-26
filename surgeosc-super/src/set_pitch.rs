@@ -1,8 +1,8 @@
 ix!();
 
-use crate::SSOParam;
+use crate::*;
 
-impl SetPitch for crate::SurgeSuperOscillator<'sr> {
+impl SetPitch for SurgeSuperOscillator {
 
     fn set_pitch(&mut self, pitch: f32, is_display: bool) {
 

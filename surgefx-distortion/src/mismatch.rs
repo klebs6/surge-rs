@@ -5,7 +5,7 @@ use crate::{
     DistortionParam,
 };
 
-impl HandleStreamingMismatches for Distortion<'sr> {
+impl HandleStreamingMismatches for Distortion {
 
     fn handle_streaming_mismatches(&mut self, 
         streaming_revision: i32, 

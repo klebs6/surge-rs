@@ -6,12 +6,12 @@ use crate::{
     AdsrState,
 };
 
-impl AdsrEnvelope<'sr> {
+impl AdsrEnvelope {
 
     pub fn new( 
-        time_unit: TimeUnitHandle<'sr>,
-        tables:    TablesHandle<'sr>,
-        srunit:    SampleRateHandle<'sr>) -> Self {
+        time_unit: TimeUnitHandle,
+        tables:    TablesHandle,
+        srunit:    SampleRateHandle) -> Self {
 
         let mut x = Self {
             time_unit:     time_unit,

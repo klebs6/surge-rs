@@ -1,7 +1,7 @@
 ix!();
 
 #[cfg(not(target_arch = "x86_64"))] 
-impl Waveshaper for AsymShaper<'sr> {
+impl Waveshaper for AsymShaper {
 
     fn shape(&self, input: __m128, drive: __m128) -> __m128 {
 

@@ -19,23 +19,23 @@ enhanced_enum![
     }
 ];
 
-pub type BoxedModRoutingIter<'sr> 
-= Box<dyn Iterator<Item = &'sr ModulationRouting<'sr>>>;
+pub type BoxedModRoutingIter 
+= Box<dyn Iterator<Item = & ModulationRouting>>;
 
 pub type VoiceOscLevels 
 = LagEntryArray::<LipolPs>;
 
-pub type VoiceModSourceArray<'sr> 
-= ModSourceArray::<MaybeBoxedModulationSource<'sr>>;
+pub type VoiceModSourceArray 
+= ModSourceArray::<MaybeBoxedModulationSource>;
 
-pub type MaybeVoiceOscillator<'sr>
-= Option<Box<dyn Oscillator + 'sr>>;
+pub type MaybeVoiceOscillator
+= Option<Box<dyn Oscillator + >>;
 
-pub type MaybeVoiceOscillators<'sr>
-= [MaybeVoiceOscillator<'sr>; 3];
+pub type MaybeVoiceOscillators
+= [MaybeVoiceOscillator; 3];
 
 #[derive(Debug)]
-pub struct SurgeVoice<'sr> {
+pub struct SurgeVoice {
 
     pub output:             Align16<[[f32; BLOCK_SIZE_OS]; 2]>,
     pub osclevels:          Align16<VoiceOscLevels>,
@@ -46,9 +46,9 @@ pub struct SurgeVoice<'sr> {
     pub state:              SurgeVoiceState,
     pub age:                i32,
     pub age_release:        i32,
-    pub filterblock_state:  FilterBlockState<'sr>,
+    pub filterblock_state:  FilterBlockState,
     pub fbp:                FBP,
-    pub coeffmaker:         [FilterCoefficientMaker<'sr>; 2],
+    pub coeffmaker:         [FilterCoefficientMaker; 2],
     pub route:              [i32; 6],
     pub octave_size:        f32, // 12.0
     pub osc_enable:         [bool; 3],
@@ -57,18 +57,18 @@ pub struct SurgeVoice<'sr> {
     pub fm_mode:            FmConfiguration,
     pub noisegen_l:         [f32; 2],
     pub noisegen_r:         [f32; 2],
-    pub osc:                MaybeVoiceOscillators<'sr>,
-    pub modsources:         VoiceModSourceArray<'sr>,
+    pub osc:                MaybeVoiceOscillators,
+    pub modsources:         VoiceModSourceArray,
     pub filterblock_data:   FilterBlockData,
     pub mpe_enabled:        MpeEnableSwitch,
     pub uuid:               Uuid,
-    pub mpe_unit:           MPEUnitHandle<'sr>,
-    pub tables:             TablesHandle<'sr>,
-    pub time_unit:          TimeUnitHandle<'sr>,
-    pub tuner:              TunerHandle<'sr>,
-    pub synth_in:           SynthInputHandle<'sr>,
-    pub srunit:             SampleRateHandle<'sr>,
+    pub mpe_unit:           MPEUnitHandle,
+    pub tables:             TablesHandle,
+    pub time_unit:          TimeUnitHandle,
+    pub tuner:              TunerHandle,
+    pub synth_in:           SynthInputHandle,
+    pub srunit:             SampleRateHandle,
 }
 
-compare_by![SurgeVoice<'sr>, uuid];
+compare_by![SurgeVoice, uuid];
 

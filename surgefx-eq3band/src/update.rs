@@ -5,14 +5,14 @@ use crate::{
     Eq3Band,
 };
 
-impl Update for Eq3Band<'sr> {
+impl Update for Eq3Band {
 
     fn update(&mut self) {
         self.update_all_bands(None);
     }
 }
 
-impl Eq3Band<'sr> {
+impl Eq3Band {
 
     pub fn coeff_instantize_all_bands(&mut self) {
         self.band1.coeff_instantize();

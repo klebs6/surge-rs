@@ -1,10 +1,10 @@
 ix!();
 
 #[derive(Debug)]
-pub struct FXUnit<'sr> {
+pub struct FXUnit {
 
     pub load_fx_needed:     bool,
-    pub fx:                 Vec<SurgeEffect<'sr>>,
+    pub fx:                 Vec<SurgeEffect>,
     pub fx_suspend_bitmask: i32,
     pub fx_enable:          [bool; 8],
 
@@ -15,13 +15,13 @@ pub struct FXUnit<'sr> {
     pub fx_reload:          [bool; 8],
 }
 
-impl FXUnit<'sr> {
+impl FXUnit {
 
     pub fn new(
-        tuner:    &'sr TunerHandle<'sr>,
-        tables:   &'sr TablesHandle<'sr>,
-        timeunit: &'sr TimeUnitHandle<'sr>,
-        srunit:   &'sr SampleRateHandle<'sr>)  -> Self {
+        tuner:    & TunerHandle,
+        tables:   & TablesHandle,
+        timeunit: & TimeUnitHandle,
+        srunit:   & SampleRateHandle)  -> Self {
 
         Self {
             load_fx_needed: true,

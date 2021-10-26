@@ -5,7 +5,7 @@ use crate::{
     ROTARY_SPEAKER_MAX_DELAY_LENGTH,
 };
 
-impl RotarySpeaker<'sr> {
+impl RotarySpeaker {
 
     pub fn do_rotaryspeaker_block(&mut self, 
         k:        usize, 

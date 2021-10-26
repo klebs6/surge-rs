@@ -1,6 +1,6 @@
 ix!();
 
-impl crate::SurgeSuperOscillator<'sr> {
+impl crate::SurgeSuperOscillator {
 
     /** 
      | each block overlap FIRipol_N samples into

@@ -5,7 +5,7 @@ use crate::{
     BiquadFilter,
 };
 
-impl ProcessBlockStereo for BiquadFilter<'sr> {
+impl ProcessBlockStereo for BiquadFilter {
 
     /**
       |# Safety

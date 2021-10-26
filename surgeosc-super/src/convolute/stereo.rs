@@ -2,7 +2,7 @@ ix!();
 
 use crate::SurgeSuperOscillator;
 
-impl SurgeSuperOscillator<'sr> {
+impl SurgeSuperOscillator {
 
     #[inline] pub fn convolve_stereo(&mut self, 
         g:        f32, 

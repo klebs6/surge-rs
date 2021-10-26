@@ -5,7 +5,7 @@ use crate::{
     LfoParam,
 };
 
-impl Lfo<'sr> {
+impl Lfo {
 
     pub fn bend1(&mut self, mut x: f32) -> f32 {
 

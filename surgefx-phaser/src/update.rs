@@ -8,7 +8,7 @@ use crate::{
     PHASER_N_BQ,
 };
 
-impl Update for Phaser<'sr> {
+impl Update for Phaser {
 
     fn update(&mut self) {
 

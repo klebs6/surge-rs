@@ -6,7 +6,7 @@ use crate::{
 };
 
 #[derive(Debug,Clone)]
-pub struct Vocoder<'sr> {
+pub struct Vocoder {
 
     pub carrier_l:    Align16<A1d::<VectorizedSvfFilter>>,
     pub carrier_r:    Align16<A1d::<VectorizedSvfFilter>>,
@@ -20,14 +20,14 @@ pub struct Vocoder<'sr> {
     /// block increment (to keep track of events not occurring every n blocks)
     pub bi:           i32, 
     pub active_bands: i32,
-    pub synth_in:     SynthInputHandle<'sr>,
-    pub tables:       TablesHandle<'sr>,
-    pub srunit:       SampleRateHandle<'sr>,
+    pub synth_in:     SynthInputHandle,
+    pub tables:       TablesHandle,
+    pub srunit:       SampleRateHandle,
 }
 
-effect!          [Vocoder<'sr>,       VocoderParam];
-no_op!           [Vocoder<'sr>, ProcessOnlyControl];
-name!            [Vocoder<'sr>,          "vocoder"];
-update_on_init!  [Vocoder<'sr>                    ];
-init_on_suspend! [Vocoder<'sr>                    ];
+effect!          [Vocoder,       VocoderParam];
+no_op!           [Vocoder, ProcessOnlyControl];
+name!            [Vocoder,          "vocoder"];
+update_on_init!  [Vocoder                    ];
+init_on_suspend! [Vocoder                    ];
 

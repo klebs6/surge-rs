@@ -5,7 +5,7 @@ use crate::{
     DUAL_DELAY_MAX_DELAY_LENGTH,
 };
 
-impl DualDelay<'sr> {
+impl DualDelay {
 
     pub fn process_time(&mut self) {
         self.time_l.process();

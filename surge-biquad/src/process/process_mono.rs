@@ -5,7 +5,7 @@ use crate::{
     BiquadFilter,
 };
 
-impl ProcessBlockMono for BiquadFilter<'sr> {
+impl ProcessBlockMono for BiquadFilter {
 
     unsafe fn process_block_mono(
         &mut self, 

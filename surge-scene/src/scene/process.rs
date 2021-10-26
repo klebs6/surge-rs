@@ -6,9 +6,9 @@ use crate::{
 };
 
 
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
-    pub fn create_voice_runtime(&mut self) -> VoiceRuntimeHandle<'sr> {
+    pub fn create_voice_runtime(&mut self) -> VoiceRuntimeHandle {
         Rc::new(RefCell::new(VoiceRuntime {
             filterblock_cfg:          self.filterblock_cfg(),
             drift:                    self.drift(),

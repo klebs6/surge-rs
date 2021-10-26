@@ -4,7 +4,7 @@ use crate::{
     SampleAndHoldOscillator,
 };
 
-impl OscillatorProcess for SampleAndHoldOscillator<'sr> {
+impl OscillatorProcess for SampleAndHoldOscillator {
 
     ///defaults: float drift = 0.0, bool stereo = false, bool fm = false, float self.fm_depth = 0.0
     fn process_block(&mut self, cfg: OscillatorProcessBlockCfg)

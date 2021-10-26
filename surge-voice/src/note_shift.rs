@@ -16,7 +16,7 @@ pub struct VoiceNoteShiftCfg {
 
 }
 
-impl SurgeVoice<'sr> {
+impl SurgeVoice {
 
     /// Given a note0 and an oscilator this returns the appropriate note.
     /// This is a pretty easy calculation in non-absolute mode. Just add.

@@ -5,7 +5,7 @@ use crate::{
     BiquadFilter,
 };
 
-impl Redo for BiquadFilter<'sr> {
+impl Redo for BiquadFilter {
 
     ///coeff_same_as_last_time
     fn redo(&mut self)
@@ -14,7 +14,7 @@ impl Redo for BiquadFilter<'sr> {
     }
 }
 
-impl BiquadSetCoeffs for BiquadFilter<'sr> {
+impl BiquadSetCoeffs for BiquadFilter {
 
     fn set_coef(&mut self, 
         a0: f64, mut a1: f64, mut a2: f64, mut b0: f64, mut b1: f64, mut b2: f64)

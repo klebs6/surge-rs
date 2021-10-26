@@ -5,7 +5,7 @@ use crate::{
     SineWaveOscillatorParam,
 };
 
-impl SineWaveOscillator<'sr> {
+impl SineWaveOscillator {
 
     pub fn process_block_legacy(&mut self, 
         pitch: f32, 

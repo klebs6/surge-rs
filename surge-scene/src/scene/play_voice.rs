@@ -5,7 +5,7 @@ use crate::{
     SceneParam,
 };
 
-impl SurgeScene<'sr> {
+impl SurgeScene {
 
     #[allow(unreachable_code)]
     pub fn play_voice(&mut self, 

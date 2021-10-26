@@ -7,7 +7,7 @@ use crate::{
     REVERB_TAPS,
 };
 
-impl Reverb<'sr> {
+impl Reverb {
 
     fn init_taps(&mut self) {
 
@@ -26,7 +26,7 @@ impl Reverb<'sr> {
     }
 }
 
-impl Init for Reverb<'sr> {
+impl Init for Reverb {
 
     fn init(&mut self) {
 

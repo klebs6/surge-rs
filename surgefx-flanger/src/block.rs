@@ -4,7 +4,7 @@ use crate::{
     Flanger,
 };
 
-impl Flanger<'sr> {
+impl Flanger {
 
     pub fn do_flanger_block<const N: usize>(&mut self, 
         block_idx: usize, 

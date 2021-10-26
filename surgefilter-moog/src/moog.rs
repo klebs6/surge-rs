@@ -1,8 +1,8 @@
 ix!();
 
-pub struct LpMoogFilter<'sr> {
-    pub tuner:  TunerHandle<'sr>, 
-    pub srunit: SampleRateHandle<'sr>,
+pub struct LpMoogFilter {
+    pub tuner:  TunerHandle, 
+    pub srunit: SampleRateHandle,
 }
 
 

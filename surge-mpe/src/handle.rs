@@ -3,11 +3,11 @@ ix!();
 use crate::MPEUnit;
 
 #[derive(Debug,Clone)]
-pub struct MPEUnitHandle<'sr> {
-    inner: Rc<RefCell<MPEUnit<'sr>>>,
+pub struct MPEUnitHandle {
+    inner: Rc<RefCell<MPEUnit>>,
 }
 
-impl Default for MPEUnitHandle<'sr> {
+impl Default for MPEUnitHandle {
     fn default() -> Self {
         Self {
             inner: Rc::new(RefCell::new(MPEUnit::default())),
@@ -15,7 +15,7 @@ impl Default for MPEUnitHandle<'sr> {
     }
 }
 
-impl MPEUnitHandle<'sr> {
+impl MPEUnitHandle {
     #[inline] pub fn set_num_voices(&mut self, val: u32) {
         self.inner.borrow_mut().num_voices = NumVoices(val);
     }
