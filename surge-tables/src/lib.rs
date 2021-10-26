@@ -12,3 +12,4 @@ x![sinc];
 x![sine];
 x![surge];
 x![waveshape];
+x![traits];

@@ -1,0 +1,133 @@
+#!/usr/bin/env raku
+use v6;
+use Config::TOML;
+
+my $files = qx/git ls-files "*Cargo.toml"/;
+my @files = $files.lines>>.chomp>>.trim;
+
+grammar CargoLock {
+    rule TOP {
+        <.ws>
+        <cargo-lock-comment>+
+        <cargo-lock-version>
+        <cargo-lock-package>+
+    }
+
+    token quote {
+        | \"
+        | "'"
+    }
+
+    token quoted-string-internal {
+
+        [
+            <-[ ' " \\ ]>  
+            | \\ .         
+        ]*
+    }
+    token quoted-string {
+        <.quote>
+        <value=.quoted-string-internal>
+        <.quote>
+    }
+
+    token integral {
+        <[0..9]>+
+    }
+
+    rule cargo-lock-comment {
+        '#' \N+
+    }
+    rule cargo-lock-version {
+        'version' '=' <integral>
+    }
+    rule cargo-lock-package {
+        <package-header>
+        <package-name>
+        <package-version>
+        <package-source>?
+        <package-checksum>?
+        <package-deps>?
+    }
+    token package-header {
+        '[[package]]'
+    }
+    rule package-name {
+        'name' '=' <value=.quoted-string>
+    }
+    rule package-version {
+        'version' '=' <value=.quoted-string>
+    }
+    rule package-source {
+        'source' '=' <value=.quoted-string>
+    }
+    rule package-checksum {
+        'checksum' '=' <value=.quoted-string>
+    }
+    rule package-deps {
+        'dependencies' '=' '['
+            <value=.quoted-string>+ %% ','
+        ']'
+    }
+}
+
+sub quote($s) {
+    '"' ~ $s ~ '"'
+}
+
+sub dequote($s) {
+    ~CargoLock.parse($s, rule => "quoted-string")<value>;
+}
+
+sub MAIN(Bool :$write = False) {
+
+    my $packages = CargoLock.parse("Cargo.lock".IO.slurp)<cargo-lock-package>;
+
+    my %cargo-lock-map = %(
+       ~$_<package-name><value> => ~$_<package-version><value> for $packages.List
+    );
+
+    say %cargo-lock-map;
+
+    for @files -> $file {
+
+        say "---------------------------------";
+        say $file;
+
+        my %toml-data = from-toml(:$file);
+
+        for %toml-data<dependencies>.List -> $dep {
+            if $dep {
+
+                my $dep-name = $dep.keys[0];
+                my $dep-data = $dep.values[0];
+
+                my $pinned-version = dequote(%cargo-lock-map{quote($dep-name)});
+
+                given $dep-data {
+                    when Hash {
+                        if $dep-data<version> ~~ "*" {
+                            %toml-data<dependencies>{$dep-name}<version> = $pinned-version;
+                        }
+                    }
+                    when Str {
+                        if $dep-data ~~ "*" {
+                            %toml-data<dependencies>{$dep-name} = $pinned-version;
+                        }
+                    }
+                }
+            }
+        }
+
+        my $toml = to-toml(%toml-data, 
+            margin-between-tables => 4,
+            indent-subkeys => 5
+        );
+
+        if $write {
+            $file.IO.spurt: $toml;
+        } else {
+            say $toml;
+        }
+    }
+}

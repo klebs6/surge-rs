@@ -47,6 +47,5 @@ impl Process for Eq3Band<'sr> {
                 data_r.as_mut_ptr(), 
                 BLOCK_SIZE_QUAD);
         }
-
     }
 }

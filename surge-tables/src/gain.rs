@@ -1,5 +1,7 @@
 ix!();
 
+use crate::*;
+
 #[derive(Debug,Clone)]
 #[repr(align(16))]
 pub struct GainTables {
@@ -14,9 +16,8 @@ impl Default for GainTables {
     }
 }
 
-impl GainTables {
-
-    #[inline] pub fn db_to_linear(&self, mut x: f32) -> f32
+impl DbToLinear for GainTables {
+    #[inline] fn db_to_linear(&self, mut x: f32) -> f32
     {
         x += 384.0;
         let e: i32 = x as i32;
@@ -25,8 +26,11 @@ impl GainTables {
         (1.0 - a) * self.table_db[(e & 0x1ff) as usize] + a * self.table_db[((e + 1) & 0x1ff) as usize]
 
     }
+}
 
-    pub fn clipscale(&self, freq: f32, subtype: FilterSubType) -> f32 
+impl ClipScale for GainTables {
+
+    fn clipscale(&self, freq: f32, subtype: FilterSubType) -> f32 
     {
         match subtype {
             FilterSubType::Rough  =>  (1.0 / 64.0) * 

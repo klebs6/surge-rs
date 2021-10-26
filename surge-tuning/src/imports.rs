@@ -1,3 +1,4 @@
+pub use enum_dispatch::*;
 pub use core::f64::consts::PI;
 pub use enhanced_enum::enhanced_enum;
 pub use num_traits::pow::Pow;

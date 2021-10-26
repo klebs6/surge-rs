@@ -1,5 +1,7 @@
 ix!();
 
+use crate::*;
+
 #[repr(align(16))] 
 #[derive(Debug,Clone)]
 pub struct WaveshapeTables {
@@ -22,17 +24,18 @@ impl Default for WaveshapeTables {
             ]),
         }
     }
-
 }
 
-impl WaveshapeTables {
+impl NTables for WaveshapeTables {
 
-    pub fn ntables() -> usize {
+    fn ntables() -> usize {
         //TODO: how many waveshapers do we need?
         8
-
     }
-    pub fn lookup_waveshape(&self, entry: i32, mut x: f32) -> f32 {
+}
+
+impl LookupWaveshape for WaveshapeTables {
+    fn lookup_waveshape(&self, entry: i32, mut x: f32) -> f32 {
 
         x *= 32.0;
         x += 512.0;
@@ -55,8 +58,10 @@ impl WaveshapeTables {
         (1.0 - a) * self.table[idx][[eidx]] + 
             a * self.table[idx][[eidx1]]
     }
+}
 
-    pub fn lookup_waveshape_warp(&self, entry: i32, mut x: f32) -> f32 {
+impl LookupWaveshapeWarp for WaveshapeTables {
+    fn lookup_waveshape_warp(&self, entry: i32, mut x: f32) -> f32 {
 
         x *= 256.0;
         x += 512.0;
@@ -71,7 +76,6 @@ impl WaveshapeTables {
         (1.0 - a) * self.table[idx][[eidx]] + 
             a * self.table[idx][[eidx1]]
     }
-
 }
 
 impl Init for WaveshapeTables {

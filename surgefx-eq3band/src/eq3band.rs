@@ -16,7 +16,7 @@ pub struct Eq3Band<'sr> {
     /// block increment (to keep track of 
     /// events not occurring every n blocks)
     pub block_increment:  i32, 
-    pub tables:           TablesHandle<'sr>,
+    pub tables:           MaybeOwningTablesHandle<'sr>,
 
     pub ringout:          Ringout,
     pub params:           Eq3BandParamArrayRT,

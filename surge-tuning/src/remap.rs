@@ -1,19 +1,16 @@
 ix!();
 
-use crate::{
-    KeyboardRemapper,
-    SurgeTuner,
-    KeyboardMapping,
-    Scale,
-    traits::Retune,
-};
+use crate::*;
 
-impl KeyboardRemapper for SurgeTuner<'tuner> {
+impl RemapToStandardKeyboard for SurgeTuner<'tuner> {
 
     fn remap_to_standard_keyboard(&mut self) -> bool 
     {
         self.remap_to_keyboard(&KeyboardMapping::default())
     }
+}
+
+impl RemapKeyboard for SurgeTuner<'tuner> {
 
     fn remap_to_keyboard(&mut self, mapping: &KeyboardMapping) -> bool 
     {

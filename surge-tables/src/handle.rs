@@ -1,9 +1,33 @@
 ix!();
 
-use crate::{
-    SurgeTables,
-    waveshape::WaveshapeTables,
-};
+use crate::*;
+
+/**
+  | We use this struct because any entity which
+  | may share a handle to SurgeTables may also own
+  | it as a standalone unit
+  */
+#[enum_dispatch(
+    DbToLinear,
+    Init,
+    ClipScale,
+    LookupWaveshape,
+    LookupWaveshapeWarp,
+    EnvelopeRateLpf,
+    EnvelopeRateLinear,
+    SincTable1X,
+    SincTable,
+    SincTableI16,
+    SincTable1XPtr,
+    SincTablePtr,
+    SincTableI16Ptr,
+    GetWaveshaperPtr,
+)]
+#[derive(Debug,Clone)]
+pub enum MaybeOwningTablesHandle<'sr> {
+    Owning(SurgeTables<'sr>),
+    NonOwning(TablesHandle<'sr>),
+}
 
 #[derive(Debug,Clone)]
 pub struct TablesHandle<'sr> {
@@ -17,92 +41,109 @@ impl TablesHandle<'sr> {
             inner: Rc::new(RefCell::new(SurgeTables::new(srunit))),
         }
     }
+}
 
-    #[inline] pub fn init(&mut self) { 
+impl DbToLinear for TablesHandle<'sr> {
+
+    #[inline] fn db_to_linear(&self, x: f32) -> f32 { 
+        self.inner.borrow().db_to_linear(x) 
+    }
+}
+
+impl Init for TablesHandle<'sr> {
+
+    #[inline] fn init(&mut self) { 
         self.inner.borrow_mut().init()
     }
+}
 
-    #[inline] pub fn db_to_linear(&self, x: f32) -> f32 { 
-        self.inner.borrow().gain.db_to_linear(x) 
+impl ClipScale for TablesHandle<'sr> {
+
+    #[inline] fn clipscale(&self, freq: f32, subtype: FilterSubType) -> f32 { 
+        self.inner.borrow().clipscale(freq,subtype) 
     }
+}
 
-    #[inline] pub fn clipscale(&self, freq: f32, subtype: FilterSubType) -> f32 { 
-        self.inner.borrow().gain.clipscale(freq,subtype) 
+impl LookupWaveshape for TablesHandle<'sr> {
+
+    #[inline] fn lookup_waveshape(&self, entry: i32, x: f32) -> f32 {
+        self.inner.borrow().lookup_waveshape(entry,x) 
     }
+}
 
-    #[inline] pub fn lookup_waveshape(&self, entry: i32, x: f32) -> f32 {
-        self.inner.borrow().waveshape.lookup_waveshape(entry,x) 
+impl LookupWaveshapeWarp for TablesHandle<'sr> {
+
+    #[inline] fn lookup_waveshape_warp(&self, entry: i32, x: f32) -> f32 {
+        self.inner.borrow().lookup_waveshape_warp(entry,x) 
     }
+}
 
-    #[inline] pub fn lookup_waveshape_warp(&self, entry: i32, x: f32) -> f32 {
-        self.inner.borrow().waveshape.lookup_waveshape_warp(entry,x) 
+impl EnvelopeRateLpf for TablesHandle<'sr> {
+
+    #[inline] fn envelope_rate_lpf(&self, x: f32) -> f32 {
+        self.inner.borrow().envelope_rate_lpf(x) 
     }
+}
 
-    #[inline] pub fn envelope_rate_lpf(&self, x: f32) -> f32 {
-        self.inner.borrow().envelope.envelope_rate_lpf(x) 
+impl EnvelopeRateLinear for TablesHandle<'sr> {
+
+    #[inline] fn envelope_rate_linear(&self, x: f32) -> f32 {
+        self.inner.borrow().envelope_rate_linear(x) 
     }
+}
 
-    #[inline] pub fn envelope_rate_linear(&self, x: f32) -> f32 {
-        self.inner.borrow().envelope.envelope_rate_linear(x) 
-    }
+impl SincTable1X for TablesHandle<'sr> {
 
-    #[inline] pub fn sinctable_1x<T: TryInto<usize>>(&self, idx: T) -> f32  
-    where 
-        <T as std::convert::TryInto<usize>>::Error: std::fmt::Debug
+    #[inline] fn _sinctable_1x(&self, idx: usize) -> f32  
     {
-        let idx: usize = idx.try_into().unwrap(); 
-        self.inner.borrow().sinc.table_1x[idx]
+        self.inner.borrow().sinctable_1x(idx)
     }
+}
 
-    #[inline] pub fn sinctable<T: TryInto<usize>>(&self, idx: T) -> f32  
-    where 
-        <T as std::convert::TryInto<usize>>::Error: std::fmt::Debug
+impl SincTable for TablesHandle<'sr> {
+
+    #[inline] fn _sinctable(&self, idx: usize) -> f32  
     {
-        let idx: usize = idx.try_into().unwrap(); 
-        self.inner.borrow().sinc.table[idx]
+        self.inner.borrow().sinctable(idx)
     }
+}
 
-    #[inline] pub fn sinctable_i16<T: TryInto<usize>>(&self, idx: T) -> i16  
-    where 
-        <T as std::convert::TryInto<usize>>::Error: std::fmt::Debug
+impl SincTableI16 for TablesHandle<'sr> {
+
+    #[inline] fn _sinctable_i16(&self, idx: usize) -> i16  
     {
-        let idx: usize = idx.try_into().unwrap(); 
-        self.inner.borrow().sinc.table_i16[idx]
+        self.inner.borrow().sinctable_i16(idx)
     }
+}
 
-    #[inline] pub fn sinctable_1x_ptr<T: TryInto<usize>>(&mut self, idx: T) -> *const f32  
-    where 
-        <T as std::convert::TryInto<usize>>::Error: std::fmt::Debug
+impl SincTable1XPtr for TablesHandle<'sr> {
+
+    #[inline] fn _sinctable_1x_ptr(&self, idx: usize) -> *const f32  
     {
-        let idx: usize = idx.try_into().unwrap(); 
-        &self.inner.borrow().sinc.table_1x[idx]
+        self.inner.borrow().sinctable_1x_ptr(idx)
     }
+}
 
-    #[inline] pub fn sinctable_ptr<T: TryInto<usize>>(&mut self, idx: T) -> *const f32  
-    where 
-        <T as std::convert::TryInto<usize>>::Error: std::fmt::Debug
+impl SincTablePtr for TablesHandle<'sr> {
+
+    #[inline] fn _sinctable_ptr(&self, idx: usize) -> *const f32  
     {
-        let idx: usize = idx.try_into().unwrap(); 
-        &self.inner.borrow().sinc.table[idx]
+        self.inner.borrow().sinctable_ptr(idx)
     }
+}
 
-    #[inline] pub fn sinctable_i16_ptr<T: TryInto<usize>>(&mut self, idx: T) -> *const i16  
-    where 
-        <T as std::convert::TryInto<usize>>::Error: std::fmt::Debug
+impl SincTableI16Ptr for TablesHandle<'sr> {
+
+    #[inline] fn _sinctable_i16_ptr(&self, idx: usize) -> *const i16  
     {
-        let idx: usize = idx.try_into().unwrap(); 
-        &self.inner.borrow().sinc.table_i16[idx]
+        self.inner.borrow().sinctable_i16_ptr(idx)
     }
+}
 
-    #[inline] pub fn get_waveshaper_ptr<T: TryInto<isize>>(&self, idx: usize, _offset: T) -> *const f32 
-    where
-        <T as std::convert::TryInto<isize>>::Error: std::fmt::Debug
+impl GetWaveshaperPtr for TablesHandle<'sr> {
+
+    #[inline] fn _get_waveshaper_ptr(&self, idx: usize, offset: isize) -> *const f32 
     {
-        assert!(idx < WaveshapeTables::ntables());
-        let offset: isize = idx.try_into().unwrap(); 
-        assert!(offset & 0x3ff == offset);
-        unsafe {
-            self.inner.borrow().waveshape.table[idx].as_ptr().offset(offset)
-        }
+        self.inner.borrow().get_waveshaper_ptr(idx,offset)
     }
 }

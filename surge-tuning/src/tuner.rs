@@ -1,13 +1,6 @@
 ix!();
 
-use crate::{
-    SurgeTuning,
-    KeyboardMapping,
-    Scale,
-    ScaleNote,
-    Note2Pitch,
-    TuningTables,
-};
+use crate::*;
 
 #[derive(Debug,Clone)]
 #[repr(align(16))]
@@ -168,5 +161,66 @@ impl Note2Pitch for SurgeTuner<'sr> {
             T::from(NOTE_FREQ_C0).unwrap() * 
             self.n2p::<T,false>(x) * 
             T::from(sros64_inv).unwrap()
+    }
+}
+
+impl CurrentScaleCount for SurgeTuner<'sr> {
+
+    #[inline] fn current_scale_count<T>(&self) -> T 
+    where 
+        T: TryFrom<i8>,
+        <T as std::convert::TryFrom<i8>>::Error: std::fmt::Debug 
+    {
+        let val = self.current_scale.count;
+        assert!(val & 127 == val);
+        T::try_from(val as i8).unwrap()
+    }
+}
+
+impl CurrentScale for SurgeTuner<'sr> {
+    #[inline] fn current_scale(&self) -> Scale {
+        self.current_scale.0.clone()
+    }
+}
+
+impl CurrentTuning for SurgeTuner<'sr> {
+    #[inline] fn current_tuning(&self) -> SurgeTuning {
+        self.current_tuning.0.clone()
+    }
+}
+
+impl CurrentTuningIsStandard for SurgeTuner<'sr> {
+    #[inline] fn current_tuning_is_standard(&self) -> bool {
+        self.current_tuning.is_standard_tuning
+    }
+}
+
+impl CurrentMappingIsStandard for SurgeTuner<'sr> {
+    #[inline] fn current_mapping_is_standard(&self) -> bool {
+        self.current_mapping.is_standard_mapping
+    }
+}
+
+impl CurrentScaleRawContents for SurgeTuner<'sr> {
+    #[inline] fn current_scale_raw_contents(&self) -> TuningData {
+        self.current_scale.raw_text.clone()
+    }
+}
+
+impl CurrentMappingRawContents for SurgeTuner<'sr> {
+    #[inline] fn current_mapping_raw_contents(&self) -> MappingData {
+        self.current_mapping.raw_text.clone()
+    }
+}
+
+impl GetTablePitch for SurgeTuner<'sr> {
+
+    #[inline] fn get_tablepitch<IDX>(&self, idx: IDX) -> f64 
+    where 
+        IDX: TryInto<usize>,
+        <IDX as std::convert::TryInto<usize>>::Error: std::fmt::Debug
+    {
+        let idx: usize = idx.try_into().unwrap(); 
+        self.tables.table_pitch[idx]
     }
 }

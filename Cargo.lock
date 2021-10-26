@@ -1036,6 +1036,7 @@ name = "surge-samplerate"
 version = "0.1.28-alpha.0"
 dependencies = [
  "atomic_float",
+ "enum_dispatch",
  "surge-constants",
 ]
 
@@ -1207,6 +1208,7 @@ dependencies = [
 name = "surge-tables"
 version = "0.1.28-alpha.0"
 dependencies = [
+ "enum_dispatch",
  "float-ord",
  "surge-constants",
  "surge-math",
@@ -1238,6 +1240,7 @@ name = "surge-tuning"
 version = "0.1.28-alpha.0"
 dependencies = [
  "enhanced_enum",
+ "enum_dispatch",
  "float-ord",
  "getset",
  "indoc",

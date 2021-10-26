@@ -32,7 +32,7 @@ impl Eq3Band<'sr> {
     ) -> Self {
 
         let mut x = Self {
-            tables:  tables.clone(),
+            tables:  MaybeOwningTablesHandle::NonOwning(tables.clone()),
             gain:    Align16(Default::default()),
             band1:   BiquadFilter::new(tuner,tables,srunit),
             band2:   BiquadFilter::new(tuner,tables,srunit),
@@ -48,4 +48,5 @@ impl Eq3Band<'sr> {
         x.band3.set_blocksize(srbs);
         x
     }
+
 }

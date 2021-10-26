@@ -1,10 +1,15 @@
 ix!();
 
-use crate::{
-    traits::ScaleNote
-};
+use crate::*;
 
-impl crate::Retune for crate::SurgeTuner<'tuner> {
+impl RetuneToStandardTuning for SurgeTuner<'tuner> {
+
+    fn retune_to_standard_tuning(&mut self) {
+        self.init();
+    }
+}
+
+impl RetuneToScale for SurgeTuner<'tuner> {
 
     fn retune_to_scale(&mut self, scale: &crate::Scale) -> bool {
 
