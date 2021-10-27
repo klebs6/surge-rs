@@ -242,7 +242,7 @@ path = "../surgeshaper-digi"
 version = "0.1.33-alpha.0"
 [dependencies.surgeshaper-sine]
 path = "../surgeshaper-sine"
-version = "0.1.33-alpha.0"
+version = "0.1.34-alpha.0"
 [dependencies.surgeshaper-tanh]
 path = "../surgeshaper-tanh"
 version = "0.1.33-alpha.0"
@@ -257,7 +257,7 @@ description = "surge synthesizer -- toplevel synthesizer virtual instrument"
 edition = "2018"
 license = "GPL-3.0"
 name = "surge-synthesizer"
-version = "0.1.33-alpha.0"
+version = "0.1.34-alpha.0"
 [patch.crates-io]
 [[bin]]
 name = "surge432_host"

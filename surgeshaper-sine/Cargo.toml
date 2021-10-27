@@ -4,6 +4,7 @@ enhanced_enum = "0.2.2"
 float-ord = "0.3.2"
 [dependencies.surge-filter]
 path = "../surge-filter"
+version = "0.1.33-alpha.0"
 
 [dependencies.surge-math]
 path = "../surge-math"
@@ -24,4 +25,4 @@ description = "surge synthesizer -- sine waveshaper"
 edition = "2018"
 license = "GPL-3.0"
 name = "surgeshaper-sine"
-version = "0.1.33-alpha.0"
+version = "0.1.34-alpha.0"
