@@ -1,7 +1,6 @@
 
 #[test] fn distortion_smoke() {
 
-    /*
     ix!();
     const N: usize = 32;
 
@@ -29,5 +28,4 @@
         println!("r: {:?}",r); 
 
     }
-    */
 }
