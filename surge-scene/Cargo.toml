@@ -8,100 +8,100 @@ features = [ "derive" ]
 version = "1.0"
 [dependencies.surge-adsr]
 path = "../surge-adsr"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-biquad]
 path = "../surge-biquad"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-coeffmaker]
 path = "../surge-coeffmaker"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-constants]
 path = "../surge-constants"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-filter]
 path = "../surge-filter"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-halfrate]
 path = "../surge-halfrate"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-input]
 path = "../surge-input"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-lfo]
 path = "../surge-lfo"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-lipol]
 path = "../surge-lipol"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-macros]
 path = "../surge-macros"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-math]
 path = "../surge-math"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-midi]
 path = "../surge-midi"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-modulation]
 path = "../surge-modulation"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-mpe]
 path = "../surge-mpe"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-param]
 path = "../surge-param"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-qfunit]
 path = "../surge-qfunit"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-samplerate]
 path = "../surge-samplerate"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-tables]
 path = "../surge-tables"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-timeunit]
 path = "../surge-timeunit"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-traits]
 path = "../surge-traits"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-tuning]
 path = "../surge-tuning"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-types]
 path = "../surge-types"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surge-voice]
 path = "../surge-voice"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surgefx]
 path = "../surgefx"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surgeosc-audioin]
 path = "../surgeosc-audioin"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surgeosc-fm]
 path = "../surgeosc-fm"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surgeosc-fm2]
 path = "../surgeosc-fm2"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surgeosc-sine]
 path = "../surgeosc-sine"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surgeosc-snh]
 path = "../surgeosc-snh"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surgeosc-super]
 path = "../surgeosc-super"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surgeosc-wavetable]
 path = "../surgeosc-wavetable"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.surgeosc-window]
 path = "../surgeosc-window"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
 [dependencies.uuid]
 features = [ "serde", "v4" ]
 version = "0.8.2"
@@ -112,4 +112,4 @@ description = "surge synthesizer -- a scene represents a configuration of parame
 edition = "2018"
 license = "GPL-3.0"
 name = "surge-scene"
-version = "0.1.33-alpha.0"
+version = "0.1.36-alpha.0"
