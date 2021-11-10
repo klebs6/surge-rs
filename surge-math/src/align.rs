@@ -10,9 +10,14 @@ macro_rules! impl_align_n {
     ($n:expr) => {
         paste! {
 
-            /// The data blocks processed by the SIMD instructions (e.g. SSE2), which must
-            /// always be before any other variables in the class, in order to be properly
-            /// aligned to 16 bytes.
+            /**
+              | The data blocks processed by the
+              | SIMD instructions (e.g. SSE2),
+              | which must always be before any
+              | other variables in the class, in
+              | order to be properly aligned to 16
+              | bytes.
+              */
             #[derive(Debug,Clone)] 
             #[repr(align($n))]
             pub struct [<Align $n>]<T: Clone>(pub T);
@@ -34,8 +39,22 @@ macro_rules! impl_align_n {
 }
 
 impl_align_n![16];
-
 impl_align_n![32];
 impl_align_n![64];
 impl_align_n![128];
 impl_align_n![256];
+
+#[test] fn test_align() {
+    #[derive(Clone,Default)]
+    struct TestStruct { }
+    let x0 = Align16::<TestStruct>(TestStruct{});
+    let x1 = Align32::<TestStruct>(TestStruct{});
+    let x2 = Align64::<TestStruct>(TestStruct{});
+    let x3 = Align128::<TestStruct>(TestStruct{});
+    let x4 = Align256::<TestStruct>(TestStruct{});
+    assert!(std::mem::align_of_val(&x0) == 16);
+    assert!(std::mem::align_of_val(&x1) == 32);
+    assert!(std::mem::align_of_val(&x2) == 64);
+    assert!(std::mem::align_of_val(&x3) == 128);
+    assert!(std::mem::align_of_val(&x4) == 256);
+}

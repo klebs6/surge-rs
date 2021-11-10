@@ -46,4 +46,5 @@ x![trixpan];
 x![types];
 x![util];
 x![window];
+x![white_noise];
 

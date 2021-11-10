@@ -1,13 +1,11 @@
 ix!();
 
 pub fn rand01() -> f32 {
-    let rand01: f32 =  ( (unsafe{ libc::rand() }) as i32 / libc::RAND_MAX ) as f32;
-    rand01
+    rand::thread_rng().gen_range(0.0..1.0)
 }
 
 pub fn rand11() -> f32 {
-    let rand01: f32 = rand01();
-    (rand01 * 2.0) - 1.0
+    rand::thread_rng().gen_range(-1.0..1.0)
 }
 
 pub fn correlated_noise( lastval: f64, correlation: f64) 
@@ -90,3 +88,4 @@ pub fn correlated_noise_o2mk2(mut lastval: f32, mut lastval2: f32, correlation: 
     lastval = lastval2 * (1.0 - wfabs) - wf * lastval;
     lastval * m
 }
+

@@ -12,6 +12,7 @@ impl FilterProcessQuad for LpMoogFilter {
 
         //TODO: fix unknown coefficient names
         coeffidx![ C; X0, X1, X2, X3, X4, X5, X6, X7 ];
+
         unsafe {
 
             qfu.coeff[C::X0] = _mm_add_ps(qfu.coeff[C::X0], qfu.dcoeff[C::X0]);
