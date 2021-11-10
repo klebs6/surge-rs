@@ -67,11 +67,14 @@ impl<const N: usize> AllpassFilter<N> {
 
     println!("initial power (freq): {:?}", initial_power_freq);
 
-    for i in 0..100 {
+    for i in 0..10 {
 
         println!("iter {}", i);
 
-        signal          = Signal(signal.0.map(|x| allpass.process(*x)));
+        signal          = Signal {
+            data: signal.data.map(|x| allpass.process(*x))
+        };
+
         let power_freq  = signal.average_power_freq_domain();
 
         println!("allpassed power (freq): {:?}", power_freq);
