@@ -33,7 +33,7 @@ impl WTOscillator {
             let (intpart, fracpart) = split_float(shape);
             self.tableipol = fracpart;
 
-            self.tableid = limit_range_i(intpart as i32, 
+            self.tableid = limit_range(intpart as i32, 
                 0, (n_tables - 2) as i32);
 
             let tableid = self.tableid;

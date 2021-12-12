@@ -31,7 +31,7 @@ impl FreqShift {
         let rp: i32 = self.wpos - i_dtime + (k as i32);
 
         let sinc: i32 = FIR_IPOL_N_I32 *
-            limit_range_i(
+            limit_range(
                 (
                     FIR_IPOL_M_I32 * 
                     ((((i_dtime + 1) as f32) - self.time.v) as i32)

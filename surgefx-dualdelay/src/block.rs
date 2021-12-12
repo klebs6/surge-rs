@@ -36,7 +36,7 @@ impl DualDelay {
         macro_rules! get_sinc {
             ($chan:ident, $dtime:ident) => {
                 FIR_IPOL_N as i32 *
-                    limit_range_i(
+                    limit_range(
                         (FIR_IPOL_M as f32 * (($dtime + 1) as f32 - self.$chan.v)) as i32, 
                         0, 
                         FIR_IPOL_M as i32 - 1

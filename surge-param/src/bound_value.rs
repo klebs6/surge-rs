@@ -18,7 +18,7 @@ impl<P: Param + ?Sized> BoundValue for ParamRT<P> {
                 self.val = PData::Float(limit_range(f,min,max));
             },
             (PData::Int(i), PData::Int(min), PData::Int(max)) => {
-                self.val = PData::Int(limit_range_i(i,min,max));
+                self.val = PData::Int(limit_range(i,min,max));
             },
             _ => { /*noop*/ }
         }

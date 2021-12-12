@@ -24,7 +24,7 @@ impl Init for SurgeSuperOscillator {
 
         let unicount = self.pvali(SSOParam::UniCount);
 
-        self.blitter.n_unison = limit_range_i( unicount, 1, MAX_UNISON as i32);
+        self.blitter.n_unison = limit_range( unicount, 1, MAX_UNISON as i32);
 
         self.blitter.prepare_unison(self.blitter.n_unison as usize);
 

@@ -16,7 +16,7 @@ pub use ndarray::*;
 pub use num::complex::Complex64;
 pub use num_traits::*;
 pub use paste::paste;
-pub use std::cmp::Ordering;
+pub use std::cmp::*;
 pub use std::collections::{BTreeMap,BTreeSet};
 pub use std::convert::TryFrom;
 pub use std::convert::TryInto;

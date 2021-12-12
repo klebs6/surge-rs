@@ -1,7 +1,12 @@
 ix!();
 
-//I have used the ordering here in CLFOGui to iterate. 
-//Be careful if rate or release move from first/last position.
+/**
+  | I have used the ordering here in CLFOGui to
+  | iterate.
+  |
+  | Be careful if rate or release move from
+  | first/last position.
+  */
 enhanced_enum![
     LfoParam {
         Rate,

@@ -64,13 +64,13 @@ pub mod test {
 
     #[test] fn test_clamp1bp() {
         let x: f64 = 1e-31;
-        assert!(clamp1bp(x) == 1e-31);
+        assert!(clamp1_bipolar(x) == 1e-31);
 
         let x: f64 = -0.3;
-        assert!(clamp1bp(x) == -0.3);
+        assert!(clamp1_bipolar(x) == -0.3);
 
         let x: f64 = 1.3;
-        assert!(clamp1bp(x) == 1.0);
+        assert!(clamp1_bipolar(x) == 1.0);
     }
 
     #[test] fn test_flush_denormal() {

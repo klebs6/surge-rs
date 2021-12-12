@@ -1,3 +1,7 @@
+[dependencies.simba]
+version = "0.6.0"
+features = ["packed_simd"]
+
 [dependencies]
 approx = "0.5.0"
 approx_eq = "0.1.8"

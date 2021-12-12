@@ -25,7 +25,7 @@ impl Init for WTOscillator {
 
         let unicount = self.pvali(WTOscillatorParam::UniCount);
 
-        self.blitter.n_unison = limit_range_i(
+        self.blitter.n_unison = limit_range(
             unicount, 1, MAX_UNISON as i32);
 
         if wt_flag![self,IsSample] {

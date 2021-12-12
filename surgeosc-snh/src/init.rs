@@ -24,7 +24,7 @@ impl Init for SampleAndHoldOscillator {
         self.l_sub.set_rate(rate as f64);
         self.l_sync.set_rate(rate as f64);
 
-        self.blitter.n_unison = limit_range_i(
+        self.blitter.n_unison = limit_range(
             self.pvali(SampleAndHoldOscillatorParam::UniCount), 
             1, MAX_UNISON as i32);
 

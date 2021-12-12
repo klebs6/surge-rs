@@ -29,7 +29,7 @@ impl WindowOscillator {
         // SSE2 path
         let morph = self.pvalf(WindowOscillatorParam::Morph);
 
-        let table: i32 = limit_range_i(
+        let table: i32 = limit_range(
             ((self.wave_wavetable.num_tables() as f32 * morph) as f32) as i32, 
             0, (self.wave_wavetable.num_tables() as i32) - 1);
 
@@ -39,7 +39,7 @@ impl WindowOscillator {
         let size_mask:    u32 = ((self.wave_wavetable.num_samples_per_table() as u32) << 16) - 1;
         let size_mask_win: u32 = ((self.window_wavetable.num_samples_per_table() << 16) as u32) - 1;
 
-        let window: i8 = limit_range_i(
+        let window: i8 = limit_range(
             self.pvali(WindowOscillatorParam::Window),
             0, 8) as i8;
 
@@ -65,10 +65,10 @@ impl WindowOscillator {
             let bs: u32 = big_mul_r16(ratio_a, (3 * formant_mul) as u32);
 
             let mut msb_pos: u32 = bitscan_reverse(bs);
-            mipmap_b = limit_range_i((msb_pos as i32) - 17, 0, (self.wave_wavetable.num_samples_per_table_po2() - 1) as i32) as u32;
+            mipmap_b = limit_range((msb_pos as i32) - 17, 0, (self.wave_wavetable.num_samples_per_table_po2() - 1) as i32) as u32;
 
             msb_pos = bitscan_reverse(3 * ratio_a);
-            mipmap_a = limit_range_i(
+            mipmap_a = limit_range(
                 (msb_pos as i32) - 17, 
                 0, 
                 (self.window_wavetable.num_samples_per_table_po2() - 1) as i32

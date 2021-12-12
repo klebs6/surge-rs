@@ -37,12 +37,12 @@ impl Process for Conditioner {
         }
 
         self.amp_l.set_target_smoothed(
-            cfg.pregain * 0.5 * clamp1bp(1.0 - cfg.balance_f));
+            cfg.pregain * 0.5 * clamp1_bipolar(1.0 - cfg.balance_f));
 
         self.amp_r.set_target_smoothed(
-            cfg.pregain * 0.5 * clamp1bp(1.0 + cfg.balance_f));
+            cfg.pregain * 0.5 * clamp1_bipolar(1.0 + cfg.balance_f));
 
-        self.width.set_target_smoothed(clamp1bp(cfg.width_f));
+        self.width.set_target_smoothed(clamp1_bipolar(cfg.width_f));
 
         self.postamp.set_target_smoothed(self.tables.db_to_linear(cfg.gain_f));
 

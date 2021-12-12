@@ -14,7 +14,7 @@ impl Init for WindowOscillator {
         let uni_count = self.pvali(WindowOscillatorParam::UniCount);
 
         self.active_sub_oscs = 
-            limit_range_i( uni_count, 1, WINDOW_OSCILLATOR_NUM_SUBOSCS as i32 - 1);
+            limit_range( uni_count, 1, WINDOW_OSCILLATOR_NUM_SUBOSCS as i32 - 1);
 
         //TODO for all
         //self.set_pitch(...)
@@ -54,11 +54,11 @@ impl Init for WindowOscillator {
                     d = -d;
                 }
 
-                self.gain[[i,0]] = limit_range_i(
+                self.gain[[i,0]] = limit_range(
                     ((128.0 * megapan_left(d)) as f32) as i32, 
                     0, 255) as u32;
 
-                self.gain[[i,1]] = limit_range_i(
+                self.gain[[i,1]] = limit_range(
                     ((128.0 * megapan_right(d)) as f32) as i32, 
                     0, 255) as u32;
 
