@@ -4,8 +4,9 @@ ix!();
 pub struct SynthControl {
 
     /**
-      updated in audio thread, read from ui, so
-      have assignments be atomic
+      | updated in audio thread, read from ui,
+      | so have assignments be atomic
+      |
       */
     pub polydisplay:               AtomicI32, 
 
@@ -13,7 +14,8 @@ pub struct SynthControl {
     pub refresh_ctrl_queue_value:  [i32; 8],
 
     /**
-      hosts set this if there are input busses
+      | hosts set this if there are input busses
+      |
       */
     pub process_input:             bool, 
 
