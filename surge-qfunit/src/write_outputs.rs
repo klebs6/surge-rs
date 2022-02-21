@@ -51,5 +51,3 @@ pub unsafe fn qfc_write_outputs_dual(
     _mm_store_ss(out_l.add(k), _mm_add_ss(_mm_load_ss(out_l.add(k)), sum_ps_to_ss(new_out_l)));
     _mm_store_ss(out_r.add(k), _mm_add_ss(_mm_load_ss(out_r.add(k)), sum_ps_to_ss(new_out_r)));
 }
-
-

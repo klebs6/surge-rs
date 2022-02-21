@@ -3,8 +3,10 @@ ix!();
 impl CoefficientLoadStore for crate::HalfRateFilterSSE {
 
     /**
-       when steep is false, we use softer slopes,
-       more attenuation and less stopband ripple
+      | when steep is false, we use softer slopes,
+      | more attenuation and less stopband
+      | ripple
+      |
       */
     fn load_coefficients(&mut self) {
 

@@ -15,7 +15,6 @@ impl ProcessBlock for crate::HalfRateFilterSSE {
         let r: *mut __m128 = r as *mut __m128;
         let mut o = A1d::<__m128>::from_elem(HALFRATE_BLOCK_SIZE, unsafe { z128![] });
 
-
         // fill the buffer with interleaved stereo samples
         for k in (0_usize..nsamples).step_by(4) {
             unsafe {
