@@ -54,4 +54,3 @@ name![Lfo,"LFO"];
    rate = 1.0 - rate;
    samples as f32 * ENV_PHASEMULTI / (1.0 + LFO_RANGE * rate * rate * rate)
 }
-
