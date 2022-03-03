@@ -39,7 +39,9 @@ impl AdsrEnvelope {
             let mut v_c1:         __m128 = _mm_load_ss(&self._v_c1);
             let mut v_c1_delayed: __m128 = _mm_load_ss(&self._v_c1_delayed);
             let mut discharge:    __m128 = _mm_load_ss(&self._discharge);
-            let one:              __m128 = _mm_set_ss(1.0); // attack->decay switch at 1 volt
+
+            // attack->decay switch at 1 volt
+            let one:              __m128 = _mm_set_ss(1.0); 
             let v_cc_vec:         __m128 = _mm_set_ss(v_cc);
 
             let v_gate:    __m128 = match gate { true => _mm_set_ss(v_cc), false => _mm_set_ss(0.0) };

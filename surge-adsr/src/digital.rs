@@ -18,7 +18,7 @@ impl AdsrEnvelope {
             _ => {
                 //sustain and idlewait not covered
             },
-        };
+        }
 
         self.output = limit_range(self.output, 0.0, 1.0);
     }

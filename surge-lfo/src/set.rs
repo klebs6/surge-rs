@@ -11,7 +11,6 @@ impl Lfo {
         let rate = self.get_rate(temposyncratio);
 
         self.phase += rate * self.ratemult;
-
     }
 
     pub fn zero_retriggers(&mut self) {

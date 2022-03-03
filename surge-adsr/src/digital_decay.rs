@@ -18,11 +18,14 @@ impl AdsrEnvelope {
         let mut l_lo = self.phase - 2.0 * sx * rate + rate * rate;
         let     l_hi = self.phase + 2.0 * sx * rate + rate * rate;
 
-        if( pvalf![self.params[AdsrParam::Sustain]]
-            < 1e-3 && self.phase < 1e-4 ) {
-            // That + rate * rate in both means at low sustain ( < 1e-3 or so) 
-            // you end up with lo and hi both pushing us up off sustain. 
-            // Unfortunatley we ned to handle that case specially by pushing lo down
+        // That + rate * rate in both means at low
+        // sustain ( < 1e-3 or so) you end up with
+        // lo and hi both pushing us up off
+        // sustain. 
+        //
+        // Unfortunatley we ned to handle that
+        // case specially by pushing lo down
+        if pvalf![self.params[AdsrParam::Sustain]] < 1e-3 && self.phase < 1e-4 {
             l_lo = 0.0;
         } 
 

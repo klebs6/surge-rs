@@ -22,18 +22,15 @@ impl AdsrEnvelope {
                 pvalf![self.params[AdsrParam::Sustain]];
         }
 
-        match pvali![self.params[AdsrParam::AttackShape]] 
+        self.output = match 
+            pvali![self.params[AdsrParam::AttackShape]] 
         {
-            0 => {
-                self.output = self.phase.sqrt();
-            },
-            1 => {
-                self.output = self.phase;
-            },
-            2 => {
-                self.output = self.phase * self.phase;
-            },
-            _ => {panic!("logic bug")},
-        }
+            0 => self.phase.sqrt(),
+            1 => self.phase,
+            2 => self.phase * self.phase,
+            _ => 
+                    panic!( "logic bug")
+                    ,
+        };
     }
 }

@@ -143,7 +143,8 @@ impl crate::LipolPs {
             );
     }
 
-    /// saturates the interpolator each step (for amp envelopes)
+    /// saturates the interpolator each step (for
+    /// amp envelopes)
     ///
     /// # Safety
     ///

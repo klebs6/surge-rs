@@ -21,15 +21,17 @@ impl Param for AdsrParam {
 
 impl AdsrParam {
     #[inline] pub fn new_runtime() -> AdsrParamArrayRT {
-        AdsrParamArrayRT::new_with( |x| match x {
-            AdsrParam::Attack       => AdsrParamRT::new(AdsrParam::Attack),
-            AdsrParam::Decay        => AdsrParamRT::new(AdsrParam::Decay),
-            AdsrParam::Sustain      => AdsrParamRT::new(AdsrParam::Sustain),
-            AdsrParam::Release      => AdsrParamRT::new(AdsrParam::Release),
-            AdsrParam::AttackShape  => AdsrParamRT::new(AdsrParam::AttackShape),
-            AdsrParam::DecayShape   => AdsrParamRT::new(AdsrParam::DecayShape),
-            AdsrParam::ReleaseShape => AdsrParamRT::new(AdsrParam::ReleaseShape),
-            AdsrParam::Mode         => AdsrParamRT::new(AdsrParam::Mode),
-        })
+        let x  = AdsrParamArrayRT::new_with( 
+            |x| match x {
+                AdsrParam::Attack       => AdsrParamRT::new(AdsrParam::Attack),
+                AdsrParam::Decay        => AdsrParamRT::new(AdsrParam::Decay),
+                AdsrParam::Sustain      => AdsrParamRT::new(AdsrParam::Sustain),
+                AdsrParam::Release      => AdsrParamRT::new(AdsrParam::Release),
+                AdsrParam::AttackShape  => AdsrParamRT::new(AdsrParam::AttackShape),
+                AdsrParam::DecayShape   => AdsrParamRT::new(AdsrParam::DecayShape),
+                AdsrParam::ReleaseShape => AdsrParamRT::new(AdsrParam::ReleaseShape),
+                AdsrParam::Mode         => AdsrParamRT::new(AdsrParam::Mode),
+            }
+        );
     }
 }

@@ -16,9 +16,11 @@ pub fn saturate(mut f: f32) -> f32
 }
 
 pub fn boundfreq(freq: &mut f32) {
+
     if *freq > 75.0 {
         *freq = 75.0;
     }
+
     if *freq < -55.0 {
         *freq = -55.0;
     }

@@ -25,6 +25,7 @@ impl AdsrEnvelope {
             self.envstate = AdsrState::Idle;
             self.output = 0.0;
         }
+
         self.output *= self.scalestage;
     }
 }

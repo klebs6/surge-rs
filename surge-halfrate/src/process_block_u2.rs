@@ -39,7 +39,6 @@ impl ProcessBlockU2 for crate::HalfRateFilterSSE {
         // process filters
         for j in 0..self.m {
 
-
             let mut tx0: __m128 = self.vx0[j];
             let mut tx1: __m128 = self.vx1[j];
             let mut tx2: __m128 = self.vx2[j];

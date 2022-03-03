@@ -7,14 +7,15 @@ impl crate::HalfRateFilterSSE {
             12 => self.load_steep_rejection104db_tband0_01(),
             10 => self.load_steep_rejection86db_tband0_01(),
             8  => self.load_steep_rejection69db_tband0_01(),
-            6 => self.load_steep_rejection51db_tband0_01(),
-            4 => self.load_steep_rejection53db_tband0_05(),
-            2 => self.load_steep_rejection36db_tband0_1(),
-            _ => unreachable!(),
+            6  => self.load_steep_rejection51db_tband0_01(),
+            4  => self.load_steep_rejection53db_tband0_05(),
+            2  => self.load_steep_rejection36db_tband0_1(),
+            _  => unreachable!(),
         }
     }
 
     pub fn load_steep_rejection104db_tband0_01(&mut self) {
+
         // rejection=104db, transition band=0.01
         let mut a_coefficients: [f64; 6] = 
             [

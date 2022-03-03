@@ -115,7 +115,6 @@ pub unsafe fn softclip_block<NQ>(input: *mut f32, nquads: NQ)
     let nquads: usize = nquads.try_into().unwrap();
 
     // y = x - (4/27)*x^3,  x [-1.5 .. 1.5]
-
     let a:     __m128 = _mm_set1_ps(-4.0 / 27.0);
     let x_min: __m128 = _mm_set1_ps(-1.50);
     let x_max: __m128 = _mm_set1_ps(1.50);

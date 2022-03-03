@@ -17,7 +17,12 @@ impl Redo for BiquadFilter {
 impl BiquadSetCoeffs for BiquadFilter {
 
     fn set_coef(&mut self, 
-        a0: f64, mut a1: f64, mut a2: f64, mut b0: f64, mut b1: f64, mut b2: f64)
+        a0: f64, 
+        mut a1: f64, 
+        mut a2: f64, 
+        mut b0: f64, 
+        mut b1: f64, 
+        mut b2: f64)
     {
         let a0inv: f64 = 1.0 / a0;
 

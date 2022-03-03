@@ -71,7 +71,7 @@ impl<const N: usize> AllpassFilter<N> {
 
         println!("iter {}", i);
 
-        signal          = Signal {
+        signal = Signal {
             data: signal.data.map(|x| allpass.process(*x))
         };
 

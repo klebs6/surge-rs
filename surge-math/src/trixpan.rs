@@ -23,7 +23,3 @@ enhanced_enum![
         Right,
     }
 ];
-
-
-
-

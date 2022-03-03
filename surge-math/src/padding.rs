@@ -7,5 +7,3 @@ pub enum Padding {
 }
 
 pub const NO_PADDING: Padding = Padding::NoPadding;
-
-

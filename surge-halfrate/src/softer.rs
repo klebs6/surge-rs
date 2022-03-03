@@ -7,14 +7,15 @@ impl crate::HalfRateFilterSSE {
             12 => self.load_softer_rejection150db_tband0_05(),
             10 => self.load_softer_rejection133db_tband0_05(),
             8  => self.load_softer_rejection106db_tband0_05(),
-            6 => self.load_softer_rejection80db_tband0_05(),
-            4 => self.load_softer_rejection70db_tband0_1(),
-            2 => self.load_softer_rejection36db_tband0_1(),
-            _ => unreachable!(),
+            6  => self.load_softer_rejection80db_tband0_05(),
+            4  => self.load_softer_rejection70db_tband0_1(),
+            2  => self.load_softer_rejection36db_tband0_1(),
+            _  => unreachable!(),
         }
     }
 
     pub fn load_softer_rejection150db_tband0_05(&mut self) {
+
         // rejection=150db, transition band=0.05
         let mut a_coefficients: [f64; 6] = [
             0.01677466677723562, 0.13902148819717805,
@@ -25,7 +26,7 @@ impl crate::HalfRateFilterSSE {
         let mut b_coefficients: [f64; 6] = [
             0.06501319274445962, 0.23094129990840923,
             0.4364942348420355,  0.6329609551399348,
-            0.8037808679411123, 0.9599687404800694
+            0.8037808679411123,  0.9599687404800694
         ];
 
         unsafe {
@@ -36,6 +37,7 @@ impl crate::HalfRateFilterSSE {
     }
 
     pub fn load_softer_rejection133db_tband0_05(&mut self) {
+
         // rejection=133db, transition band=0.05
         let mut a_coefficients: [f64; 5] = [
             0.02366831419883467, 0.18989476227180174,
@@ -57,6 +59,7 @@ impl crate::HalfRateFilterSSE {
     }
 
     pub fn load_softer_rejection106db_tband0_05(&mut self) {
+
         // rejection=106db, transition band=0.05
         let mut a_coefficients: [f64; 4] = [
             0.03583278843106211, 0.2720401433964576, 

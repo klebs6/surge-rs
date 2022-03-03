@@ -4,7 +4,7 @@ ix!();
 pub fn copy_block<NQ>(src: *mut f32, dst: *mut f32, nquads: NQ) 
         where <NQ as std::convert::TryInto<usize>>::Error: std::fmt::Debug, NQ: TryInto<usize>
 {
-    let nquads: usize = nquads.try_into().unwrap();
+   let nquads: usize = nquads.try_into().unwrap();
 
    let fdst: *mut f32 = dst as *mut f32;
    let fsrc: *mut f32 = src as *mut f32;
