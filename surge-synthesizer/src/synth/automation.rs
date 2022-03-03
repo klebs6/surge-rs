@@ -4,7 +4,7 @@ use crate::{
     SurgeSynthesizer,
 };
 
-impl SurgeSynthesizer<'plugin_layer,'synth_out> {
+impl SurgeSynthesizer<'plugin_layer> {
 
     pub fn channel_aftertouch(&mut self, channel: u8, value: i32) {
 

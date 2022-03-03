@@ -1,4 +1,3 @@
-#![feature(destructuring_assignment)]
 #![feature(in_band_lifetimes)]
 
 macro_rules! x  { ($x:ident) => { mod $x; pub use $x::*; } }

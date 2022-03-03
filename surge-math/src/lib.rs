@@ -1,4 +1,3 @@
-#![feature(asm)]
 #![feature(core_intrinsics)]
 #![feature(platform_intrinsics)]
 #![feature(stdarch)]

@@ -21,7 +21,7 @@ impl Param for AdsrParam {
 
 impl AdsrParam {
     #[inline] pub fn new_runtime() -> AdsrParamArrayRT {
-        let x  = AdsrParamArrayRT::new_with( 
+        AdsrParamArrayRT::new_with( 
             |x| match x {
                 AdsrParam::Attack       => AdsrParamRT::new(AdsrParam::Attack),
                 AdsrParam::Decay        => AdsrParamRT::new(AdsrParam::Decay),
@@ -32,6 +32,6 @@ impl AdsrParam {
                 AdsrParam::ReleaseShape => AdsrParamRT::new(AdsrParam::ReleaseShape),
                 AdsrParam::Mode         => AdsrParamRT::new(AdsrParam::Mode),
             }
-        );
+        )
     }
 }

@@ -16,6 +16,8 @@ pub fn split_float(f: f32) -> (f32, f32) {
     }
 
     let i = unsafe{ f.to_int_unchecked::<i32>() };
-    (i as f32, f - i as f32) // (integral, fractional)
+
+    // (integral, fractional)
+    (i as f32, f - i as f32) 
 }
 

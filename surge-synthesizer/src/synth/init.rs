@@ -4,7 +4,7 @@ use crate::{SurgeSynthesizer,PluginLayer,SynthControl,FXUnit};
 
 pub struct SynthEnvironment<'a> {
     input:           &'a mut SynthInputHandle,
-    output:          &'a mut SynthOutputHandle<'a,BLOCK_SIZE>,
+    output:          &'a mut SynthOutputHandle<BLOCK_SIZE>,
     tuner:           &'a mut TunerHandle,
     tables:          &'a mut TablesHandle,
     srunit:          &'a mut SampleRateHandle,
@@ -15,7 +15,7 @@ pub struct SynthEnvironment<'a> {
     synth_in:        &'a mut SynthInputHandle,
 }
 
-impl SurgeSynthesizer<'plugin_layer,'synth_out> {
+impl SurgeSynthesizer<'plugin_layer> {
 
     pub fn new_default(environment: SynthEnvironment<'synth_out>) -> Self {
 

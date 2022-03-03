@@ -5,7 +5,6 @@ use ndarray::Axis;
 use core::convert::TryInto;
 use std::cell::RefCell;
 use std::fmt::Debug;
-use std::marker::PhantomData;
 use std::rc::Rc;
 use surge_math::{Align16,A2d};
 use surge_constants::{
@@ -14,33 +13,31 @@ use surge_constants::{
 
 #[derive(Debug)]
 #[repr(align(16))]
-pub struct SynthOutput<'synth_out, const N: usize> 
+pub struct SynthOutput<const N: usize> 
 {
     pub buffer:      Align16<A2d::<f32>>,
     pub vu_peak:     Align16<[f32; 8]>,
     pub masterfade:  f32,
-    phantom:         PhantomData<&'synth_out i32>,
 }
 
-impl<'synth_out, const N: usize> 
-Default for SynthOutput<'synth_out,N> 
+impl<const N: usize> 
+Default for SynthOutput<N> 
 {
     fn default() -> Self {
         Self {
             buffer:     Align16(A2d::<f32>::zeros((N_OUTPUTS,N))),
             vu_peak:    Align16([0.0; 8]),
             masterfade: 1.0,
-            phantom:    Default::default(),
         }
     }
 }
 
 #[derive(Debug,Clone)]
-pub struct SynthOutputHandle<'synth_out, const N: usize> {
-    inner: Rc<RefCell<SynthOutput<'synth_out, N>>>,
+pub struct SynthOutputHandle<const N: usize> {
+    inner: Rc<RefCell<SynthOutput<N>>>,
 }
 
-impl<'synth_out, const N: usize> SynthOutputHandle<'synth_out,N> {
+impl<const N: usize> SynthOutputHandle<N> {
 
     #[inline] pub fn out_l(&mut self) -> *mut f32 {
         self.inner.borrow_mut().buffer.index_axis_mut(Axis(0),0).as_mut_ptr()

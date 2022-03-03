@@ -119,9 +119,7 @@ use crate::*;
     ];
 
     unsafe fn u128_into_m128i(x: u128) -> __m128i {
-        let x0: i32 = ((x >> 96) & 
-        0xFFFFFFFF
-    ) as i32;
+        let x0: i32 = ((x >> 96) & 0xFFFFFFFF) as i32;
         let x1: i32 = ((x >> 64) & 0xFFFFFFFF) as i32;
         let x2: i32 = ((x >> 32) & 0xFFFFFFFF) as i32;
         let x3: i32 = (x & 0xFFFFFFFF) as i32;

@@ -20,10 +20,7 @@ pub mod test {
 
     #[test] fn test_rand2() {
 
-        use 
-        ::rand::prelude
-        ::*
-        ;
+        use ::rand::prelude::*;
         use ::rand::thread_rng;
 
         let mut rng = thread_rng();

@@ -1,5 +1,4 @@
-#[macro_export] 
-macro_rules! m128_mask_signbit          { () => {  _mm_set1_ps(0x80000000 as f32) } }
+#[macro_export] macro_rules! m128_mask_signbit          { () => {  _mm_set1_ps(0x80000000 as f32) } }
 #[macro_export] macro_rules! m128_mask_absval           { () => {  _mm_set1_ps(0x7fffffff as f32) } }
 #[macro_export] macro_rules! m128_zero                  { () => {  _mm_set1_ps(0.0)               } }
 #[macro_export] macro_rules! m128_half                  { () => {  _mm_set1_ps(0.5)               } }
