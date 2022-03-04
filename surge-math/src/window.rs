@@ -7,7 +7,7 @@ std::cmp::PartialOrd
 + std::ops::SubAssign 
 + Into<f64>;
 
-pub fn blackman< T: WindowInput >(i: T, n: i32) 
+pub fn blackman< T: WindowInput>(i: T, n: i32) 
     -> f64 
 {
     let i: f64 = i.into();

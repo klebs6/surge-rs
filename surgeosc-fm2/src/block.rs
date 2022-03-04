@@ -1,9 +1,6 @@
 ix!();
 
-use crate::{
-    FM2Oscillator,
-    //FM2OscillatorParam,
-};
+use crate::*;
 
 impl FM2Oscillator {
 

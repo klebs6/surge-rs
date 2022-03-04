@@ -37,16 +37,20 @@ pub struct QuadFilterChainState {
     pub ws_lpf:            __m128 , 
     pub feedback_line_l:   __m128 , 
     pub feedback_line_r:   __m128 ,
+
+    // wavedata
     pub dl:               [__m128; BLOCK_SIZE_OS], 
-    pub dr:               [__m128; BLOCK_SIZE_OS], // wavedata
+    pub dr:               [__m128; BLOCK_SIZE_OS], 
     pub out_l:             __m128 , 
     pub out_r:             __m128 , 
     pub dout_l:            __m128 , 
     pub dout_r:            __m128 ,
     pub out_2l:            __m128 , 
     pub out_2r:            __m128 , 
+
+    // fb_stereo only
     pub dout_2l:           __m128 , 
-    pub dout_2r:           __m128 , // fb_stereo only
+    pub dout_2r:           __m128 , 
 }
 
 impl Init for QuadFilterChainState {

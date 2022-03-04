@@ -35,8 +35,8 @@ pub fn rcp(mut x: f32) -> f32
 pub fn accumulate_block<NQ>(src: *mut f32, dst: *mut f32, nquads: NQ) 
     where <NQ as std::convert::TryInto<u32>>::Error: std::fmt::Debug,
           NQ: TryInto<u32>
-    // dst += src
 {
+    // dst += src
     let nquads: u32 = nquads.try_into().unwrap();
     for i in (0..nquads).step_by(4) {
 

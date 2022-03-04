@@ -40,12 +40,12 @@ pub extern fn run_host() {
     let info = instance.get_info();
 
     println!(
-        "Loaded '{}':\n\t\
-              Vendor: {}\n\t\
-              Presets: {}\n\t\
-              Parameters: {}\n\t\
-              VST ID: {}\n\t\
-              Version: {}\n\t\
+        "Loaded '{}':
+              Vendor: {}
+              Presets: {}
+              Parameters: {}
+              VST ID: {}
+              Version: {}
               Initial Delay: {} samples",
               info.name,
               info.vendor,

@@ -16,34 +16,6 @@ enhanced_enum![
     }
 ];
 
-/**
-  | Thus, we have a mystic who is also a highly
-  | ordered thinker.
-  |
-  | and yet -- all of his thinking is used, not to
-  | prove the correctness of his mind, but to prove
-  | the sublimity of the divine plan.
-  |
-  | In this, we have the use of mind, the use of
-  | words.
-  |
-  | and plotinus is said to have weeped over the
-  | sorrow of words:
-  |
-  | how little words can tell?
-  |
-  | how poor they are in the search for terms
-  | suitable to clear the human soul?
-  |
-  | and perhaps there is no one in antiquity who used
-  | words more lovingly, more beautifully, and more
-  | exactly than this man -- who would have been an
-  | inspiration to the best part of modern semntic
-  | thinking.
-  |
-  | -Manly Hall (on Plotinus)
-  |
-  */
 #[derive(Debug)]
 pub struct AdsrEnvelope {
     pub params:        AdsrParamArrayRT,

@@ -6,11 +6,20 @@ ix!();
 ///--------------------------------------------------------------------
 #[derive(Debug,Serialize,Deserialize)]
 pub struct FxChunkSetCustom {
-    pub chunk_magic:    u32, // 'CcnK'
-    pub byte_size:      u32, // of this chunk, excl magic + byte_size
-    pub fx_magic:       u32, // 'FPCh'
+
+    // 'CcnK'
+    pub chunk_magic:    u32, 
+
+    // of this chunk, excl magic + byte_size
+    pub byte_size:      u32, 
+
+    // 'FPCh'
+    pub fx_magic:       u32, 
+
     pub version:        u32,
-    pub fx_id:          u32, // fx unique id
+
+    // fx unique id
+    pub fx_id:          u32, 
     pub fx_version:     u32,
     pub num_programs:   u32,
     pub program_name:   [char; 28],

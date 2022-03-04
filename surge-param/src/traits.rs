@@ -145,8 +145,8 @@ pub trait Param: std::fmt::Debug {
 }
 
 pub trait ParameterDisplay {
-    fn get_display(&self, external: bool, ef: f32) -> String;
-    fn get_display_alt(&self, external: bool, ef: f32) -> String;
+    fn get_display(&self,     is_external: bool, ef: f32) -> String;
+    fn get_display_alt(&self, is_external: bool, ef: f32) -> String;
 }
 
 pub trait ConvertValueToFromNormalized {
@@ -166,13 +166,13 @@ pub trait GetSetModulation: std::fmt::Debug {
     fn get_param_val(&self) -> PData;
 
     fn get_value_f01(&self) -> f32;
-    fn set_value_f01(&mut self, v: f32, force_integer: bool);
+    fn set_value_f01(&mut self, v: f32, is_force_integer: bool);
 }
 
 pub trait BoundValue {
     fn limit_range(&mut self);
     //TODO: this implementation relies on ParameterSetUserData, which should be eliminated
-    fn bound_value(&mut self, force_integer: bool);
+    fn bound_value(&mut self, is_force_integer: bool);
 }
 
 pub trait Morph {
@@ -185,8 +185,8 @@ pub trait ParameterController {
     fn set_parameter01<P: Param + ?Sized>(&mut self,
         param: &mut P,
         value: f32,
-        external: bool,
-        force_integer: bool) -> bool;
+        is_external: bool,
+        is_force_integer: bool) -> bool;
 
     fn send_parameter_automation(&mut self, index: i64, value: f32);
     fn get_parameter01(&mut self, index: i64) -> f32;

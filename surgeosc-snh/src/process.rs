@@ -133,10 +133,14 @@ impl OscillatorProcess for SampleAndHoldOscillator {
 
         self.blitter.bufpos = (self.blitter.bufpos + BLOCK_SIZE_OS as i32) & (OB_LENGTH as i32 - 1);
 
-        // each block overlap FIR_IPOL_N samples into the next (due to impulses not being wrapped around
-        // the block edges copy the overlapping samples to the new block position
-
-        // only needed if the new self.blitter.bufpos == 0
+        // each block overlap FIR_IPOL_N samples
+        // into the next (due to impulses not
+        // being wrapped around the block edges
+        // copy the overlapping samples to the new
+        // block position
+        //
+        // only needed if the new
+        // self.blitter.bufpos == 0
         if self.blitter.bufpos == 0  {
 
             let mut overlap_l = unsafe { [z128![]; FIR_IPOL_N >> 2] };

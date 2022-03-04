@@ -36,7 +36,8 @@ impl<P: Param + ?Sized> BoundValue for ParamRT<P> {
                         a -= 1.0;
                     }
 
-                    b = 2.0_f32.powf(b); /* b = min(floor(b*2.f) / 2.f,floor(b*3.f) / 3.f); //was commented */
+                    /* b = min(floor(b*2.f) / 2.f,floor(b*3.f) / 3.f); //was commented */
+                    b = 2.0_f32.powf(b); 
 
                     match b {
                         _ if b > 1.41  => b = 1.5_f32.log2(),
@@ -44,7 +45,8 @@ impl<P: Param + ?Sized> BoundValue for ParamRT<P> {
                         _              => b = 0.0,
                     };
 
-                    self.val = PData::Float(a + b); /* val.f = floor(val.f * 4.f + 0.5f) / 4.f; // was commented*/
+                    /* val.f = floor(val.f * 4.f + 0.5f) / 4.f; // was commented*/
+                    self.val = PData::Float(a + b); 
                 }
 
                 if force_integer {

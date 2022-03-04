@@ -8,8 +8,9 @@ pub trait HandleStreamingMismatches {
 }
 
 pub trait AssignFM {
-    fn assign_fm(&mut self, _master_osc: *mut f32) {}
-    /* { self.master_osc = master_osc; } */
+    fn assign_fm(&mut self, _master_osc: *mut f32) {
+        /* self.master_osc = master_osc; */
+    }
 }
 
 pub trait SceneController {
@@ -25,7 +26,7 @@ pub trait Polyphony {
 }
 
 pub trait FXLoader {
-    fn load_fx(&mut self, initp: bool, force_reload_all: bool) -> bool ;
+    fn load_fx(&mut self, initp: bool, is_force_reload_all: bool) -> bool ;
     fn load_fx_needed(&mut self) -> bool ;
 }
 

@@ -58,7 +58,6 @@ impl<const N: usize> AllpassFilter<N> {
        */
 
     //question: does our allpass filter do this?
-
     let mut allpass = AllpassFilter::<8>::default();
     let mut signal  = Signal::white_noise(1024);
 

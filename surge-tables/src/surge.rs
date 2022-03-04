@@ -1,13 +1,6 @@
 ix!();
 
-use crate::{
-    *,
-    envelope::EnvelopeTables,
-    gain::GainTables,
-    sinc::SincTables,
-    sine::SineTables,
-    waveshape::WaveshapeTables,
-};
+use crate::*;
 
 #[derive(Debug,Clone)]
 #[repr(align(16))]

@@ -29,7 +29,6 @@ impl SurgeSynthesizer<'plugin_layer> {
 
         // store all possible NRPN & RPNs in a short array .. 
         // just amounts for 128kb or thereabouts anyway
-
         let return_now = match cc {
             0   => self.channel_controller_cc0(channel,cc,value),
             1   => self.channel_controller_cc1(channel,cc,fval),
@@ -42,10 +41,15 @@ impl SurgeSynthesizer<'plugin_layer> {
             99  => self.channel_controller_cc99(channel,cc,value),
             100 => self.channel_controller_cc100(channel,cc,value),
             101 => self.channel_controller_cc101(channel,cc,value),
-            120 /* all sound off */ | 123 /* all notes off */ => {
-                true
-            },
-            _ => /* no-op */ { false },
+
+            /* all sound off */ 
+            120 => { true },
+
+            /* all notes off */ 
+            123 => { true },
+
+            /* no-op */ 
+            _ => { false },
         };
 
         if return_now {

@@ -218,7 +218,8 @@ impl SurgeScene {
 
         let omega  = self.highpass.calc_omega( lowcut as f64 / 12.0);
 
-        self.highpass.coeff_hp( omega, 0.4); // var 0.707
+        // var 0.707
+        self.highpass.coeff_hp( omega, 0.4); 
 
         let l: *mut f32 = self.out.buf[0].as_mut_ptr();
         let r: *mut f32 = self.out.buf[1].as_mut_ptr();
@@ -282,5 +283,4 @@ impl SurgeScene {
     pub fn voice_sync_registers_from_qfb_cfg(&self) -> SyncQFBRegistersCfg {
         todo!();
     }
-
 }

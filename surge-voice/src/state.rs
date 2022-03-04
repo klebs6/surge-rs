@@ -29,11 +29,11 @@ impl SurgeVoiceState {
     pub fn get_pitch(&self) -> f32 
     {
         /* For this commented out section, see the comment on 
-         * MPE global pitch bend in SurgeSynthesizer::pitchBend */
+        * MPE global pitch bend in SurgeSynthesizer::pitchBend */
         self.key as f32 + 
-            /* mainChannelState->pitchBendInSemitones + */ 
-            unsafe{ (*self.voice_channel_state).pitchbend_in_semitones.0 } +
-                self.detune as f32
+        unsafe{ (*self.voice_channel_state).pitchbend_in_semitones.0 } +
+        self.detune as f32
+        /* + mainChannelState->pitchBendInSemitones */ 
     }
 
     pub fn set_portasrc_key(&mut self, 

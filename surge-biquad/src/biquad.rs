@@ -40,15 +40,14 @@ impl BiquadFilter {
 impl SetBlockSize for BiquadFilter {
 
     fn set_blocksize(&mut self, _bs: i32) {
-        //this was commented in the C
-        //but now we are using vlag.
-        //why? what is the difference?
         /*
-           self.a1.set_block_size(bs);
-           self.a2.set_block_size(bs);
-           self.b0.set_block_size(bs);
-           self.b1.set_block_size(bs);
-           self.b2.set_block_size(bs);
-           */
+        //this was commented in the C but now we are
+        //using vlag. why? what is the difference?
+        self.a1.set_block_size(bs);
+        self.a2.set_block_size(bs);
+        self.b0.set_block_size(bs);
+        self.b1.set_block_size(bs);
+        self.b2.set_block_size(bs);
+        */
     }
 }

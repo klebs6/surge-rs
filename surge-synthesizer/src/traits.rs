@@ -9,6 +9,7 @@ use crate::{
     N_OUTPUTS,
     PluginLayer,
 };
+
 //----------------------------------------------modunit
 
 pub trait ModUnitSet {
@@ -175,5 +176,3 @@ pub trait GetBlockSize {
     fn get_block_size(&mut self) 
         -> i32 { BLOCK_SIZE.try_into().unwrap() }
 }
-//----------------------------------------------modunit
-

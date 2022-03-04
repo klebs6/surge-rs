@@ -5,21 +5,33 @@ use crate::{
     VoiceToggleSoloCfg,
 };
 
-///this structure decouples SurgeVoice from SurgeScene.
-///Aside from breaking the cyclic dependency, 
-///we are essentially trading space for time.
-///this struct takes up a modest amount of memory, though 
-///access should be fast from each voice.
-///Additionally, we don't need a separate calculation for these parameters 
-///for each voice.
-///
-///So far, I have not measured any of these performance tradeoffs.
-///I decided to use a Runtime struct instead of embedding a backreference
-///to the scene (or trait implemented by Scene) in each voice.
-///If we need to use an indirection to access these fields,
-///better to leverage a struct which does not require circular 
-///dependency with SurgeScene.
-///
+/**
+  |this structure decouples SurgeVoice from
+  |SurgeScene.
+  |
+  |Aside from breaking the cyclic dependency, we
+  |are essentially trading space for time.
+  |
+  |this struct takes up a modest amount of memory,
+  |though access should be fast from each voice.
+  |
+  |Additionally, we don't need a separate
+  |calculation for these parameters for each
+  |voice.
+  |
+  |So far, I have not measured any of these
+  |performance tradeoffs.
+  |
+  |I decided to use a Runtime struct instead of
+  |embedding a backreference to the scene (or
+  |trait implemented by Scene) in each voice.
+  |
+  |If we need to use an indirection to access
+  |these fields, better to leverage a struct which
+  |does not require circular dependency with
+  |SurgeScene.
+  |
+  */
 pub struct VoiceRuntime {
     pub filterblock_cfg:          FilterBlockConfiguration,
     pub drift:                    f32,

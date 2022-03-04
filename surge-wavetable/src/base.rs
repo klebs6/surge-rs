@@ -1,11 +1,6 @@
 ix!();
 
-use crate::{
-    WaveTableHeader,
-    WaveTableProperties,
-    WaveTableDim,
-    hardcoded_wavetables::BASIC_SINE_WAVE,
-};
+use crate::*;
 
 pub trait WaveTableData = 
 Zero 
@@ -14,7 +9,7 @@ Zero
 + Clone 
 + hound::Sample 
 + MaybeSaturatingMul 
-+ Mul<Output = Self>;
++ Mul<Output=Self>;
 
 #[derive(Debug,Clone)]
 pub struct WaveTableBase<T: WaveTableData> {

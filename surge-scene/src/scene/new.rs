@@ -68,7 +68,9 @@ impl SurgeScene {
             highpass:      BiquadFilter::new(ctor.tuner,ctor.tables,ctor.srunit),
             fbq:           box QuadFilterChain::new(MAX_VOICES >> 2, ctor.tables),
             voices:        vec![], 
-            voices_array:  std::pin::Pin::new(box [ //MAX_VOICES = 64
+
+            //MAX_VOICES = 64
+            voices_array:  std::pin::Pin::new(box [ 
                 None, None, None, None, None, None, None, None,
                 None, None, None, None, None, None, None, None,
                 None, None, None, None, None, None, None, None,

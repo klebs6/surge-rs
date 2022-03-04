@@ -46,10 +46,10 @@ pub fn get_fn_process_quad(fbc: FilterBlockConfiguration, x: &FbqGlobal)
 }
 
 #[test] fn does_this_work() {
-    //you betcha
-    //^old. now it is broken again :)
 
     /*
+    //you betcha
+    //^old. now it is broken again :/
     let a: bool = true;
     let b: bool = false;
     let c: bool = true;
@@ -60,6 +60,5 @@ pub fn get_fn_process_quad(fbc: FilterBlockConfiguration, x: &FbqGlobal)
         std::ptr::null_mut(), 
         std::ptr::null_mut());
     */
-
+    todo!();
 }
-
