@@ -6,12 +6,14 @@ mod clamp_benches {
     use test::Bencher;
     import_all!();
     #[bench] fn bench_limit_range(b: &mut Bencher) {
-        b.iter(|| {
-            let x: f32 = 100.0 * rand11();
-            let min: f32 = -25.0;
-            let max: f32 = 25.0;
-            let y = limit_range(x,min,max);
-        })
+        b.iter(
+            || {
+                let x: f32 = 100.0 * rand11();
+                let min: f32 = -25.0;
+                let max: f32 = 25.0;
+                let y = limit_range(x,min,max);
+            }
+        )
     }
     #[bench] fn bench_limit_range_nosimd(b: &mut Bencher) {
         b.iter(|| {

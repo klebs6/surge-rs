@@ -79,6 +79,7 @@ impl crate::HalfRateFilterSSE {
     }
 
     pub fn load_softer_rejection80db_tband0_05(&mut self) {
+
         // rejection=80db, transition band=0.05
         let mut a_coefficients: [f64; 3] = [
             0.06029739095712437, 0.4125907203610563, 
@@ -121,6 +122,7 @@ impl crate::HalfRateFilterSSE {
         let mut a_coefficients: [f64; 1] = [
             0.23647102099689224
         ];
+
         let mut b_coefficients: [f64; 1] = [
             0.7145421497126001
         ];

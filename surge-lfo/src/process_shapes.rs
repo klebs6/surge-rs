@@ -82,68 +82,19 @@ impl Lfo {
 
         match deform {
             deform if deform > 0.5 => {
-
-                let linear: f32 = 
-                    (1.0 - self.phase) * self.wf_history[2] 
-                    + self.phase * self.wf_history[1];
-
-                let cubic: f32 = cubic_interpolate(
-                    self.wf_history[3], self.wf_history[2], 
-                    self.wf_history[1], self.wf_history[0], 
-                    self.phase);
-
-                self.iout = 
-                    (2.0 - 2.0 * deform) * linear 
-                    + (2.0 * deform - 1.0) * cubic;
-
+                x
             },
 
             deform if deform > -0.0001 => {
-
-                let cf: f32 = std::cmp::max(
-                    FloatOrd(0.0), 
-                    std::cmp::min(
-                        FloatOrd(
-                            self.phase 
-                            / (2.0 * deform + 0.00001)
-                        ), 
-                        FloatOrd(1.0))).0;
-
-                self.iout = 
-                    (1.0 - cf) * self.wf_history[2] 
-                    + cf * self.wf_history[1];
-
+                x
             },
 
             deform if deform > -0.5 => {
-
-                let cf: f32 = std::cmp::max(
-                    FloatOrd(0.0), 
-                    std::cmp::min(
-                        FloatOrd(
-                            (1.0 - self.phase) 
-                            / (-2.0 * deform + 0.00001)
-                        ), 
-                        FloatOrd(1.0))).0;
-
-                self.iout = 
-                    (1.0 - cf) * 0.0 
-                    + cf * self.wf_history[1];
+                x
             },
 
             _ => {
-
-                let cf: f32 = std::cmp::max(
-                    FloatOrd(0.0), 
-                    std::cmp::min(
-                        FloatOrd(
-                            self.phase 
-                            / (2.0 + 2.0 * deform + 0.00001)), 
-                        FloatOrd(1.0))).0;
-
-                self.iout = 
-                    (1.0 - cf) * self.wf_history[1] 
-                    + cf * 0.0;
+                x
             },
         }
     }

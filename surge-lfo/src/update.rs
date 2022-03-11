@@ -50,7 +50,7 @@ impl Lfo {
 
             LfoMode::Random => {
                 self.phase = rand01();
-                self.step = ((((rand01() as i32) % self.stepsequencer.loop_end) as usize) & (N_STEPSEQUENCER_STEPS - 1)) as isize;
+                self.step  = ((((rand01() as i32) % self.stepsequencer.loop_end) as usize) & (N_STEPSEQUENCER_STEPS - 1)) as isize;
             },
 
             LfoMode::FreeRun => {

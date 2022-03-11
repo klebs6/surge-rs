@@ -125,6 +125,7 @@ impl SynthInputHandle {
         <IDX as TryInto<isize>>::Error: Debug
     { 
         let idx: isize = idx.try_into().unwrap(); 
+
         unsafe { 
             self.inner.borrow().audio_in_non_os.index_axis(Axis(0),1).as_ptr().offset(idx)
         }
@@ -136,6 +137,7 @@ impl SynthInputHandle {
         <IDX as TryInto<isize>>::Error: Debug
     { 
         let idx: isize = idx.try_into().unwrap(); 
+
         unsafe {
             *self.inner.borrow_mut().audio_in.index_axis_mut(Axis(0),0).as_mut_ptr().offset(idx)
         }
@@ -147,6 +149,7 @@ impl SynthInputHandle {
         <IDX as TryInto<isize>>::Error: Debug
     { 
         let idx: isize = idx.try_into().unwrap(); 
+
         unsafe {
             *self.inner.borrow_mut().audio_in.index_axis_mut(Axis(0),1).as_mut_ptr().offset(idx)
         }

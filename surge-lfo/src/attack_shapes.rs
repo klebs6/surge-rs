@@ -22,17 +22,22 @@ impl Lfo {
     }
 
     #[inline] pub fn attack_shape_sine(&mut self) {
+
         if pvalb![self.params[LfoParam::Unipolar]] { 
             self.phase += 0.75; 
         }
+
         if self.phase > 1.0 { 
             self.phase -= 1.0; 
         }
     }
 
     #[inline] pub fn attack_shape_tri(&mut self) {
+
         if ! pvalb![self.params[LfoParam::Unipolar]] {
+
             self.phase += 0.25;
+
             if self.phase > 1.0 {
                 self.phase -= 1.0;
             }
@@ -81,6 +86,7 @@ impl Lfo {
         self.noise   = 0.0;
         self.noised1 = 0.0;
         self.target  = 0.0;
+
         self.iout    = correlated_noise_o2mk2(
             self.target, 
             self.noised1, 

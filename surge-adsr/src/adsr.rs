@@ -46,8 +46,8 @@ impl AdsrEnvelope {
     {
         //note, there was some other commented logic here before the port
         self.scalestage = self.output;
-        self.phase = 1.0;
-        self.envstate = AdsrState::UberRelease;
+        self.phase      = 1.0;
+        self.envstate   = AdsrState::UberRelease;
     }
 
     pub fn is_idle(&self) -> bool 

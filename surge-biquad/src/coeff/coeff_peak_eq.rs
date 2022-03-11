@@ -11,7 +11,7 @@ impl BiquadCoeffEQ for BiquadFilter {
     fn coeff_peak_eq(&mut self, 
         omega: f64, mut bandwidth: f64, gain: f64)
     {
-        let mut g: f64 = self.tables.db_to_linear(gain as f32).into();
+        let mut g: f64 = self.tables.db_to_linear(gain as f32);
         let gb:    f64 = self.tables.db_to_linear(gain as f32 * 0.5).into();
         let g0:    f64 = 1.0;
 

@@ -41,23 +41,46 @@ impl AdsrEnvelope {
             let mut discharge:    __m128 = _mm_load_ss(&self._discharge);
 
             // attack->decay switch at 1 volt
-            let one:              __m128 = _mm_set_ss(1.0); 
-            let v_cc_vec:         __m128 = _mm_set_ss(v_cc);
+            let one:      __m128 = _mm_set_ss(1.0); 
+            let v_cc_vec: __m128 = _mm_set_ss(v_cc);
 
-            let v_gate:    __m128 = match gate { true => _mm_set_ss(v_cc), false => _mm_set_ss(0.0) };
-            let v_is_gate: __m128 = _mm_cmpgt_ss( v_gate, _mm_set_ss( 0.0 ) );
+            let v_gate: __m128 = match gate { 
+                true  => _mm_set_ss(v_cc),
+                false => _mm_set_ss(0.0)
+            };
+
+            let v_is_gate: __m128 = _mm_cmpgt_ss(
+                v_gate,
+                _mm_set_ss(0.0)
+            );
 
             // The original code here was
+            //
             // _mm_and_ps(_mm_or_ps(_mm_cmpgt_ss(v_c1_delayed, one), discharge), v_gate);
-            // which ored in the v_gate value as opposed to the boolean
-            discharge = _mm_and_ps( _mm_or_ps(_mm_cmpgt_ss(v_c1_delayed, one), discharge), v_is_gate );
+            //
+            // which ored in the v_gate value as
+            // opposed to the boolean
+            //
+            discharge = _mm_and_ps( 
+                _mm_or_ps(
+                    _mm_cmpgt_ss(v_c1_delayed, one),
+                    discharge
+                ),
+                v_is_gate 
+            );
 
             v_c1_delayed = v_c1;
 
             let mut sustain:     __m128 = _mm_load_ss(&lc_s);
             sustain = _mm_mul_ss(sustain, sustain);
+
             let v_attack:  __m128 = _mm_andnot_ps(discharge, v_gate);
-            let v_decay:   __m128 = _mm_or_ps(_mm_andnot_ps(discharge, v_cc_vec), _mm_and_ps(discharge, sustain));
+
+            let v_decay:   __m128 = _mm_or_ps(
+                _mm_andnot_ps(discharge, v_cc_vec), 
+                _mm_and_ps(discharge, sustain)
+            );
+
             let v_release: __m128 = v_gate;
 
             let diff_v_a:  __m128 = _mm_max_ss(_mm_setzero_ps(), _mm_sub_ss(v_attack, v_c1));
@@ -65,7 +88,7 @@ impl AdsrEnvelope {
             // This change from a straight min allows sustain swells
             let diff_vd_kernel:     __m128 = _mm_sub_ss(v_decay, v_c1);
             let diff_vd_kernel_min: __m128 = _mm_min_ss(_mm_setzero_ps(), diff_vd_kernel );
-            let dis_and_gate:       __m128 = _mm_and_ps(discharge, v_is_gate );
+            let dis_and_gate:       __m128 = _mm_and_ps(discharge, v_is_gate);
             let diff_v_d:           __m128 = _mm_or_ps(
                 _mm_and_ps(dis_and_gate, diff_vd_kernel), 
                 _mm_andnot_ps(dis_and_gate, diff_vd_kernel_min)
@@ -74,8 +97,8 @@ impl AdsrEnvelope {
             let diff_v_r: __m128 = _mm_min_ss(_mm_setzero_ps(), _mm_sub_ss(v_release, v_c1));
 
             // calculate coefficients for envelope
-            let _shortest:     f32 = 6.0;
-            let _longest:      f32 = -2.0;
+            let _shortest:    f32 = 6.0;
+            let _longest:     f32 = -2.0;
             let coeff_offset: f32 = 2.0 - (self.srunit.samplerate() / BLOCK_SIZE as f32).log2();
 
             let temposyncratio_a:  f32 = tsyncratio![self,Attack];
@@ -83,8 +106,12 @@ impl AdsrEnvelope {
             let _temposyncratio_s: f32 = tsyncratio![self,Sustain];
             let temposyncratio_r:  f32 = tsyncratio![self,Release];
 
-            let coef_a: f32 = 2.0_f32.powf(std::cmp::min(FloatOrd(0.0), 
-                    FloatOrd(coeff_offset - lc_a * temposyncratio_a)).0);
+            let coef_a: f32 = 2.0_f32.powf(
+                std::cmp::min(
+                    FloatOrd(0.0), 
+                    FloatOrd(coeff_offset - lc_a * temposyncratio_a)
+                ).0
+            );
 
             let coef_d: f32 = 2.0_f32.powf(std::cmp::min(FloatOrd(0.0), 
                     FloatOrd(coeff_offset - lc_d * temposyncratio_d)).0);

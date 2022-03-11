@@ -81,7 +81,7 @@ impl ModulationSourceControl for AdsrEnvelope {
     }
 
     fn release(&mut self) {
-       //note, there was some other commented logic here before the port
+        //note, there was some other commented logic here before the port
         self.scalestage = self.output as f32;
         self.phase      = 1.0;
         self.envstate   = AdsrState::Release;

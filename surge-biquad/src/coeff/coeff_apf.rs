@@ -10,7 +10,6 @@ impl BiquadCoeffAPF for BiquadFilter {
 
     fn coeff_apf(&mut self, omega: f64, quality_factor: f64)
     {
-
         if !(0.0..=PI).contains(&omega) {
 
             self.set_coef(

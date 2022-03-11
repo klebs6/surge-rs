@@ -77,23 +77,20 @@ where
     let x_min: __m128 = _mm_set1_ps(-8.0);
     let x_max: __m128 = _mm_set1_ps(8.0);
 
-    for i in (0_usize..(nquads << 2)).step_by(8)
-    {
-        _mm_store_ps(
-            x.add(i), 
-            _mm_max_ps(
-                _mm_min_ps(
-                    _mm_load_ps(x.add(i)), 
-                    x_max), 
-                x_min));
+    let do_clip = |x_in: *mut f32| {
 
-        _mm_store_ps(
-            x.add(i + 4), 
-            _mm_max_ps(
-                _mm_min_ps(
-                    _mm_load_ps(x.add(i + 4)), 
-                    x_max), 
-                x_min));
+        let elem = _mm_load_ps(x_in);
+
+        let clipped = 
+            _mm_max_ps(_mm_min_ps(elem,x_max), min);
+
+        _mm_store_ps( x_in, clipped);
+    };
+
+    for i in (0_usize..(nquads << 2)).step_by(8) 
+    {
+        do_clip(x.add(i));
+        do_clip(x.add(i + 4));
     }
 }
 
