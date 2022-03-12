@@ -10,4 +10,3 @@
     x.reset();
     x.process();
 }
-

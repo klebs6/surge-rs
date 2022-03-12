@@ -1,13 +1,81 @@
 ix!();
 
-use crate::{
-    LipolPs,
-};
+use crate::*;
+
+#[inline] unsafe fn access(x: *mut f32, idx: usize) -> *mut __m128 {
+    (x as *mut __m128).add(idx)
+}
 
 impl LipolPs {
 
-    /// panning that always lets both channels through unattenuated 
-    /// (seperate hard-panning)
+    /**
+      | left = (1-a)*left - b*right
+      |
+      */
+    #[inline] unsafe fn trixpan_left(
+        a:     &__m128,
+        b:     &__m128,
+        left:  *const __m128,
+        right: *const __m128) -> __m128 {
+
+        let one = m128_one![];
+
+        _mm_sub_ps(
+            _mm_mul_ps(
+                _mm_sub_ps(one, *a), 
+                *left
+            ),
+            _mm_mul_ps(
+                *b, 
+                *right
+            )
+        )
+    }
+
+    /**
+      | right = a*left + (1+b)*right
+      |
+      */
+    #[inline] unsafe fn trixpan_right(
+        a:     &__m128,
+        b:     &__m128,
+        left:  *const __m128,
+        right: *const __m128) -> __m128 {
+
+        let one = m128_one![];
+
+        _mm_add_ps(
+            _mm_mul_ps(
+                *a, 
+                *left
+            ), 
+            _mm_mul_ps(
+                _mm_add_ps(one, *b), 
+                *right
+            )
+        )
+    }
+
+    #[inline] unsafe fn trixpan_blocks_do_quad(
+        left:  *mut __m128,
+        right: *mut __m128,
+        d_l:   *mut __m128,
+        d_r:   *mut __m128,
+        y:     &mut __m128,
+        dy:    &mut __m128) {
+
+        let a: __m128 = _mm_max_ps(z128![], *y);
+        let b: __m128 = _mm_min_ps(z128![], *y);
+
+        *d_l = Self::trixpan_left(&a, &b,left,right);
+        *d_r = Self::trixpan_right(&a,&b,left,right);
+
+        *y = _mm_add_ps(*y, *dy);
+    }
+
+    /// panning that always lets both channels
+    /// through unattenuated (seperate
+    /// hard-panning)
     ///
     /// # Safety
     ///
@@ -24,38 +92,26 @@ impl LipolPs {
     {
         let nquads: usize = nquads.try_into().unwrap();
 
-        let mut y: __m128 = z128![];
+        let mut y:  __m128 = z128![];
         let mut dy: __m128 = z128![];
+
         self.initblock(&mut y, &mut dy);
 
         for idx in 0..nquads 
         {
-            let a: __m128 = _mm_max_ps(z128![], y);
-            let b: __m128 = _mm_min_ps(z128![], y);
+            let left  = access(left,idx);
+            let right = access(right,idx);
+            let d_l   = access(d_l,idx);
+            let d_r   = access(d_r,idx);
 
-            let t_l: __m128 = _mm_sub_ps(
-                _mm_mul_ps(
-                    _mm_sub_ps(m128_one![], a), 
-                    *(left as *mut __m128).add(idx)
-                ),
-                _mm_mul_ps(
-                    b, 
-                    *(right as *mut __m128).add(idx)
-                )
-            ); // left = (1-a)*left - b*right
-
-            let t_r: __m128 = _mm_add_ps(
-                _mm_mul_ps(a, *(left as *mut __m128).add(idx)), 
-                _mm_mul_ps(
-                    _mm_add_ps(m128_one![], b), 
-                    *(right as *mut __m128).add(idx)
-                )
-            ); // right = a*left + (1+b)*right
-
-            *(d_l as *mut __m128).add(idx) = t_l;
-            *(d_r as *mut __m128).add(idx) = t_r;
-
-            y = _mm_add_ps(y, dy);
+            Self::trixpan_blocks_do_quad(
+                left,
+                right,
+                d_l,
+                d_r,
+                &mut y,
+                &mut dy
+            )
         }
     }
 }
