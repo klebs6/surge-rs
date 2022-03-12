@@ -84,7 +84,16 @@ impl SurgeScene {
         timeunit: TimeUnitHandle, 
         tables:   TablesHandle,
     ) -> MaybeBoxedModulationSource {
-        Some(Box::new(ModulationSource::Lfo(Lfo::new(timeunit.clone(),tables.clone()))))
+        Some(
+            Box::new(
+                ModulationSource::Lfo(
+                    Lfo::new(
+                        timeunit.clone(),
+                        tables.clone()
+                    )
+                )
+            )
+        )
     }
 
     pub fn new_modsources(

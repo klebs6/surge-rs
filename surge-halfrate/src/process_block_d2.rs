@@ -139,5 +139,4 @@ impl ProcessBlockD2 for crate::HalfRateFilterSSE {
             }
         }
     }
-
 }

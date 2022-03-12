@@ -2,6 +2,50 @@ ix!();
 
 use crate::HALFRATE_BLOCK_SIZE;
 
+/**
+  | fill the buffer with interleaved stereo
+  | samples
+  |
+  */
+fn create_work_buffer(
+    l_in:     *mut __m128, 
+    r_in:     *mut __m128, 
+    nsamples: usize) -> A1d::<__m128> {
+
+    let mut o = A1d::<__m128>::from_elem(HALFRATE_BLOCK_SIZE, unsafe { z128![] });
+
+    let shuf0 = _MM_SHUFFLE(0,0,0,0);
+    let shuf1 = _MM_SHUFFLE(1,1,1,1);
+    let shuf2 = _MM_SHUFFLE(2,2,2,2);
+    let shuf3 = _MM_SHUFFLE(3,3,3,3);
+
+    for k in (0..nsamples).step_by(8) {
+
+        //[o3,o2,o1,o0] = [L0,L0,R0,R0]
+        unsafe {
+
+            let l = l_in.add(k >> 3);
+            let r = r_in.add(k >> 3);
+
+            let fill = |offset: usize, shuf| {
+                o[k + offset]     = _mm_shuffle_ps(*l, *r, shuf); 
+                o[k + offset + 1] = _mm_setzero_ps();
+            };
+
+            fill(0,shuf0);
+            fill(2,shuf1);
+            fill(4,shuf2);
+            fill(6,shuf3);
+        }
+    }
+
+    o
+}
+
+fn access_lanes(x: *mut f32) -> *mut __m128 {
+    x as *mut __m128
+}
+
 impl ProcessBlockU2 for crate::HalfRateFilterSSE {
 
     fn process_block_upsample_by_two(&mut self, 
@@ -13,28 +57,13 @@ impl ProcessBlockU2 for crate::HalfRateFilterSSE {
     {
         let nsamples = nsamples.unwrap_or(64);
 
-        let l: *mut __m128 = l as *mut __m128;
-        let r: *mut __m128 = r as *mut __m128;
+        let l = access_lanes(l);
+        let r = access_lanes(r);
 
-        let l_in: *mut __m128 = l_in as *mut __m128;
-        let r_in: *mut __m128 = r_in as *mut __m128;
+        let l_in = access_lanes(l_in);
+        let r_in = access_lanes(r_in);
 
-        let mut o = A1d::<__m128>::from_elem(HALFRATE_BLOCK_SIZE, unsafe { z128![] });
-
-        // fill the buffer with interleaved stereo samples
-        for k in (0..nsamples).step_by(8) {
-            //[o3,o2,o1,o0] = [L0,L0,R0,R0]
-            unsafe {
-                o[k] = _mm_shuffle_ps(*l_in.add(k >> 3), *r_in.add(k >> 3), _MM_SHUFFLE(0, 0, 0, 0));
-                o[k + 1] = _mm_setzero_ps();
-                o[k + 2] = _mm_shuffle_ps(*l_in.add(k >> 3), *r_in.add(k >> 3), _MM_SHUFFLE(1, 1, 1, 1));
-                o[k + 3] = _mm_setzero_ps();
-                o[k + 4] = _mm_shuffle_ps(*l_in.add(k >> 3), *r_in.add(k >> 3), _MM_SHUFFLE(2, 2, 2, 2));
-                o[k + 5] = _mm_setzero_ps();
-                o[k + 6] = _mm_shuffle_ps(*l_in.add(k >> 3), *r_in.add(k >> 3), _MM_SHUFFLE(3, 3, 3, 3));
-                o[k + 7] = _mm_setzero_ps();
-            }
-        }
+        let o = create_work_buffer(l_in, r_in, nsamples);
 
         // process filters
         for j in 0..self.m {
