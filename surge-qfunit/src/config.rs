@@ -23,6 +23,7 @@ pub fn get_fn_process_quad(fbc: FilterBlockConfiguration, x: &FbqGlobal)
             }
         };
     }
+
     use crate::{
         do_serial1,
         do_serial2,
@@ -33,7 +34,8 @@ pub fn get_fn_process_quad(fbc: FilterBlockConfiguration, x: &FbqGlobal)
         do_ring,
         do_wide
     };
-    box match fbc {
+
+    Box::new(match fbc {
         FilterBlockConfiguration::Serial1 => { dispatch![do_serial1, a, ws, b] },
         FilterBlockConfiguration::Serial2 => { dispatch![do_serial2, a, ws, b] },
         FilterBlockConfiguration::Serial3 => { dispatch![do_serial3, a, ws, b] },
@@ -42,7 +44,7 @@ pub fn get_fn_process_quad(fbc: FilterBlockConfiguration, x: &FbqGlobal)
         FilterBlockConfiguration::Stereo  => { dispatch![do_stereo,  a, ws, b] },
         FilterBlockConfiguration::Ring    => { dispatch![do_ring,    a, ws, b] },
         FilterBlockConfiguration::Wide    => { dispatch![do_wide,    a, ws, b] },
-    }
+    })
 }
 
 #[test] fn does_this_work() {

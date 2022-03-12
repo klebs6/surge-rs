@@ -109,6 +109,7 @@ pub trait Param: std::fmt::Debug {
     }
 
     fn get_extended(&self, f: f32) -> f32 {
+
         if ! self.extend_range() {
             f
         }else {
@@ -125,9 +126,11 @@ pub trait Param: std::fmt::Debug {
     }
 
     fn get_default_value_f01(&self) -> f32 {
+
         if self.control_type() == ControlType::Nil {
             return 0.0
         }
+
         match ( self.default_value(), self.min_value(), self.max_value() ) {
 
             (PData::Float(default), PData::Float(min), PData::Float(max)) => {

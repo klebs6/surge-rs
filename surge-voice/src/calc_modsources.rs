@@ -31,7 +31,7 @@ impl SurgeVoice {
             x.process_block();
         }
 
-        if let Some(box ModulationSource::AdsrEnvelope(ref mut envelope)) = &mut self.modsources[ModSource::AmpEg] {
+        if let Some(Box::new(ModulationSource::AdsrEnvelope(ref mut envelope))) = &mut self.modsources[ModSource::AmpEg] {
             if envelope.is_idle() {
                 self.state.keep_playing = false;
             }
@@ -48,7 +48,7 @@ impl SurgeVoice {
                 match self.modsources[src].as_ref() {
                     Some(ref src) => {
                         match src {
-                            box ModulationSource::ControllerModulationSource(_x) => {
+                            Box::new(ModulationSource::ControllerModulationSource(_x)) => {
                                 Some(src.get_output() as f32)
                             },
                             _ => None,

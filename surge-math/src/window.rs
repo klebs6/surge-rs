@@ -56,9 +56,11 @@ pub fn hamming< T: WindowInput>(i: T, n: i32)
 {
     let i: f64 = i.into();
     let n: f64 = n.into();
+
     if i >= n {
         return 0.0;
     }
+
     0.54 - 
         0.46 * (2.0 * PI * i / (n - 1.0)).cos()
 }
@@ -68,9 +70,11 @@ pub fn hanning< T: WindowInput >( i: T, n: i32)
 {
     let i: f64 = i.into();
     let n: f64 = n.into();
+
     if i >= n {
         return 0.0;
     }
+
     0.5 * 
         (1.0 - (2.0 * PI * i / (n - 1.0)).cos())
 }

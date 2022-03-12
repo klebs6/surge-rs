@@ -14,7 +14,10 @@ impl SurgeScene {
         _velocity: u8, 
         _detune: u8) 
     {
-        if self.get_non_released_voices() == 0 {
+
+        let non_released_voices = self.get_non_released_voices();
+
+        if non_released_voices == 0 {
 
             for l in 0..N_LFOS_PER_SCENE {
 

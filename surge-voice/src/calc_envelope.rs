@@ -30,14 +30,14 @@ impl SurgeVoice {
         let (retrigger_aeg, retrigger_feg) = self.get_envelope_retrigger_gates();
 
         if retrigger_aeg {
-            if let Some(box ModulationSource::AdsrEnvelope(ref mut adsr)) = 
+            if let Some(Box::new(ModulationSource::AdsrEnvelope(ref mut adsr))) = 
                 &mut self.modsources[ModSource::AmpEg] {
                     adsr.retrigger();
             }
         }
 
         if retrigger_feg {
-            if let Some(box ModulationSource::AdsrEnvelope(ref mut adsr)) = 
+            if let Some(Box::new(ModulationSource::AdsrEnvelope(ref mut adsr))) = 
                 &mut self.modsources[ModSource::FilterEg] {
                     adsr.retrigger();
             }

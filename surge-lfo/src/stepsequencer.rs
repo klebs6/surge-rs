@@ -12,5 +12,3 @@ pub struct StepSequencer {
 }
 
 default_default![StepSequencer];
-
-

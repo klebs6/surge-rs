@@ -33,6 +33,7 @@ impl SurgeVoice {
                 self.octave_size = self.tuner.current_scale_count();
             }
         }
+
         self.octave_size as f64
     }
 

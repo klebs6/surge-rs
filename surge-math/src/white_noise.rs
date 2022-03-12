@@ -67,14 +67,20 @@ impl Signal {
     }
 
     pub fn average_power_time_domain(&self) -> f64 {
+
         let n = self.data.dim();
+
         let sum: f64 = self.data.map(|x| x.abs().pow(2)).iter().sum();
+
         sum / (n as f64)
     }
 
     pub fn average_power_freq_domain(&self) -> f64 {
+
         let plan = Plan::new(Operation::Forward, self.data.dim());
+
         let mut data = self.data.clone();
+
         dft::transform(data.as_slice_mut().unwrap(), &plan);
 
         let n = data.dim();

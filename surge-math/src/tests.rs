@@ -63,6 +63,7 @@ pub mod test {
     }
 
     #[test] fn test_clamp1bp() {
+
         let x: f64 = 1e-31;
         assert!(clamp1_bipolar(x) == 1e-31);
 
@@ -74,6 +75,7 @@ pub mod test {
     }
 
     #[test] fn test_flush_denormal() {
+
         let mut f: f64 = 1e-31;
         flush_denormal(&mut f);
         assert!(f == 0.0);
@@ -84,9 +86,11 @@ pub mod test {
     }
 
     #[test] fn test_split_float() {
+
         let f: f32 = 5.39239;
         let (integral, fractional) = split_float(f);
         let fractional_diff = fractional.abs() - 0.39239; //fp error
+        
         println!("integral:        {}",integral);
         println!("fractional:      {}",fractional);
         println!("fractional_diff: {}",fractional_diff);
@@ -96,9 +100,11 @@ pub mod test {
     }
 
     #[test] fn test_split_float_negative() {
+
         let f: f32 = -5.39239;
         let (integral, fractional) = split_float(f);
         let fractional_diff = fractional.abs() - 0.39239; //fp error
+        
         println!("integral:        {}",integral);
         println!("fractional:      {}",fractional);
         println!("fractional_diff: {}",fractional_diff);

@@ -16,7 +16,7 @@ impl SurgeVoice {
         {
             let key      = self.state.key;
 
-            if let Some(box ModulationSource::ControllerModulationSource(ref mut x)) = 
+            if let Some(Box::new(ModulationSource::ControllerModulationSource(ref mut x))) = 
                 &mut self.modsources[ModSource::PolyphonicAfterTouch] 
             {
                 let target = 

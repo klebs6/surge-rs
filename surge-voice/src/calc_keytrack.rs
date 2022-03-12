@@ -16,7 +16,7 @@ impl SurgeVoice {
 
         let keytrack_f = (self.state.pitch - keytrack_root) * (ONE_TWELFTH as f64);
 
-        if let Some(box ModulationSource::ControllerModulationSource(ref mut ms)) = 
+        if let Some(Box::new(ModulationSource::ControllerModulationSource(ref mut ms))) = 
             &mut self.modsources[ModSource::KeyTrack] {
                 // I didn't change this for octaveSize, I think rightly
                 ms.set_output(keytrack_f);
