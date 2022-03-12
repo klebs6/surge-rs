@@ -47,6 +47,4 @@ pub struct SurgeScene {
     pub release_if_latched:    bool,
     pub release_anyway:        bool,
     pub switch_toggled_queued: bool,
-
 }
-

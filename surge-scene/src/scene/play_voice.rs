@@ -20,7 +20,9 @@ impl SurgeScene {
 
                 let ms = ModSource::scene_lfo(l);
 
-                self.modsources[ms].as_mut().unwrap().attack();
+                let source = self.modsources[ms];
+
+                source.as_mut().unwrap().attack();
             }
         }
 

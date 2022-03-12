@@ -53,7 +53,10 @@ impl FXUnit {
 
         let mut something_changed: bool = false;
 
-        for (idx, effect) in self.fx.iter_mut().enumerate() {
+        let iter = self.fx.iter_mut();
+
+        for (idx, effect) in iter.enumerate() {
+
             if self.fx_reload[idx] || force_reload_all 
             {
                 effect.init();
@@ -64,6 +67,7 @@ impl FXUnit {
                 something_changed = true;
             }
         }
+
         something_changed
     }
 }

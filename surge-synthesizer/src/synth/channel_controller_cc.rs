@@ -111,6 +111,7 @@ impl SurgeSynthesizer<'plugin_layer> {
                 }
             },
         }
+
         true
     }
 

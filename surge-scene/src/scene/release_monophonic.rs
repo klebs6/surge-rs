@@ -35,15 +35,18 @@ impl SurgeScene {
 
         let voice = &mut self.voices[voice_idx];
 
-        // input these modes, our job when we release a note is to see if
-        // any ohter note is held.
+        // input these modes, our job when we
+        // release a note is to see if any ohter
+        // note is held.
         // 
-        // input normal midi mode, that means scanning the keystate of our
-        // channel looking for another note.
+        // input normal midi mode, that means
+        // scanning the keystate of our channel
+        // looking for another note.
         // 
-        // input MPE mode, where each note is per channel, that means
-        // scanning all non-main channels rather than ourself for the
-        // highest note
+        // input MPE mode, where each note is per
+        // channel, that means scanning all
+        // non-main channels rather than ourself
+        // for the highest note
         if voice.borrow().state.key == (cfg.key as i32) && 
             voice.borrow().state.channel == (cfg.channel as i32) 
         {

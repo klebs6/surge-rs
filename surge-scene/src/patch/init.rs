@@ -43,7 +43,6 @@ impl SaveInto for SurgePatch {
     fn save_into(&mut self, _bytes: &mut Vec<u8>) -> PatchDataSize {
         todo!();
     }
-
 }
 
 impl crate::PatchLoad for SurgePatch {

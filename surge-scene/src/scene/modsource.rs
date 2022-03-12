@@ -43,14 +43,16 @@ impl SurgeScene {
         let keytrack0      = self.filterunit_keytrack(0);
         let keytrack1      = self.filterunit_keytrack(1);
 
-        self.filterunit[1].params[FilterParam::Cutoff].val        = PData::Float(cutoff1        + polarity * cutoff0);
-        self.filterunit[1].params[FilterParam::EnvelopeMode].val  = PData::Float(envelope_mode1 + polarity * envelope_mode0);
-        self.filterunit[1].params[FilterParam::KeyTrack].val      = PData::Float(keytrack1      + polarity * keytrack0);
+        let unit = self.filterunit[1];
+
+        unit.params[FilterParam::Cutoff].val        = PData::Float(cutoff1        + polarity * cutoff0);
+        unit.params[FilterParam::EnvelopeMode].val  = PData::Float(envelope_mode1 + polarity * envelope_mode0);
+        unit.params[FilterParam::KeyTrack].val      = PData::Float(keytrack1      + polarity * keytrack0);
     }
 
     pub fn set_channel_aftertouch_target(&mut self, fval: f32) {
         match &mut self.modsources[ModSource::ChannelAfterTouch] {
-            Some(box ModulationSource::ControllerModulationSource(ref mut inner)) 
+            Some(Box::new(ModulationSource::ControllerModulationSource(ref mut inner))) 
                 => inner.set_target(fval as f64),
             _ => unreachable!(),
         }
@@ -64,21 +66,25 @@ impl SurgeScene {
 
         match &mut self.modsources[ctrli] 
         {
-            Some(box ModulationSource::ControllerModulationSource(ref mut inner)) 
+            Some(Box::new(ModulationSource::ControllerModulationSource(ref mut inner))) 
                 => inner.set_target01(fval as f64, false),
             _ => unreachable!(),
         };
     }
 
     pub fn new_controller_modsource(srunit: SampleRateHandle) -> MaybeBoxedModulationSource {
-        Some(box ModulationSource::ControllerModulationSource(ControllerModulationSource::new(srunit.clone())))
+        Some(
+            Box::new(
+                ModulationSource::ControllerModulationSource(ControllerModulationSource::new(srunit.clone()))
+            )
+        )
     }
 
     pub fn new_lfo_modsource(
         timeunit: TimeUnitHandle, 
         tables:   TablesHandle,
     ) -> MaybeBoxedModulationSource {
-        Some(box ModulationSource::Lfo(Lfo::new(timeunit.clone(),tables.clone())))
+        Some(Box::new(ModulationSource::Lfo(Lfo::new(timeunit.clone(),tables.clone()))))
     }
 
     pub fn new_modsources(

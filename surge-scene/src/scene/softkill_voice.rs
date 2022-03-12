@@ -34,10 +34,8 @@ impl SurgeScene {
 
         if max_age_release != 0 {
             max_released.unwrap().borrow_mut().uber_release();
-
         } else if max_age != 0 {
             max_playing.unwrap().borrow_mut().uber_release();
         }
-
     }
 }

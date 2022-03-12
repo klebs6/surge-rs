@@ -46,21 +46,26 @@ impl TablesHandle {
 impl DbToLinear for TablesHandle {
 
     #[inline] fn db_to_linear(&self, x: f32) -> f32 { 
-        self.inner.borrow().db_to_linear(x) 
+        let inner = self.inner.borrow();
+        inner.db_to_linear(x) 
     }
 }
 
 impl Init for TablesHandle {
 
     #[inline] fn init(&mut self) { 
-        self.inner.borrow_mut().init()
+        let inner = self.inner.borrow_mut();
+        inner.init()
     }
 }
 
 impl ClipScale for TablesHandle {
 
     #[inline] fn clipscale(&self, freq: f32, subtype: FilterSubType) -> f32 { 
-        self.inner.borrow().clipscale(freq,subtype) 
+
+        let inner = self.inner.borrow();
+
+        inner.clipscale(freq,subtype) 
     }
 }
 

@@ -32,7 +32,6 @@ impl SurgeSynthesizer<'plugin_layer> {
         for i in 0..8 {
             self.fx_unit.fx[i].suspend()
         }
-
     }
 }
 

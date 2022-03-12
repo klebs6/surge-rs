@@ -11,7 +11,7 @@ impl SurgeVoice {
         let mut retrigger_aeg: bool = false;
         let mut retrigger_feg: bool = false;
 
-        if let Some(box ModulationSource::Lfo(s)) 
+        if let Some(Box::new(ModulationSource::Lfo(s))) 
             = &self.modsources[ModSource::VoiceLfo1] 
         {
             if s.retrigger_aeg {

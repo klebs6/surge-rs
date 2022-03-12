@@ -24,7 +24,6 @@ impl DbToLinear for GainTables {
         let a: f32 = x - (e as f32);
 
         (1.0 - a) * self.table_db[(e & 0x1ff) as usize] + a * self.table_db[((e + 1) & 0x1ff) as usize]
-
     }
 }
 
@@ -45,6 +44,7 @@ impl ClipScale for GainTables {
 }
 
 impl Init for GainTables {
+
     fn init(&mut self) {
 
         for i in 0..512 {

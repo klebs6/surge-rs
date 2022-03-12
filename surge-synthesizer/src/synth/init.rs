@@ -17,6 +17,30 @@ pub struct SynthEnvironment<'a> {
 
 impl SurgeSynthesizer<'plugin_layer> {
 
+    pub fn new_default_patch(environment: SynthEnvironment<'synth_out>) -> Self {
+        Box::new(SurgePatch::new(
+            SceneConstructorHandles{
+                timeunit:         environment.timeunit, 
+                tables:           environment.tables, 
+                tuner:            environment.tuner, 
+                srunit:           environment.srunit,
+                hold_pedal_unit:  environment.hold_pedal_unit, 
+                midi_unit:        environment.midi_unit, 
+                mpe_unit:         environment.mpe_unit,
+                synth_in:         environment.synth_in
+            }
+        ))
+    }
+
+    pub fn new_fx_unit(environment: SynthEnvironment<'synth_out>) -> Self {
+        FXUnit::new(
+            environment.tuner,
+            environment.tables,
+            environment.timeunit,
+            environment.srunit
+        )
+    }
+
     pub fn new_default(environment: SynthEnvironment<'synth_out>) -> Self {
 
         let mut x = Self {
@@ -34,31 +58,15 @@ impl SurgeSynthesizer<'plugin_layer> {
             cc0:                       0,
             pch:                       0,
             controller:                SynthControl::default(),
-            fx_unit:                   FXUnit::new(
-                environment.tuner,
-                environment.tables,
-                environment.timeunit,
-                environment.srunit),
+            fx_unit:                   Self::new_fx_unit(environment),
             hold_pedal_unit:           environment.hold_pedal_unit.clone(),
             midi_unit:                 environment.midi_unit.clone(),
             mpe_unit:                  environment.mpe_unit.clone(),
-
             patch_loaded:              false,
             patchid:                   None,
             current_category_id:       None,
             patchid_queue:             None,
-            active_patch:              box SurgePatch::new(
-                SceneConstructorHandles{
-                    timeunit:         environment.timeunit, 
-                    tables:           environment.tables, 
-                    tuner:            environment.tuner, 
-                    srunit:           environment.srunit,
-                    hold_pedal_unit:  environment.hold_pedal_unit, 
-                    midi_unit:        environment.midi_unit, 
-                    mpe_unit:         environment.mpe_unit,
-                    synth_in:         environment.synth_in
-                }
-            ),
+            active_patch:              Self::new_default_patch(environment),
             patches:                   vec![],
             patch_categories:          vec![],
             active_patch_category:     vec![],

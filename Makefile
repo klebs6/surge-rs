@@ -11,7 +11,7 @@ RUSTFLAGS := ""
 
 #ACTIVE_PACKAGE := surge-synthesizer
 #ACTIVE_PACKAGE := surge-voice
-#ACTIVE_PACKAGE := surge-scene
+ACTIVE_PACKAGE := surge-scene
 
 #ACTIVE_PACKAGE := surge-adsr
 #ACTIVE_PACKAGE := surge-biquad
@@ -29,7 +29,7 @@ RUSTFLAGS := ""
 #ACTIVE_PACKAGE := surge-midi
 #ACTIVE_PACKAGE := surge-modulation
 #ACTIVE_PACKAGE := surge-mpe
-ACTIVE_PACKAGE := surge-output
+#ACTIVE_PACKAGE := surge-output
 #ACTIVE_PACKAGE := surge-param
 #ACTIVE_PACKAGE := surge-qfunit
 #ACTIVE_PACKAGE := surge-quadrosc

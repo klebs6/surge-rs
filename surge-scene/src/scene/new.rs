@@ -6,14 +6,14 @@ use crate::{
 };
 
 pub struct SceneConstructorHandles<'a> {
-    pub timeunit:        &'a  TimeUnitHandle,
-    pub tables:          &'a  TablesHandle,
-    pub tuner:           &'a  TunerHandle,
-    pub srunit:          &'a  SampleRateHandle,
-    pub hold_pedal_unit: &'a  HoldPedalUnitHandle,
-    pub midi_unit:       &'a  MIDIUnitHandle,
-    pub mpe_unit:        &'a  MPEUnitHandle,
-    pub synth_in:        &'a  SynthInputHandle,
+    pub timeunit:        &'a TimeUnitHandle,
+    pub tables:          &'a TablesHandle,
+    pub tuner:           &'a TunerHandle,
+    pub srunit:          &'a SampleRateHandle,
+    pub hold_pedal_unit: &'a HoldPedalUnitHandle,
+    pub midi_unit:       &'a MIDIUnitHandle,
+    pub mpe_unit:        &'a MPEUnitHandle,
+    pub synth_in:        &'a SynthInputHandle,
 }
 
 impl SurgeScene {

@@ -16,6 +16,7 @@ impl Host for SampleHost {
     }
 
     fn process_events(&self, events: &Events) {
+
         //other event types can be handled here
         for event in events.events() {
             if let Event::Midi(ev) = event {
@@ -43,13 +44,16 @@ impl SampleHost{
         type Args = render_callback::Args<data::NonInterleaved<f32>>;
 
         let in1: Vec<f32> = (0..BUFFER_SIZE).map(|x| x as f32).collect();
+
         let in2 = in1.clone();
 
         let mut out1 = vec![0.0; BUFFER_SIZE];
         let mut out2 = out1.clone();
 
-        let inputs = vec![in1.as_ptr(), in2.as_ptr()];
+        let inputs      = vec![in1.as_ptr(), in2.as_ptr()];
+
         let mut outputs = vec![out1.as_mut_ptr(), out2.as_mut_ptr()];
+
         let mut buffer =
             unsafe { AudioBuffer::from_raw(2, 2, 
                 inputs.as_ptr(), 
@@ -58,8 +62,11 @@ impl SampleHost{
             };
 
         audio_unit.set_render_callback(move |args| {
+
             instance.process(&mut buffer);
+
             let (_inputs, outputs) = buffer.split();
+
             let mut iter = outputs[0].iter();
 
             let Args { num_frames, mut data, .. } = args;

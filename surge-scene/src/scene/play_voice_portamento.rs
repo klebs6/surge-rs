@@ -55,7 +55,6 @@ impl SurgeScene {
 
                 //todo: how do we do this?
                 //self.voices.push(nvoice.as_mut().unwrap());
-
             }
         }
     }

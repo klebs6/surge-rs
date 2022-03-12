@@ -79,5 +79,4 @@ impl SurgeVoice {
         self.fbp.out_l = amp_l;
         self.fbp.out_r = amp_r;
     }
-
 }

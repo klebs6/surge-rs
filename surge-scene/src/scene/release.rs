@@ -9,6 +9,7 @@ use crate::{
 impl SurgeScene {
 
     #[inline] pub fn hold(&self, channel: u8) -> bool {
+
         let mut no_hold: bool = 
             !self.midi_unit.hold(channel);
 
@@ -16,6 +17,7 @@ impl SurgeScene {
             no_hold = no_hold && 
                 !self.midi_unit.hold(0);
         }
+
         !no_hold
     }
 
@@ -44,7 +46,6 @@ impl SurgeScene {
         velocity: u8,
         keyrange: Option<KeyRange>) 
     {
-
         if self.hold(channel) {
             // hold pedal is down, add to bufffer
             self.hold_pedal_unit.push(channel, key);
@@ -98,7 +99,6 @@ impl SurgeScene {
 
         self.release_note_post(channel, key, velocity, keyrange);
     }
-
 
     pub fn release_voice(&mut self, 
         voice_idx: usize, 

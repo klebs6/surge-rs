@@ -9,9 +9,9 @@ impl SurgeVoice {
 
     #[inline] pub fn get_pitchbend(&self, cfg: &PitchBendCfg) -> f64 {
 
-        let mut pb: f64 = self.modsources[
-            ModSource::PitchBend
-        ].as_ref().unwrap().get_output() as f64;
+        let modsource = self.modsources[ ModSource::PitchBend ];
+
+        let mut pb: f64 = modsource.as_ref().unwrap().get_output() as f64;
 
         pb *= match pb {
             _ if pb > 0.0 => cfg.range_up   as f64,

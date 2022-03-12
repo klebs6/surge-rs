@@ -35,10 +35,13 @@ impl SurgeScene {
         let mut no_hold: bool = !self.midi_unit.hold(channel);
 
         if self.mpe_unit.enabled().0 {
-            no_hold = no_hold && ! self.midi_unit.hold(0);
+
+            let hold = self.midi_unit.hold(0);
+
+            no_hold = no_hold && ! hold;
         }
 
-        if ! no_hold {
+        if !no_hold {
             for _s in 0..2 {
                 self.hold_pedal_unit.reset(channel,key);
             }
