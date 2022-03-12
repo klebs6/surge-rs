@@ -42,6 +42,5 @@ impl LfoProcess for Lfo {
         }
 
         self.output = (self.env_val * magnitude * io2) as f64;
-
     }
 }

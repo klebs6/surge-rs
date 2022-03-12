@@ -1,11 +1,6 @@
 ix!();
 
-use crate::{
-    Lfo,
-    LfoParam,
-    LfoEnvState,
-    N_STEPSEQUENCER_STEPS,
-};
+use crate::*;
 
 impl Lfo {
 
@@ -32,6 +27,51 @@ impl Lfo {
         }
     }
 
+    pub fn update_phase_and_step_for_lfo_mode_keytrigger(phaseslider: f32) {
+        self.phase = phaseslider;
+        self.step = 0;
+    }
+
+    pub fn update_phase_and_step_for_lfo_mode_random() {
+
+        self.phase = rand01();
+
+        self.step = {
+            let randi = rand01() as i32;
+            let mask  = (N_STEPSEQUENCER_STEPS - 1);
+            let step  = (randi % self.stepsequencer.loop_end) as usize;
+            (step & mask) as isize
+        };
+    }
+
+    pub fn update_phase_and_step_for_lfo_mode_free_run() {
+
+        let x: f32 =  {
+            let songpos = self.time_unit.songpos() as f32;
+            let ratemod = 2.0_f32.powf( rate );
+
+            phaseslider + 0.5 * songpos * ratemod
+        };
+
+        let (integral_part, _fractional_part) = split_float(x);
+
+        let loop_start = self.stepsequencer.loop_start;
+        let loop_end   = self.stepsequencer.loop_end;
+
+        self.step = {
+            let ipart               = integral_part as i32;
+            let stepsequencer_delta = loop_end - loop_start;
+            let delta_clamped       = max( 1, stepsequencer_delta);
+            let offset              = loop_start;
+            ( (ipart % delta_clamped ) + offset) as isize
+        };
+    }
+
+    pub fn rezero_phase_and_step() {
+        self.step  = 0;
+        self.phase = 0.0;
+    }
+
     pub fn maybe_update_phase_and_step_for_attack(
         &mut self,
         lfo_shape:   LfoShape,
@@ -43,41 +83,16 @@ impl Lfo {
 
         match lfo_mode {
 
-            LfoMode::KeyTrigger => {
-                self.phase = phaseslider;
-                self.step = 0;
-            },
+            LfoMode::KeyTrigger => 
+                update_lfo_mode_keytrigger(phaseslider),
 
-            LfoMode::Random => {
-                self.phase = rand01();
-                self.step  = ((((rand01() as i32) % self.stepsequencer.loop_end) as usize) & (N_STEPSEQUENCER_STEPS - 1)) as isize;
-            },
+            LfoMode::Random =>
+                update_lfo_mode_random(),
 
-            LfoMode::FreeRun => {
+            LfoMode::FreeRun =>
+                update_lfo_mode_free_run(),
 
-                let x: f32 = 
-                    phaseslider + 
-                    0.5 * 
-                    (self.time_unit.songpos() as f32) * 
-                    2.0_f32.powf( rate );
-
-                let (integral_part, _fractional_part) = split_float(x);
-
-                self.step = (
-                    ((integral_part as i32) % 
-                     std::cmp::max(
-                         1, 
-                         self.stepsequencer.loop_end - self.stepsequencer.loop_start
-                     )
-                    ) + self.stepsequencer.loop_start) as isize;
-            },
-
-            /*
-            _ => {
-                self.step = 0;
-                self.phase = 0.0;
-            },
-            */
+            _ => rezero_phase_and_step(),
         }
     }
 }

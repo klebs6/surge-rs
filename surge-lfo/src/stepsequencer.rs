@@ -1,8 +1,6 @@
 ix!();
 
-use crate::{
-    N_STEPSEQUENCER_STEPS,
-};
+use crate::*;
 
 #[derive(Debug,Clone)]
 pub struct StepSequencer {
