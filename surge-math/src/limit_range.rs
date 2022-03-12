@@ -28,8 +28,13 @@ impl LimitRange for f32 {
         let mut result: f32 = 0.0;
 
         unsafe {
-            _mm_store_ss(&mut result,
-            _mm_min_ss(_mm_max_ss(_mm_load_ss(&self), _mm_load_ss(&low)), _mm_load_ss(&high))) 
+
+            let _s    = _mm_load_ss(&self);
+            let _low  = _mm_load_ss(&low);
+            let _high = _mm_load_ss(&high);
+            let limited = _mm_min_ss(_mm_max_ss(_s, _low), _high);
+
+            _mm_store_ss( &mut result, limited) 
         };
 
         result

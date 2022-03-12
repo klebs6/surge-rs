@@ -82,6 +82,7 @@ impl<const X: usize> Default for WetBlock2<X> {
 }
 
 impl<const X: usize> WetBlock2<X> {
+
     pub fn clear(&mut self) {
         for x in self.l.iter_mut() {
             *x = 0.0;
@@ -90,23 +91,27 @@ impl<const X: usize> WetBlock2<X> {
             *x = 0.0;
         }
     }
+
     pub fn l(&mut self) -> *mut f32 { self.l.as_mut_ptr() }
     pub fn r(&mut self) -> *mut f32 { self.r.as_mut_ptr() }
+
     pub fn li<T>(&mut self, i: T) -> *mut f32 where T: Into<isize> { unsafe { self.l.as_mut_ptr().offset(i.into()) } }
     pub fn ri<T>(&mut self, i: T) -> *mut f32 where T: Into<isize> { unsafe { self.r.as_mut_ptr().offset(i.into()) } }
+
     pub fn dup_channel_to_stereo(&mut self, src: StereoChannel) {
         match src {
-            StereoChannel::Left => {
-                for (i,x) in self.l.iter().enumerate() {
-                    self.r[i] = *x;
-                }
-
-            },
+            StereoChannel::Left => 
+                {
+                    for (i,x) in self.l.iter().enumerate() {
+                        self.r[i] = *x;
+                    }
+                },
             StereoChannel::Right => {
                 for (i,x) in self.r.iter().enumerate() {
                     self.l[i] = *x;
                 }
-            },
+            }
+            _ => panic!()
         }
     }
 }
@@ -135,15 +140,18 @@ pub struct MSBlock {
 }
 
 impl MSBlock {
+
     pub fn new(len: usize) -> Self {
         Self {
             m: Align16(A1d::<f32>::zeros(len)),
             s: Align16(A1d::<f32>::zeros(len)),
         }
     }
+
     pub fn m(&mut self) -> *mut f32 {
         self.m.as_mut_ptr()
     }
+
     pub fn s(&mut self) -> *mut f32 {
         self.s.as_mut_ptr()
     }
@@ -164,7 +172,9 @@ pub struct TBuffer {
     pub r:  ScratchChannel::<f32>,
     pub fb: ScratchChannel::<f32>,
 }
+
 impl TBuffer {
+
     pub fn new(len: usize) -> Self {
         Self {
             l:  Align16(A1d::<f32>::zeros(len)),
@@ -172,19 +182,24 @@ impl TBuffer {
             fb: Align16(A1d::<f32>::zeros(len)),
         }
     }
+
     pub fn clear_blocks(&mut self) {
         self.l.fill(0.0);
         self.r.fill(0.0);
     }
+
     pub fn l(&mut self) -> *mut f32 {
         self.l.as_mut_ptr()
     }
+
     pub fn r(&mut self) -> *mut f32 {
         self.r.as_mut_ptr()
     }
+
     pub fn fb(&mut self) -> *mut f32 {
         self.fb.as_mut_ptr()
     }
+
     pub fn li<T>(&mut self, i: T) -> *mut f32 where T: Into<isize> { unsafe { self.l.as_mut_ptr().offset(i.into()) } }
     pub fn ri<T>(&mut self, i: T) -> *mut f32 where T: Into<isize> { unsafe { self.r.as_mut_ptr().offset(i.into()) } }
 }

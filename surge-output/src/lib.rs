@@ -40,11 +40,15 @@ pub struct SynthOutputHandle<const N: usize> {
 impl<const N: usize> SynthOutputHandle<N> {
 
     #[inline] pub fn out_l(&mut self) -> *mut f32 {
-        self.inner.borrow_mut().buffer.index_axis_mut(Axis(0),0).as_mut_ptr()
+        let buffer = self.inner.borrow_mut().buffer;
+        let ax     = Axis(0);
+        buffer.index_axis_mut(ax,0).as_mut_ptr()
     }
 
     #[inline] pub fn out_r(&mut self) -> *mut f32 {
-        self.inner.borrow_mut().buffer.index_axis_mut(Axis(0),1).as_mut_ptr()
+        let buffer = self.inner.borrow_mut().buffer;
+        let ax     = Axis(0);
+        buffer.index_axis_mut(ax,1).as_mut_ptr()
     }
 
     #[inline] pub fn masterfade(&self) -> f32 { 

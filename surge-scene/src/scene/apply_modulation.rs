@@ -92,8 +92,12 @@ impl SurgeScene {
 
             if let Some(_modsrc) = &self.modsources[src] 
             {
+                let the_src   = self.modsources[src];
+
+                let modsource = the_src.as_ref().unwrap();
+
                 let src_output = 
-                    self.modsources[src].as_ref().unwrap().get_output() as f32;
+                    modsource.get_output() as f32;
 
                 let depth: f32 = 
                     self.modulation_scene[i].depth as f32;
@@ -101,17 +105,20 @@ impl SurgeScene {
                 let dst = 
                     &mut self.modulation_scene[i].dst;
 
-                let new_val = PData::Float(dst.borrow().get_value_f01() + depth * src_output);
+                let dst_f01 = dst.borrow().get_value_f01();
+
+                let new_val = PData::Float(dst_f01 + depth * src_output);
 
                 dst.borrow_mut().set_modulation_val(new_val);
             }
         }
     }
-
 }
 
 /**
-  want to conform to something like this interface
+  | want to conform to something like this
+  | interface
+  |
   */
 #[test] fn modulation_if() {
 

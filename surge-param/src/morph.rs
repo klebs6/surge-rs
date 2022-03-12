@@ -13,7 +13,7 @@ impl<P: Param + Clone> crate::Morph for ParamRT<P> {
             }
         };
 
-        match ( self.val, b.val, self.control_type(), b.control_type() ) {
+        match (self.val, b.val, self.control_type(), b.control_type()) {
 
             (PData::Float(f1), PData::Float(f2), t1, t2) => {
                 if t1 == t2 {

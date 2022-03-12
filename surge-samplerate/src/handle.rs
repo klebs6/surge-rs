@@ -49,7 +49,9 @@ impl Ms2Samples for SampleRateHandle {
       */
     #[inline] fn ms_2_samples(&self, ms: f32, scale: f32) -> usize
     {
-        let sr = self.inner.borrow().samplerate.load( atomic::Ordering::SeqCst );
+        let inner = self.inner.borrow();
+
+        let sr = inner.samplerate.load( atomic::Ordering::SeqCst );
 
         let a: f32 =  sr * ms * 0.001;
 
@@ -90,11 +92,13 @@ impl SetSampleRate for SampleRateHandle {
 
         let sros64 = sr * (OSC_OVERSAMPLING as f64);
 
-        self.inner.borrow_mut().samplerate.store(         sr32,         atomic::Ordering::SeqCst);
-        self.inner.borrow_mut().samplerate_inv.store(     1.0 / sr32,   atomic::Ordering::SeqCst);
-        self.inner.borrow_mut().dsamplerate.store(        sr,           atomic::Ordering::SeqCst);
-        self.inner.borrow_mut().dsamplerate_inv.store(    1.0 / sr,     atomic::Ordering::SeqCst);
-        self.inner.borrow_mut().dsamplerate_os.store(     sros64,       atomic::Ordering::SeqCst);
-        self.inner.borrow_mut().dsamplerate_os_inv.store( 1.0 / sros64, atomic::Ordering::SeqCst);
+        let inner = self.inner.borrow_mut();
+
+        inner.samplerate.store(         sr32,         atomic::Ordering::SeqCst);
+        inner.samplerate_inv.store(     1.0 / sr32,   atomic::Ordering::SeqCst);
+        inner.dsamplerate.store(        sr,           atomic::Ordering::SeqCst);
+        inner.dsamplerate_inv.store(    1.0 / sr,     atomic::Ordering::SeqCst);
+        inner.dsamplerate_os.store(     sros64,       atomic::Ordering::SeqCst);
+        inner.dsamplerate_os_inv.store( 1.0 / sros64, atomic::Ordering::SeqCst);
     }
 }

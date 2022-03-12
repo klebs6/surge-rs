@@ -8,8 +8,10 @@ impl SurgeScene {
 
     pub fn free_voice(&mut self, idx: usize) {
 
+        let voice = self.voices[idx].borrow_mut();
+
         //TODO: does this work? 
-        self.voices[idx].borrow_mut().free_allocated_elements();
+        voice.free_allocated_elements();
 
         self.voices.remove(idx);
     }
@@ -18,7 +20,9 @@ impl SurgeScene {
 
         let mut to_free = vec![];
 
-        for (idx, _item) in self.voices.iter_mut().enumerate() {
+        let iter = self.voices.iter_mut();
+
+        for (idx, _item) in iter.enumerate() {
             to_free.push(idx);
         }
 

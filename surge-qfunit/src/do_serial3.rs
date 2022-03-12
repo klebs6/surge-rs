@@ -26,7 +26,9 @@ pub fn do_serial3<const A_FILTER_ACTIVE: bool, const WAVESHAPER_ACTIVE: bool, co
         let hb_c: __m128 = _mm_set1_ps(0.50); 
         let one:  __m128 = _mm_set1_ps(1.00); 
 
-        // filter 2 is only heard in the feedback path, good for physical modelling with comb as f2
+        // filter 2 is only heard in the feedback
+        // path, good for physical modelling with
+        // comb as f2
         for k in (0..BLOCK_SIZE_OS).step_by(1) 
         {
             qfcs.feedback = _mm_add_ps(

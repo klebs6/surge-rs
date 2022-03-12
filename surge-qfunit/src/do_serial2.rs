@@ -27,7 +27,6 @@ pub fn do_serial2<const A_FILTER_ACTIVE: bool, const WAVESHAPER_ACTIVE: bool, co
 
         for k in (0..BLOCK_SIZE_OS).step_by(1) 
         {
-
             qfcs.feedback = _mm_add_ps(
                 qfcs.feedback, 
                 qfcs.d_feedback

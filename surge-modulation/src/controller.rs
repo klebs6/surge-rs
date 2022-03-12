@@ -119,7 +119,7 @@ impl ControllerModulationSource {
 
     pub fn get_target01(&self) -> f64 {
         match self.bipolar {
-            true => 0.5 + 0.5 * self.target,
+            true  => 0.5 + 0.5 * self.target,
             false => self.target,
         }
     }

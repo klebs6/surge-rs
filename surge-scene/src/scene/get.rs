@@ -69,7 +69,9 @@ impl SurgeScene {
 
             }
         }
-        //this signifies "there is *no* unused_voice"
+
+        //this signifies "there is *no*
+        //unused_voice"
         None
     }
 
@@ -102,7 +104,8 @@ impl SurgeScene {
     }
 
     #[inline] pub fn enabled(&self, ms: ModSource) -> bool {
-        self.modsources[ms].as_ref().unwrap().enabled()
+        let modsource = self.modsources[ms];
+        modsource.as_ref().unwrap().enabled()
     }
 
     #[inline] pub fn modulation_voice(&self) -> Rc<Vec<ModulationRouting>> {
@@ -315,13 +318,19 @@ impl SurgeScene {
     }
 
     #[inline] pub fn oscillator_pitch_extend_range(&self, idx: usize) -> bool {
-        self.osc[idx].osc_params_const( 
+
+        let osc = self.osc[idx];
+
+        osc.osc_params_const( 
             OscillatorParam::Pitch
         ).extend_range()
     }
 
     #[inline] pub fn oscillator_pitch_absolute(&self, idx: usize) -> bool {
-        self.osc[idx].osc_params_const( 
+
+        let osc = self.osc[idx];
+
+        osc.osc_params_const( 
             OscillatorParam::Pitch
         ).absolute
     }
@@ -347,8 +356,13 @@ impl SurgeScene {
     }
 
     #[inline] pub fn oscillator_type(&self, idx: usize) -> OscillatorType {
+
+        let osc = self.osc[idx];
+
+        let ty = pvali![osc.osc_params_const(OscillatorParam::Type)];
+
         OscillatorType::try_from(
-            pvali![self.osc[idx].osc_params_const(OscillatorParam::Type)] as usize
+            ty as usize
         ).unwrap()
     }
 }

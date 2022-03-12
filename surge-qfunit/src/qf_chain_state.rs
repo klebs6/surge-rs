@@ -98,37 +98,50 @@ impl Init for QuadFilterChainState {
 }
 
 impl QuadFilterChainState {
+
+    pub fn default_unit_state(tables: &TablesHandle) -> [QuadFilterUnitState; 4] {
+        [
+            QuadFilterUnitState::new(tables),
+            QuadFilterUnitState::new(tables),
+            QuadFilterUnitState::new(tables),
+            QuadFilterUnitState::new(tables),
+        ]
+    }
+
+    pub fn z128() -> __m128 {
+        unsafe { z128![] }
+    }
+
+    pub fn z128_block() -> [ __m128; BLOCK_SIZE_OS ] {
+        [unsafe { z128![] }; BLOCK_SIZE_OS]
+    }
+
     pub fn new( tables: &TablesHandle) -> Self {
         Self {
-            unit_state:       [
-                QuadFilterUnitState::new(tables),
-                QuadFilterUnitState::new(tables),
-                QuadFilterUnitState::new(tables),
-                QuadFilterUnitState::new(tables),
-            ],
-            gain:             unsafe { z128![] }, 
-            feedback:         unsafe { z128![] }, 
-            mix1:             unsafe { z128![] }, 
-            mix2:             unsafe { z128![] }, 
-            drive:            unsafe { z128![] },
-            d_gain:           unsafe { z128![] }, 
-            d_feedback:       unsafe { z128![] }, 
-            d_mix1:           unsafe { z128![] }, 
-            d_mix2:           unsafe { z128![] }, 
-            d_drive:          unsafe { z128![] },
-            ws_lpf:           unsafe { z128![] }, 
-            feedback_line_l:  unsafe { z128![] }, 
-            feedback_line_r:  unsafe { z128![] },
-            dl:               [unsafe { z128![] }; BLOCK_SIZE_OS], 
-            dr:               [unsafe { z128![] }; BLOCK_SIZE_OS], 
-            out_l:             unsafe { z128![] }, 
-            out_r:             unsafe { z128![] }, 
-            dout_l:            unsafe { z128![] }, 
-            dout_r:            unsafe { z128![] },
-            out_2l:            unsafe { z128![] }, 
-            out_2r:            unsafe { z128![] }, 
-            dout_2l:           unsafe { z128![] }, 
-            dout_2r:           unsafe { z128![] }, 
+            unit_state:       Self::default_unit_state(tables),
+            gain:             Self::z128(), 
+            feedback:         Self::z128(), 
+            mix1:             Self::z128(), 
+            mix2:             Self::z128(), 
+            drive:            Self::z128(),
+            d_gain:           Self::z128(), 
+            d_feedback:       Self::z128(), 
+            d_mix1:           Self::z128(), 
+            d_mix2:           Self::z128(), 
+            d_drive:          Self::z128(),
+            ws_lpf:           Self::z128(), 
+            feedback_line_l:  Self::z128(), 
+            feedback_line_r:  Self::z128(),
+            dl:               Self::z128_block(), 
+            dr:               Self::z128_block(), 
+            out_l:            Self::z128(), 
+            out_r:            Self::z128(), 
+            dout_l:           Self::z128(), 
+            dout_r:           Self::z128(),
+            out_2l:           Self::z128(), 
+            out_2r:           Self::z128(), 
+            dout_2l:          Self::z128(), 
+            dout_2r:          Self::z128(), 
         }
     }
 }

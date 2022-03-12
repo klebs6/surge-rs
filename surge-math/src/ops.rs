@@ -2,24 +2,41 @@ ix!();
 
 use crate::max_ps_to_ss;
 
+pub unsafe fn access_mut(ptr: *mut f32, offset: isize) -> *mut __m128 {
+    (ptr as *mut __m128).offset(offset) 
+}
+
+pub unsafe fn access(ptr: *const f32, offset: isize) -> *const __m128 {
+    (ptr as *const __m128).offset(offset) 
+}
+
 //______________________________________________________
 pub fn mul_block<NQ>(
     src1: *mut f32, 
     src2: *mut f32, 
-    dst: *mut f32, 
+    dst:  *mut f32, 
     nquads: NQ) 
     where <NQ as std::convert::TryInto<u32>>::Error: std::fmt::Debug, 
     NQ: TryInto<u32>
 {
+    let do_mul = |offset: isize| {
+        unsafe {
+            let src1 = access(src1,offset);
+            let src2 = access(src2,offset);
+            let dst  = access(dst, offset);
+            *dst = _mm_mul_ps(*src1, *src2);
+        }
+    };
+
     let nquads: u32 = nquads.try_into().unwrap();
+
     for i in (0..nquads).step_by(4)
     {
-        unsafe {
-            *(dst as *mut __m128).offset((i) as isize) = _mm_mul_ps(*(src1 as *mut __m128).offset((i) as isize), *(src2 as *mut __m128).offset((i) as isize));
-            *(dst as *mut __m128).offset((i + 1) as isize) = _mm_mul_ps(*(src1 as *mut __m128).offset((i + 1) as isize), *(src2 as *mut __m128).offset((i + 1) as isize));
-            *(dst as *mut __m128).offset((i + 2) as isize) = _mm_mul_ps(*(src1 as *mut __m128).offset((i + 2) as isize), *(src2 as *mut __m128).offset((i + 2) as isize));
-            *(dst as *mut __m128).offset((i + 3) as isize) = _mm_mul_ps(*(src1 as *mut __m128).offset((i + 3) as isize), *(src2 as *mut __m128).offset((i + 3) as isize));
-        }
+        let i = i as isize;
+        do_mul(i);
+        do_mul(i + 1);
+        do_mul(i + 2);
+        do_mul(i + 3);
     }
 }
 
@@ -65,7 +82,6 @@ pub fn accumulate_block<NQ>(src: *mut f32, dst: *mut f32, nquads: NQ)
                     *(dst as *mut __m128).offset(i as isize  + 3), 
                     *(src as *mut __m128).offset(i as isize + 3)
                 );
-
         }
     }
 }
@@ -74,31 +90,27 @@ pub fn add_block<NQ>(src1: *const f32, src2: *const f32, dst: *mut f32, nquads: 
     where <NQ as std::convert::TryInto<u32>>::Error: std::fmt::Debug,
           NQ: TryInto<u32>
 {
+    let do_add = |offset: isize| {
+
+        unsafe {
+            let src1 = access(src1,offset);
+            let src2 = access(src2,offset);
+            let dst  = access_mut(dst,offset);
+
+            *dst = _mm_add_ps(*src1,*src2);
+        }
+    };
+
     let nquads: u32 = nquads.try_into().unwrap();
+
     for i in (0..nquads).step_by(4)
     {
-        let i0 = i as isize;
-        let i1 = (i + 1) as isize;
-        let i2 = (i + 2) as isize;
-        let i3 = (i + 3) as isize;
-        unsafe {
-            *(dst as *mut __m128).offset(i0) = _mm_add_ps(
-                *(src1 as *const __m128).offset(i0),  
-                *(src2 as *const __m128).offset(i0)
-            );
-            *(dst as *mut __m128).offset(i1) = _mm_add_ps(
-                *(src1 as *const __m128).offset(i1), 
-                *(src2 as *const __m128).offset(i1)
-            );
-            *(dst as *mut __m128).offset(i2) = _mm_add_ps(
-                *(src1 as *const __m128).offset(i2), 
-                *(src2 as *const __m128).offset(i2)
-            );
-            *(dst as *mut __m128).offset(i3) = _mm_add_ps(
-                *(src1 as *const __m128).offset(i3), 
-                *(src2 as *const __m128).offset(i3)
-            );
-        }
+        let i = i as isize;
+
+        do_add(i);
+        do_add(i + 1);
+        do_add(i + 2);
+        do_add(i + 3);
     }
 }
 
@@ -107,22 +119,25 @@ pub fn subtract_block<NQ>(src1: *const f32, src2: *const f32, dst: *mut f32, nqu
     where <NQ as std::convert::TryInto<u32>>::Error: std::fmt::Debug,
           NQ: TryInto<u32>
 {
+    let do_sub = |offset: isize| {
+        unsafe {
+            let src1 = access(src1,offset);
+            let src2 = access(src2,offset);
+            let dst  = access_mut(dst,offset);
+
+            *dst     = _mm_sub_ps(*src1,*src2);
+        }
+    };
 
     let nquads: u32 = nquads.try_into().unwrap();
 
     for i in (0..nquads).step_by(4)
     {
-        let i0 = i as isize;
-        let i1 = (i + 1) as isize;
-        let i2 = (i + 2) as isize;
-        let i3 = (i + 3) as isize;
-
-        unsafe {
-            *(dst as *mut __m128).offset(i0) = _mm_sub_ps(*(src1 as *const __m128).offset(i0), *(src2 as *const __m128).offset(i0));
-            *(dst as *mut __m128).offset(i1) = _mm_sub_ps(*(src1 as *const __m128).offset(i1), *(src2 as *const __m128).offset(i1));
-            *(dst as *mut __m128).offset(i2) = _mm_sub_ps(*(src1 as *const __m128).offset(i2), *(src2 as *const __m128).offset(i2));
-            *(dst as *mut __m128).offset(i3) = _mm_sub_ps(*(src1 as *const __m128).offset(i3), *(src2 as *const __m128).offset(i3));
-        }
+        let i = i as isize;
+        do_sub(i);
+        do_sub(i + 1);
+        do_sub(i + 2);
+        do_sub(i + 3);
     }
 }
 

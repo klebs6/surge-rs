@@ -2,7 +2,6 @@
 pub use core::arch::x86_64::*;
 pub use dft::{Operation, Plan, c64};
 
-
 pub use rand::Rng;
 pub use core::ffi::c_void;
 pub use atomic_float::{AtomicF64,AtomicF32};

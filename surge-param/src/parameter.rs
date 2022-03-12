@@ -60,18 +60,23 @@ impl<P: Param + ?Sized> Param for ParamRT<P> {
 }
 
 impl<P: Param> ParamRT<P> {
+
+    pub fn default_modulation_delta<T>(default_val: T) -> PData {
+        match default_val {
+            PData::Float(_x) => PData::Float(0.0),
+            PData::Int(_x)   => PData::Int(0),
+            PData::Bool(_x)  => PData::Bool(false),
+        }
+    }
+
     pub fn new( delegate: P ) -> Self {
 
         let default_val = delegate.default_value();
 
         let mut x = Self {
-            delegate:             box delegate,
+            delegate:             Box::new(delegate),
             val:                  default_val,
-            modulation_delta:     match default_val {
-                PData::Float(_x) => PData::Float(0.0),
-                PData::Int(_x)   => PData::Int(0),
-                PData::Bool(_x)  => PData::Bool(false),
-            },
+            modulation_delta:     Self::default_modulation_delta(default_val),
             midictrl:             None,
             per_voice_processing: true,
             temposync:            false,
