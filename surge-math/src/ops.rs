@@ -2,12 +2,12 @@ ix!();
 
 use crate::max_ps_to_ss;
 
-pub unsafe fn access_mut(ptr: *mut f32, offset: isize) -> *mut __m128 {
-    (ptr as *mut __m128).offset(offset) 
+unsafe fn access_mut(ptr: *mut f32, offset: usize) -> *mut __m128 {
+    (ptr as *mut __m128).add(offset) 
 }
 
-pub unsafe fn access(ptr: *const f32, offset: isize) -> *const __m128 {
-    (ptr as *const __m128).offset(offset) 
+unsafe fn access(ptr: *const f32, offset: usize) -> *const __m128 {
+    (ptr as *const __m128).add(offset) 
 }
 
 //______________________________________________________
@@ -16,14 +16,15 @@ pub fn mul_block<NQ>(
     src2: *mut f32, 
     dst:  *mut f32, 
     nquads: NQ) 
-    where <NQ as std::convert::TryInto<u32>>::Error: std::fmt::Debug, 
+    where 
+    <NQ as TryInto<u32>>::Error: Debug, 
     NQ: TryInto<u32>
 {
-    let do_mul = |offset: isize| {
+    let do_mul = |offset: usize| {
         unsafe {
             let src1 = access(src1,offset);
             let src2 = access(src2,offset);
-            let dst  = access(dst, offset);
+            let dst  = access_mut(dst, offset);
             *dst = _mm_mul_ps(*src1, *src2);
         }
     };
@@ -32,7 +33,8 @@ pub fn mul_block<NQ>(
 
     for i in (0..nquads).step_by(4)
     {
-        let i = i as isize;
+        let i: usize = i.try_into().unwrap();
+
         do_mul(i);
         do_mul(i + 1);
         do_mul(i + 2);
@@ -40,7 +42,6 @@ pub fn mul_block<NQ>(
     }
 }
 
-//______________________________________________________
 #[cfg(target_arch = "x86_64")] #[inline] 
 pub fn rcp(mut x: f32) -> f32
 {
@@ -48,49 +49,51 @@ pub fn rcp(mut x: f32) -> f32
     x
 }
 
-//______________________________________________________
-pub fn accumulate_block<NQ>(src: *mut f32, dst: *mut f32, nquads: NQ) 
-    where <NQ as std::convert::TryInto<u32>>::Error: std::fmt::Debug,
+/**
+  | dst += src
+  |
+  */
+pub fn accumulate_block<NQ>(
+    src:   *mut f32, 
+    dst:   *mut f32, 
+    nquads: NQ) 
+
+    where <NQ as TryInto<u32>>::Error: Debug,
           NQ: TryInto<u32>
 {
-    // dst += src
     let nquads: u32 = nquads.try_into().unwrap();
+
+    let accumulate = |offset: usize| {
+        unsafe {
+            let src = access(src,offset);
+            let dst = access_mut(dst,offset);
+
+            *dst = _mm_add_ps( *dst, *src);
+        }
+    };
+
     for i in (0..nquads).step_by(4) {
 
-        unsafe {
+        let i: usize = i.try_into().unwrap();
 
-            *(dst as *mut __m128).offset(i as isize ) = 
-                _mm_add_ps(
-                    *(dst as *mut __m128).offset(i as isize ), 
-                    *(src as *mut __m128).offset(i as isize)
-                );
-
-            *(dst as *mut __m128).offset(i as isize + 1) = 
-                _mm_add_ps(
-                    *(dst as *mut __m128).offset(i as isize  + 1), 
-                    *(src as *mut __m128).offset(i as isize + 1)
-                );
-
-            *(dst as *mut __m128).offset(i as isize + 2) = 
-                _mm_add_ps(
-                    *(dst as *mut __m128).offset(i as isize  + 2), 
-                    *(src as *mut __m128).offset(i as isize + 2)
-                );
-
-            *(dst as *mut __m128).offset(i as isize + 3) = 
-                _mm_add_ps(
-                    *(dst as *mut __m128).offset(i as isize  + 3), 
-                    *(src as *mut __m128).offset(i as isize + 3)
-                );
-        }
+        accumulate(i);
+        accumulate(i+1);
+        accumulate(i+2);
+        accumulate(i+3);
     }
 }
 
-pub fn add_block<NQ>(src1: *const f32, src2: *const f32, dst: *mut f32, nquads: NQ)
-    where <NQ as std::convert::TryInto<u32>>::Error: std::fmt::Debug,
-          NQ: TryInto<u32>
+pub fn add_block<NQ>(
+    src1: *const f32, 
+    src2: *const f32, 
+    dst:  *mut f32, 
+    nquads: NQ)
+
+where <NQ as TryInto<u32>>::Error: Debug,
+      NQ: TryInto<u32>
+
 {
-    let do_add = |offset: isize| {
+    let add = |offset: usize| {
 
         unsafe {
             let src1 = access(src1,offset);
@@ -105,22 +108,31 @@ pub fn add_block<NQ>(src1: *const f32, src2: *const f32, dst: *mut f32, nquads: 
 
     for i in (0..nquads).step_by(4)
     {
-        let i = i as isize;
+        let i: usize = i.try_into().unwrap();
 
-        do_add(i);
-        do_add(i + 1);
-        do_add(i + 2);
-        do_add(i + 3);
+        add(i);
+        add(i + 1);
+        add(i + 2);
+        add(i + 3);
     }
 }
 
 //______________________________________________________
-pub fn subtract_block<NQ>(src1: *const f32, src2: *const f32, dst: *mut f32, nquads: NQ) 
-    where <NQ as std::convert::TryInto<u32>>::Error: std::fmt::Debug,
-          NQ: TryInto<u32>
+pub fn subtract_block<NQ>(
+    src1: *const f32, 
+    src2: *const f32, 
+    dst:  *mut f32, 
+    nquads: NQ) 
+
+where 
+    <NQ as TryInto<u32>>::Error: Debug,
+    NQ: TryInto<u32>
+
 {
-    let do_sub = |offset: isize| {
+    let sub = |offset: usize| {
+
         unsafe {
+
             let src1 = access(src1,offset);
             let src2 = access(src2,offset);
             let dst  = access_mut(dst,offset);
@@ -133,11 +145,12 @@ pub fn subtract_block<NQ>(src1: *const f32, src2: *const f32, dst: *mut f32, nqu
 
     for i in (0..nquads).step_by(4)
     {
-        let i = i as isize;
-        do_sub(i);
-        do_sub(i + 1);
-        do_sub(i + 2);
-        do_sub(i + 3);
+        let i = i as usize;
+
+        sub(i);
+        sub(i + 1);
+        sub(i + 2);
+        sub(i + 3);
     }
 }
 
@@ -147,9 +160,11 @@ pub fn subtract_block<NQ>(src1: *const f32, src2: *const f32, dst: *mut f32, nqu
     unsafe{ _mm_and_ps(x, m128_mask_absval![]) }
 }
 
+#[inline] pub fn get_absmax<NQ>(
+    d:     *mut f32, 
+    nquads: NQ) -> f32
 
-#[inline] pub fn get_absmax<NQ>(d: *mut f32, nquads: NQ) -> f32
-where <NQ as std::convert::TryInto<u32>>::Error: std::fmt::Debug, 
+where <NQ as TryInto<u32>>::Error: Debug, 
       NQ: TryInto<u32>
 {
     unsafe {
@@ -161,14 +176,15 @@ where <NQ as std::convert::TryInto<u32>>::Error: std::fmt::Debug,
 
         for i in (0..nquads).step_by(2) {
 
-            mx1 = _mm_max_ps(
-                mx1, 
-                _mm_and_ps(*(d as *mut __m128).offset(i as isize), m128_mask_absval![]));
+            let i = i as usize;
 
-            mx2 = _mm_max_ps(
-                mx2, 
-                _mm_and_ps(*(d as *mut __m128).offset(i as isize + 1), m128_mask_absval![]));
+            let d_0 = access(d,i);
+            let d_1 = access(d,i+1);
 
+            let mask = m128_mask_absval![];
+
+            mx1 = _mm_max_ps( mx1, _mm_and_ps(*d_0, mask));
+            mx2 = _mm_max_ps( mx2, _mm_and_ps(*d_1, mask));
         }
 
         mx1 = _mm_max_ps(mx1, mx2);
@@ -180,9 +196,15 @@ where <NQ as std::convert::TryInto<u32>>::Error: std::fmt::Debug,
     }
 }
 
-#[inline] pub fn get_absmax_2<NQ>(d1: *mut f32, d2: *mut f32, nquads: NQ) -> f32
-where <NQ as std::convert::TryInto<u32>>::Error: std::fmt::Debug, 
-      NQ: TryInto<u32>
+#[inline] pub fn get_absmax_2<NQ>(
+    d1:    *mut f32, 
+    d2:    *mut f32, 
+    nquads: NQ) -> f32
+
+where 
+    <NQ as TryInto<u32>>::Error: Debug, 
+    NQ: TryInto<u32>
+
 {
     unsafe {
 
@@ -195,29 +217,19 @@ where <NQ as std::convert::TryInto<u32>>::Error: std::fmt::Debug,
 
         for i in (0..nquads).step_by(2) {
 
-            mx1 = _mm_max_ps( 
-                mx1, 
-                _mm_and_ps( 
-                    *( d1 as *mut __m128 ).offset(i as isize), 
-                    m128_mask_absval![] ));
+            let i = i as usize;
 
-            mx2 = _mm_max_ps( 
-                mx2, 
-                _mm_and_ps( 
-                    *( d1 as *mut __m128 ).offset(i as isize + 1), 
-                    m128_mask_absval![] ));
+            let mask = m128_mask_absval![];
 
-            mx3 = _mm_max_ps( 
-                mx3, 
-                _mm_and_ps( 
-                    *( d2 as *mut __m128 ).offset(i as isize), 
-                    m128_mask_absval![] ));
+            let d1_0 = access(d1,i); 
+            let d1_1 = access(d1,i+1); 
+            let d2_0 = access(d2,i); 
+            let d2_1 = access(d2,i+1); 
 
-            mx4 = _mm_max_ps( 
-                mx4, 
-                _mm_and_ps( 
-                    *( d2 as *mut __m128 ).offset(i as isize + 1), 
-                    m128_mask_absval![] ));
+            mx1 = _mm_max_ps( mx1, _mm_and_ps( *d1_0, mask ));
+            mx2 = _mm_max_ps( mx2, _mm_and_ps( *d1_1, mask ));
+            mx3 = _mm_max_ps( mx3, _mm_and_ps( *d2_0, mask ));
+            mx4 = _mm_max_ps( mx4, _mm_and_ps( *d2_1, mask ));
         }
 
         mx1 = _mm_max_ps(mx1, mx2);
@@ -235,17 +247,13 @@ where <NQ as std::convert::TryInto<u32>>::Error: std::fmt::Debug,
 
 #[inline] pub fn v_madd(a: __m128, b: __m128, c: __m128) -> __m128 {
     unsafe { 
-        _mm_add_ps(
-            _mm_mul_ps(a, b), 
-            c) 
+        _mm_add_ps( _mm_mul_ps(a, b), c) 
     }
 }
 
 #[inline] pub fn v_nmsub(a: __m128, b: __m128, c: __m128) -> __m128 {
     unsafe { 
-        _mm_sub_ps(
-            c, 
-            _mm_mul_ps(a, b)) 
+        _mm_sub_ps( c, _mm_mul_ps(a, b)) 
     }
 }
 
