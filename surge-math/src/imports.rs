@@ -14,6 +14,7 @@ pub use half::f16;
 pub use ndarray::*;
 pub use num::complex::Complex64;
 pub use num_traits::*;
+pub use std::fmt::Debug;
 pub use paste::paste;
 pub use std::cmp::*;
 pub use std::collections::{BTreeMap,BTreeSet};

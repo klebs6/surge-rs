@@ -2,9 +2,6 @@ ix!();
 
 use crate::*;
 
-#[inline] unsafe fn access(x: *mut f32, idx: usize) -> *mut __m128 {
-    (x as *mut __m128).add(idx)
-}
 
 impl LipolPs {
 
@@ -90,6 +87,10 @@ impl LipolPs {
         nquads: NQ) 
         where <NQ as TryInto<usize>>::Error: Debug, NQ: TryInto<usize>
     {
+        #[inline] unsafe fn access(x: *mut f32, idx: usize) -> *mut __m128 {
+            (x as *mut __m128).add(idx)
+        }
+
         let nquads: usize = nquads.try_into().unwrap();
 
         let mut y:  __m128 = z128![];

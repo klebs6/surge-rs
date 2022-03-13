@@ -1,7 +1,10 @@
 #![feature(stdarch)]
 
 macro_rules! x { ($x:ident) => { mod $x; pub use $x::*; } }
-macro_rules! ix { () => ( use crate::{ imports::* , };) }
+macro_rules! ix { () => ( 
+    #[allow(unused_imports)]
+    use crate::{ imports::* , };) 
+}
 
 #[macro_use] pub mod imports;
 
@@ -48,3 +51,4 @@ x![lipol_ps];
 x![mac];
 x![multiply];
 x![trixpan];
+x![tests];

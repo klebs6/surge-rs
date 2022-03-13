@@ -1,3 +1,5 @@
+#![allow(soft_unstable)]
+#![feature(test)]
 #![feature(core_intrinsics)]
 #![feature(platform_intrinsics)]
 #![feature(stdarch)]
@@ -13,8 +15,11 @@ macro_rules! ix { () => (
 #[macro_use] pub mod imports;
 #[macro_use] pub mod m128;
 
+#[macro_use] extern crate bencher;
+
 x![align];
 x![allpass];
+x![bench];
 x![cast];
 x![clamp];
 x![clear];
