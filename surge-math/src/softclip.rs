@@ -1,7 +1,8 @@
 ix!();
 
 /// y = x - (4/27)*x^3,  x € [-1.5 .. 1.5]
-#[cfg(target_arch = "x86_64")] #[inline] 
+#[inline] 
+#[cfg(target_arch = "x86_64")] 
 pub fn softclip_ss(x_in: __m128) -> __m128
 {
    let a: __m128     = unsafe{ _mm_set_ss(-4.0 / 27.0) };
@@ -19,7 +20,8 @@ pub fn softclip_ss(x_in: __m128) -> __m128
 }
 
 /// y = x - (4/27)*x^3,  x € [-1.5 .. 1.5]
-#[cfg(target_arch = "x86_64")] #[inline] 
+#[inline] 
+#[cfg(target_arch = "x86_64")] 
 pub fn softclip_ps(x_in: __m128) -> __m128
 {
     unsafe {

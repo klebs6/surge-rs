@@ -1,6 +1,4 @@
-use crate::{
-    MidiChannelState,
-};
+use crate::*;
 
 #[derive(Debug)]
 pub struct MIDIUnit {
