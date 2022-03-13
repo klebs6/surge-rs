@@ -1,11 +1,6 @@
 ix!();
 
-use crate::{
-    SurgeVoiceState,
-    FilterBlockState,
-    FilterBlockData,
-    FBP,
-};
+use crate::*;
 
 enhanced_enum![
     LagEntry {
@@ -29,7 +24,7 @@ pub type VoiceModSourceArray
 = ModSourceArray::<MaybeBoxedModulationSource>;
 
 pub type MaybeVoiceOscillator
-= Option<Box<dyn Oscillator + >>;
+= Option<Box<dyn Oscillator>>;
 
 pub type MaybeVoiceOscillators
 = [MaybeVoiceOscillator; 3];

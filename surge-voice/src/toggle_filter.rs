@@ -1,13 +1,11 @@
 ix!();
 
-use crate::{
-    SurgeVoice,
-    VoiceRuntimeHandle,
-};
+use crate::*;
 
 impl SurgeVoice {
 
-    pub fn maybe_toggle_filter(&mut self, 
+    pub fn maybe_toggle_filter(
+        &mut self, 
         cfg: VoiceRuntimeHandle) 
     {
         let cfg = cfg.borrow();

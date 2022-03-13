@@ -1,8 +1,6 @@
 ix!();
 
-use crate::{
-    SurgeVoice,
-};
+use crate::*;
 
 pub struct VoiceUpdateQFCSCfg {
     pub f2_cutoff_is_offset:      bool,

@@ -28,29 +28,33 @@ impl SurgeVoiceState {
 
     pub fn get_pitch(&self) -> f32 
     {
-        /* For this commented out section, see the comment on 
-        * MPE global pitch bend in SurgeSynthesizer::pitchBend */
-        self.key as f32 + 
-        unsafe{ (*self.voice_channel_state).pitchbend_in_semitones.0 } +
-        self.detune as f32
-        /* + mainChannelState->pitchBendInSemitones */ 
+        let key      = self.key as f32;
+        let voice_pb = unsafe { (*self.voice_channel_state).pitchbend_in_semitones.0 };
+        let main_pb  = unsafe { (*self.main_channel_state).pitchbend_in_semitones.0 };
+        let detune   = self.detune as f32;
+
+        /**
+        | For this commented out section, see
+        | the comment on MPE global pitch bend
+        | in
+        | 
+        | SurgeSynthesizer::pitchBend
+        |
+        */
+        key + voice_pb + detune + main_pb
     }
 
     pub fn set_portasrc_key(&mut self, 
-        polymode: PolyMode, 
+        polymode:       PolyMode, 
         portamento_min: bool, 
-        last_key: i32, 
-        pitch: f64) 
+        last_key:       i32, 
+        pitch:          f64) 
     {
         let sel_polymode = polymode == PolyMode::MonoSingleTriggerFingeredPortamento;
 
-        match (sel_polymode, portamento_min) {
-            (true, true) => {
-                self.portasrc_key = pitch;
-            },
-            _ => {
-                self.portasrc_key = last_key as f64;
-            }
-        }
+        self.portasrc_key = match (sel_polymode, portamento_min) {
+            (true, true) => pitch,
+            _            => last_key as f64,
+        };
     }
 }

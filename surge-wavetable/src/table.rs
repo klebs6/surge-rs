@@ -1,12 +1,6 @@
 ix!();
 
-use crate::{
-    WaveTableFileFormat,
-    WaveTableBuildError,
-    get_wavetable_format,
-    WaveTableDim,
-    WaveTableBase,
-};
+use crate::*;
 
 pub const INITIAL_WAVETABLE_DATA_SIZES: usize = 35000;
 pub const MIN_F32_WAVETABLES:             u32 = 3;

@@ -1,10 +1,6 @@
 ix!();
 
-use crate::{
-    WaveTable,
-    WaveTableData,
-    WaveTableBuildError,
-};
+use crate::*;
 
 impl TryFrom<WaveTableDataFilename> for WaveTable {
 

@@ -1,14 +1,6 @@
 ix!();
 
-use crate::{
-    WaveTable,
-    WaveTableFlags,
-    WaveTableHeader,
-    WaveTableBase,
-    WaveTableBuildError,
-    WaveTableDim,
-    required_mipmap_levels,
-};
+use crate::*;
 
 fn get_loop_len(spec: &hound::WavSpecSurge) -> Result<(bool,i32),WaveTableBuildError> {
 
@@ -46,8 +38,7 @@ impl TryFrom<WaveTableWavFilename> for WaveTable {
             Err(e) => panic!("unable to open file: {:?}, error: {:?}", filename.0,e),
         };
 
-        let spec = reader.surge_spec();
-
+        let spec            = reader.surge_spec();
         let audio_format    = spec.specx.unwrap().spec.sample_format;
         let bits_per_sample = spec.specx.unwrap().spec.bits_per_sample;
 

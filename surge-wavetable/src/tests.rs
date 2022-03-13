@@ -1,8 +1,6 @@
 ix!();
 
-use crate::{
-    WaveTable,
-};
+use crate::*;
 
 #[test] fn wavetable_read() {
 

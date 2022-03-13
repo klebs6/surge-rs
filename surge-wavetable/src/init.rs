@@ -1,15 +1,13 @@
 ix!();
 
-use crate::{
-    WaveTableBase,
-    WaveTableData,
-    WaveTableHeader,
-    populate_mipmaps,
-    HasMipmapFilter,
-};
+use crate::*;
 
-// post-silence we can implement with zeros for out of bounds access
-// or we can use a "padded-dimension" abstraction
+/**
+  | post-silence we can implement with
+  | zeros for out of bounds access or we can
+  | use a "padded-dimension" abstraction
+  |
+  */
 pub fn populate_base_mipmap_level<T: WaveTableData>(
     data: &mut A3d::<T>,
     header: &WaveTableHeader,
@@ -27,19 +25,31 @@ pub fn populate_base_mipmap_level<T: WaveTableData>(
     let mut cur_table        = 0;
     let mut cur_table_sample = 0;
 
-    //tk -- this quick implementation of mine may be totally incorrect, 
-    //as far as I can tell, there are several factors which need to 
-    //be considered. It seems to me that ndarray takes care of many of 
-    //them, in fact. a higher level of abstraction will help greatly.  
-    //The idea of "append_silence" as well as zero padding for interpolation 
-    //are noted, though I am not sure we need them at this level.  IMO it 
-    //is better to bring all of the data into the program, and arrange it
-    //minimally in light of our desired mental model. This, to me, 
-    //is simply a 3D ndarray, indexed by (miplevel, table, sample)
-    //Any client code should access interpolated values via an
-    //API which hides the underlying data representation.
-    //This API should function regardless of the underlying extents
-    //in the three dimensions.
+    /**
+      |tk -- this quick implementation of mine may
+      |be totally incorrect, as far as I can tell,
+      |there are several factors which need to be
+      |considered. It seems to me that ndarray
+      |takes care of many of them, in
+      |fact. a higher level of abstraction will
+      |help greatly.
+      |
+      |The idea of "append_silence" as well as zero
+      |padding for interpolation are noted, though
+      |I am not sure we need them at this level.
+      |IMO it is better to bring all of the data
+      |into the program, and arrange it minimally
+      |in light of our desired mental model. This,
+      |to me, is simply a 3D ndarray, indexed by
+      |(miplevel, table, sample)
+      |
+      |Any client code should access interpolated
+      |values via an API which hides the underlying
+      |data representation.
+      |
+      |This API should function regardless of the
+      |underlying extents in the three dimensions.
+      */
     for sample in samples.iter() {
 
         data[[this_mipmap_level, cur_table, cur_table_sample]] = *sample;

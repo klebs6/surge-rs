@@ -1,9 +1,6 @@
 ix!();
 
-use crate::{
-    SurgeVoice,
-    VoiceRuntimeHandle,
-};
+use crate::*;
 
 #[derive(Clone)]
 pub struct VoiceToggleSoloCfg {
@@ -38,9 +35,9 @@ impl VoiceToggleSoloCfg {
 impl SurgeVoice {
 
     pub fn set_path(&mut self, 
-        osc0: bool, 
-        osc1: bool, 
-        osc2: bool, 
+        osc0:  bool, 
+        osc1:  bool, 
+        osc2:  bool, 
         ring0: bool, 
         ring1: bool, 
         noise: bool)

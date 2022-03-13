@@ -5,7 +5,6 @@ use crate::{
     VoiceUpdateQFCSCfg,
 };
 
-
 impl SurgeVoice {
 
     #[inline(always)] pub fn get_table_pitch(&mut self, 

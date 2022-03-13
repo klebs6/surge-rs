@@ -1,8 +1,6 @@
 ix!();
 
-use crate::{
-    SurgeVoice,
-};
+use crate::*;
 
 impl SurgeVoice {
 

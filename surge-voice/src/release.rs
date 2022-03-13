@@ -1,8 +1,6 @@
 ix!();
 
-use crate::{
-    SurgeVoice,
-};
+use crate::*;
 
 impl SurgeVoice {
 
@@ -11,7 +9,7 @@ impl SurgeVoice {
         macro_rules! release {
             ($key:ident,$variant:tt) => {
                 match &mut self.modsources[ModSource::$key] {
-                    Some(box ModulationSource::$variant(modsource)) => {
+                    Some(Box::new(ModulationSource::$variant(modsource))) => {
                         modsource.release();
                     },
                     _ => panic!("bug in release function"),
@@ -32,7 +30,7 @@ impl SurgeVoice {
         self.state.gate = false;
 
         match &mut self.modsources[ModSource::ReleaseVelocity] {
-            Some(box ModulationSource::ControllerModulationSource(rv)) => {
+            Some(Box::new(ModulationSource::ControllerModulationSource(rv))) => {
                 rv.output = self.state.releasevelocity as f64 / 127.0;
             },
             _ => panic!("bug in release function"),
@@ -43,7 +41,7 @@ impl SurgeVoice {
         macro_rules! uber_release {
             ($key:ident,$variant:tt) => {
                 match &mut self.modsources[ModSource::$key] {
-                    Some(box ModulationSource::$variant(modsource)) => {
+                    Some(Box::new(ModulationSource::$variant(modsource))) => {
                         modsource.uber_release();
                     },
                     _ => panic!("bug in release function"),

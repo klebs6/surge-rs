@@ -1,17 +1,6 @@
 ix!();
 
-use crate::{
-    SurgeVoice,
-    SurgeVoiceState,
-    create_voice_osclevels,
-    FilterBlockState,
-    FBP,
-    create_voice_oscillators,
-    create_voice_modsources,
-    FilterBlockData,
-    VoiceToggleSoloCfg,
-    VoiceRuntimeHandle,
-};
+use crate::*;
 
 pub struct VoiceConstructor {
     pub timeunit:                 TimeUnitHandle,
@@ -39,65 +28,74 @@ pub struct VoiceConstructor {
 
 impl SurgeVoice {
 
+    pub fn new_voice_state(cfg: VoiceConstructor) -> SurgeVoiceState {
+        SurgeVoiceState {
+            pitch:                SurgeVoiceState::default_pitch(),
+            pkey:                 SurgeVoiceState::default_pkey(),
+            key:                  cfg.key,
+            channel:              cfg.channel,
+            velocity:             cfg.velocity,
+            fvel:                 (cfg.velocity as f64) / 127.0,
+            releasevelocity:      0,
+            freleasevel:          0.0,
+            detune:               cfg.detune,
+            uberrelease:          false,
+            keystate:             cfg.keystate,
+            main_channel_state:   cfg.main_channel_state,
+            voice_channel_state:  cfg.voice_channel_state,
+            portaphase:           0.0,
+            gate:                 true,
+            keep_playing:         true,
+            portasrc_key:         Default::default(),
+        }
+    }
+
+    pub fn new_coeffmakers(cfg: VoiceConstructor) -> [FilterCoefficientMaker; 2] {
+        [
+            FilterCoefficientMaker::new(
+                cfg.tuner.clone(),
+                cfg.tables.clone(),
+                cfg.srunit.clone()
+            ),
+            FilterCoefficientMaker::new(
+                cfg.tuner.clone(),
+                cfg.tables.clone(),
+                cfg.srunit.clone()
+            ),
+        ]
+    }
+
     pub fn new(cfg: VoiceConstructor) -> Self
     {
         let mut voice = Self {
-            output:                   Align16([[0.0; BLOCK_SIZE_OS]; 2]),
-            osclevels:                Align16(create_voice_osclevels()),
-            fmbuffer:                 Align16([0.0; BLOCK_SIZE_OS]),
-            osctype:                  [OscillatorType::Off; N_OSCS],
-            state: SurgeVoiceState {
-                pitch:                SurgeVoiceState::default_pitch(),
-                pkey:                 SurgeVoiceState::default_pkey(),
-                key:                  cfg.key,
-                channel:              cfg.channel,
-                velocity:             cfg.velocity,
-                fvel:                 (cfg.velocity as f64) / 127.0,
-                releasevelocity:      0,
-                freleasevel:          0.0,
-                detune:               cfg.detune,
-                uberrelease:          false,
-                keystate:             cfg.keystate,
-                main_channel_state:   cfg.main_channel_state,
-                voice_channel_state:  cfg.voice_channel_state,
-                portaphase:           0.0,
-                gate:                 true,
-                keep_playing:         true,
-                portasrc_key:         Default::default(),
-            },
-            age:                      0,
-            age_release:              0,
-            filterblock_state:        FilterBlockState::default(),
-            fbp:                      FBP::default(),
-            coeffmaker:                       [
-                FilterCoefficientMaker::new(
-                    cfg.tuner.clone(),
-                    cfg.tables.clone(),
-                    cfg.srunit.clone()
-                ),
-                FilterCoefficientMaker::new(
-                    cfg.tuner.clone(),
-                    cfg.tables.clone(),
-                    cfg.srunit.clone()
-                ),
-            ],
-            route:              [0; 6],
-            octave_size:        12.0, // 12.0
-            osc_enable:         [false; 3],
-            ring_enable:        [false; 2],
-            noise_enable:       false,
+            output:              Align16([[0.0; BLOCK_SIZE_OS]; 2]),
+            osclevels:           Align16(create_voice_osclevels()),
+            fmbuffer:            Align16([0.0; BLOCK_SIZE_OS]),
+            osctype:             [OscillatorType::Off; N_OSCS],
+            state:               Self::new_voice_state(cfg),
+            age:                 0,
+            age_release:         0,
+            filterblock_state:   FilterBlockState::default(),
+            fbp:                 FBP::default(),
+            coeffmaker:          Self::new_coeffmakers(cfg),
+            route:               [0; 6],
+            octave_size:         12.0, // 12.0
+            osc_enable:          [false; 3],
+            ring_enable:         [false; 2],
+            noise_enable:        false,
             fm_mode:             FmConfiguration::Off,
-            noisegen_l:         [0.0; 2],
-            noisegen_r:         [0.0; 2],
-            osc:                create_voice_oscillators(cfg.tuner.clone()),
-            filterblock_data:   FilterBlockData::default(),
-            mpe_enabled:        cfg.mpe_enabled,
-            uuid:               Uuid::new_v4(),
+            noisegen_l:          [0.0; 2],
+            noisegen_r:          [0.0; 2],
+            osc:                 create_voice_oscillators(cfg.tuner.clone()),
+            filterblock_data:    FilterBlockData::default(),
+            mpe_enabled:         cfg.mpe_enabled,
+            uuid:                Uuid::new_v4(),
 
             modsources:         create_voice_modsources(
                 cfg.timeunit.clone(),
                 cfg.tables.clone(),
-                cfg.srunit.clone()),
+                cfg.srunit.clone()
+            ),
 
             tables:             cfg.tables.clone(),
             time_unit:          cfg.timeunit.clone(),

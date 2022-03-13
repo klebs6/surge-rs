@@ -1,8 +1,6 @@
 ix!();
 
-use crate::{
-    SurgeVoice,
-};
+use crate::*;
 
 pub struct SyncQFBRegistersCfg {
     filterunit_type:  [FilterType; 2],

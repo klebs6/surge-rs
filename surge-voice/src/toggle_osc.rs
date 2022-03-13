@@ -1,10 +1,6 @@
 ix!();
 
-use crate::{
-    SurgeVoice,
-    MaybeVoiceOscillator,
-    VoiceRuntimeHandle,
-};
+use crate::*;
 
 impl SurgeVoice {
 
@@ -16,14 +12,14 @@ impl SurgeVoice {
         let srunit   = self.srunit.clone();
 
         match oscty {
-            OscillatorType::AudioInput           => Some(box AudioInputOscillator::new(tables,synth_in)),
-            OscillatorType::SurgeSuperOscillator => Some(box SurgeSuperOscillator::new(tuner,tables,srunit)),
-            OscillatorType::FM                   => Some(box FMOscillator::new(tuner)),
-            OscillatorType::FM2                  => Some(box FM2Oscillator::new(tuner,srunit)),
-            OscillatorType::SampleAndHold        => Some(box SampleAndHoldOscillator::new(tuner,tables,srunit)),
-            OscillatorType::Sine                 => Some(box SineWaveOscillator::new(tuner)),
-            OscillatorType::Wavetable            => Some(box WTOscillator::new(tuner,tables,srunit)),
-            OscillatorType::Window               => Some(box WindowOscillator::new(tuner,tables,srunit)),
+            OscillatorType::AudioInput           => Some(Box::new(AudioInputOscillator::new(tables,synth_in))),
+            OscillatorType::SurgeSuperOscillator => Some(Box::new(SurgeSuperOscillator::new(tuner,tables,srunit))),
+            OscillatorType::FM                   => Some(Box::new(FMOscillator::new(tuner))),
+            OscillatorType::FM2                  => Some(Box::new(FM2Oscillator::new(tuner,srunit))),
+            OscillatorType::SampleAndHold        => Some(Box::new(SampleAndHoldOscillator::new(tuner,tables,srunit))),
+            OscillatorType::Sine                 => Some(Box::new(SineWaveOscillator::new(tuner))),
+            OscillatorType::Wavetable            => Some(Box::new(WTOscillator::new(tuner,tables,srunit))),
+            OscillatorType::Window               => Some(Box::new(WindowOscillator::new(tuner,tables,srunit))),
             _ => None,
         }
     }

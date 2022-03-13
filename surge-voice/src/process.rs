@@ -1,10 +1,6 @@
 ix!();
 
-use crate::{
-    SurgeVoice,
-    LagEntry,
-    VoiceRuntimeHandle,
-};
+use crate::*;
 
 impl SurgeVoice {
 
@@ -28,7 +24,7 @@ impl SurgeVoice {
         let osc0or1                = self.osc_enable[0] || self.osc_enable[1];
         let fm2to1to0              = self.fm_mode == FmConfiguration::TwoToOneToZero;
         let fm1and2to0             = self.fm_mode == FmConfiguration::OneAndTwoToZero;
-        let osc0or1_and_fm2to1to0  = osc0or1    && fm2to1to0;
+        let osc0or1_and_fm2to1to0  = osc0or1 && fm2to1to0;
         let osc1_and_fm1and2to0    = self.osc_enable[0]  && fm1and2to0;
 
         let gate2: bool =  {
@@ -119,4 +115,3 @@ impl SurgeVoice {
         ShouldKeepPlaying(self.state.keep_playing)
     }
 }
-

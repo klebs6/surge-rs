@@ -1,8 +1,6 @@
 ix!();
 
-use crate::{
-    WAVETABLE_SAMPLE_PADDING,
-};
+use crate::*;
 
 enhanced_enum![
     WaveTableFileFormat { 
@@ -10,7 +8,6 @@ enhanced_enum![
         Wav 
     }
 ];
-
 
 enhanced_enum![
     PatchFileFormat { 

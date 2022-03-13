@@ -3,9 +3,7 @@ ix!();
 use crate::{WaveshaperState,QuadFilterUnitState,QuadFilterChainState};
 
 pub type WaveshaperQFPtr 
-= 
-fn(&mut WaveshaperState, input: __m128, drive: __m128) -> __m128
-;
+= fn(&mut WaveshaperState, input: __m128, drive: __m128) -> __m128;
 
 pub type FilterUnitQFPtr 
 = fn(&mut QuadFilterUnitState, __m128) -> __m128;
