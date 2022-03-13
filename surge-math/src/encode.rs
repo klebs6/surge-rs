@@ -6,7 +6,8 @@ ix!();
 
 ///# Safety
 ///
-///ensure we can access nquads * 4 values from both l and r
+///ensure we can access nquads * 4 values from
+///both l and r
 pub unsafe fn encode_mid_side<NQ>(
     l: *mut f32, 
     r: *mut f32, 

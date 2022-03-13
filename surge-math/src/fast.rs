@@ -1,18 +1,24 @@
+/*!
+ | Fast Math Approximations to various Functions
+ |
+ | Documentation on each one
+ |
+ | These are directly copied from JUCE6
+ | modules/juce_dsp/mathos/juce_FastMathApproximations.h
+ |
+ | Since JUCE6 is GPL3 and Surge is GPL3 that copy
+ | is fine, but I did want to explicitly acknowledge
+ | it
+ */
+
 ix!();
 
 /**
-** Fast Math Approximations to various Functions
-**
-** Documentation on each one
-**
-** These are directly copied from JUCE6 modules/juce_dsp/mathos/juce_FastMathApproximations.h
-**
-** Since JUCE6 is GPL3 and Surge is GPL3 that copy is fine, but I did want to explicitly
-** acknowledge it
-*/
-
-/// JUCE6 Pade approximation of sin valid from -PI to PI 
-/// with max error of 1e-5 and average error of 5e-7
+  | JUCE6 Pade approximation of sin valid
+  | from -PI to PI with max error of 1e-5 and
+  | average error of 5e-7
+  |
+  */
 #[inline] pub fn fastsin(x: f32) -> f32 
 {
     let x2 = x * x;
@@ -32,8 +38,12 @@ ix!();
     numerator / denominator
 }
 
-/// JUCE6 Pade approximation of cos valid from -PI to PI 
-/// with max error of 1e-5 and average error of 5e-7
+/**
+  | JUCE6 Pade approximation of cos valid
+  | from -PI to PI with max error of 1e-5 and
+  | average error of 5e-7
+  |
+  */
 #[inline] pub fn fastcos(x: f32) -> f32 
 {
     let x2 = x * x;
@@ -50,8 +60,11 @@ ix!();
     numerator / denominator
 }
 
-/// Push x into -PI, PI periodically. There is 
-/// probably a faster way to do this
+/**
+  | Push x into -PI, PI periodically. There
+  | is probably a faster way to do this
+  |
+  */
 #[inline] pub fn clamp_to_pi_range(x: f32) -> f32 
 {
     if (-PI_32..=PI_32).contains(&x) {
@@ -75,7 +88,10 @@ ix!();
     p - PI_32
 }
 
-/// Valid in range -5, 5
+/**
+  | Valid in range -5, 5
+  |
+  */
 #[inline] pub fn fasttanh(x: f32) -> f32 
 {
     let x2 = x * x;
@@ -84,7 +100,10 @@ ix!();
     numerator / denominator
 }
 
-/// Valid in range (-PI/2, PI/2)
+/**
+  | Valid in range (-PI/2, PI/2)
+  |
+  */
 #[inline] pub fn fasttan(x: f32) -> f32 
 {
     let x2 = x * x;
@@ -105,33 +124,26 @@ ix!();
 
         let x2 = _mm_mul_ps(x, x);
 
-        let num = _mm_mul_ps(
-            x, 
-            _mm_add_ps(
-                m135135, 
-                _mm_mul_ps(
-                    x2, 
-                    _mm_add_ps(
-                        m17325, 
-                        _mm_mul_ps(
-                            x2, 
-                            _mm_add_ps(
-                                m378, 
-                                x2))))));
+        let num = {
 
-        let den = _mm_add_ps(
-            m135135, 
-            _mm_mul_ps(
-                x2, 
-                _mm_add_ps(
-                    m62370, 
-                    _mm_mul_ps(
-                        x2, 
-                        _mm_add_ps(
-                            m3150, 
-                            _mm_mul_ps(
-                                m28, 
-                                x2))))));
+            let x2p378 = _mm_add_ps( m378, x2);
+            let p1     = _mm_mul_ps( x2, x2p378);  //product1
+            let s1     = _mm_add_ps( m17325, p1);  //sum1
+            let p2     = _mm_mul_ps( x2, s1);      //product2
+            let s2     = _mm_add_ps( m135135, p2); //sum2
+
+            _mm_mul_ps( x, s2)
+        };
+
+        let den = {
+            let p1 = _mm_mul_ps( m28, x2);
+            let s1 = _mm_add_ps( m3150, p1);
+            let p2 = _mm_mul_ps( x2, s1);
+            let s2 = _mm_add_ps( m62370, p2);
+            let p3 = _mm_mul_ps( x2, s2);
+
+            _mm_add_ps( m135135, p3)
+        };
 
         _mm_div_ps(num, den)
     }
@@ -140,16 +152,23 @@ ix!();
 #[inline] pub fn fasttanh_sse_clamped(x: __m128) -> __m128 
 {
     unsafe {
+
+        let p5 = _mm_set_ps1(5.0);
+        let m5 = _mm_set_ps1(-5.0);
+
         let xc = _mm_min_ps(
-            _mm_set_ps1(5.0), 
-            _mm_max_ps(
-                _mm_set_ps1(-5.0), 
-                x));
+            p5, 
+            _mm_max_ps( m5, x)
+        );
+
         fasttanh_sse(xc)
     }
 }
 
-/// Valid in range -6, 4
+/**
+  | Valid in range -6, 4
+  |
+  */
 #[inline] pub fn fastexp(x: f32) -> f32 
 {
     let numerator = 1680.0 + x * (840.0 + x * (180.0 + x * (20.0 + x)));
@@ -167,37 +186,29 @@ ix!();
         let m20:     __m128 = _mm_set_ps1(20.0);
         let mneg20:  __m128 = _mm_set_ps1(-20.0);
 
-        let num = _mm_add_ps(
-            m1680, 
-            _mm_mul_ps(
-                x, 
-                _mm_add_ps(
-                    m840, 
-                    _mm_mul_ps(
-                        x, 
-                        _mm_add_ps(
-                            m180, 
-                            _mm_mul_ps(
-                                x, 
-                                _mm_add_ps(
-                                    m20, 
-                                    x)))))));
+        let num = {
 
-        let den = _mm_add_ps(
-            m1680, 
-            _mm_mul_ps(
-                x, 
-                _mm_add_ps(
-                    mneg840, 
-                    _mm_mul_ps(
-                        x, 
-                        _mm_add_ps(
-                            m180, 
-                            _mm_mul_ps(
-                                x, 
-                                _mm_add_ps(
-                                    mneg20, 
-                                    x)))))));
+            let s1 = _mm_add_ps( m20, x);
+            let p1 = _mm_mul_ps( x, s1);
+            let s2 = _mm_add_ps( m180, p1);
+            let p2 = _mm_mul_ps( x, s2);
+            let s3 = _mm_add_ps( m840, p2);
+            let p3 = _mm_mul_ps( x, s3);
+
+            _mm_add_ps( m1680, p3)
+        };
+
+        let den = {
+
+            let s1 = _mm_add_ps(mneg20, x);
+            let p1 = _mm_mul_ps(x, s1);
+            let s2 = _mm_add_ps(m180, p1);
+            let p2 = _mm_mul_ps(x, s2);
+            let s3 = _mm_add_ps( mneg840, p2);
+            let p3 = _mm_mul_ps(x, s3);
+
+            _mm_add_ps( m1680, p3)
+        };
 
         _mm_div_ps(num, den)
     }
