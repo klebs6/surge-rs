@@ -104,9 +104,9 @@ impl SurgeScene {
                         play_configs.push(
                             PlayConfig {
                                 active_voice_channel: active_voice_channel as i32,
-                                active_voice_key: active_voice_key as i32,
-                                velocity: cfg.velocity as i32,
-                                lastdetune: self.midi_unit.lastdetune(active_voice_channel as u8,lowkey) as u8,
+                                active_voice_key:     active_voice_key as i32,
+                                velocity:             cfg.velocity as i32,
+                                lastdetune:           self.midi_unit.lastdetune(active_voice_channel as u8,lowkey) as u8,
                             }
                         );
                     }

@@ -27,4 +27,3 @@ enhanced_enum![
         LatchMonophonic,
     }
 ];
-

@@ -21,9 +21,12 @@ impl Init for TimeUnit {
     fn init(&mut self) {
         self.temposyncratio = 1.0;
 
-        // Use this as a sentinel (since it was not initialized 
-        // prior to 1.6.5 this was the value at least win and mac had). 
-        // #1444
+        /**
+        | Use this as a sentinel (since it was
+        | not initialized prior to 1.6.5 this was
+        | the value at least win and mac
+        | had). #1444
+        */
         self.temposyncratio_inv = 0.0;
 
         self.songpos = 0.0;

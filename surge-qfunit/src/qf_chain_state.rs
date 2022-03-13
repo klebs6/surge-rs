@@ -1,11 +1,12 @@
 ix!();
 
-use crate::{QuadFilterUnitState};
+use crate::*;
 
 /**
-  typically used with MAX_VOICES >> 2 elements ie,
-  each QuadFilterChainState performs filtering for
-  four voices
+  | typically used with MAX_VOICES >> 2
+  | elements ie, each QuadFilterChainState
+  | performs filtering for four voices
+  |
   */
 #[derive(Debug)]
 pub struct QuadFilterChain {

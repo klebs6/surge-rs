@@ -20,12 +20,23 @@ impl SurgeScene {
         }
     }
 
+    pub fn filterunit_cutoffs(&self) -> (f32,f32) {
+        (self.filterunit_cutoff(0), self.filterunit_cutoff(1))
+    }
+
+    pub fn filterunit_envmodes(&self) -> (f32,f32) {
+        (self.filterunit_envelopemode(0), self.filterunit_envelopemode(1))
+    }
+
+    pub fn filterunit_keytracks(&self) -> (f32,f32) {
+        (self.filterunit_keytrack(0), self.filterunit_keytrack(1))
+    }
+
     pub fn handle_boolrelative_switching<P: Param + ?Sized>(&mut self, 
         param: &mut ParamRT<P>, 
         oldvalb: bool) 
     {
-        let down: bool = 
-            pvalb![param];
+        let down: bool = pvalb![param];
 
         let mut polarity: f32 = 
             match down { true => -1.0, false => 1.0 };
@@ -34,27 +45,21 @@ impl SurgeScene {
             polarity = 0.0;
         }
 
-        let cutoff0        = self.filterunit_cutoff(0);
-        let cutoff1        = self.filterunit_cutoff(1);
-
-        let envelope_mode0 = self.filterunit_envelopemode(0);
-        let envelope_mode1 = self.filterunit_envelopemode(1);
-
-        let keytrack0      = self.filterunit_keytrack(0);
-        let keytrack1      = self.filterunit_keytrack(1);
+        let (c0, c1)   = self.filterunit_cutoffs();
+        let (m0, m1)   = self.filterunit_envmodes();
+        let (kt0,kt1) = self.filterunit_keytracks();
 
         let unit = self.filterunit[1];
 
-        unit.params[FilterParam::Cutoff].val        = PData::Float(cutoff1        + polarity * cutoff0);
-        unit.params[FilterParam::EnvelopeMode].val  = PData::Float(envelope_mode1 + polarity * envelope_mode0);
-        unit.params[FilterParam::KeyTrack].val      = PData::Float(keytrack1      + polarity * keytrack0);
+        unit.params[FilterParam::Cutoff].val        = PData::Float(c1 + polarity * c0);
+        unit.params[FilterParam::EnvelopeMode].val  = PData::Float(m1 + polarity * m0);
+        unit.params[FilterParam::KeyTrack].val      = PData::Float(kt1 + polarity * kt0);
     }
 
     pub fn set_channel_aftertouch_target(&mut self, fval: f32) {
         match &mut self.modsources[ModSource::ChannelAfterTouch] {
-            Some(Box::new(ModulationSource::ControllerModulationSource(ref mut inner))) 
-                => inner.set_target(fval as f64),
-            _ => unreachable!(),
+            Some(Box::new(ModulationSource::ControllerModulationSource(ref mut inner))) => inner.set_target(fval as f64),
+            _                                                                           => unreachable!(),
         }
     }
 
@@ -73,27 +78,24 @@ impl SurgeScene {
     }
 
     pub fn new_controller_modsource(srunit: SampleRateHandle) -> MaybeBoxedModulationSource {
-        Some(
-            Box::new(
-                ModulationSource::ControllerModulationSource(ControllerModulationSource::new(srunit.clone()))
-            )
-        )
+
+        let cms = ControllerModulationSource::new(srunit.clone());
+
+        let ms  = ModulationSource::ControllerModulationSource(cms);
+
+        Some(Box::new(ms))
     }
 
     pub fn new_lfo_modsource(
         timeunit: TimeUnitHandle, 
         tables:   TablesHandle,
     ) -> MaybeBoxedModulationSource {
-        Some(
-            Box::new(
-                ModulationSource::Lfo(
-                    Lfo::new(
-                        timeunit.clone(),
-                        tables.clone()
-                    )
-                )
-            )
-        )
+
+        let lfo = Lfo::new(timeunit.clone(), tables.clone());
+
+        let ms  = ModulationSource::Lfo(lfo);
+
+        Some(Box::new(ms))
     }
 
     pub fn new_modsources(

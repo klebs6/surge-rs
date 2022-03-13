@@ -17,7 +17,6 @@ enhanced_enum![
 rt![PatchParam];
 
 impl Param for PatchParam {
-
     fn control_group(&self) -> ControlGroup { ControlGroup::Global } 
 }
 

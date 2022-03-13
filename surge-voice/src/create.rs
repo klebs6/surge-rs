@@ -1,38 +1,31 @@
 ix!();
 
-use crate::{
-    LagEntry,
-    VoiceModSourceArray,
-    VoiceOscLevels,
-    LagEntryArray,
-    MaybeVoiceOscillators,
-};
+use crate::*;
 
 pub fn some_new_boxed_lfo(
     time_unit: TimeUnitHandle,
     tables:    TablesHandle
 ) -> Option<Box<ModulationSource>> 
 {
-    Some(
-        Box::new(
-            ModulationSource::Lfo(
-                Lfo::new(time_unit.clone(), tables.clone())
-            )
-        )
-    )
+    let lfo = Lfo::new(
+        time_unit.clone(), 
+        tables.clone()
+    );
+
+    let ms  = ModulationSource::Lfo(lfo);
+
+    Some(Box::new(ms))
 }
 
 pub fn some_new_boxed_controller(
     srunit:    SampleRateHandle
 ) -> Option<Box<ModulationSource>> 
 {
-    Some(
-        Box::new(
-            ModulationSource::ControllerModulationSource(
-                ControllerModulationSource::new(srunit.clone())
-            )
-        )
-    )
+    let cms = ControllerModulationSource::new(srunit.clone());
+
+    let ms  = ModulationSource::ControllerModulationSource(cms);
+
+    Some(Box::new(ms))
 }
 
 pub fn some_new_boxed_envelope(
@@ -41,17 +34,15 @@ pub fn some_new_boxed_envelope(
     srunit:    SampleRateHandle,
 ) -> Option<Box<ModulationSource>> 
 {
-    Some(
-        Box::new(
-            ModulationSource::AdsrEnvelope(
-                AdsrEnvelope::new(
-                    time_unit.clone(),
-                    tables.clone(),
-                    srunit.clone()
-                )
-            )
-        )
-    )
+    let env = AdsrEnvelope::new(
+        time_unit.clone(), 
+        tables.clone(), 
+        srunit.clone()
+    );
+
+    let ms = ModulationSource::AdsrEnvelope(env);
+
+    Some(Box::new(ms))
 }
 
 pub fn create_voice_modsources(

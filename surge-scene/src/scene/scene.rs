@@ -1,14 +1,12 @@
 ix!();
 
-use crate::{
-    SceneParamArrayRT,
-};
+use crate::*;
 
 pub const N_MODSOURCES_PER_SCENE: usize = 32;
 
 #[derive(Debug)] 
 pub struct SurgeScene {
-    pub osc:                 Vec<Box<dyn Oscillator + >>,
+    pub osc:                 Vec<Box<dyn Oscillator>>,
     pub params:              SceneParamArrayRT,
     pub filterunit:          Vec<FilterUnit>,
     pub waveshaper_unit:     Vec<WaveshaperUnit>,

@@ -10,5 +10,3 @@ enhanced_enum![
         Digital,
     }
 ];
-
-

@@ -1,6 +1,6 @@
 ix!();
 
-use crate::QuadFilterChainState;
+use crate::*;
 
 /**
   |# Safety

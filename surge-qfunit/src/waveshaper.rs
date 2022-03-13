@@ -8,12 +8,12 @@ ix!();
   |TODO: eventually make a type of param which is
   |just a selector for one of several enum options
   */
-enhanced_enum![
+enhanced_enum!{
     WaveshaperParam {
         Type,
         Drive,
     }
-];
+}
 
 impl Param for WaveshaperParam {
     fn control_group(&self) -> ControlGroup { ControlGroup::Filter } 

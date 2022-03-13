@@ -23,11 +23,17 @@ impl<const LEN: usize> TwoByTwoBlock<LEN> {
 }
 
 impl<const LEN: usize> Default for TwoByTwoBlock<LEN> {
+
     fn default() -> Self {
+
+        let z = f32::zero();
+
         let mut x = Self {
-            buf: Align16([[[f32::zero(); LEN]; 2]; 2]), 
+            buf: Align16([[[z; LEN]; 2]; 2]), 
         };
+
         x.clear();
+
         x
     }
 }
@@ -159,6 +165,7 @@ impl SurgeSynthesizer<'plugin_layer> {
             self.amp.multiply_2_blocks(l, r, BLOCK_SIZE_QUAD);
         }
     }
+
     #[inline] pub fn apply_amp_mute(&mut self) {
         let l: *mut f32 = self.synth_out.out_l();
         let r: *mut f32 = self.synth_out.out_r();

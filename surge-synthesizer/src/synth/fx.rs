@@ -17,6 +17,23 @@ pub struct FXUnit {
 
 impl FXUnit {
 
+    pub fn new_fx(
+        tuner:    & TunerHandle,
+        tables:   & TablesHandle,
+        timeunit: & TimeUnitHandle,
+        srunit:   & SampleRateHandle)  -> Self {
+        vec![
+            SurgeEffect::Conditioner(Box::new(Conditioner::new(tuner,tables,srunit))),
+            SurgeEffect::AllpassVerb(Box::new(AllpassVerb::new(srunit))),
+            SurgeEffect::DualDelay(Box::new(DualDelay::new(tuner,tables,srunit,timeunit))),
+            SurgeEffect::Flanger(Box::new(Flanger::new(tuner,tables,srunit,timeunit))),
+            SurgeEffect::Phaser(Box::new(Phaser::new(tuner,tables,srunit,timeunit))),
+            SurgeEffect::Reverb(Box::new(Reverb::new(tuner,tables,srunit,timeunit))),
+            SurgeEffect::Distortion(Box::new(Distortion::new(tuner,tables,srunit))),
+            SurgeEffect::Eq3Band(Box::new(Eq3Band::new(tuner,tables,srunit))),
+        ]
+    }
+
     pub fn new(
         tuner:    & TunerHandle,
         tables:   & TablesHandle,
@@ -24,17 +41,8 @@ impl FXUnit {
         srunit:   & SampleRateHandle)  -> Self {
 
         Self {
-            load_fx_needed: true,
-            fx: vec![
-                SurgeEffect::Conditioner(box Conditioner::new(tuner,tables,srunit)),
-                SurgeEffect::AllpassVerb(box AllpassVerb::new(srunit)),
-                SurgeEffect::DualDelay(box DualDelay::new(tuner,tables,srunit,timeunit)),
-                SurgeEffect::Flanger(box Flanger::new(tuner,tables,srunit,timeunit)),
-                SurgeEffect::Phaser(box Phaser::new(tuner,tables,srunit,timeunit)),
-                SurgeEffect::Reverb(box Reverb::new(tuner,tables,srunit,timeunit)),
-                SurgeEffect::Distortion(box Distortion::new(tuner,tables,srunit)),
-                SurgeEffect::Eq3Band(box Eq3Band::new(tuner,tables,srunit)),
-            ],
+            load_fx_needed:     true,
+            fx:                 Self::new_fx(tuner,tables,timeunit,srunit),
             fx_reload:          [false; 8],
             fx_enable:          [true; 8],
             fx_suspend_bitmask: 0,

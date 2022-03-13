@@ -1,8 +1,6 @@
 ix!();
 
-use crate::{
-    qfc_write_outputs,
-};
+use crate::*;
 
 /**
   |# Safety

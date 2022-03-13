@@ -27,10 +27,13 @@ impl QuadFilterUnitState {
     pub fn new(
         tables: &TablesHandle
     ) -> Self {
+
+        let z = unsafe { z128![] };
+
         Self {
-            coeff:               [unsafe { z128![] }; N_COEFFMAKER_COEFFS],
-            dcoeff:              [unsafe { z128![] }; N_COEFFMAKER_COEFFS],
-            reg:                 [unsafe { z128![] }; N_FILTER_REGISTERS],
+            coeff:               [z; N_COEFFMAKER_COEFFS],
+            dcoeff:              [z; N_COEFFMAKER_COEFFS],
+            reg:                 [z; N_FILTER_REGISTERS],
             delay_buffer:        [std::ptr::null_mut(); 4],
             active:              [0; 4],
             comb_write_position: [0; 4], 

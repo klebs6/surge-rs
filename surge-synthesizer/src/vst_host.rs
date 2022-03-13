@@ -8,6 +8,7 @@ pub struct SpencaPlugin {
 }
 
 impl SpencaPlugin {
+
     fn time_per_sample(&self) -> f64 {
         1.0 / self.sample_rate
     }
