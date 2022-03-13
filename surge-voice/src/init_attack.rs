@@ -7,7 +7,7 @@ impl SurgeVoice {
     pub fn modsource_attack(&mut self) {
         macro_rules! attack {
             ($t:ident, $x:ident) => {
-                if let Some(Box::new(ModulationSource::$t(ref mut item))) 
+                if let Some(box ModulationSource::$t(ref mut item)) 
                     = &mut self.modsources[ModSource::$x] 
                 { 
                     item.attack(); 

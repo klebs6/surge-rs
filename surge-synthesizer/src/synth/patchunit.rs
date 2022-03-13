@@ -9,9 +9,10 @@ impl SurgeSynthesizer<'plugin_layer> {
     }
 
     pub fn process_threadunsafe_operations(&mut self) {
+
         if !self.audio_processing_active {
 
-            /**
+            /*
              | if the audio processing is inactive,
              | patchloading should occur anyway
              |

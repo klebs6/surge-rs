@@ -14,11 +14,6 @@ fn create_work_buffer(
 
     let mut o = A1d::<__m128>::from_elem(HALFRATE_BLOCK_SIZE, unsafe { z128![] });
 
-    let shuf0 = _MM_SHUFFLE(0,0,0,0);
-    let shuf1 = _MM_SHUFFLE(1,1,1,1);
-    let shuf2 = _MM_SHUFFLE(2,2,2,2);
-    let shuf3 = _MM_SHUFFLE(3,3,3,3);
-
     for k in (0..nsamples).step_by(8) {
 
         //[o3,o2,o1,o0] = [L0,L0,R0,R0]
@@ -27,15 +22,17 @@ fn create_work_buffer(
             let l = l_in.add(k >> 3);
             let r = r_in.add(k >> 3);
 
-            let fill = |offset: usize, shuf| {
-                o[k + offset]     = _mm_shuffle_ps(*l, *r, shuf); 
-                o[k + offset + 1] = _mm_setzero_ps();
-            };
+            o[k + 0]     = _mm_shuffle_ps(*l, *r, _MM_SHUFFLE(0,0,0,0)); 
+            o[k + 0 + 1] = _mm_setzero_ps();
 
-            fill(0,shuf0);
-            fill(2,shuf1);
-            fill(4,shuf2);
-            fill(6,shuf3);
+            o[k + 2]     = _mm_shuffle_ps(*l, *r, _MM_SHUFFLE(1,1,1,1)); 
+            o[k + 2 + 1] = _mm_setzero_ps();
+
+            o[k + 4]     = _mm_shuffle_ps(*l, *r, _MM_SHUFFLE(2,2,2,2)); 
+            o[k + 4 + 1] = _mm_setzero_ps();
+
+            o[k + 6]     = _mm_shuffle_ps(*l, *r, _MM_SHUFFLE(3,3,3,3)); 
+            o[k + 6 + 1] = _mm_setzero_ps();
         }
     }
 
@@ -63,7 +60,7 @@ impl ProcessBlockU2 for crate::HalfRateFilterSSE {
         let l_in = access_lanes(l_in);
         let r_in = access_lanes(r_in);
 
-        let o = create_work_buffer(l_in, r_in, nsamples);
+        let mut o = create_work_buffer(l_in, r_in, nsamples);
 
         // process filters
         for j in 0..self.m {
@@ -82,26 +79,32 @@ impl ProcessBlockU2 for crate::HalfRateFilterSSE {
                 tx2 = tx1;
                 tx1 = tx0;
                 tx0 = o[k];
+
                 // shuffle outputs
                 ty2 = ty1;
                 ty1 = ty0;
+
                 // allpass filter 1
                 unsafe {
                     ty0 = _mm_add_ps(tx2, _mm_mul_ps(_mm_sub_ps(tx0, ty2), ta));
                 }
+
                 o[k] = ty0;
 
                 // shuffle inputs
                 tx2 = tx1;
                 tx1 = tx0;
                 tx0 = o[k + 1];
+
                 // shuffle outputs
                 ty2 = ty1;
                 ty1 = ty0;
+
                 // allpass filter 1
                 unsafe {
                     ty0 = _mm_add_ps(tx2, _mm_mul_ps(_mm_sub_ps(tx0, ty2), ta));
                 }
+
                 o[k + 1] = ty0;
             }
             self.vx0[j] = tx0;

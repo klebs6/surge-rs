@@ -1,9 +1,7 @@
 ix!();
 
 fn access_f32<T>(x: *mut T) -> *mut f32 {
-    unsafe {
-        x as *mut f32
-    }
+    x as *mut f32
 }
 
 // copy block (requires aligned data)

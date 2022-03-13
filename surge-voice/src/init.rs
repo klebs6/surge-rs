@@ -28,7 +28,7 @@ pub struct VoiceConstructor {
 
 impl SurgeVoice {
 
-    pub fn new_voice_state(cfg: VoiceConstructor) -> SurgeVoiceState {
+    pub fn new_voice_state(cfg: &VoiceConstructor) -> SurgeVoiceState {
         SurgeVoiceState {
             pitch:                SurgeVoiceState::default_pitch(),
             pkey:                 SurgeVoiceState::default_pkey(),
@@ -50,7 +50,7 @@ impl SurgeVoice {
         }
     }
 
-    pub fn new_coeffmakers(cfg: VoiceConstructor) -> [FilterCoefficientMaker; 2] {
+    pub fn new_coeffmakers(cfg: &VoiceConstructor) -> [FilterCoefficientMaker; 2] {
         [
             FilterCoefficientMaker::new(
                 cfg.tuner.clone(),
@@ -72,12 +72,12 @@ impl SurgeVoice {
             osclevels:           Align16(create_voice_osclevels()),
             fmbuffer:            Align16([0.0; BLOCK_SIZE_OS]),
             osctype:             [OscillatorType::Off; N_OSCS],
-            state:               Self::new_voice_state(cfg),
+            state:               Self::new_voice_state(&cfg),
             age:                 0,
             age_release:         0,
             filterblock_state:   FilterBlockState::default(),
             fbp:                 FBP::default(),
-            coeffmaker:          Self::new_coeffmakers(cfg),
+            coeffmaker:          Self::new_coeffmakers(&cfg),
             route:               [0; 6],
             octave_size:         12.0, // 12.0
             osc_enable:          [false; 3],

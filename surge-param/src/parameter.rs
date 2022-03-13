@@ -61,7 +61,7 @@ impl<P: Param + ?Sized> Param for ParamRT<P> {
 
 impl<P: Param> ParamRT<P> {
 
-    pub fn default_modulation_delta<T>(default_val: T) -> PData {
+    pub fn default_modulation_delta(default_val: PData) -> PData {
         match default_val {
             PData::Float(_x) => PData::Float(0.0),
             PData::Int(_x)   => PData::Int(0),

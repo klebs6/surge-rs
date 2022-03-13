@@ -27,25 +27,27 @@ impl Lfo {
         }
     }
 
-    pub fn update_phase_and_step_for_lfo_mode_keytrigger(phaseslider: f32) {
+    pub fn update_phase_and_step_for_lfo_mode_keytrigger(&mut self, phaseslider: f32) {
         self.phase = phaseslider;
         self.step = 0;
     }
 
-    pub fn update_phase_and_step_for_lfo_mode_random() {
+    pub fn update_phase_and_step_for_lfo_mode_random(&mut self) {
 
         self.phase = rand01();
 
         self.step = {
             let randi = rand01() as i32;
-            let mask  = (N_STEPSEQUENCER_STEPS - 1);
+            let mask  = N_STEPSEQUENCER_STEPS - 1;
             let step  = (randi % self.stepsequencer.loop_end) as usize;
             (step & mask) as isize
         };
     }
 
-    pub fn update_phase_and_step_for_lfo_mode_free_run() {
-
+    pub fn update_phase_and_step_for_lfo_mode_free_run(&mut self, 
+        phaseslider: f32, 
+        rate:        f32) 
+    {
         let x: f32 =  {
             let songpos = self.time_unit.songpos() as f32;
             let ratemod = 2.0_f32.powf( rate );
@@ -61,13 +63,13 @@ impl Lfo {
         self.step = {
             let ipart               = integral_part as i32;
             let stepsequencer_delta = loop_end - loop_start;
-            let delta_clamped       = max( 1, stepsequencer_delta);
+            let delta_clamped       = std::cmp::max( 1, stepsequencer_delta);
             let offset              = loop_start;
             ( (ipart % delta_clamped ) + offset) as isize
         };
     }
 
-    pub fn rezero_phase_and_step() {
+    pub fn rezero_phase_and_step(&mut self) {
         self.step  = 0;
         self.phase = 0.0;
     }
@@ -84,15 +86,14 @@ impl Lfo {
         match lfo_mode {
 
             LfoMode::KeyTrigger => 
-                update_lfo_mode_keytrigger(phaseslider),
+                self.update_phase_and_step_for_lfo_mode_keytrigger(phaseslider),
 
             LfoMode::Random =>
-                update_lfo_mode_random(),
+                self.update_phase_and_step_for_lfo_mode_random(),
 
             LfoMode::FreeRun =>
-                update_lfo_mode_free_run(),
+                self.update_phase_and_step_for_lfo_mode_free_run(phaseslider, rate),
 
-            _ => rezero_phase_and_step(),
         }
     }
 }

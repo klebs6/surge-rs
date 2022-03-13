@@ -21,7 +21,7 @@ impl FXUnit {
         tuner:    & TunerHandle,
         tables:   & TablesHandle,
         timeunit: & TimeUnitHandle,
-        srunit:   & SampleRateHandle)  -> Self {
+        srunit:   & SampleRateHandle)  -> Vec<SurgeEffect> {
         vec![
             SurgeEffect::Conditioner(Box::new(Conditioner::new(tuner,tables,srunit))),
             SurgeEffect::AllpassVerb(Box::new(AllpassVerb::new(srunit))),

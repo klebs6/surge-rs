@@ -161,7 +161,7 @@ impl SurgeScene {
             filterunit_filtertype:    self.runtime_filterunit_filtertype(),
             filterunit_filtersubtype: self.runtime_filterunit_filtersubtype(),
             voice_toggle_solo_cfg:    self.runtime_voice_toggle_solo_cfg(),
-            oscillator_type:          self.runtime_oscillator_type(),
+            oscillator_type:          self.runtime_oscillator_types(),
             fm_cfg:                   self.fm_cfg(),
         }))
     }

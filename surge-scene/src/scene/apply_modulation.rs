@@ -92,9 +92,7 @@ impl SurgeScene {
 
             if let Some(_modsrc) = &self.modsources[src] 
             {
-                let the_src   = self.modsources[src];
-
-                let modsource = the_src.as_ref().unwrap();
+                let modsource   = self.modsources[src].as_ref().unwrap();
 
                 let src_output = 
                     modsource.get_output() as f32;

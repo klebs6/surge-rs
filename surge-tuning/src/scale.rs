@@ -198,7 +198,7 @@ impl Scale {
 impl fmt::Display for Scale {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, 
-            "Scale\n {}\n {}\n --- {} tones ---\n{:?}"
+            "Scale\n {}\n {}\n --- {} tones ---\n{:?}",
             self.name,
             self.description,
             self.count,

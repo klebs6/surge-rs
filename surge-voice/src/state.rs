@@ -33,14 +33,14 @@ impl SurgeVoiceState {
         let main_pb  = unsafe { (*self.main_channel_state).pitchbend_in_semitones.0 };
         let detune   = self.detune as f32;
 
-        /**
-        | For this commented out section, see
-        | the comment on MPE global pitch bend
-        | in
-        | 
-        | SurgeSynthesizer::pitchBend
-        |
-        */
+        /*
+         | For this commented out section, see
+         | the comment on MPE global pitch bend
+         | in
+         | 
+         | SurgeSynthesizer::pitchBend
+         |
+         */
         key + voice_pb + detune + main_pb
     }
 

@@ -945,7 +945,7 @@ checksum = "f2dd574626839106c320a323308629dcb1acfc96e32a8cba364ddc61ac23ee83"
 
 [[package]]
 name = "surge-adsr"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "float-ord",
@@ -963,7 +963,7 @@ dependencies = [
 
 [[package]]
 name = "surge-biquad"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "float-ord",
  "num",
@@ -978,7 +978,7 @@ dependencies = [
 
 [[package]]
 name = "surge-blitter"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "ndarray",
  "surge-constants",
@@ -988,7 +988,7 @@ dependencies = [
 
 [[package]]
 name = "surge-coeffmaker"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "float-ord",
@@ -1004,11 +1004,11 @@ dependencies = [
 
 [[package]]
 name = "surge-constants"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 
 [[package]]
 name = "surge-filter"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -1020,7 +1020,7 @@ dependencies = [
 
 [[package]]
 name = "surge-halfrate"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "ndarray",
  "surge-constants",
@@ -1037,7 +1037,7 @@ dependencies = [
 
 [[package]]
 name = "surge-input"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "ndarray",
  "surge-constants",
@@ -1047,7 +1047,7 @@ dependencies = [
 
 [[package]]
 name = "surge-lag"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "num-traits 0.2.14",
  "surge-math",
@@ -1055,7 +1055,7 @@ dependencies = [
 
 [[package]]
 name = "surge-lfo"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "float-ord",
@@ -1074,7 +1074,7 @@ dependencies = [
 
 [[package]]
 name = "surge-lipol"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "num-traits 0.2.14",
  "surge-constants",
@@ -1083,11 +1083,11 @@ dependencies = [
 
 [[package]]
 name = "surge-macros"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 
 [[package]]
 name = "surge-math"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "approx",
  "approx_eq",
@@ -1116,7 +1116,7 @@ dependencies = [
 
 [[package]]
 name = "surge-midi"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "surge-constants",
  "surge-macros",
@@ -1126,7 +1126,7 @@ dependencies = [
 
 [[package]]
 name = "surge-modulation"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "prometheus",
@@ -1142,7 +1142,7 @@ dependencies = [
 
 [[package]]
 name = "surge-mpe"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "surge-constants",
  "surge-traits",
@@ -1151,7 +1151,7 @@ dependencies = [
 
 [[package]]
 name = "surge-output"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "ndarray",
  "surge-constants",
@@ -1161,7 +1161,7 @@ dependencies = [
 
 [[package]]
 name = "surge-param"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "bitflags 1.3.2",
  "enhanced_enum",
@@ -1171,7 +1171,7 @@ dependencies = [
 
 [[package]]
 name = "surge-qfunit"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "surge-constants",
@@ -1184,11 +1184,11 @@ dependencies = [
 
 [[package]]
 name = "surge-quadrosc"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 
 [[package]]
 name = "surge-samplerate"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "atomic_float",
  "enum_dispatch",
@@ -1197,7 +1197,7 @@ dependencies = [
 
 [[package]]
 name = "surge-scene"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "enum_dispatch",
@@ -1241,7 +1241,7 @@ dependencies = [
 
 [[package]]
 name = "surge-svf"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "surge-constants",
  "surge-math",
@@ -1250,7 +1250,7 @@ dependencies = [
 
 [[package]]
 name = "surge-synthesizer"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "approx",
  "atomic_float",
@@ -1361,7 +1361,7 @@ dependencies = [
 
 [[package]]
 name = "surge-tables"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enum_dispatch",
  "float-ord",
@@ -1374,7 +1374,7 @@ dependencies = [
 
 [[package]]
 name = "surge-timeunit"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "surge-constants",
  "surge-samplerate",
@@ -1383,7 +1383,7 @@ dependencies = [
 
 [[package]]
 name = "surge-traits"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "enum_dispatch",
@@ -1392,7 +1392,7 @@ dependencies = [
 
 [[package]]
 name = "surge-tuning"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "enum_dispatch",
@@ -1409,7 +1409,7 @@ dependencies = [
 
 [[package]]
 name = "surge-types"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -1422,7 +1422,7 @@ dependencies = [
 
 [[package]]
 name = "surge-voice"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "auto_impl",
  "enhanced_enum",
@@ -1464,7 +1464,7 @@ dependencies = [
 
 [[package]]
 name = "surge-wavetable"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "bitflags 1.3.2",
  "enhanced_enum",
@@ -1480,7 +1480,7 @@ dependencies = [
 
 [[package]]
 name = "surgefilter-comb"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "surge-coeffmaker",
  "surge-constants",
@@ -1495,7 +1495,7 @@ dependencies = [
 
 [[package]]
 name = "surgefilter-diode"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "surge-coeffmaker",
@@ -1510,7 +1510,7 @@ dependencies = [
 
 [[package]]
 name = "surgefilter-huovilainen"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "derivative",
  "enhanced_enum",
@@ -1528,7 +1528,7 @@ dependencies = [
 
 [[package]]
 name = "surgefilter-iir"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "derivative",
  "enhanced_enum",
@@ -1546,7 +1546,7 @@ dependencies = [
 
 [[package]]
 name = "surgefilter-k35"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "float-ord",
@@ -1562,7 +1562,7 @@ dependencies = [
 
 [[package]]
 name = "surgefilter-moog"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "float-ord",
@@ -1577,7 +1577,7 @@ dependencies = [
 
 [[package]]
 name = "surgefilter-nlfeedback"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "float-ord",
@@ -1592,7 +1592,7 @@ dependencies = [
 
 [[package]]
 name = "surgefilter-nlstates"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "derivative",
  "enhanced_enum",
@@ -1608,7 +1608,7 @@ dependencies = [
 
 [[package]]
 name = "surgefilter-obxd"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "derivative",
  "enhanced_enum",
@@ -1624,7 +1624,7 @@ dependencies = [
 
 [[package]]
 name = "surgefilter-rungekutta"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "derivative",
  "enhanced_enum",
@@ -1643,7 +1643,7 @@ dependencies = [
 
 [[package]]
 name = "surgefilter-snh"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "derivative",
  "enhanced_enum",
@@ -1660,7 +1660,7 @@ dependencies = [
 
 [[package]]
 name = "surgefilter-svf"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "derivative",
  "enhanced_enum",
@@ -1678,7 +1678,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enum_dispatch",
  "surge-traits",
@@ -1700,7 +1700,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx-allpass"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "getset",
@@ -1719,7 +1719,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx-chorus"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -1742,7 +1742,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx-conditioner"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -1762,7 +1762,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx-distortion"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -1784,7 +1784,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx-dualdelay"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "ndarray",
@@ -1808,7 +1808,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx-emphasize"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -1828,7 +1828,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx-eq3band"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -1847,7 +1847,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx-flanger"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -1870,7 +1870,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx-freqshift"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -1892,7 +1892,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx-phaser"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -1912,7 +1912,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx-reverb"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "ndarray",
@@ -1934,7 +1934,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx-ringmod"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "float-ord",
@@ -1957,7 +1957,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx-rotary"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -1978,7 +1978,7 @@ dependencies = [
 
 [[package]]
 name = "surgefx-vocoder"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -2001,7 +2001,7 @@ dependencies = [
 
 [[package]]
 name = "surgeosc-audioin"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -2017,7 +2017,7 @@ dependencies = [
 
 [[package]]
 name = "surgeosc-fm"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -2036,7 +2036,7 @@ dependencies = [
 
 [[package]]
 name = "surgeosc-fm2"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -2056,7 +2056,7 @@ dependencies = [
 
 [[package]]
 name = "surgeosc-sine"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -2076,7 +2076,7 @@ dependencies = [
 
 [[package]]
 name = "surgeosc-snh"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -2097,7 +2097,7 @@ dependencies = [
 
 [[package]]
 name = "surgeosc-super"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -2117,7 +2117,7 @@ dependencies = [
 
 [[package]]
 name = "surgeosc-wavetable"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "paste",
@@ -2138,7 +2138,7 @@ dependencies = [
 
 [[package]]
 name = "surgeosc-window"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "enhanced_enum",
  "ndarray",
@@ -2161,7 +2161,7 @@ dependencies = [
 
 [[package]]
 name = "surgeshaper-asym"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "surge-filter",
  "surge-math",
@@ -2171,7 +2171,7 @@ dependencies = [
 
 [[package]]
 name = "surgeshaper-clip"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "surge-filter",
  "surge-math",
@@ -2179,7 +2179,7 @@ dependencies = [
 
 [[package]]
 name = "surgeshaper-digi"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "surge-filter",
  "surge-math",
@@ -2187,7 +2187,7 @@ dependencies = [
 
 [[package]]
 name = "surgeshaper-sine"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "derivative",
  "enhanced_enum",
@@ -2200,7 +2200,7 @@ dependencies = [
 
 [[package]]
 name = "surgeshaper-tanh"
-version = "0.2.0-alpha.0"
+version = "0.2.1-alpha.0"
 dependencies = [
  "surge-filter",
  "surge-math",

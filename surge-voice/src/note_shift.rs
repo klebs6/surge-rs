@@ -46,7 +46,7 @@ impl SurgeVoice {
         match pitch_is_absolute {
             true => {
 
-                /**
+                /*
                  | remember n2p is linear
                  | interpolation on
                  | storage->table_pitch from
@@ -65,10 +65,16 @@ impl SurgeVoice {
                     table_idx = 0x1fe;
                 }
 
-                // so just iterate up. Deal with negative also of course. 
-                // Since we will always be close just do it brute force 
-                // for now but later we can do a binary or some such.
-                let mut pitch0:  f32 = self.get_table_pitch(table_idx);
+                /*
+                 | so just iterate up. Deal with
+                 | negative also of course.
+                 |
+                 | Since we will always be close
+                 | just do it brute force for now
+                 | but later we can do a binary or
+                 | some such.
+                 */
+                let mut pitch0:   f32 = self.get_table_pitch(table_idx);
                 let target_pitch: f32 = pitch0 + freq_shift * 32.0 / 261.626;
 
                 if freq_shift > 0.0 {

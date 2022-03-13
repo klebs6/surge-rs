@@ -1,6 +1,7 @@
 ix!();
 
 use crate::*;
+use crate::hardcoded_wavetables::*;
 
 pub trait WaveTableData = 
 Zero 

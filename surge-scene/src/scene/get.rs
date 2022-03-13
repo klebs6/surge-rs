@@ -104,8 +104,7 @@ impl SurgeScene {
     }
 
     #[inline] pub fn enabled(&self, ms: ModSource) -> bool {
-        let modsource = self.modsources[ms];
-        modsource.as_ref().unwrap().enabled()
+        self.modsources[ms].as_ref().unwrap().enabled()
     }
 
     #[inline] pub fn modulation_voice(&self) -> Rc<Vec<ModulationRouting>> {
@@ -319,18 +318,14 @@ impl SurgeScene {
 
     #[inline] pub fn oscillator_pitch_extend_range(&self, idx: usize) -> bool {
 
-        let osc = self.osc[idx];
-
-        osc.osc_params_const( 
+        self.osc[idx].osc_params_const( 
             OscillatorParam::Pitch
         ).extend_range()
     }
 
     #[inline] pub fn oscillator_pitch_absolute(&self, idx: usize) -> bool {
 
-        let osc = self.osc[idx];
-
-        osc.osc_params_const( 
+        self.osc[idx].osc_params_const( 
             OscillatorParam::Pitch
         ).absolute
     }
@@ -357,7 +352,7 @@ impl SurgeScene {
 
     #[inline] pub fn oscillator_type(&self, idx: usize) -> OscillatorType {
 
-        let osc = self.osc[idx];
+        let osc = &self.osc[idx];
 
         let ty = pvali![osc.osc_params_const(OscillatorParam::Type)];
 

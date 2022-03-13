@@ -111,7 +111,6 @@ impl<const X: usize> WetBlock2<X> {
                     self.l[i] = *x;
                 }
             }
-            _ => panic!()
         }
     }
 }

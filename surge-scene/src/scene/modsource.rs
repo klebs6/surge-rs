@@ -49,7 +49,7 @@ impl SurgeScene {
         let (m0, m1)   = self.filterunit_envmodes();
         let (kt0,kt1) = self.filterunit_keytracks();
 
-        let unit = self.filterunit[1];
+        let unit = &mut self.filterunit[1];
 
         unit.params[FilterParam::Cutoff].val        = PData::Float(c1 + polarity * c0);
         unit.params[FilterParam::EnvelopeMode].val  = PData::Float(m1 + polarity * m0);
@@ -58,7 +58,7 @@ impl SurgeScene {
 
     pub fn set_channel_aftertouch_target(&mut self, fval: f32) {
         match &mut self.modsources[ModSource::ChannelAfterTouch] {
-            Some(Box::new(ModulationSource::ControllerModulationSource(ref mut inner))) => inner.set_target(fval as f64),
+            Some(box ModulationSource::ControllerModulationSource(ref mut inner)) => inner.set_target(fval as f64),
             _                                                                           => unreachable!(),
         }
     }
@@ -71,7 +71,7 @@ impl SurgeScene {
 
         match &mut self.modsources[ctrli] 
         {
-            Some(Box::new(ModulationSource::ControllerModulationSource(ref mut inner))) 
+            Some(box ModulationSource::ControllerModulationSource(ref mut inner)) 
                 => inner.set_target01(fval as f64, false),
             _ => unreachable!(),
         };

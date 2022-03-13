@@ -25,7 +25,7 @@ pub fn populate_base_mipmap_level<T: WaveTableData>(
     let mut cur_table        = 0;
     let mut cur_table_sample = 0;
 
-    /**
+    /*
       |tk -- this quick implementation of mine may
       |be totally incorrect, as far as I can tell,
       |there are several factors which need to be

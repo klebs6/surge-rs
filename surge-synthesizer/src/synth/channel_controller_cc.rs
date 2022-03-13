@@ -12,7 +12,7 @@ impl SurgeSynthesizer<'plugin_layer> {
     #[inline] pub fn channel_controller_cc1(&mut self, _channel: u8, _cc: u8, fval: f32) -> bool {
         for scene in self.active_patch.scene.iter_mut() {
             match &mut scene.modsources[ModSource::ModWheel] {
-                Some(Box::new(ModulationSource::ControllerModulationSource(ref mut inner))) => inner.set_target(fval as f64),
+                Some(box ModulationSource::ControllerModulationSource(ref mut inner)) => inner.set_target(fval as f64),
                 _ => unreachable!(),
             }
         }

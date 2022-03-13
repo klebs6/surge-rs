@@ -24,7 +24,7 @@ impl Lfo {
         envrate
     }
 
-    #[inline] pub fn next_env_state(&mut self) {
+    #[inline] pub fn next_env_state(&mut self, sustainlevel: f32) {
         match self.env_state {
             LfoEnvState::Delay => {
                 self.env_state = LfoEnvState::Attack;
@@ -81,12 +81,12 @@ impl Lfo {
 
         self.env_phase += envrate;
 
-        if self.env_phase > 1.0 {
-            self.next_env_state();
-        }
-
         let sustainlevel: f32 = 
             pvali![self.params[LfoParam::Sustain]] as f32;
+
+        if self.env_phase > 1.0 {
+            self.next_env_state(sustainlevel);
+        }
 
         self.update_envelope_value(sustainlevel);
     }

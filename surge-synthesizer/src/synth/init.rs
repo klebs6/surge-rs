@@ -17,8 +17,8 @@ pub struct SynthEnvironment<'a> {
 
 impl SurgeSynthesizer<'plugin_layer> {
 
-    pub fn new_default_patch(environment: SynthEnvironment<'synth_out>) -> Self {
-        Box::new(SurgePatch::new(
+    pub fn new_default_patch(environment: &SynthEnvironment<'synth_out>) -> Box<SurgePatch> {
+        box SurgePatch::new(
             SceneConstructorHandles{
                 timeunit:         environment.timeunit, 
                 tables:           environment.tables, 
@@ -29,10 +29,10 @@ impl SurgeSynthesizer<'plugin_layer> {
                 mpe_unit:         environment.mpe_unit,
                 synth_in:         environment.synth_in
             }
-        ))
+        )
     }
 
-    pub fn new_fx_unit(environment: SynthEnvironment<'synth_out>) -> Self {
+    pub fn new_fx_unit(environment: &SynthEnvironment<'synth_out>) -> FXUnit {
         FXUnit::new(
             environment.tuner,
             environment.tables,
@@ -58,7 +58,7 @@ impl SurgeSynthesizer<'plugin_layer> {
             cc0:                       0,
             pch:                       0,
             controller:                SynthControl::default(),
-            fx_unit:                   Self::new_fx_unit(environment),
+            fx_unit:                   Self::new_fx_unit(&environment),
             hold_pedal_unit:           environment.hold_pedal_unit.clone(),
             midi_unit:                 environment.midi_unit.clone(),
             mpe_unit:                  environment.mpe_unit.clone(),
@@ -66,7 +66,7 @@ impl SurgeSynthesizer<'plugin_layer> {
             patchid:                   None,
             current_category_id:       None,
             patchid_queue:             None,
-            active_patch:              Self::new_default_patch(environment),
+            active_patch:              Self::new_default_patch(&environment),
             patches:                   vec![],
             patch_categories:          vec![],
             active_patch_category:     vec![],

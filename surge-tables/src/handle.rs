@@ -54,8 +54,7 @@ impl DbToLinear for TablesHandle {
 impl Init for TablesHandle {
 
     #[inline] fn init(&mut self) { 
-        let inner = self.inner.borrow_mut();
-        inner.init()
+        self.inner.borrow_mut().init();
     }
 }
 
