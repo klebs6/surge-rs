@@ -98,7 +98,7 @@ ix!();
     }
 }
 
-#[cfg(target_argh = "x86")]
+#[cfg(target_arch = "x86")]
 pub fn sine(x: __m64) -> __m64 
 {
     unsafe {
