@@ -1,9 +1,6 @@
 ix!();
 
-use crate::{
-    Flanger,
-
-};
+use crate::*;
 
 impl Flanger {
 
@@ -60,7 +57,6 @@ impl Flanger {
                     lfoout = rand01();
                 }
             },
-
         }
 
         let pitchinv: f32 = self.tuner.n2pinv::<f32,false>(v0pitch + (comb_idx as f32) * 6.0);

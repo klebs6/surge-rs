@@ -1,8 +1,6 @@
 ix!();
 
-use crate::{
-    Flanger,
-};
+use crate::*;
 
 impl Flanger {
 

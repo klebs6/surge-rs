@@ -16,7 +16,9 @@ enhanced_enum![
 rt![PhaserParam];
 
 impl Param for PhaserParam {
+
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+
     fn control_type(&self) -> ControlType {
         match self {
             PhaserParam::Base          => ControlType::PercentBidirectional,

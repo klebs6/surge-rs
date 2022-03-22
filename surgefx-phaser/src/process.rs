@@ -1,14 +1,14 @@
 ix!();
 
-use crate::{
-    Phaser,
-    PhaserParam,
-};
+use crate::*;
 
 impl Process for Phaser {
 
-    fn process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
-
+    fn process<const N: usize>(
+        &mut self, 
+        data_l: &mut [f32; N], 
+        data_r: &mut [f32; N])
+    {
         if self.bi == 0 {
             self.update();
         }

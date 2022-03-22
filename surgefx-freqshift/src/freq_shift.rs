@@ -1,9 +1,6 @@
 ix!();
 
-use crate::{
-    FreqShiftParam,
-    FreqShiftParamArrayRT,
-};
+use crate::*;
 
 #[derive(Debug,Clone)]
 pub struct FreqShift {

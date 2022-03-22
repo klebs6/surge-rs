@@ -64,7 +64,6 @@ impl FreqShift {
     #[inline] fn new_buffer() -> A2d::<f32> {
         A2d::<f32>::zeros((2,FREQSHIFT_MAX_DELAY_LENGTH))
     }
-
 }
 
 impl Suspend for FreqShift {

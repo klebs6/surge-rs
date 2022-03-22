@@ -1,9 +1,6 @@
 ix!();
 
-use crate::{
-    Phaser,
-    PhaserParam,
-};
+use crate::*;
 
 impl Init for Phaser {
 
@@ -20,6 +17,20 @@ impl Init for Phaser {
 }
 
 impl Phaser {
+
+    #[inline] pub fn new_block() -> A1d::<f32> 
+    {
+        A1d::<f32>::zeros(BLOCK_SIZE)
+    }
+
+    #[inline] pub fn new_biquads(
+        tuner:     &       TunerHandle,
+        tables:    &       TablesHandle,
+        srunit:    &       SampleRateHandle,
+    ) -> A1d::<BiquadFilter> 
+    {
+        A1d::<BiquadFilter>::from_elem(8, BiquadFilter::new(tuner,tables,srunit))
+    }
 
     pub fn new(
         tuner:     & TunerHandle,
@@ -42,15 +53,5 @@ impl Phaser {
             tables:       tables.clone(),
             time_unit:    time_unit.clone(),
         }
-    }
-    #[inline] pub fn new_block() -> A1d::<f32> {
-        A1d::<f32>::zeros(BLOCK_SIZE)
-    }
-    #[inline] pub fn new_biquads(
-        tuner:     &       TunerHandle,
-        tables:    &       TablesHandle,
-        srunit:    &       SampleRateHandle,
-    ) -> A1d::<BiquadFilter> {
-        A1d::<BiquadFilter>::from_elem(8, BiquadFilter::new(tuner,tables,srunit))
     }
 }

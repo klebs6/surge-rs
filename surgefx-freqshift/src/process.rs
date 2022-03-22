@@ -1,8 +1,6 @@
 ix!();
 
-use crate::{
-    FreqShift,
-};
+use crate::*;
 
 impl Process for FreqShift {
 

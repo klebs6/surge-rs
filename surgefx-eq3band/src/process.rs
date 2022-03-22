@@ -42,15 +42,6 @@ impl Eq3Band {
         }
     }
 
-    #[inline] fn update_gain(&mut self) {
-
-        let gain_db = self.pvalf(Eq3BandParam::Gain);
-
-        self.gain.set_target_smoothed(
-            self.tables.db_to_linear(gain_db)
-        );
-    }
-
     #[inline] fn apply_gain<const N: usize>(&mut self, 
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N]) 
@@ -61,15 +52,5 @@ impl Eq3Band {
                 data_r.as_mut_ptr(), 
                 BLOCK_SIZE_QUAD);
         }
-    }
-
-    #[inline] fn maybe_update(&mut self) {
-
-        if self.block_increment == 0 {
-            self.update();
-        }
-
-        self.block_increment = 
-            (self.block_increment + 1) & SLOWRATE_M1 as i32;
     }
 }

@@ -13,6 +13,16 @@ impl Update for Eq3Band {
 
 impl Eq3Band {
 
+    #[inline] pub fn maybe_update(&mut self) {
+
+        if self.block_increment == 0 {
+            self.update();
+        }
+
+        self.block_increment = 
+            (self.block_increment + 1) & SLOWRATE_M1 as i32;
+    }
+
     #[inline] pub fn update_all_bands(&mut self, 
         gain_override: Option<f64>) 
     {
@@ -32,6 +42,15 @@ impl Eq3Band {
         self.gain.set_target(gain as f32); 
         self.gain.instantize();
         Some(gain)
+    }
+
+    #[inline] pub fn update_gain(&mut self) {
+
+        let gain_db = self.pvalf(Eq3BandParam::Gain);
+
+        self.gain.set_target_smoothed(
+            self.tables.db_to_linear(gain_db)
+        );
     }
 
     #[inline] pub fn band_gain(&mut self, 

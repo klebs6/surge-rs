@@ -1,8 +1,6 @@
 ix!();
 
-use crate::{
-    FreqShift,
-};
+use crate::*;
 
 impl FreqShift {
     pub fn maybe_do_commented_c_process<const DO: bool>(&mut self) {

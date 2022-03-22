@@ -1,9 +1,6 @@
 ix!();
 
-use crate::{
-    Eq3Band,
-    Eq3BandParam,
-};
+use crate::*;
 
 impl Init for Eq3Band {
 

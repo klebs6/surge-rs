@@ -1,11 +1,6 @@
 ix!();
 
-use crate::{
-    FlangerParam,
-    FlangerParamArrayRT,
-    InterpDelay,
-    OnePoleLPFilterState,
-};
+use crate::*;
 
 #[derive(Debug,Clone)]
 pub struct Flanger {
