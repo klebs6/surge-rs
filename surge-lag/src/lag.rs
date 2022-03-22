@@ -20,7 +20,7 @@ impl<T: Num + From<f32> + Clone + AddAssign > Default for Lag<T> {
             target_v:  T::zero(),
             first_run: true,
             lp:        lp.clone(),
-            lpinv:     T::from(1.0) - lp,
+            lpinv:     T::from(1.0) - lp
         }
     }
 }

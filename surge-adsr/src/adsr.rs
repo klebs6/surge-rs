@@ -31,7 +31,7 @@ pub struct AdsrEnvelope {
     pub time_unit:     TimeUnitHandle,
     pub tables:        TablesHandle,
     pub srunit:        SampleRateHandle,
-    pub enabled:       bool,
+    pub enabled:       bool
 }
 
 name![AdsrEnvelope, "envelope"];
@@ -44,7 +44,8 @@ impl AdsrEnvelope {
 
     pub fn uber_release(&mut self) 
     {
-        //note, there was some other commented logic here before the port
+        //note, there was some other commented
+        //logic here before the port
         self.scalestage = self.output;
         self.phase      = 1.0;
         self.envstate   = AdsrState::UberRelease;

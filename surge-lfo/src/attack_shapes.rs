@@ -17,7 +17,7 @@ impl Lfo {
             LfoShape::Noise         => self.attack_shape_noise(),
             LfoShape::SampleAndHold => self.attack_shape_snh(),
             LfoShape::Envelope      => self.attack_shape_envelope(),
-            LfoShape::StepSequencer => self.attack_shape_stepseq(start_phase),
+            LfoShape::StepSequencer => self.attack_shape_stepseq(start_phase)
         }
     }
 
@@ -34,7 +34,7 @@ impl Lfo {
 
     #[inline] pub fn attack_shape_tri(&mut self) {
 
-        if ! pvalb![self.params[LfoParam::Unipolar]] {
+        if !pvalb![self.params[LfoParam::Unipolar]] {
 
             self.phase += 0.25;
 

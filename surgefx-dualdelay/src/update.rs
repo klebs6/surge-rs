@@ -106,4 +106,3 @@ impl Update for DualDelay {
     let f2: f64 = 1.0 + db96![].log(maxfeedback);
     assert!(f1 == f2);
 }
-

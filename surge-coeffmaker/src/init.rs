@@ -17,7 +17,7 @@ impl FilterCoefficientMaker {
             first_run:  true,
             tuner:      tuner.clone(),
             tables:     tables.clone(),
-            srunit:     srunit.clone(),
+            srunit:     srunit.clone()
         };
         x.reset();
         x

@@ -46,7 +46,7 @@ impl crate::AbstractBlitter {
 
         match voices {
             1 => self.prepare_single_voice(),
-            _ => self.prepare_multi_voice(voices),
+            _ => self.prepare_multi_voice(voices)
         }
     }
 }

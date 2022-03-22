@@ -51,8 +51,8 @@ impl LookupWaveshape for WaveshapeTables {
             return -1.0;
         }
 
-        let idx = entry as usize;
-        let eidx = (e & 0x3ff) as usize;
+        let idx   = entry as usize;
+        let eidx  = (e & 0x3ff) as usize;
         let eidx1 = ((e + 1) & 0x3ff) as usize;
 
         (1.0 - a) * self.table[idx][[eidx]] + 

@@ -18,7 +18,9 @@ enhanced_enum![DualDelayParam {
 rt![DualDelayParam];
 
 impl Param for DualDelayParam {
+
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+
     fn control_type(&self) -> ControlType {
         match self {
             DualDelayParam::Left        => ControlType::EnvTime,
@@ -35,6 +37,7 @@ impl Param for DualDelayParam {
             DualDelayParam::ReturnLevel => ControlType::Percent,
         }
     }
+
     fn default_value(&self) -> PData {
         match self {
             DualDelayParam::Left        => PData::Float(-2.0),
@@ -51,10 +54,12 @@ impl Param for DualDelayParam {
             DualDelayParam::ReturnLevel => PData::Float(0.5),
         }
     }
+
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+
     fn min_value(&self) -> PData {
         match self {
             DualDelayParam::Left        => PData::Float(-8.0),
@@ -71,6 +76,7 @@ impl Param for DualDelayParam {
             DualDelayParam::ReturnLevel => PData::Float(0.0),
         }
     }
+
     fn max_value(&self) -> PData {
         match self {
             DualDelayParam::Left        => PData::Float(5.0),
@@ -87,6 +93,7 @@ impl Param for DualDelayParam {
             DualDelayParam::ReturnLevel => PData::Float(1.0),
         }
     }
+
     fn value_type(&self) -> ValType {
         match self {
             DualDelayParam::Left        => ValType::VtFloat,
@@ -103,6 +110,7 @@ impl Param for DualDelayParam {
             DualDelayParam::ReturnLevel => ValType::VtFloat,
         }
     }
+
     fn moverate(&self) -> f32 {
         match self {
             DualDelayParam::Left        => 1.0,

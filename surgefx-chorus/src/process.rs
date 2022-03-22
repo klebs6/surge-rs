@@ -1,13 +1,14 @@
 ix!();
 
-use crate::{
-    Chorus,
-};
+use crate::*;
 
 impl Process for Chorus {
 
-    fn process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
-
+    fn process<const N: usize>(
+        &mut self, 
+        data_l: &mut [f32; N], 
+        data_r: &mut [f32; N]) 
+    {
         self.update();
 
         let mut tbuffer = TBuffer::new(N);

@@ -35,7 +35,7 @@ impl Default for HalfRateFilterSSE {
             m:        0,
             steep:    false,
             oldout_l: 0.0,
-            oldout_r: 0.0,
+            oldout_r: 0.0
         }
     }
 }

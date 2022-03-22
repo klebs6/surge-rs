@@ -32,10 +32,11 @@ impl DualDelay {
 
             for k in 0..FIR_IPOL_N
             {
-                self.buffer[[0, k + DUAL_DELAY_MAX_DELAY_LENGTH]] =
-                    self.buffer[[0, k]]; // copy buffer so FIR-core doesn't have to wrap
+                self.buffer[[0, k + DUAL_DELAY_MAX_DELAY_LENGTH]] 
+                    = self.buffer[[0, k]]; // copy buffer so FIR-core doesn't have to wrap
 
-                self.buffer[[1, k + DUAL_DELAY_MAX_DELAY_LENGTH]] = self.buffer[[1,k]];
+                self.buffer[[1, k + DUAL_DELAY_MAX_DELAY_LENGTH]] 
+                    = self.buffer[[1,k]];
             }
         }
     }

@@ -33,7 +33,7 @@ impl ProcessBlockMono for BiquadFilter {
                 },
                 None => {
                     *data.add(k) = op as f32;
-                },
+                }
             }
         }
 

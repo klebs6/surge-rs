@@ -14,7 +14,7 @@ impl Lfo {
         let mut phaseslider: f32 = match lfo_shape {
             // Use Phase as shuffle-parameter instead
             LfoShape::StepSequencer => 0.0, 
-            _                       => start_phase,
+            _                       => start_phase
         };
 
         // With modulation the phaseslider 

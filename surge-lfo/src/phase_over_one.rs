@@ -86,7 +86,7 @@ impl Lfo {
             LfoShape::StepSequencer =>
                 self.update_step_sequencer_for_phase_over_one(),
 
-            _ => {},
+            _ => {}
         }
     }
 }

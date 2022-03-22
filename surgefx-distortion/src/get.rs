@@ -9,13 +9,12 @@ impl Distortion {
 
     #[inline] pub fn get_waveshape_idx(&self) -> i32 {
 
-        let mut ws: usize = 
-            (self.pvali(DistortionParam::Waveshaper) as isize).try_into().unwrap();
+        let mut ws: i32 = self.pvali(DistortionParam::Waveshaper);
 
-        if ws >= WaveshapeType::count() {
+        if ws >= WaveshapeType::count() as i32 {
             ws = 0;
         }
 
-        ws as i32
+        ws
     }
 }

@@ -63,7 +63,7 @@ impl AdsrEnvelope {
         {
             1 => self.decay_shape1_bounds(rate),
             2 => self.decay_shape2_bounds(rate),
-            _ => self.decay_shape0_bounds(rate),
+            _ => self.decay_shape0_bounds(rate)
         };
 
         self.phase = limit_range( sustain , l_lo, l_hi );

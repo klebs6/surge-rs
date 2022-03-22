@@ -38,7 +38,7 @@ impl Lfo {
             sine:               QuadrOsc::new(),
             time_unit:          time_unit.clone(),
             tables:             tables.clone(),
-            enabled:            true,
+            enabled:            true
         }
     }
 

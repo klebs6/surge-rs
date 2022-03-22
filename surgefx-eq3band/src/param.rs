@@ -37,6 +37,7 @@ impl Param for Eq3BandParam {
             Eq3BandParam::ReturnLevel => ControlType::Percent,
         }
     }
+
     fn default_value(&self) -> PData {
         match self {
             Eq3BandParam::LGain       => PData::Float( 0.0 ),
@@ -52,10 +53,12 @@ impl Param for Eq3BandParam {
             Eq3BandParam::ReturnLevel => PData::Float( 0.5 ),
         }
     }
+
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+
     fn min_value(&self) -> PData {
         match self {
             Eq3BandParam::LGain       => PData::Float(-48.0),
@@ -71,6 +74,7 @@ impl Param for Eq3BandParam {
             Eq3BandParam::ReturnLevel => PData::Float( 0.0 ),
         }
     }
+
     fn max_value(&self) -> PData {
         match self {
             Eq3BandParam::LGain       => PData::Float(48.0),
@@ -86,6 +90,7 @@ impl Param for Eq3BandParam {
             Eq3BandParam::ReturnLevel => PData::Float( 1.0 ),
         }
     }
+
     fn value_type(&self) -> ValType {
         match self {
             Eq3BandParam::LGain       => ValType::VtFloat,
@@ -101,6 +106,7 @@ impl Param for Eq3BandParam {
             Eq3BandParam::ReturnLevel => ValType::VtFloat,
         }
     }
+
     fn moverate(&self) -> f32 {
         match self {
             Eq3BandParam::LGain       => 1.0,

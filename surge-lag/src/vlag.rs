@@ -23,7 +23,7 @@ impl VLag {
     #[inline] pub fn new_x87() -> Self {
         Self { 
             v:        Align16([0.0; 2]),
-            target_v: Align16([0.0; 2]),
+            target_v: Align16([0.0; 2])
         }
     }
 

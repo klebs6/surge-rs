@@ -34,7 +34,7 @@ impl AbstractBlitter {
             driftlfo2:            A1d::<f32>::zeros(MAX_UNISON),
             pan_l:                A1d::<f32>::zeros(MAX_UNISON),
             pan_r:                A1d::<f32>::zeros(MAX_UNISON),
-            state:                A1d::<i32>::zeros(MAX_UNISON),
+            state:                A1d::<i32>::zeros(MAX_UNISON)
         }
     }
 }

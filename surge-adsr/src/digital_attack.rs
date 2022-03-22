@@ -28,9 +28,7 @@ impl AdsrEnvelope {
             0 => self.phase.sqrt(),
             1 => self.phase,
             2 => self.phase * self.phase,
-            _ => 
-                    panic!( "logic bug")
-                    ,
+            _ => panic!( "logic bug")
         };
     }
 }

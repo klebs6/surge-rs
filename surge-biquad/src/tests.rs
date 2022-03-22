@@ -6,8 +6,8 @@ use crate::ProcessBlockStereo;
 #[test] fn smoke() {
     const S: usize = 32;
 
-    let mut l: Vec<f32> = (0..S).map(|_x| surge_math::correlated_noise(0.0, 0.0) as f32).collect();
-    let mut r: Vec<f32> = (0..S).map(|_x| surge_math::correlated_noise(0.0, 0.0) as f32).collect();
+    let mut l: Vec::<f32> = (0..S).map(|_x| surge_math::correlated_noise(0.0, 0.0) as f32).collect();
+    let mut r: Vec::<f32> = (0..S).map(|_x| surge_math::correlated_noise(0.0, 0.0) as f32).collect();
 
     let srunit          = SampleRateHandle::default();
     let tuner           = TunerHandle::new(&srunit);

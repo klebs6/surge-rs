@@ -27,7 +27,7 @@ impl AdsrEnvelope {
             _v_c1:         0.0,
             _v_c1_delayed: 0.0,
             _discharge:    0.0,
-            enabled:       true,
+            enabled:       true
         };
         x.init();
         x

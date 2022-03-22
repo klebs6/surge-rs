@@ -25,8 +25,7 @@ impl Lfo {
             pvalf![self.params[LfoParam::Rate]]
         );
 
-        if 
-        self.params[LfoParam::Rate].temposync  
+        if self.params[LfoParam::Rate].temposync  
         {
             rate *=  temposyncratio;
         }

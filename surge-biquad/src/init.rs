@@ -37,7 +37,7 @@ impl BiquadFilter {
             b2:         Align16(VLag::new_x87()),
             reg0:       Align16(VDouble::default()),
             reg1:       Align16(VDouble::default()),
-            first_run:  true,
+            first_run:  true
         }
     }
 

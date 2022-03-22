@@ -24,10 +24,12 @@ pub struct Distortion {
 
     /// block_increment to keep track of 
     /// events not occurring every n blocks
-    pub bi:             i32, 
+    pub block_increment:i32, 
     pub left:           f32,
     pub right:          f32,
     pub tables:         TablesHandle,
+
+    pub wetblock:       WetBlock2::<128>,
 }
 
 no_op! [Distortion, ProcessOnlyControl];

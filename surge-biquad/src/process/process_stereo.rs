@@ -36,7 +36,7 @@ impl ProcessBlockStereo for BiquadFilter {
 
             match out {
                 Some(out) => *out.0.add(k)  = op as f32,
-                None      => *data_l.add(k) = op as f32,
+                None      => *data_l.add(k) = op as f32
             };
 
             input = *data_r.add(k) as f64;
@@ -48,7 +48,7 @@ impl ProcessBlockStereo for BiquadFilter {
 
             match out {
                 Some(out) => *out.1.add(k)  = op as f32,
-                None      => *data_r.add(k) = op as f32,
+                None      => *data_r.add(k) = op as f32
             };
         }
 

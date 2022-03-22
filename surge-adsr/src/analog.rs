@@ -119,8 +119,9 @@ impl AdsrEnvelope {
             let coef_r: f32 = match self.envstate == AdsrState::UberRelease {
                 true => 6.0,
                 false => { 
-                    2.0_f32.powf(std::cmp::min(FloatOrd(0.0), 
-                            FloatOrd(coeff_offset - lc_r * temposyncratio_r)).0) 
+                    let z = FloatOrd(0.0);
+                    let x = FloatOrd(coeff_offset - lc_r * temposyncratio_r);
+                    2.0_f32.powf(std::cmp::min(z, x).0)
                 }
             };
 

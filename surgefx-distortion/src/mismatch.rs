@@ -8,7 +8,7 @@ use crate::{
 impl HandleStreamingMismatches for Distortion {
 
     fn handle_streaming_mismatches(&mut self, 
-        streaming_revision: i32, 
+        streaming_revision:                i32, 
         _current_synth_streaming_revision: i32) 
     {
         if streaming_revision <= 11 

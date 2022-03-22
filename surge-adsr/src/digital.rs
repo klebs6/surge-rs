@@ -17,7 +17,7 @@ impl AdsrEnvelope {
             AdsrState::Idle        => self.idlecount += 1,
             _ => {
                 //sustain and idlewait not covered
-            },
+            }
         }
 
         self.output = limit_range(self.output, 0.0, 1.0);

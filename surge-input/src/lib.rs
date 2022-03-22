@@ -33,7 +33,7 @@ impl Default for SynthInput {
         Self {
             buffer:          Align16(A2d::<f32>::zeros(( BLOCK_SIZE,    N_INPUTS ))),
             audio_in:        Align16(A2d::<f32>::zeros(( BLOCK_SIZE_OS, 2 ))),
-            audio_in_non_os: Align16(A2d::<f32>::zeros(( BLOCK_SIZE,    2 ))),
+            audio_in_non_os: Align16(A2d::<f32>::zeros(( BLOCK_SIZE,    2 )))
         }
     }
 }
