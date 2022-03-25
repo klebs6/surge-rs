@@ -1,17 +1,13 @@
 ix!();
 
-use crate::{
-    RingModulator,
-    RingModulatorParam,
-    RINGMOD_MAX_UNISON,
-};
+use crate::*;
 
 impl RingModulator {
 
     pub fn new(
-        tuner:     &       TunerHandle,
-        tables:    &       TablesHandle,
-        srunit:    &       SampleRateHandle,
+        tuner:     &TunerHandle,
+        tables:    &TablesHandle,
+        srunit:    &SampleRateHandle,
     ) -> Self {
         Self {
             ringout:       Ringout::blocks(1000),

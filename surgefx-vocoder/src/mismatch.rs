@@ -1,11 +1,6 @@
 ix!();
 
-use crate::{
-    Vocoder,
-    VocoderParam,
-    VOCODER_FREQ_VSM201,
-    N_VOCODER_BANDS,
-};
+use crate::*;
 
 impl HandleStreamingMismatches for Vocoder {
 

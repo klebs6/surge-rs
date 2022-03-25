@@ -104,12 +104,16 @@ impl NonlinearFeedbackFilter {
     #[inline] pub fn ojd_waveshaper_ps(input: &__m128) -> __m128
     {
         unsafe {
+
             let mut f = [0.0_f32; 4];
+
             _mm_storeu_ps(f.as_mut_ptr(), *input);
+
             f[0] = Self::ojd_waveshaper(f[0]);
             f[1] = Self::ojd_waveshaper(f[1]);
             f[2] = Self::ojd_waveshaper(f[2]);
             f[3] = Self::ojd_waveshaper(f[3]);
+
             _mm_load_ps(f.as_mut_ptr())
         }
     }

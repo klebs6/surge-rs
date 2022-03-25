@@ -1,6 +1,6 @@
 ix!();
 
-use crate::RINGMOD_MAX_UNISON;
+use crate::*;
 
 enhanced_enum![
     RingModulatorParam {
@@ -20,7 +20,9 @@ enhanced_enum![
 rt![RingModulatorParam];
 
 impl Param for RingModulatorParam {
+
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+
     fn control_type(&self) -> ControlType {
         match self {
             RingModulatorParam::CarrierShape      => ControlType::SineOscMode,
@@ -35,6 +37,7 @@ impl Param for RingModulatorParam {
             RingModulatorParam::ReturnLevel       => ControlType::Percent,
         }
     }
+
     fn default_value(&self) -> PData {
         match self {
             RingModulatorParam::CarrierShape      => PData::Int(0),
@@ -49,6 +52,7 @@ impl Param for RingModulatorParam {
             RingModulatorParam::ReturnLevel       => PData::Float(1.0),
         }
     }
+
     fn min_value(&self) -> PData {
         match self {
             RingModulatorParam::CarrierShape      => PData::Int(0),
@@ -63,6 +67,7 @@ impl Param for RingModulatorParam {
             RingModulatorParam::ReturnLevel       => PData::Float(0.0),
         }
     }
+
     fn max_value(&self) -> PData {
         match self {
             RingModulatorParam::CarrierShape      => PData::Int(0),//TODO
@@ -77,6 +82,7 @@ impl Param for RingModulatorParam {
             RingModulatorParam::ReturnLevel       => PData::Float(1.0),
         }
     }
+
     fn value_type(&self) -> ValType {
         match self {
             RingModulatorParam::CarrierShape      => ValType::VtInt,
@@ -91,6 +97,7 @@ impl Param for RingModulatorParam {
             RingModulatorParam::ReturnLevel       => ValType::VtFloat,
         }
     }
+
     fn moverate(&self) -> f32 {
         match self {
             RingModulatorParam::CarrierShape      => 1.0,
@@ -105,11 +112,11 @@ impl Param for RingModulatorParam {
             RingModulatorParam::ReturnLevel       => 1.0,
         }
     }
+
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
-
 }
 
 impl RingModulatorParam {

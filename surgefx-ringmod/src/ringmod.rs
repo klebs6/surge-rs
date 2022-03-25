@@ -1,9 +1,6 @@
 ix!();
 
-use crate::{
-    RingModulatorParamArrayRT,
-    RingModulatorParam
-};
+use crate::*;
 
 pub const RINGMOD_MAX_UNISON: i32 = 16;
 pub const RINGMOD_OVERSAMPLE: bool = true;

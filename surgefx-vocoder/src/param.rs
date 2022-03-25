@@ -1,10 +1,6 @@
 ix!();
 
-use crate::{
-    N_VOCODER_BANDS,
-    vocoder_default_freq_low,
-    vocoder_default_freq_high,
-};
+use crate::*;
 
 enhanced_enum![
     VocoderParam {
@@ -43,6 +39,7 @@ impl Param for VocoderParam {
             VocoderParam::ReturnLevel       => ControlType::Percent,
         }
     }
+
     fn default_value(&self) -> PData {
         match self {
             VocoderParam::Gain              => PData::Float(0.0),
@@ -58,9 +55,11 @@ impl Param for VocoderParam {
             VocoderParam::ReturnLevel       => PData::Float(0.5),
         }
     }
+
     fn modulateable(&self) -> bool {
         true
     }
+
     fn min_value(&self) -> PData {
         match self {
             VocoderParam::Gain              => PData::Float(-48.0),
@@ -76,6 +75,7 @@ impl Param for VocoderParam {
             VocoderParam::ReturnLevel       => PData::Float(0.0),
         }
     }
+
     fn max_value(&self) -> PData {
         match self {
             VocoderParam::Gain              => PData::Float(48.0),
@@ -91,6 +91,7 @@ impl Param for VocoderParam {
             VocoderParam::ReturnLevel       => PData::Float(1.0),
         }
     }
+
     fn value_type(&self) -> ValType {
         match self {
             VocoderParam::Gain              => ValType::VtFloat,
@@ -106,6 +107,7 @@ impl Param for VocoderParam {
             VocoderParam::ReturnLevel       => ValType::VtFloat,
         }
     }
+
     fn moverate(&self) -> f32 {
         match self {
             VocoderParam::Gain              => 1.0,

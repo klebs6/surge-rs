@@ -1,11 +1,6 @@
 ix!();
 
-use crate::{
-    N_VOCODER_VEC,
-    N_VOCODER_BANDS,
-    Vocoder,
-    VocoderParam,
-};
+use crate::*;
 
 impl Vocoder {
 
@@ -20,9 +15,9 @@ impl Vocoder {
     }
 
     pub fn new<const N: usize>( 
-        tables:   & TablesHandle,
-        srunit:   & SampleRateHandle,
-        synth_in: & SynthInputHandle) -> Self {
+        tables:   &TablesHandle,
+        srunit:   &SampleRateHandle,
+        synth_in: &SynthInputHandle) -> Self {
 
         Self {
             carrier_l:     Align16(Self::new_svf_vec()),

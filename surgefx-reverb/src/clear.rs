@@ -1,10 +1,6 @@
 ix!();
 
-use crate::{
-    Reverb,
-    REVERB_PREDELAY_QUADS,
-    REVERB_DELAY_QUADS,
-};
+use crate::*;
 
 impl ClearBuffers for Reverb {
 

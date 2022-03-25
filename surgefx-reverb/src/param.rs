@@ -20,7 +20,9 @@ enhanced_enum![
 rt![ReverbParam];
 
 impl Param for ReverbParam {
+
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+
     fn control_type(&self) -> ControlType {
         match self {
             ReverbParam::PreDelay    => ControlType::EnvTime,
@@ -37,6 +39,7 @@ impl Param for ReverbParam {
             ReverbParam::ReturnLevel => ControlType::Percent,
         }
     }
+
     fn default_value(&self) -> PData {
         match self {
             ReverbParam::PreDelay    => PData::Float(-4.0),
@@ -53,9 +56,11 @@ impl Param for ReverbParam {
             ReverbParam::ReturnLevel => PData::Float(0.5),
         }
     }
+
     fn modulateable(&self) -> bool {
         !matches![self, ReverbParam::PreDelay]
     }
+
     fn min_value(&self) -> PData {
         match self {
             ReverbParam::PreDelay    => PData::Float(-8.0),
@@ -72,6 +77,7 @@ impl Param for ReverbParam {
             ReverbParam::ReturnLevel => PData::Float(0.0),
         }
     }
+
     fn max_value(&self) -> PData {
         match self {
             ReverbParam::PreDelay    => PData::Float(5.0),
@@ -88,6 +94,7 @@ impl Param for ReverbParam {
             ReverbParam::ReturnLevel => PData::Float(1.0),
         }
     }
+
     fn value_type(&self) -> ValType {
         match self {
             ReverbParam::PreDelay    => ValType::VtFloat,
@@ -104,6 +111,7 @@ impl Param for ReverbParam {
             ReverbParam::ReturnLevel => ValType::VtFloat,
         }
     }
+
     fn moverate(&self) -> f32 {
         match self {
             ReverbParam::PreDelay    => 1.0,

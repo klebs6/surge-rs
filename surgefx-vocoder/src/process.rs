@@ -1,12 +1,9 @@
 ix!();
 
-use crate::{
-    Vocoder,
-    VocoderParam,
-    VocoderBlockCfg,
-};
+use crate::*;
 
 impl Vocoder {
+
     pub fn gain(&self) -> f32 {
         let f_gain: f32 = self.pvalf(VocoderParam::Gain);
         let gain:   f32 = f_gain + 24.0;
@@ -21,8 +18,11 @@ impl Vocoder {
 
 impl Process for Vocoder {
 
-    fn process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
-
+    fn process<const N: usize>(
+        &mut self, 
+        data_l: &mut [f32; N], 
+        data_r: &mut [f32; N]) 
+    {
         self.bi = (self.bi + 1) & 0x3f;
 
         if self.bi == 0 {

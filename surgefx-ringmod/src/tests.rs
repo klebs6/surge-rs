@@ -33,8 +33,3 @@ use crate::{RingModulator,RingModulatorParam};
         println!("r: {:?}",r); 
     }
 }
-
-
-
-
-

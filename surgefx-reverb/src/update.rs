@@ -1,36 +1,49 @@
 ix!();
 
-use crate::{
-    Reverb,
-    ReverbParam,
-    REVERB_TAPS,
-};
+use crate::*;
 
 impl Reverb {
 
     pub fn need_recalc_coefficients(&mut self) -> bool {
+
         // periodically true
         let x = matches![self.b, 0];
+
         self.b = ( self.b + 1) & 31;
+
         x
+    }
+
+    #[inline] pub fn recalc_band1(&mut self) {
+
+        let f_freq1: f64 = self.pvalf(ReverbParam::Band1Freq).into();
+        let f_gain1: f64 = self.pvalf(ReverbParam::Band1Gain).into();
+
+        self.band1.coeff_peak_eq(
+            self.band1.calc_omega(f_freq1 * (1.0 / 12.0)), 2.0, f_gain1);
+    }
+
+    #[inline] pub fn recalc_locut(&mut self) {
+
+        let f_locut: f64 = self.pvalf(ReverbParam::LowCut).into();
+
+        self.locut.coeff_hp(
+            self.locut.calc_omega(f_locut * (1.0 / 12.0)), 0.5);
+    }
+
+    #[inline] pub fn recalc_hicut(&mut self) {
+
+        let f_hicut      = self.pvalf(ReverbParam::HighCut);
+
+        self.hicut.coeff_lp2b(self.hicut.calc_omega(f_hicut as f64 * (1.0 / 12.0)), 0.5);
     }
 
     pub fn maybe_recalc_coefficients(&mut self) {
 
         if self.need_recalc_coefficients() {
-
-            let f_freq1: f64 = self.pvalf(ReverbParam::Band1Freq).into();
-            let f_locut: f64 = self.pvalf(ReverbParam::LowCut).into();
-            let f_hicut      = self.pvalf(ReverbParam::HighCut);
-            let f_gain1: f64 = self.pvalf(ReverbParam::Band1Gain).into();
-
-            self.band1.coeff_peak_eq(
-                self.band1.calc_omega(f_freq1 * (1.0 / 12.0)), 2.0, f_gain1);
-
-            self.locut.coeff_hp(
-                self.locut.calc_omega(f_locut * (1.0 / 12.0)), 0.5);
-
-            self.hicut.coeff_lp2b(self.hicut.calc_omega(f_hicut as f64 * (1.0 / 12.0)), 0.5);
+            self.recalc_band1();
+            self.recalc_locut();
+            self.recalc_hicut();
         }
     }
 
@@ -63,4 +76,3 @@ impl Reverb {
         self.load_preset(self.preset);
     }
 }
-

@@ -1,11 +1,6 @@
 ix!();
 
-use crate::{
-    RingModulator,
-    RingModulatorParam,
-    RINGMOD_MAX_UNISON,
-    RINGMOD_OVERSAMPLE,
-};
+use crate::*;
 
 //TODO: if possible, clean up/factor out this RINGMOD_OVERSAMPLE funny business
 impl Process for RingModulator {

@@ -1,10 +1,6 @@
 ix!();
 
-use crate::{
-    Vocoder,
-    VocoderParam,
-    N_VOCODER_BANDS,
-};
+use crate::*;
 
 impl Update for Vocoder {
 

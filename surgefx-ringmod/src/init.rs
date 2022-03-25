@@ -1,9 +1,6 @@
 ix!();
 
-use crate::{
-    RingModulator,
-    RingModulatorParam,
-};
+use crate::*;
 
 impl Init for RingModulator {
 
