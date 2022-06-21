@@ -6,7 +6,7 @@ path = "../surge-constants"
 version = "0.2.5-alpha.0"
 [dependencies.surge-hound]
 path = "./surge-hound"
-version = "0.2.4-alpha.0"
+version = "0.2.5-alpha.0"
 [dependencies.surge-math]
 path = "../surge-math"
 version = "0.2.5-alpha.0"
