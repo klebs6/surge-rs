@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    SSOParam,
-    SSOParamArrayRT,
-};
+crate::ix!();
 
 #[derive(Debug)]
 pub struct SurgeSuperOscillator {

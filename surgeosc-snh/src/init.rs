@@ -1,19 +1,16 @@
-ix!();
-
-use crate::{
-    SampleAndHoldOscillator,
-    SampleAndHoldOscillatorParam,
-};
+crate::ix!();
 
 impl Init for SampleAndHoldOscillator {
 
     fn init(&mut self) {
 
         self.first_run = true;
+
         unsafe {
             self.blitter.osc_out_l = z128![];
             self.blitter.osc_out_r = z128![];
         }
+
         self.blitter.bufpos = 0;
         self.dc = 0.0;
 

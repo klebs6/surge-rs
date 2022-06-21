@@ -1,6 +1,4 @@
-ix!();
-
-use crate::RingModulator;
+crate::ix!();
 
 impl RingModulator {
     pub fn update_unison_settings(&mut self, uni: i32) {

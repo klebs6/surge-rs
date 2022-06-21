@@ -1,6 +1,4 @@
-ix!();
-
-use crate::{WaveshaperState,QuadFilterUnitState,QuadFilterChainState};
+crate::ix!();
 
 pub type WaveshaperQFPtr 
 = fn(&mut WaveshaperState, input: __m128, drive: __m128) -> __m128;

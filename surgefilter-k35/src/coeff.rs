@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    K35Filter,
-    C,
-};
+crate::ix!();
 
 impl CoeffMake for K35Filter {
 

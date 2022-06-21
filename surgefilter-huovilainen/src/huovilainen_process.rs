@@ -1,13 +1,4 @@
-ix!();
-
-use crate::{
-    C,
-    R,
-    HuovilainenCoeff,
-    HuovilainenLadder,
-    HUOVILAINEN_EXTRA_OVERSAMPLE,
-    HUOVILAINEN_EXTRA_OVERSAMPLE_INV,
-};
+crate::ix!();
 
 impl FilterProcessQuad for HuovilainenLadder {
 

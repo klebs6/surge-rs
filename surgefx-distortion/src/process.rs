@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 //pub const DISTORTION_OVERSAMPLE_BLOCK_SIZE: usize = BLOCK_SIZE << DISTORTION_OS_BITS;
 

@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 #[test] fn test_lipol() {
 

@@ -1,8 +1,4 @@
-ix!();
-
-use crate::{
-    FMOscillator,
-};
+crate::ix!();
 
 impl Init for FMOscillator {
 

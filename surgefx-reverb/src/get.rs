@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    Reverb,
-    REVERB_MAX_DELAY,
-    REVERB_TAPS,
-};
+crate::ix!();
 
 impl Reverb {
 

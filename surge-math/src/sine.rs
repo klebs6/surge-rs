@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 // Snabba sin(x) substitut
 // work in progress

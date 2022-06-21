@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    RotarySpeaker,
-    ROTARY_SPEAKER_MAX_DELAY_LENGTH,
-};
+crate::ix!();
 
 impl RotarySpeaker {
 

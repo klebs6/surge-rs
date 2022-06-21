@@ -3,20 +3,7 @@
 #![allow(clippy::redundant_field_names)]
 #[allow(non_camel_case_types)]
 
-macro_rules! x { ($x:ident) => { mod $x; pub use $x::*; } }
-macro_rules! ix { () => ( use crate::{ imports::* , };) }
-
-#[macro_use] pub mod imports;
-
-#[macro_export] macro_rules! tsyncratio {
-    ($self:ident, $x:ident) => ({
-        let temposync = $self.params[AdsrParam::$x].temposync;
-        match temposync {
-            true => $self.time_unit.temposyncratio(),
-            false => 1.0,
-        }
-    })
-}
+#[macro_use] mod imports; use imports::*;
 
 x![adsr];
 x![analog];

@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    Reverb,
-    REVERB_TAP_BITS,
-};
+crate::ix!();
 
 impl Reverb {
 

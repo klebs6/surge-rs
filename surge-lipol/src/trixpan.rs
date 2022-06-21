@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 
 impl LipolPs {

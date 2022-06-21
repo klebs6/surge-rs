@@ -1,9 +1,7 @@
-ix!();
-
-use crate::SineShaper;
+crate::ix!();
 
 impl Waveshaper for SineShaper {
-    pub fn shape(&mut self, input: __m128, drive: __m128) -> __m128 {
+    fn shape(&mut self, input: __m128, drive: __m128) -> __m128 {
 
         unsafe {
 
@@ -13,22 +11,22 @@ impl Waveshaper for SineShaper {
 
             let x: __m128 = _mm_mul_ps(input, drive);
 
-            x = _mm_add_ps(
-                _mm_mul_ps(x, m256), 
-                m512
-            );
+            x = {
+                let p0 = _mm_mul_ps(x, m256);
+                _mm_add_ps(p0, m512)
+            };
 
             let e1: __m64 = _mm_cvtps_pi32(x);
             let e2: __m64 = _mm_cvtps_pi32(_mm_movehl_ps(x, x));
 
-            let a: __m128 = _mm_sub_ps(
-                x, 
-                _mm_cvtpi32_ps(
-                    _mm_movelh_ps(
-                        x, 
-                        _mm_cvtpi32_ps(x, e2)), 
-                    e1)
-            );
+            let a: __m128 = {
+
+                let p0 = _mm_cvtpi32_ps(x, e2);
+                let p1 = _mm_movelh_ps(x, p0);
+                let p2 = _mm_cvtpi32_ps(p1, e1);
+
+                _mm_sub_ps(x, p2)
+            };
 
             let mut e4 = WetBlock1t::<i32,4>::new();
             todo!("need to load values form e1 and e2 somehow");
@@ -59,7 +57,12 @@ impl Waveshaper for SineShaper {
                 _mm_unpacklo_ps(ws3, ws4)
             );
 
-            x = _mm_add_ps(_mm_mul_ps(_mm_sub_ps(one, a), ws), _mm_mul_ps(a, wsn));
+            x = {
+                let p0 = _mm_mul_ps(a, wsn);
+                let p1 = _mm_sub_ps(one, a);
+                let p2 = _mm_mul_ps(p1, ws);
+                _mm_add_ps(p2, p0)
+            };
 
             _mm_empty();
 

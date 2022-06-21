@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 enhanced_enum![
     FM2OscillatorParam {

@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 pub struct SyncQFBRegistersCfg {
     filterunit_type:  [FilterType; 2],

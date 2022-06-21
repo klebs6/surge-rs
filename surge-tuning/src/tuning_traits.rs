@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 #[enum_dispatch]
 pub trait Note2Pitch {
@@ -109,3 +107,4 @@ pub trait GetTablePitch {
         IDX: TryInto<usize>,
         <IDX as std::convert::TryInto<usize>>::Error: std::fmt::Debug;
 }
+

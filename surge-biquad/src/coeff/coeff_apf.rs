@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    BiquadSetCoeffs,
-    BiquadCoeffAPF,
-    BiquadFilter
-};
+crate::ix!();
 
 impl BiquadCoeffAPF for BiquadFilter {
 

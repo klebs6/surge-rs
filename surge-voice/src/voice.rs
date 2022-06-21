@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 enhanced_enum![
     LagEntry {
@@ -66,4 +64,3 @@ pub struct SurgeVoice {
 }
 
 compare_by![SurgeVoice, uuid];
-

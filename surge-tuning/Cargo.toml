@@ -1,10 +1,6 @@
-[dependencies]
-enhanced_enum = "0.2.2"
-enum_dispatch = "0.3.7"
-float-ord = "0.3.2"
-getset = "0.1.1"
-indoc = "1.0.3"
-num-traits = "0.2.14"
+[dependencies.surge-imports]
+path = "../surge-imports"
+version = "0.2.4-alpha.0"
 [dependencies.surge-constants]
 path = "../surge-constants"
 version = "0.2.4-alpha.0"

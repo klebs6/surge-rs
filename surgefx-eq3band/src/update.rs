@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 const SCALE: f64 = 1.0 / 12.0;
 

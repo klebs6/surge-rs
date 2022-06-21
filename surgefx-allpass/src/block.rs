@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub struct AllpassBlockCfg<'a> {
     lfos:  &'a [f32; ALLPASS_REVERB_NUM_BLOCKS],

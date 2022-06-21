@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 use crate::hardcoded_wavetables::*;
 
 pub trait WaveTableData = 

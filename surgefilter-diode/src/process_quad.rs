@@ -1,11 +1,4 @@
-ix!();
-
-use crate::{
-    DiodeLpfConfig,
-    DiodeLadderFilter,
-    C,
-    R,
-};
+crate::ix!();
 
 impl DiodeLadderFilter {
 

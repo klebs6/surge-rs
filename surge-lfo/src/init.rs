@@ -1,11 +1,4 @@
-ix!();
-
-use crate::{
-    Lfo,
-    LfoEnvState,
-    LfoParam,
-    StepSequencer,
-};
+crate::ix!();
 
 impl Lfo {
 

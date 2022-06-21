@@ -1,6 +1,4 @@
-ix!();
-
-use crate::{PData,ParamRT,Param};
+crate::ix!();
 
 impl<P: Param + Clone> crate::Morph for ParamRT<P> {
 

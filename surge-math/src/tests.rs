@@ -1,9 +1,7 @@
-ix!();
+crate::ix!();
 
 #[cfg(test)]
 pub mod test {
-
-    use crate::*;
 
     #[test] fn test_rand1() {
 
@@ -180,4 +178,3 @@ pub mod test {
         }
     }
 }
-

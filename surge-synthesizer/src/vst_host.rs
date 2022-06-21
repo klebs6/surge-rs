@@ -88,7 +88,7 @@ impl Plugin for SpencaPlugin {
     fn process_events(&mut self, events: &Events) {
         for event in events.events() {
             match event {
-                Event::Midi(ev) => self.process_midi_event(ev.data),
+                vst::event::Event::Midi(ev) => self.process_midi_event(ev.data),
                 // More events can be handled here.
                 _ => (),
             }

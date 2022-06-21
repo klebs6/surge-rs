@@ -1,8 +1,4 @@
-ix!();
-
-use crate::{
-    NLSFType,
-};
+crate::ix!();
 
 /**
   | This contains an adaptation of the filter

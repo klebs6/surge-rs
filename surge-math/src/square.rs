@@ -1,6 +1,4 @@
-ix!();
-
-use crate::max_ps_to_ss;
+crate::ix!();
 
 #[inline] pub fn v_sqrt_fast(v: __m128) -> __m128 
 {

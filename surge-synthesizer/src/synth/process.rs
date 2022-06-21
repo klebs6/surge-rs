@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    SurgeSynthesizer,
-    CS_MOD_ROUTING
-};
+crate::ix!();
 
 #[derive(Debug)]
 #[repr(align(16))]

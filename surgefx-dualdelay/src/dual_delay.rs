@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    DualDelayParam,
-    DualDelayParamArrayRT,
-};
+crate::ix!();
 
 pub const DUAL_DELAY_MAX_DELAY_LENGTH: usize = 1 << 18;
 

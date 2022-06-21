@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 #[derive(Debug)]
 pub struct FlangerMode(pub FlangerType, pub FlangerWave);

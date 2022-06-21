@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 pub const INITIAL_WAVETABLE_DATA_SIZES: usize = 35000;
 pub const MIN_F32_WAVETABLES:             u32 = 3;

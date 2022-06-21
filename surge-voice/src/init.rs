@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 pub struct VoiceConstructor {
     pub timeunit:                 TimeUnitHandle,

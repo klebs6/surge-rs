@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    NLFFSaturator,
-    NonlinearFeedbackFilter,
-    R,C,
-};
+crate::ix!();
 
 impl FilterProcessQuad for NonlinearFeedbackFilter {
 

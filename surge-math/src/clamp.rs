@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 #[inline] pub fn clamp01<T: LimitRange + From<f32>> ( x: T) -> T 
 {

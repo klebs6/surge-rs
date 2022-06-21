@@ -1,6 +1,7 @@
-ix!();
+crate::ix!();
 
-///probably better to use something like the crate enum_dispatch for this, but how?
+///probably better to use something like the crate
+///enum_dispatch for this, but how?
 #[derive(Debug)]
 pub enum SurgeEffect {
     Eq3Band(Box<Eq3Band>),

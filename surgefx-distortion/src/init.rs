@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    Distortion,
-    DISTORTION_OS,
-    DistortionParam,
-};
+crate::ix!();
 
 impl Init for Distortion {
 

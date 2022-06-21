@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 struct ReverbBlockCfg {
     pub damp4:         __m128,
@@ -115,10 +113,7 @@ impl Reverb {
         self.delay_pos = ( self.delay_pos + 1) & (REVERB_MAX_DELAY - 1);
 
         self.predelay[self.delay_pos] 
-            = 0.5 * (
-                data_l[block_idx] 
-                + data_r[block_idx]
-            );
+            = 0.5 * ( data_l[block_idx] + data_r[block_idx] );
 
         unsafe {
 

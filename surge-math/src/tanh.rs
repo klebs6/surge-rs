@@ -1,6 +1,4 @@
-ix!();
-
-use crate::within_range;
+crate::ix!();
 
 #[allow(clippy::many_single_char_names)]
 #[cfg(target_arch = "x86_64")] #[inline] 

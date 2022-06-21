@@ -1,6 +1,4 @@
-ix!();
-
-use crate::HALFRATE_BLOCK_SIZE;
+crate::ix!();
 
 impl ProcessBlockD2 for crate::HalfRateFilterSSE {
 
@@ -17,7 +15,7 @@ impl ProcessBlockD2 for crate::HalfRateFilterSSE {
         let mut l: *mut __m128 = l as *mut __m128;
         let mut r: *mut __m128 = r as *mut __m128;
 
-        let mut o = A1d::<__m128>::from_elem(HALFRATE_BLOCK_SIZE, unsafe { z128![] });
+        let mut o = A1d::<__m128>::from_elem(HALFRATE_BLOCK_SIZE, z128());
 
         // fill the buffer with interleaved stereo samples
         for k in (0..nsamples).step_by(4) {

@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    Lfo,
-    LfoParam,
-};
+crate::ix!();
 
 impl Lfo {
 

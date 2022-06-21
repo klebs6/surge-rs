@@ -1,8 +1,4 @@
-ix!();
-
-use crate::{
-    RotarySpeaker,
-};
+crate::ix!();
 
 impl Suspend for RotarySpeaker {
 

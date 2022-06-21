@@ -1,6 +1,4 @@
-ix!();
-
-use crate::NumberOfBlocks;
+crate::ix!();
 
 #[derive(Debug,Copy,Clone)]
 pub enum Ringout {

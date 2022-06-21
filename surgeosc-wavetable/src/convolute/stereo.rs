@@ -1,8 +1,4 @@
-ix!();
-
-use crate::{
-    WTOscillator,
-};
+crate::ix!();
 
 impl WTOscillator {
 
@@ -21,7 +17,6 @@ impl WTOscillator {
             g128_r     = _mm_shuffle_ps(g128_r, g128_r, _MM_SHUFFLE(0, 0, 0, 0));
             g128_r
         };
-
 
         for k in (0..FIR_IPOL_N).step_by(4) 
         {
@@ -64,7 +59,5 @@ impl WTOscillator {
                 _mm_storeu_ps(obf_r, ob_r);
             }
         }
-
     }
 }
-

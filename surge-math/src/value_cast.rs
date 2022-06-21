@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 #[inline] pub fn float_2_int(i: f32) -> i32 
 {

@@ -1,6 +1,4 @@
-ix!();
-
-use crate::Conditioner;
+crate::ix!();
 
 #[test] pub fn conditioner_smoke() {
 

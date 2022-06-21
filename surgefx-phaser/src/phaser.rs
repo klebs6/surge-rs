@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    PhaserParam,
-    PhaserParamArrayRT,
-};
+crate::ix!();
 
 #[derive(Debug,Clone)]
 pub struct Phaser {

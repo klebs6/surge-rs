@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 impl crate::HalfRateFilterSSE {
 
@@ -44,6 +44,7 @@ impl crate::HalfRateFilterSSE {
     }
 
     pub fn load_steep_rejection86db_tband0_01(&mut self) {
+
         // rejection=86db, transition band=0.01
         let mut a_coefficients: [f64; 5] = [
             0.051457617441190984, 
@@ -69,6 +70,7 @@ impl crate::HalfRateFilterSSE {
     }
 
     pub fn load_steep_rejection69db_tband0_01(&mut self) {
+
         // rejection=69db, transition band=0.01
         let mut a_coefficients: [f64; 4] = [
             0.07711507983241622, 
@@ -92,6 +94,7 @@ impl crate::HalfRateFilterSSE {
     }
 
     pub fn load_steep_rejection51db_tband0_01(&mut self) {
+
         // rejection=51db, transition band=0.01
         let mut a_coefficients: [f64; 3] = [
             0.1271414136264853, 
@@ -113,6 +116,7 @@ impl crate::HalfRateFilterSSE {
     }
 
     pub fn load_steep_rejection53db_tband0_05(&mut self) {
+
         // rejection=53db,transition band=0.05
         let mut a_coefficients: [f64; 2] = [
             0.12073211751675449, 
@@ -132,6 +136,7 @@ impl crate::HalfRateFilterSSE {
     }
 
     pub fn load_steep_rejection36db_tband0_1(&mut self) {
+
         // order=2, rejection=36db, transition band=0.1
         let mut a_coefficients: [f64; 1] = [ 0.23647102099689224 ];
         let mut b_coefficients: [f64; 1] = [ 0.7145421497126001  ];
@@ -142,5 +147,4 @@ impl crate::HalfRateFilterSSE {
                 b_coefficients.as_mut_ptr());
         }
     }
-
 }

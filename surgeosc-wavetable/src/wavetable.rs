@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    WTOscillatorParam,
-    WTOscillatorParamArrayRT,
-};
+crate::ix!();
 
 #[derive(Debug)]
 pub struct WTOscillator {

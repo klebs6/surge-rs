@@ -1,7 +1,4 @@
-ix!();
-
-use crate::BiquadFilter;
-use crate::ProcessBlockStereo;
+crate::ix!();
 
 #[test] fn smoke() {
     const S: usize = 32;

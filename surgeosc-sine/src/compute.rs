@@ -1,8 +1,4 @@
-ix!();
-
-use crate::{
-    SineWaveOscillator,
-};
+crate::ix!();
 
 impl SineWaveOscillator {
 

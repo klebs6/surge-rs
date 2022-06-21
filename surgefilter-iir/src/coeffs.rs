@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    map_2pole_resonance,
-    map_4pole_resonance,
-};
+crate::ix!();
 
 #[derive(Debug,Copy,Clone)]
 pub struct FilterCoeffs {

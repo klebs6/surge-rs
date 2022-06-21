@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub struct DiodeLpfConfig<'a> {
     pub input:            &'a __m128,

@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    SineWaveOscillator,
-    SineWaveOscillatorParam,
-};
+crate::ix!();
 
 impl HandleStreamingMismatches for SineWaveOscillator {
 

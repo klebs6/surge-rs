@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 #[repr(align(16))] 
 #[derive(Debug,Clone)]

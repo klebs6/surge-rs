@@ -1,6 +1,4 @@
-ix!();
-
-use crate::FilterCoeffs;
+crate::ix!();
 
 #[derive(Derivative)] #[derivative(Debug)]
 pub struct IIRFilter {

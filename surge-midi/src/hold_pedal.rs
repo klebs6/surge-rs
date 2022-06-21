@@ -1,6 +1,4 @@
-ix!();
-
-use crate::MidiChannelState;
+crate::ix!();
 
 #[derive(Debug)]
 pub struct HoldPedalUnit {

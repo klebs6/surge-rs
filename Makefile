@@ -11,9 +11,10 @@ RUSTFLAGS := ""
 
 #ACTIVE_PACKAGE := surge-synthesizer
 #ACTIVE_PACKAGE := surge-voice
-ACTIVE_PACKAGE := surgefx-distortion
+#ACTIVE_PACKAGE := surgefx-distortion
 
-#ACTIVE_PACKAGE := surge-adsr
+#ACTIVE_PACKAGE := surge-imports
+ACTIVE_PACKAGE := surge-adsr
 #ACTIVE_PACKAGE := surge-biquad
 #ACTIVE_PACKAGE := surge-blitter
 #ACTIVE_PACKAGE := surge-coeffmaker

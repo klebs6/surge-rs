@@ -1,11 +1,4 @@
-ix!();
-
-use crate::{
-    Obxd12dBCoeff,
-    Obxd24dBCoeff,
-    ObxdParams,
-    Poles,
-};
+crate::ix!();
 
 pub struct ObxdFilter {
     pub poles:  Poles,

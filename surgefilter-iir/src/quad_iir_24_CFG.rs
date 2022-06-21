@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 /// State-space with clipgain (2nd order, limit within register)
 #[cfg(target_arch = "x86_64")] 

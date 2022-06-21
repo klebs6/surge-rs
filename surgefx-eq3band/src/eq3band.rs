@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    Eq3BandParam,
-    Eq3BandParamArrayRT,
-};
+crate::ix!();
 
 #[derive(Debug,Clone)]
 pub struct Eq3Band {

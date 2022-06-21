@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub const ENVELOPE_TABLE_SIZE_D:  f64 = 512.0;
 pub const ENVELOPE_TABLE_SIZE_U:  usize = 512;

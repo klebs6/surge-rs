@@ -1,6 +1,4 @@
-ix!();
-
-use crate::{RingModulator,RingModulatorParam};
+crate::ix!();
 
 #[test] fn ringmod_smoke() {
 

@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    MIDIUnit,
-    MidiChannelState,
-    MidiKeyState,
-};
+crate::ix!();
 
 #[derive(Debug,Clone)]
 pub struct MIDIUnitHandle {

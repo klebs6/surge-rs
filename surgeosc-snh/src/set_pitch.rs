@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    SampleAndHoldOscillator,
-    SampleAndHoldOscillatorParam,
-};
+crate::ix!();
 
 impl SetPitch for SampleAndHoldOscillator {
 

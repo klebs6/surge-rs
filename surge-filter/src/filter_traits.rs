@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 /**
   |structs implementing this trait can be used as
@@ -9,6 +9,13 @@ ix!();
   */
 pub trait Waveshaper {
     fn shape(&self, input: __m128, drive: __m128) -> __m128;
+}
+
+pub unsafe fn clip_bipolar(y: __m128) -> __m128 {
+    use core::arch::x86_64::*;
+    let y_min: __m128 = _mm_set1_ps(-1.0);
+    let y_max: __m128 = _mm_set1_ps(1.0);
+    _mm_max_ps(_mm_min_ps(y, y_max), y_min)
 }
 
 /**
@@ -25,8 +32,9 @@ pub trait FilterProcessQuad {
 }
 
 /**
-  structs implementing this trait can provide
-  coefficients for CoefficientMaker
+  | structs implementing this trait can
+  | provide coefficients for CoefficientMaker
+  |
   */
 pub trait CoeffMake {
     fn coeff_make(&self,
@@ -35,4 +43,3 @@ pub trait CoeffMake {
 }
 
 pub trait SurgeFilter = FilterProcessQuad + CoeffMake;
-

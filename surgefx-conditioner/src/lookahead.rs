@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    Conditioner,
-    CONDITIONER_LOOKAHEAD,
-    CONDITIONER_LOOKAHEAD_BITS,
-};
+crate::ix!();
 
 impl Conditioner {
 

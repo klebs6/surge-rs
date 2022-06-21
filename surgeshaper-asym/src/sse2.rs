@@ -1,6 +1,4 @@
-ix!();
-
-use crate::AsymShaper;
+crate::ix!();
 
 #[cfg(target_arch = "x86_64")] 
 impl Waveshaper for AsymShaper {

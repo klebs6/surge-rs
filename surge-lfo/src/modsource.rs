@@ -1,8 +1,4 @@
-ix!();
-
-use crate::{
-    Lfo,
-};
+crate::ix!();
 
 impl ModulationSourceControl for Lfo {
 

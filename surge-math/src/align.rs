@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 //TODO: is this actually getting them?
 extern "platform-intrinsic" {

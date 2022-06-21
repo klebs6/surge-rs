@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    C,
-    DiodeLadderFilter,
-};
+crate::ix!();
 
 impl CoeffMake for DiodeLadderFilter {
 

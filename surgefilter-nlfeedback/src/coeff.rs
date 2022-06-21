@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    C,
-    NonlinearFeedbackFilter, 
-    NLFFType,
-};
+crate::ix!();
 
 impl CoeffMake for NonlinearFeedbackFilter {
 

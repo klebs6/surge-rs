@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    BiquadSetCoeffs,
-    BiquadCoeffLP,
-    BiquadFilter
-};
+crate::ix!();
 
 impl BiquadCoeffLP for BiquadFilter {
 
@@ -21,15 +15,15 @@ impl BiquadCoeffLP for BiquadFilter {
             );
 
         } else {
-            let cosi: f64 = omega.cos();
-            let sinu: f64 = omega.sin(); 
+            let cosi:  f64 = omega.cos();
+            let sinu:  f64 = omega.sin(); 
             let alpha: f64 = sinu / (2.0 * q); 
-            let b0: f64 = (1.0 - cosi) * 0.5;
-            let b1: f64 = 1.0 - cosi; 
-            let b2: f64 = (1.0 - cosi) * 0.5; 
-            let a0: f64 = 1.0 + alpha; 
-            let a1: f64 = -2.0 * cosi; 
-            let a2: f64 = 1.0 - alpha;
+            let b0:    f64 = (1.0 - cosi) * 0.5;
+            let b1:    f64 = 1.0 - cosi; 
+            let b2:    f64 = (1.0 - cosi) * 0.5; 
+            let a0:    f64 = 1.0 + alpha; 
+            let a1:    f64 = -2.0 * cosi; 
+            let a2:    f64 = 1.0 - alpha;
 
             self.set_coef(a0, a1, a2, b0, b1, b2);
         }

@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 pub struct VocoderBlockCfg {
     pub max_level:  __m128,

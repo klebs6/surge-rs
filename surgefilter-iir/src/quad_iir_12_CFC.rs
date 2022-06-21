@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 #[cfg(target_arch = "x86_64")] 
 pub fn iir_12_cfc_quad(qfu: &mut QuadFilterUnitState, input: __m128) -> __m128 {

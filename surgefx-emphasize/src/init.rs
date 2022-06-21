@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    Emphasize,
-    EmphasizeParam,
-};
+crate::ix!();
 
 impl Emphasize {
 

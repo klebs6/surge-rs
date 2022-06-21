@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub const HUOVILAINEN_GAIN_COMPENSATION:    f32 = 0.5;
 pub const HUOVILAINEN_EXTRA_OVERSAMPLE:     i32 = 2;

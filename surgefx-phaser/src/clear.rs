@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    Phaser,
-    PHASER_N_BQ_UNITS,
-};
+crate::ix!();
 
 impl Phaser {
 

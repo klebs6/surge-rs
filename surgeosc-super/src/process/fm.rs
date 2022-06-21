@@ -1,6 +1,4 @@
-ix!();
-
-use crate::SurgeSuperOscillator;
+crate::ix!();
 
 impl SurgeSuperOscillator {
 

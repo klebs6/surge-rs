@@ -1,6 +1,4 @@
-ix!();
-
-use crate::{SurgeSynthesizer,PluginLayer,SynthControl,FXUnit};
+crate::ix!();
 
 pub struct SynthEnvironment<'a> {
     input:           &'a mut SynthInputHandle,

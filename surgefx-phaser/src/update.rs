@@ -1,12 +1,4 @@
-ix!();
-
-use crate::{
-    Phaser,
-    PhaserParam,
-    PHASER_BASEPAN,
-    PHASER_BASEFREQ,
-    PHASER_N_BQ,
-};
+crate::ix!();
 
 impl Update for Phaser {
 

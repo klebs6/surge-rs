@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 //TODO: can we decompose this implementation into
 //      composable macros?  the goal is to share

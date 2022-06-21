@@ -1,11 +1,11 @@
-ix!();
-
-use crate::SineShaper;
+crate::ix!();
 
 impl Waveshaper for SineShaper {
     fn shape(&self, input: __m128, drive: __m128) -> __m128 {
+
         unsafe {
-            let one: __m128 = _mm_set1_ps(1.0);
+
+            let one:  __m128 = _mm_set1_ps(1.0);
             let m256: __m128 = _mm_set1_ps(256.0);
             let m512: __m128 = _mm_set1_ps(512.0);
 

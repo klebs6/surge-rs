@@ -1,6 +1,6 @@
-[dependencies]
-enhanced_enum = "0.2.2"
-prometheus = "0.13.0"
+[dependencies.surge-imports]
+path = "../surge-imports"
+version = "0.2.4-alpha.0"
 [dependencies.surge-adsr]
 path = "../surge-adsr"
 version = "0.2.4-alpha.0"

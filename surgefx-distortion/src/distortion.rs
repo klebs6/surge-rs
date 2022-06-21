@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    DistortionParam,
-    DistortionParamArrayRT,
-};
+crate::ix!();
 
 pub const DISTORTION_OS_BITS:  usize = 2;
 pub const DISTORTION_OS:       usize = 1 << DISTORTION_OS_BITS;

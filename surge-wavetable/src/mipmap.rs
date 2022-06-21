@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    WaveTableData,
-    WaveTableHeader,
-};
+crate::ix!();
 
 const MIPMAP_FILTER_SIZE:  usize = 64;
 const MIPMAP_FILTER_ID_OF: usize = (MIPMAP_FILTER_SIZE - 1) >> 1;

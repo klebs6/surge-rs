@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    Distortion,
-    DistortionParam,
-};
+crate::ix!();
 
 impl Distortion {
 

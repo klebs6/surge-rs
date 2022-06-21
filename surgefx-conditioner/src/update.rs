@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    Conditioner,
-    ConditionerParam,
-};
+crate::ix!();
 
 impl Update for Conditioner {
 

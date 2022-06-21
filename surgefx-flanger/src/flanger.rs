@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 #[derive(Debug,Clone)]
 pub struct Flanger {

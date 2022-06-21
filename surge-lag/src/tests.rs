@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 #[test] fn test_lag() {
     let mut x = Lag::default();

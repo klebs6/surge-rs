@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 pub const N_MODSOURCES_PER_SCENE: usize = 32;
 

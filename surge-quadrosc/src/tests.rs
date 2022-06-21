@@ -1,4 +1,4 @@
-use crate::QuadrOsc;
+crate::ix!();
 
 #[test] fn api_smoke() {
 

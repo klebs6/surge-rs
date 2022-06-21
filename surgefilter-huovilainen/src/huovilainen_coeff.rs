@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    HuovilainenLadder,
-    C,
-    HUOVILAINEN_EXTRA_OVERSAMPLE_INV,
-};
+crate::ix!();
 
 impl CoeffMake for HuovilainenLadder {
 

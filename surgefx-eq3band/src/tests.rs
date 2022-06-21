@@ -1,6 +1,4 @@
-ix!();
-
-use crate::{Eq3Band,Eq3BandParam};
+crate::ix!();
 
 #[test] fn eq3band_smoke() {
 

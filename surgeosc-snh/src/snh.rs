@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    SampleAndHoldOscillatorParam,
-    SampleAndHoldOscillatorParamArrayRT,
-};
+crate::ix!();
 
 #[derive(Debug)]
 pub struct SampleAndHoldOscillator {

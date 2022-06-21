@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub type NumberOfBlocks         = usize;
 pub type OutputDataPresent      = bool;

@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    EmphasizeParam,
-    EmphasizeParamArrayRT,
-};
+crate::ix!();
 
 #[derive(Debug,Clone)]
 pub struct Emphasize {

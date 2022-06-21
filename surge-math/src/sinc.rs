@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 #[inline] pub fn sincf(x: f64) -> f64 {
 

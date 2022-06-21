@@ -1,12 +1,4 @@
-ix!();
-
-use crate::{
-    AllowDisplay,
-    AssignFM,
-    HandleStreamingMismatches,
-    Init,
-    SetPitch,
-};
+crate::ix!();
 
 pub trait Oscillator:
 OscillatorProcess 

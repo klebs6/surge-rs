@@ -1,6 +1,4 @@
-ix!();
-
-use crate::FilterCoeffs;
+crate::ix!();
 
 pub struct BandRejectFilter {
     pub tuner: TunerHandle,

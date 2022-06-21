@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    AudioInputOscillator,
-    AudioInputOscillatorParam,
-};
+crate::ix!();
 
 impl AudioInputOscillator {
 

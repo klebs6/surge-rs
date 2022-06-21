@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    DualDelay,
-    DualDelayParam,
-    DUAL_DELAY_MAX_DELAY_LENGTH,
-};
+crate::ix!();
 
 impl DualDelay {
 

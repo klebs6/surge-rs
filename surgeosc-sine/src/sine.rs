@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    SineWaveOscillatorParam,
-    SineWaveOscillatorParamArrayRT,
-};
+crate::ix!();
 
 #[derive(Debug)]
 pub struct SineWaveOscillator {

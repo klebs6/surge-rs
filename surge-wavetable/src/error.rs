@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 #[derive(Debug,Clone)]
 pub enum WaveTableBuildError {

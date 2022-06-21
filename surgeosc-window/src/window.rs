@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    WindowOscillatorParam,
-    WindowOscillatorParamArrayRT,
-};
+crate::ix!();
 
 #[derive(Debug)]
 pub struct WindowOscillator {

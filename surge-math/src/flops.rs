@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub fn flush_denormal(d: &mut f64) {
     if d.abs() < 1e-30 {

@@ -1,5 +1,6 @@
-[dependencies]
-num-traits = "0.2.14"
+[dependencies.surge-imports]
+path = "../surge-imports"
+version = "0.2.4-alpha.0"
 [dependencies.surge-math]
 path = "../surge-math"
 version = "0.2.4-alpha.0"

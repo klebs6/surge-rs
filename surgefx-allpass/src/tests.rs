@@ -1,6 +1,4 @@
-ix!();
-
-use crate::AllpassVerb;
+crate::ix!();
 
 #[test] pub fn allpass_smoke() {
 

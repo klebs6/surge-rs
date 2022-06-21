@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub trait MorphPatch {
     fn morph(&mut self);

@@ -1,8 +1,4 @@
-ix!();
-
-use crate::{
-    IIRFilter,
-};
+crate::ix!();
 
 //----------------------------------------------------
 macro_rules! hook {

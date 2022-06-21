@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    SurgeSuperOscillator,
-    SSOBlockCfg,
-};
+crate::ix!();
 
 impl OscillatorProcess for SurgeSuperOscillator {
 

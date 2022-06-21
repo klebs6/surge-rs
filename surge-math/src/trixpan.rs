@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 #[inline] pub fn bend(x: f32, b: f32) -> f32 { 
     (1.0 + b) * x - b * x * x * x 

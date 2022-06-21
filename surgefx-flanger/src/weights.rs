@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    Flanger,
-    FlangerParam,
-};
+crate::ix!();
 
 impl Flanger {
 

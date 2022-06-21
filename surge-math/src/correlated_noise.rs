@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub fn rand01() -> f32 {
     rand::thread_rng().gen_range(0.0..1.0)

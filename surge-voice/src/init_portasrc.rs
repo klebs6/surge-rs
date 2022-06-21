@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    SurgeVoice,
-    VoiceConstructor,
-};
+crate::ix!();
 
 impl SurgeVoice {
 

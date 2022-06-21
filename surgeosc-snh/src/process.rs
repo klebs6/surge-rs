@@ -1,8 +1,4 @@
-ix!();
-
-use crate::{
-    SampleAndHoldOscillator,
-};
+crate::ix!();
 
 impl OscillatorProcess for SampleAndHoldOscillator {
 

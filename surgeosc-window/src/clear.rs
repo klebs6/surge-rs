@@ -1,11 +1,8 @@
-ix!();
-
-use crate::{
-    WindowOscillator,
-};
+crate::ix!();
 
 impl WindowOscillator {
-    pub fn clear(&mut self) {
+
+    #[inline] pub fn clear(&mut self) {
         self.pos.fill(0);
         self.sub_pos.fill(0);
         self.ratio.fill(0);

@@ -1,6 +1,4 @@
-ix!();
-
-pub use crate::coeff::*;
+crate::ix!();
 
 pub const HALFRATE_MAX_M: usize = 6;
 
@@ -31,7 +29,7 @@ impl Default for HalfRateFilterSSE {
             vy0:      Self::scratch_zero(),
             vy1:      Self::scratch_zero(),
             vy2:      Self::scratch_zero(),
-            oldout:   unsafe { z128![] },
+            oldout:   z128(),
             m:        0,
             steep:    false,
             oldout_l: 0.0,
@@ -43,9 +41,7 @@ impl Default for HalfRateFilterSSE {
 impl HalfRateFilterSSE {
 
     #[inline] pub fn scratch_zero() -> A1d::<__m128> {
-        unsafe {
-            A1d::<__m128>::from_elem(HALFRATE_MAX_M, z128![])
-        }
+        A1d::<__m128>::from_elem(HALFRATE_MAX_M, z128())
     }
 
     pub fn new(m: usize, steep: bool) -> Self {
@@ -63,16 +59,14 @@ impl HalfRateFilterSSE {
 
 impl Reset for HalfRateFilterSSE {
     fn reset(&mut self) {
-        unsafe {
-            for i in 0..self.m {
-                self.vx0[i] = z128![];
-                self.vx1[i] = z128![];
-                self.vx2[i] = z128![];
-                self.vy0[i] = z128![];
-                self.vy1[i] = z128![];
-                self.vy2[i] = z128![];
-            }
-            self.oldout = z128![];
+        for i in 0..self.m {
+            self.vx0[i] = z128();
+            self.vx1[i] = z128();
+            self.vx2[i] = z128();
+            self.vy0[i] = z128();
+            self.vy1[i] = z128();
+            self.vy2[i] = z128();
         }
+        self.oldout = z128();
     }
 }

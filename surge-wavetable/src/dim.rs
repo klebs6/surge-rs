@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 #[derive(Debug,Copy,Clone)]
 pub struct WaveTableDim {

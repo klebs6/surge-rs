@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    WindowOscillator,
-    WindowOscillatorParam,
-};
+crate::ix!();
 
 impl Init for WindowOscillator {
 
@@ -39,7 +34,7 @@ impl Init for WindowOscillator {
             self.detune_offset = -1.0;
 
             let odd: bool = (self.active_sub_oscs & 1) != 0;
-            let mid: f32 = (self.active_sub_oscs as f32) * 0.5 - 0.5;
+            let mid:  f32 = (self.active_sub_oscs as f32) * 0.5 - 0.5;
             let half = (self.active_sub_oscs >> 1) as usize;
 
             for i in (0_usize..self.active_sub_oscs as usize).step_by(1) 
@@ -54,38 +49,44 @@ impl Init for WindowOscillator {
                     d = -d;
                 }
 
-                self.gain[[i,0]] = limit_range(
-                    ((128.0 * megapan_left(d)) as f32) as i32, 
-                    0, 255) as u32;
+                self.gain[[i,0]] = {
 
-                self.gain[[i,1]] = limit_range(
-                    ((128.0 * megapan_right(d)) as f32) as i32, 
-                    0, 255) as u32;
+                    let b0 = 128.0 * megapan_left(d);
+
+                    let b1 = (b0 as f32) as i32;
+
+                    limit_range( b1, 0, 255) as u32
+                };
+
+                self.gain[[i,1]] = {
+
+                    let b0 = 128.0 * megapan_right(d);
+
+                    let b1 = (b0 as f32) as i32;
+
+                    limit_range(b1, 0, 255) as u32
+                };
 
                 if pvalb![self.osc_params[OscillatorParam::Retrigger]] {
-                    self.pos[i] = (
-                        (
-                            window_wt_size + 
-                            (
-                                (window_wt_size * (i as usize)) / 
-                                (self.active_sub_oscs as usize)
-                            )
-                        ) 
-                        << 16
-                    ) as u32;
+
+                    self.pos[i] = {
+                        let b0 = window_wt_size * (i as usize);
+                        let b1 = self.active_sub_oscs as usize;
+                        let b2 = b0 / b1;
+                        let b3 = window_wt_size + b2;
+                        ( b3 << 16) as u32
+                    };
+
                 } else {
+
                     let randi32 = rand01() as i32;
 
-                    self.pos[i] = ((
-                            window_wt_size + 
-                            (
-                                randi32 & (
-                                    (
-                                        window_wt_size - 1
-                                    ) as i32
-                                )
-                            ) as usize
-                    ) << 16) as u32;
+                    self.pos[i] = {
+                        let b0 = window_wt_size - 1;
+                        let b1 = randi32 & ( b0 as i32);
+                        let b2 = window_wt_size + b1 as usize;
+                        (b2 << 16) as u32 
+                    };
                 }
             }
         }

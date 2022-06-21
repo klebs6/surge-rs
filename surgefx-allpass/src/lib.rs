@@ -1,18 +1,7 @@
 #![feature(in_band_lifetimes)]
 
-macro_rules! x  { ($x:ident) => { mod $x; pub use $x::*; } }
-macro_rules! ix { 
-    () => { 
-        #[allow(unused_imports)]
-        use crate::{ 
-            imports::* , 
-            constants::* , 
-        };
-    }
-}
-
 #[cfg(test)] mod tests;
-#[macro_use] mod imports;
+#[macro_use] mod imports; use imports::*;
 
 x![allpass];
 x![delay];

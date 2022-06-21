@@ -1,15 +1,15 @@
-
-ix!();
-
-use crate::{
-    WTOscillator,
-};
+crate::ix!();
 
 impl WTOscillator {
 
-    /// each block overlap FIR_IPOL_N samples into the next (due to impulses not being wrapped around
-    /// the block edges copy the overlapping samples to the new block position
-    /// only needed if the new self.blitter.bufpos == 0
+    /**
+      | each block overlap FIR_IPOL_N samples into
+      | the next (due to impulses not being
+      | wrapped around the block edges copy the
+      | overlapping samples to the new block
+      | position only needed if the new
+      | self.blitter.bufpos == 0
+      */
     pub fn maybe_handle_overlap(&mut self, stereo: bool) { 
         if self.blitter.bufpos == 0 {
 

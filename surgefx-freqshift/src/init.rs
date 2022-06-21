@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    FreqShift,
-    FreqShiftParam,
-};
+crate::ix!();
 
 impl Init for FreqShift {
 

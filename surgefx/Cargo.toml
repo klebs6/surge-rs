@@ -1,5 +1,11 @@
-[dependencies]
-enum_dispatch = "0.3.7"
+[dependencies.surge-imports]
+path = "../surge-imports"
+version = "0.2.4-alpha.0"
+
+[dependencies.surge-types]
+path = "../surge-types"
+version = "0.2.4-alpha.0"
+
 [dependencies.surge-traits]
 path = "../surge-traits"
 version = "0.2.4-alpha.0"

@@ -1,6 +1,4 @@
-ix!();
-
-use crate::limit_range;
+crate::ix!();
 
 #[inline] pub fn amp_to_linear(mut x: f32) -> f32 {
     x = x.max(0.0);

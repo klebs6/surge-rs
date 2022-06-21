@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    PatchMetadata,
-    SurgeScene,
-    PatchParamArrayRT,
-};
+crate::ix!();
 
 #[derive(Debug)]
 pub struct SurgePatch {

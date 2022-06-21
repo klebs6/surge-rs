@@ -1,4 +1,8 @@
-ix!();
+crate::ix!();
+
+#[inline] pub fn z128() -> __m128 {
+    unsafe { z128![] }
+}
 
 #[cfg(target_arch = "x86_64")]
 #[inline] pub unsafe fn one_over_one_plus_x(x: __m128) -> __m128 {

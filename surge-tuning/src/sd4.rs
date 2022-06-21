@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub const  SD4_16_04: &str = indoc!["
 ! SD4 16-04.scl

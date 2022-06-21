@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    SurgeVoice,
-    VoiceUpdateQFCSCfg,
-};
+crate::ix!();
 
 impl SurgeVoice {
 

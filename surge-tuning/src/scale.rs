@@ -1,6 +1,4 @@
-ix!();
-
-use crate::tone::*;
+crate::ix!();
 
 /**
   | From:

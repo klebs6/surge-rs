@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 pub const RINGMOD_MAX_UNISON: i32 = 16;
 pub const RINGMOD_OVERSAMPLE: bool = true;

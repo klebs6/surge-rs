@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 #[cfg(target_arch = "x86_64")] #[inline] 
 pub fn hardclip_ss(x: __m128) -> __m128

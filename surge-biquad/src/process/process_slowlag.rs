@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    ProcessBlockSlowlag,
-    BiquadFilter,
-};
+crate::ix!();
 
 impl ProcessBlockSlowlag for BiquadFilter {
 

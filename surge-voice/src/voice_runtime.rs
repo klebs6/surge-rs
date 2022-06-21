@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    VoiceUpdateQFCSCfg,
-    VoiceToggleSoloCfg,
-};
+crate::ix!();
 
 /**
   |this structure decouples SurgeVoice from

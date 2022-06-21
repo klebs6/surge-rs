@@ -1,7 +1,4 @@
-macro_rules! x { ($x:ident) => { mod $x; pub use $x::*; } }
-macro_rules! ix { () => ( use crate::{ imports::* , };) }
-
-#[macro_use] pub mod imports;
+#[macro_use] mod imports; use imports::*;
 
 x![effect];
 x![filter];

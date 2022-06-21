@@ -1,6 +1,4 @@
-ix!();
-
-use crate::{Emphasize,EmphasizeParam};
+crate::ix!();
 
 #[test] fn emphasize_smoke() {
 

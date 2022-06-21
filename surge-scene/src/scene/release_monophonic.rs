@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    ReleaseCfg,
-    SceneParam,
-    SurgeScene,
-};
+crate::ix!();
 
 #[derive(Debug)]
 pub struct PlayConfig {

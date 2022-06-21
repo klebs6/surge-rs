@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    C,
-    NLSFType,
-};
+crate::ix!();
 
 impl CoeffMake for crate::NonlinearStatesFilter {
 

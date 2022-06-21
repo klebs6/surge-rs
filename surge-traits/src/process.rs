@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub trait SynthProcess {
     fn process(&mut self);

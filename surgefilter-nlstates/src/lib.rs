@@ -1,18 +1,9 @@
 #![feature(in_band_lifetimes)]
 
-macro_rules! x  { ($x:ident) => { mod $x; pub use $x::*; } }
-macro_rules! ix { 
-    () => { 
-        use crate::{ 
-            imports::* , 
-        };
-    }
-}
-
-#[macro_use] mod imports;
+#[macro_use] mod imports; use imports::*;
 #[cfg(test)] mod tests;
 
-x![coeff];
-x![nlsf];
-x![process];
-x![types];
+x!{coeff}
+x!{nlsf}
+x!{process}
+x!{nlstates_types}

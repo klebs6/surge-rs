@@ -46,12 +46,17 @@ pub const WINDOW_SIZE_X:          usize = 904;
 pub const WINDOW_SIZE_Y:          usize = 542;
 pub const ZERO:                   f64   = 0.0;
 
-/// I don't know why your max wtable samples would be less than your 
-/// max tables * your max sample size. So lets fix that!
-/// This size is consistent with the check in WaveTable.cpp 
+/// I don't know why your max wtable samples would
+/// be less than your max tables * your max sample
+/// size. So lets fix that!
 ///
-/// CheckRequiredWTSize with ts and tc at 1024 and 512
+/// This size is consistent with the check in
+/// WaveTable.cpp 
+///
+/// CheckRequiredWTSize with ts and tc at 1024 and
+/// 512
 pub const MAX_WAVETABLE_SAMPLES:         usize = 2097152;
+
 /// const int max_wtable_samples =  268000; // delay pops 4 uses the most
 
 pub const NUM_CONTROLINTERPOLATORS:  usize = 32; // midicontrol-interpolators

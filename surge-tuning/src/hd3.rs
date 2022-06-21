@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub const  HD3_04_12: &str = indoc!["
 ! HD3 04-12.scl

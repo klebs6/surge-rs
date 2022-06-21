@@ -1,6 +1,4 @@
-ix!();
-
-use crate::AllpassReverbParam;
+crate::ix!();
 
 impl Process for crate::AllpassVerb {
 

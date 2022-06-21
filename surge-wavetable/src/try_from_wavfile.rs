@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 fn get_loop_len(spec: &hound::WavSpecSurge) -> Result<(bool,i32),WaveTableBuildError> {
 

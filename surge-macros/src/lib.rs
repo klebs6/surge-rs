@@ -3,7 +3,7 @@
 ///Runtime (RT) Parameter values
 #[macro_export] macro_rules! rt {
     ($param_type:ident) => {
-        use paste::paste;
+        use surge_imports::paste;
         paste![
             pub type [<$param_type RT>]      = ParamRT::<$param_type>;
             pub type [<$param_type ArrayRT>] = [<$param_type Array>]::< [<$param_type RT>] >;

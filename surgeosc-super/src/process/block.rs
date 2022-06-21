@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub struct SSOBlockCfg<'a> {
     pub hpfblock: &'a WetBlock1::<BLOCK_SIZE_OS>,

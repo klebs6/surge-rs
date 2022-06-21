@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    FM2Oscillator,
-    FM2OscillatorParam,
-    fm2_calcmd,
-};
+crate::ix!();
 
 impl OscillatorProcess for FM2Oscillator {
 

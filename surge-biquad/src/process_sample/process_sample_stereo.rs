@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    ProcessSampleStereo,
-    BiquadFilter,
-};
+crate::ix!();
 
 impl ProcessSampleStereo for BiquadFilter {
 

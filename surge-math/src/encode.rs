@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 #[inline] unsafe fn access(x: *mut f32, idx: usize) -> *mut __m128 {
     (x as *mut __m128).add(idx)

@@ -1,6 +1,4 @@
-ix!();
-
-use crate::LpMoogFilter;
+crate::ix!();
 
 impl FilterProcessQuad for LpMoogFilter {
 

@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 enhanced_enum![
     WindowOscillatorParam {
@@ -19,6 +19,7 @@ impl Param for WindowOscillatorParam {
     fn snap(&self) -> bool {
         *self != WindowOscillatorParam::Morph
     }
+
     fn control_type(&self) -> ControlType {
         match self {
             WindowOscillatorParam::Morph     => ControlType::CountedSetPercent,
@@ -28,6 +29,7 @@ impl Param for WindowOscillatorParam {
             WindowOscillatorParam::UniCount  => ControlType::OscCountWT,
         }
     }
+
     fn default_value(&self) -> PData {
         match self {
             WindowOscillatorParam::Morph     => PData::Float(0.0),
@@ -37,6 +39,7 @@ impl Param for WindowOscillatorParam {
             WindowOscillatorParam::UniCount  => PData::Int(1),
         }
     }
+
     fn min_value(&self) -> PData {
         match self {
             WindowOscillatorParam::Morph     => PData::Float(0.0),  
@@ -46,6 +49,7 @@ impl Param for WindowOscillatorParam {
             WindowOscillatorParam::UniCount  => PData::Int(1),      
         }
     }
+
     fn max_value(&self) -> PData {
         match self {
             WindowOscillatorParam::Morph     => PData::Float(1.0), 
@@ -55,6 +59,7 @@ impl Param for WindowOscillatorParam {
             WindowOscillatorParam::UniCount  => PData::Int(16),    
         }
     }
+
     fn value_type(&self) -> ValType {
         match self {
             WindowOscillatorParam::Morph     => ValType::VtFloat,
@@ -64,6 +69,7 @@ impl Param for WindowOscillatorParam {
             WindowOscillatorParam::UniCount  => ValType::VtInt,  
         }
     }
+
     fn moverate(&self) -> f32 {
         match self {
             WindowOscillatorParam::Morph     => 1.0,
@@ -73,6 +79,7 @@ impl Param for WindowOscillatorParam {
             WindowOscillatorParam::UniCount  => 1.0,
         }
     }
+
     fn modulateable(&self) -> bool {
         //true for all
         true

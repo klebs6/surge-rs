@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 impl TryFrom<WaveTableDataFilename> for WaveTable {
 

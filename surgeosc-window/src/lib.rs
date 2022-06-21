@@ -1,25 +1,19 @@
 #![feature(stdarch)]
 #![feature(in_band_lifetimes)]
 
-macro_rules! x  { ($x:ident) => { mod $x; pub use $x::*; } }
+#[macro_use] mod imports; use imports::*;
 
-macro_rules! ix { 
-    () => { 
-        #[allow(unused_imports)]
-        use crate::{ 
-            imports::* , 
-            constants::* , 
-        };
-    }
-}
-
-#[macro_use] mod imports;
-
-x![clear];
-x![constants];
-x![window];
-x![param];
-x![init];
-x![new];
-x![process];
-x![sub];
+x!{access}
+x!{block_update}
+x!{clear}
+x!{formant}
+x!{init}
+x!{new}
+x!{param}
+x!{process}
+x!{process_block}
+x!{process_cfg}
+x!{scratch}
+x!{subosc}
+x!{suboscs}
+x!{window}

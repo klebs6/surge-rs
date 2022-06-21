@@ -1,6 +1,4 @@
-ix!();
-
-use crate::SurgeSuperOscillator;
+crate::ix!();
 
 impl SurgeSuperOscillator {
 
@@ -49,7 +47,5 @@ impl SurgeSuperOscillator {
                 _mm_storeu_ps(obf, ob); 
             }
         }
-
     }
 }
-

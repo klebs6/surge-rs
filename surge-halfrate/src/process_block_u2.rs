@@ -1,6 +1,4 @@
-ix!();
-
-use crate::HALFRATE_BLOCK_SIZE;
+crate::ix!();
 
 /**
   | fill the buffer with interleaved stereo
@@ -12,7 +10,7 @@ fn create_work_buffer(
     r_in:     *mut __m128, 
     nsamples: usize) -> A1d::<__m128> {
 
-    let mut o = A1d::<__m128>::from_elem(HALFRATE_BLOCK_SIZE, unsafe { z128![] });
+    let mut o = A1d::<__m128>::from_elem(HALFRATE_BLOCK_SIZE, z128());
 
     for k in (0..nsamples).step_by(8) {
 

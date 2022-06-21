@@ -1,6 +1,4 @@
-ix!();
-
-use crate::SurgeSynthesizer;
+crate::ix!();
 
 impl SurgeSynthesizer<'plugin_layer> {
 

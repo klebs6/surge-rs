@@ -13,32 +13,11 @@
 #![allow(non_camel_case_types)]
 #![feature(test)]
 
-macro_rules! x { 
-    ($x:ident) => { 
-        mod $x; 
-        pub use $x::*; 
-    } 
-}
-
-macro_rules! ix { 
-    () => { 
-        #[allow(unused_imports)]
-        use crate::{ imports::* , };
-    }
-}
+#[macro_use] mod imports; use imports::*;
 
 #[macro_use] extern crate vst;
-#[macro_use] extern crate lazy_static;
 
-extern crate num;
-extern crate test;
-
-extern crate proc_macro;
-
-#[macro_use] mod imports;
-use crate::imports::*;
-
-x![traits];
+x![synth_traits];
 x![freq];
 x![host];
 x![vst_host];

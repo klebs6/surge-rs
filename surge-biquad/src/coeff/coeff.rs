@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    BiquadSetCoeffs,
-    BiquadFilter,
-};
+crate::ix!();
 
 impl Redo for BiquadFilter {
 

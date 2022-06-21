@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 pub fn some_new_boxed_lfo(
     time_unit: TimeUnitHandle,

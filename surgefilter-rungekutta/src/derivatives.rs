@@ -1,6 +1,4 @@
-ix!();
-
-use crate::RungeKuttaLadder;
+crate::ix!();
 
 pub struct CalculateDerivativesCfg {
     pub input:               __m128, 

@@ -1,6 +1,4 @@
-ix!();
-
-use crate::Chorus;
+crate::ix!();
 
 #[test] pub fn chorus_smoke() {
 

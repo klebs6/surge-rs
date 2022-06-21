@@ -1,8 +1,4 @@
-ix!();
-
-use crate::{
-    SurgeScene,
-};
+crate::ix!();
 
 impl SurgeScene {
 

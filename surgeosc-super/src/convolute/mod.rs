@@ -1,5 +1,7 @@
-x![convolute];
-x![get_g];
-x![get_t];
-x![mono];
-x![stereo];
+use crate::imports::*;
+
+x!{convolute}
+x!{get_g}
+x!{get_t}
+x!{mono}
+x!{stereo}

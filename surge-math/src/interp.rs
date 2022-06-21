@@ -1,6 +1,4 @@
-ix!();
-
-use crate::MyFloat;
+crate::ix!();
 
 #[inline] 
 pub fn cubic_interpolate(

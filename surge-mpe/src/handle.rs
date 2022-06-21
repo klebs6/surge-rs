@@ -1,6 +1,4 @@
-ix!();
-
-use crate::MPEUnit;
+crate::ix!();
 
 #[derive(Debug,Clone)]
 pub struct MPEUnitHandle {

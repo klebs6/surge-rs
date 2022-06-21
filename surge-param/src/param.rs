@@ -1,6 +1,4 @@
-ix!();
-
-use crate::{PData,ControlType,ControlGroup,ControlStyle,ValType};
+crate::ix!();
 
 pub trait AssocParam {
     type ParamType;
@@ -203,4 +201,5 @@ pub trait ParameterController {
     fn normalized_to_value(&mut self, parameter_index: i64, value: f32) -> f32;
     fn value_to_normalized(&mut self, parameter_index: i64, value: f32) -> f32;
 }
+
 

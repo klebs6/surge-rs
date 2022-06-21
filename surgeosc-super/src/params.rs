@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 enhanced_enum![
     SSOParam {
@@ -131,7 +131,6 @@ impl Param for SSOParam {
         }
     }
 }
-
 
 impl SSOParam {
     #[inline] pub fn new_runtime() -> SSOParamArrayRT {

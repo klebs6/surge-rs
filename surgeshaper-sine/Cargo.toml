@@ -1,7 +1,7 @@
-[dependencies]
-derivative = "2.2.0"
-enhanced_enum = "0.2.2"
-float-ord = "0.3.2"
+[dependencies.surge-imports]
+path = "../surge-imports"
+version = "0.2.4-alpha.0"
+
 [dependencies.surge-filter]
 path = "../surge-filter"
 version = "0.2.4-alpha.0"

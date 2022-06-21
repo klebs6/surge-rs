@@ -1,8 +1,4 @@
-ix!();
-
-use crate::{
-    AdsrParamArrayRT,
-};
+crate::ix!();
 
 enhanced_enum![
     AdsrState {

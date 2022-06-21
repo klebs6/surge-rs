@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    RungeKuttaCoeff,
-    RungeKuttaLadder,
-};
+crate::ix!();
 
 impl CoeffMake for RungeKuttaLadder {
 

@@ -1,6 +1,4 @@
-ix!();
-
-use crate::C;
+crate::ix!();
 
 #[cfg(target_arch = "x86_64")] 
 pub fn svf_lp24_a_quad(qfu: &mut QuadFilterUnitState, mut input: __m128) -> __m128 {

@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    Chorus,
-    ChorusParam,
-    CHORUS_DEPTH,
-};
+crate::ix!();
 
 impl Chorus {
 

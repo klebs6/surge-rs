@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    ProcessBlockMono,
-    BiquadFilter,
-};
+crate::ix!();
 
 impl ProcessBlockMono for BiquadFilter {
 

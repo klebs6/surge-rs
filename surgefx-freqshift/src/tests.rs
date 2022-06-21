@@ -1,6 +1,4 @@
-ix!();
-
-use crate::{FreqShift,FreqShiftParam};
+crate::ix!();
 
 #[test] fn freqshift_smoke() {
 

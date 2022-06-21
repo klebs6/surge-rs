@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    VocoderParam,
-    VocoderParamArrayRT,
-};
+crate::ix!();
 
 #[derive(Debug,Clone)]
 pub struct Vocoder {

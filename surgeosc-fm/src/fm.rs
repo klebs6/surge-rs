@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    FMOscillatorParam,
-    FMOscillatorParamArrayRT,
-};
+crate::ix!();
 
 #[derive(Debug)]
 pub struct FMOscillator {

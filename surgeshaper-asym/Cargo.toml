@@ -1,3 +1,7 @@
+[dependencies.surge-imports]
+path = "../surge-imports"
+version = "0.2.4-alpha.0"
+
 [dependencies.surge-filter]
 path = "../surge-filter"
 version = "0.2.4-alpha.0"

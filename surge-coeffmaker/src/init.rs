@@ -1,8 +1,10 @@
-ix!();
-
-use crate::FilterCoefficientMaker;
+crate::ix!();
 
 impl FilterCoefficientMaker {
+
+    pub fn new_coeffbank() -> A1d::<f32> {
+        A1d::<f32>::zeros(N_COEFFMAKER_COEFFS)
+    }
 
     pub fn new( 
         tuner:  TunerHandle,
@@ -11,14 +13,15 @@ impl FilterCoefficientMaker {
     ) -> Self {
 
         let mut x = Self {
-            coeff:      A1d::<f32>::zeros(N_COEFFMAKER_COEFFS),
-            dcoeff:     A1d::<f32>::zeros(N_COEFFMAKER_COEFFS),
-            tcoeff:     A1d::<f32>::zeros(N_COEFFMAKER_COEFFS),
+            coeff:      Self::new_coeffbank(),
+            dcoeff:     Self::new_coeffbank(),
+            tcoeff:     Self::new_coeffbank(),
             first_run:  true,
             tuner:      tuner.clone(),
             tables:     tables.clone(),
             srunit:     srunit.clone()
         };
+
         x.reset();
         x
     }

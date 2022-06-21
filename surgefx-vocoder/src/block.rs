@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    Vocoder,
-    VocoderBlockCfg,
-    N_VOCODER_BANDS,
-};
+crate::ix!();
 
 impl Vocoder {
 

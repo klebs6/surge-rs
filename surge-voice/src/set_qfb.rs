@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 pub struct VoiceUpdateQFCSCfg {
     pub f2_cutoff_is_offset:      bool,

@@ -1,5 +1,7 @@
-x![datum];
-x![param];
-x![patch];
-x![traits];
-x![init];
+use crate::imports::*;
+
+x!{datum}
+x!{param}
+x!{patch}
+x!{patch_traits}
+x!{init}

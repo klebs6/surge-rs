@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    obxd_filter,
-    ObxdParams,
-    Obxd12dBCoeff,
-};
+crate::ix!();
 
 impl crate::ObxdFilter {
 

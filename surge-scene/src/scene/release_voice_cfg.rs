@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 ///goes downward
 pub type KeyRange = Rev<Range<usize>>;

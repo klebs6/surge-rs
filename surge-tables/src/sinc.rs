@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub const SINCTABLE1X_SIZE:  usize = (FIR_IPOL_M + 1) * FIR_IPOL_N;
 pub const SINCTABLEI16_SIZE: usize = (FIR_IPOL_M + 1) * FIR_IPOL_I16_N;

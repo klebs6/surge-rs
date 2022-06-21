@@ -1,6 +1,4 @@
-ix!();
-
-use crate::ProcessRingout;
+crate::ix!();
 
 #[enum_dispatch]
 pub trait Effect : 

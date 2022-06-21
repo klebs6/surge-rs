@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 //TODO: if possible, clean up/factor out this RINGMOD_OVERSAMPLE funny business
 impl Process for RingModulator {

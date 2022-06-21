@@ -1,10 +1,4 @@
-ix!();
-
-use crate::{
-    Lfo,
-    LfoParam,
-    N_STEPSEQUENCER_STEPS,
-};
+crate::ix!();
 
 impl Lfo {
 

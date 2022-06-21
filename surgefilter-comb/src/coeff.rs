@@ -1,6 +1,4 @@
-ix!();
-
-use crate::CombFilter;
+crate::ix!();
 
 impl CoeffMake for CombFilter {
 

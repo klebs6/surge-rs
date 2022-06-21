@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 pub fn get_fn_process_quad(fbc: FilterBlockConfiguration, x: &FbqGlobal) 
 -> Box<FBQFPtr> 

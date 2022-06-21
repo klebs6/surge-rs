@@ -1,8 +1,6 @@
-ix!();
+crate::ix!();
 
 pub const CONVOLVE_NODC: bool = false;
-
-use crate::*;
 
 impl Convolute for SurgeSuperOscillator {
 
@@ -69,14 +67,28 @@ impl Convolute for SurgeSuperOscillator {
 
         let delay = self.get_delay(fm,ipos);
 
-        // m and lipol128 are the integer and fractional part of the number of 256ths
-        // (FIRipol_N ths really) that our current position places us at. These are obviously
-        // not great variable names. Especially lipolui16 doesn't seem to be fractional at all
-        // it seems to range between 0 and 0xffff, but it is multiplied by the sinctable
-        // derivative block (see comment above and also see the SurgeSynthesizer constructor
-        // second sinctable block), which is pre-scaled down by 65536, so lipol * sinctable[j * + 1]
-        // is the fractional derivative of the sinc table with repsect to time. (The calculation is
-        // numerical not analytical in SurgeSynthesizer).
+        /*
+         | m and lipol128 are the integer and
+         | fractional part of the number of 256ths
+         | (FIRipol_N ths really) that our current
+         | position places us at.
+         |
+         | These are obviously not great variable
+         | names.
+         |
+         | Especially lipolui16 doesn't seem to be
+         | fractional at all it seems to range
+         | between 0 and 0xffff, but it is
+         | multiplied by the sinctable derivative
+         | block (see comment above and also see
+         | the SurgeSynthesizer constructor second
+         | sinctable block), which is pre-scaled
+         | down by 65536, so lipol * sinctable[j * + 1] 
+         | is the fractional derivative of
+         | the sinc table with repsect to
+         | time. (The calculation is numerical not
+         | analytical in SurgeSynthesizer).
+         */
         let m:         i32 = (((ipos >> 16) & 0xff) as i32) * ((FIR_IPOL_N << 1) as i32);
         let lipolui16: i32 = (ipos & 0xffff).try_into().unwrap();
 

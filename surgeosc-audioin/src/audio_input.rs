@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    AudioInputOscillatorParam,
-    AudioInputOscillatorParamArrayRT,
-};
+crate::ix!();
 
 ///audio input oscillator
 ///TODO: add controls? {input l/r, gain, limiter}

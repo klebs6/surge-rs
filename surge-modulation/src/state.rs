@@ -1,6 +1,4 @@
-ix!();
-
-use crate::ModSource;
+crate::ix!();
 
 #[derive(Debug)]
 pub struct ModulationRouting {

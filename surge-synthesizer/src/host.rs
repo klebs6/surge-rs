@@ -1,8 +1,6 @@
-ix!();
+crate::ix!();
 
 const BUFFER_SIZE: usize = 512;
-
-use coreaudio::audio_unit::*;
 
 #[allow(dead_code)]
 pub struct SampleHost;
@@ -19,7 +17,7 @@ impl Host for SampleHost {
 
         //other event types can be handled here
         for event in events.events() {
-            if let Event::Midi(ev) = event {
+            if let vst::event::Event::Midi(ev) = event {
                 println!("process midi event: {:?}",ev.data);
                 //self.process_midi_event(ev.data)
             }

@@ -1,12 +1,4 @@
-ix!();
-
-use crate::{
-    LfoParam,
-    LfoParamArray,
-    StepSequencer,
-    ENV_PHASEMULTI,
-    LFO_RANGE,
-};
+crate::ix!();
 
 enhanced_enum![
     LfoEnvState {

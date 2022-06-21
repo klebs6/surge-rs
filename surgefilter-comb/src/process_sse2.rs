@@ -1,6 +1,4 @@
-ix!();
-
-use crate::CombFilter;
+crate::ix!();
 
 #[cfg(target_arch = "x86_64")] 
 impl FilterProcessQuad for CombFilter {

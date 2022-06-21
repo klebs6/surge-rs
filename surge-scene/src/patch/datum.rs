@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 /// seems to be missing from VST2.3, so it's copied from the VST list instead
 ///--------------------------------------------------------------------

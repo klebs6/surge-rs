@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    SurgeScene,
-    SceneParam,
-};
+crate::ix!();
 
 pub struct SceneConstructorHandles<'a> {
     pub timeunit:        &'a TimeUnitHandle,

@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    FMOscillator,
-    FMOscillatorParam,
-};
+crate::ix!();
 
 impl OscillatorProcess for FMOscillator {
 

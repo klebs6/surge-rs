@@ -1,8 +1,4 @@
-ix!();
-use crate::{
-    ChorusParam,
-    ChorusParamArrayRT,
-};
+crate::ix!();
 
 #[derive(Debug,Clone)]
 pub struct Chorus {

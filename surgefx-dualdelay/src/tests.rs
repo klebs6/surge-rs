@@ -1,6 +1,4 @@
-ix!();
-
-use crate::{DualDelay,DualDelayParam};
+crate::ix!();
 
 #[test] fn dual_delay_smoke() {
 

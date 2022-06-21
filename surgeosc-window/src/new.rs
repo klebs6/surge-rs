@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    WindowOscillator,
-    WindowOscillatorParam,
-};
+crate::ix!();
 
 impl WindowOscillator {
 

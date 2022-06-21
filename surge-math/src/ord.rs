@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub fn maxi(a: i32, b: i32) -> i32 {
     std::cmp::max(a,b)

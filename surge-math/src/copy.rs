@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 fn access_f32<T>(x: *mut T) -> *mut f32 {
     x as *mut f32

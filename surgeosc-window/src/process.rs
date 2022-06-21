@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    WindowOscillator,
-    WindowOscillatorParam,
-};
+crate::ix!();
 
 impl OscillatorProcess for WindowOscillator {
 
@@ -92,37 +87,49 @@ impl OscillatorProcess for WindowOscillator {
         self.process_sub_oscs(stereo, fm);
 
         unsafe {
+
             // int32 -> float conversion
             let scale: __m128 = _mm_load1_ps(&self.out_attenuation);
 
             if stereo {
                 for i in (0..BLOCK_SIZE_OS).step_by(4) {
 
+                    let l_val = {
+                        let b0 = self.out.l.as_mut_ptr() as *mut __m128i;
+                        let b1 = _mm_cvtepi32_ps(*b0);
+                        _mm_mul_ps(b1, scale)
+                    };
+
+                    let r_val = {
+
+                        let b0 = self.out.r.as_mut_ptr() as *mut __m128i;
+                        let b1 = _mm_cvtepi32_ps(*b0);
+
+                        _mm_mul_ps(b1, scale)
+                    };
+
                     _mm_store_ps(
                         &mut self.out.l[i], 
-                        _mm_mul_ps(
-                            _mm_cvtepi32_ps(*(self.out.l.as_mut_ptr() as *mut __m128i)), 
-                            scale)
+                        l_val
                     );
 
                     _mm_store_ps(
                         &mut self.out.r[i], 
-                        _mm_mul_ps(
-                            _mm_cvtepi32_ps(*(self.out.r.as_mut_ptr() as *mut __m128i)), 
-                            scale)
+                        r_val
                     );
                 }
 
             } else {
 
-                for i in (0..BLOCK_SIZE_OS).step_by(4) 
-                {
-                    _mm_store_ps(&mut self.out.l[i], 
-                        _mm_mul_ps(
-                            _mm_cvtepi32_ps(
-                                *(self.out.l.as_mut_ptr() as *mut __m128i)), 
-                            scale)
-                    );
+                for i in (0..BLOCK_SIZE_OS).step_by(4) {
+
+                    let l_val = {
+                        let b0 = self.out.l.as_mut_ptr() as *mut __m128i;
+                        let b1 = _mm_cvtepi32_ps(*b0);
+                        _mm_mul_ps(b1, scale)
+                    };
+
+                    _mm_store_ps(&mut self.out.l[i], l_val);
                 }
             }
         }

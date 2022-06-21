@@ -1,5 +1,4 @@
-ix!();
-
+crate::ix!();
 
 #[test] fn smoke() {
 

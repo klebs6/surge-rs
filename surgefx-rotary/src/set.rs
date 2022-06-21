@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    RotarySpeaker,
-    RotarySpeakerParam,
-};
+crate::ix!();
 
 impl RotarySpeaker {
 

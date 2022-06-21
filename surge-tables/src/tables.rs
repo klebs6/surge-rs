@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 #[enum_dispatch]
 pub trait NTables {
@@ -135,3 +133,4 @@ pub trait GetWaveshaperPtr {
             self._get_waveshaper_ptr(idx,offset)
     }
 }
+

@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub const  ED3_07: &str = indoc!["
 ! ED3-07.scl

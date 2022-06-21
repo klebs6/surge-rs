@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub const N_VOCODER_BANDS: usize = 20;
 pub const N_VOCODER_VEC:   usize = N_VOCODER_BANDS >> 2;

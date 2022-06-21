@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub const OBXD_SSEW: i32 = 4;
 

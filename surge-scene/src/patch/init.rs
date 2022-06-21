@@ -1,12 +1,4 @@
-ix!();
-
-use crate::{
-    SceneConstructorHandles,
-    PatchMetadata,
-    SurgePatch,
-    SurgeScene,
-    PatchParam,
-};
+crate::ix!();
 
 impl SurgePatch {
 

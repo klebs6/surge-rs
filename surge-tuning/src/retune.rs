@@ -1,6 +1,4 @@
-ix!();
-
-use crate::*;
+crate::ix!();
 
 impl RetuneToStandardTuning for SurgeTuner {
 
@@ -75,7 +73,7 @@ impl RetuneToScale for SurgeTuner {
             match distance_from_pitch0 {
                 0 => {
 
-                    self.tables.table_pitch[idx] = 2.0.powf( (*pitch + pitch_mod).into() );
+                    self.tables.table_pitch[idx] = 2.0_f64.powf( (*pitch + pitch_mod).into() );
 
                     if cfg![debug_scales] && idx > 296 && idx < 340
                     {

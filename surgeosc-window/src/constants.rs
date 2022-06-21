@@ -1,1 +1,0 @@
-pub const WINDOW_OSCILLATOR_NUM_SUBOSCS: usize = 2;

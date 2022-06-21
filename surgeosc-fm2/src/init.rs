@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    FM2Oscillator,
-    FM2OscillatorParam,
-};
+crate::ix!();
 
 pub fn fm2_calcmd(x: f64) -> f64 
 {

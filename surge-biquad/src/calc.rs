@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    BiquadFilter,
-    BiquadCalcFreq,
-};
+crate::ix!();
 
 impl BiquadCalcFreq for BiquadFilter {
 

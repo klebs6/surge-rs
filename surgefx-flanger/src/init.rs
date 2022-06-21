@@ -1,11 +1,4 @@
-ix!();
-
-use crate::{
-    Flanger,
-    FlangerParam,
-    InterpDelay,
-    OnePoleLPFilterState,
-};
+crate::ix!();
 
 impl Init for Flanger {
 

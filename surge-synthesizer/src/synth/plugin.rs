@@ -1,6 +1,4 @@
-ix!();
-
-use crate::PluginLayerIF;
+crate::ix!();
 
 #[derive(Debug)]
 pub struct PluginLayer<'plugin_layer> {

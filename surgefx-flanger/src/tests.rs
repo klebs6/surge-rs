@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 #[test] fn flanger_smoke() {
 

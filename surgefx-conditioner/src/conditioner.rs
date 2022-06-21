@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    ConditionerParam,
-    ConditionerParamArrayRT,
-};
+crate::ix!();
 
 #[derive(Debug,Clone)]
 pub struct Conditioner {

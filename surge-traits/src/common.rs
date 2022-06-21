@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub trait Redo {
     fn redo(&mut self);

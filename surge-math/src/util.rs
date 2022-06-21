@@ -1,4 +1,13 @@
-ix!();
+crate::ix!();
+
+pub trait MyFloat = 
+num_traits::Float 
++ std::ops::AddAssign 
++ Into<f64>;
+
+pub type A3d<T> = ndarray::Array3::<T>;
+pub type A2d<T> = ndarray::Array2::<T>;
+pub type A1d<T> = ndarray::Array1::<T>;
 
 #[cfg(target_arch = "x86_64")] #[inline] 
 pub fn max_ps_to_ss(x: __m128) -> __m128

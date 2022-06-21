@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 pub const SMOOTH: f32 = 0.2;
 

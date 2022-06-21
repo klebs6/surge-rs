@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 // valid range -2 .. 2 (> +- 1 is inverted phase) 
 #[inline] pub fn megapan_left(mut pos: f32 ) -> f32 {

@@ -1,8 +1,4 @@
-ix!();
-
-use crate::{
-    BiquadFilter,
-};
+crate::ix!();
 
 impl Init for BiquadFilter {
 

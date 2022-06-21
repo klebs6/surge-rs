@@ -1,9 +1,4 @@
-ix!();
-
-use crate::{
-    WTOscillator,
-    WTOscillatorParam,
-};
+crate::ix!();
 
 impl WTOscillator {
 

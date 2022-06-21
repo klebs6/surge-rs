@@ -1,4 +1,4 @@
-ix!();
+crate::ix!();
 
 //TODO: this is a little fishy
 bitflags! {
