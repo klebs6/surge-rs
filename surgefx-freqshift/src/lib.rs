@@ -4,7 +4,6 @@
 #[macro_use] mod imports; use imports::*;
 #[cfg(test)] mod tests;
 
-x![constants];
 x![freq_shift];
 x![init];
 x![maybe];

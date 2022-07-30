@@ -1,5 +1,8 @@
 crate::ix!();
 
+///note, is this the right value?
+pub const FREQSHIFT_MAX_DELAY_LENGTH: usize = 1 << 18; 
+
 #[derive(Debug,Clone)]
 pub struct FreqShift {
     pub fr:            Align16<HalfRateFilterSSE>,
