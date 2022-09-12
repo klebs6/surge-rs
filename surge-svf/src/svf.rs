@@ -99,17 +99,24 @@ impl VectorizedSvfFilter {
                 self.reg_l1
             );
 
-            let h1: __m128 = v_nmsub(
-                self.quality_factor, 
-                self.reg_b1, 
-                _mm_sub_ps(
-                    _mm_mul_ps(
-                        x, 
-                        self.quality_factor
-                    ), 
+            let h1: __m128 = {
+
+                let p0 = _mm_mul_ps(
+                    x, 
+                    self.quality_factor
+                );
+
+                let p1 = _mm_sub_ps(
+                    p0, 
                     self.reg_l1
+                );
+
+                v_nmsub(
+                    self.quality_factor, 
+                    self.reg_b1, 
+                    p1 
                 )
-            );
+            };
 
             self.reg_b1 = v_madd(
                 self.coeff_f1, 
@@ -123,17 +130,24 @@ impl VectorizedSvfFilter {
                 self.reg_l2
             );
 
-            let h2: __m128 = v_nmsub(
-                self.quality_factor, 
-                self.reg_b2, 
-                _mm_sub_ps(
-                    _mm_mul_ps(
-                        self.reg_b1, 
-                        self.quality_factor
-                    ), 
+            let h2: __m128 = {
+
+                let p0 = _mm_mul_ps(
+                    self.reg_b1, 
+                    self.quality_factor
+                );
+
+                let p1 = _mm_sub_ps(
+                    p0, 
                     self.reg_l2
+                );
+
+                v_nmsub(
+                    self.quality_factor, 
+                    self.reg_b2, 
+                    p1
                 )
-            );
+            };
 
             self.reg_b2 = v_madd(
                 self.coeff_f2, 
@@ -145,4 +159,3 @@ impl VectorizedSvfFilter {
         }
     }
 }
-

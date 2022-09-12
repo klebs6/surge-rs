@@ -89,4 +89,3 @@ where
         clip(i + 4);
     }
 }
-
