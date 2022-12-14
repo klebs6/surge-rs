@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl SurgeSynthesizer<'plugin_layer> {
+impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
     pub fn on_nrpn(&mut self, 
         channel: u8, 

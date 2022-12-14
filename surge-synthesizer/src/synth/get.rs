@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl SurgeSynthesizer<'plugin_layer> {
+impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
     #[inline] pub fn check_scene_modsource_enabled(&self, scene: usize, modsrc: ModSource) -> bool {
         self.active_patch.scene[scene].modsources[modsrc].as_ref().unwrap().enabled()

@@ -1,7 +1,7 @@
 crate::ix!();
 
 //-------------------------------------------------------------------------------------------------
-impl SurgeSynthesizer<'plugin_layer> {
+impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
     pub fn is_valid_modulation<P: Param + ?Sized>(&mut self, p: &ParamRT<P>, modsource: ModSource) -> bool 
     {

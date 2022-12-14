@@ -3,6 +3,8 @@ crate::ix!();
 #[cfg(test)]
 pub mod test {
 
+    use super::*;
+
     #[test] fn test_rand1() {
 
         for _ in 0..10 {

@@ -130,7 +130,7 @@ impl Convolute for SurgeSuperOscillator {
 
         self.blitter.rate[voice] *= match (self.blitter.state[voice] + 1) & 2 {
             0 => self.pwidth2[voice],
-            _ => (2.0 - self.pwidth2[voice]),
+            _ => 2.0 - self.pwidth2[voice],
         };
 
         self.blitter.oscstate[voice] += self.blitter.rate[voice];

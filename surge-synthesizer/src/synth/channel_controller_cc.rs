@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl SurgeSynthesizer<'plugin_layer> {
+impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
     #[inline] pub fn channel_controller_cc0(&mut self, _channel: u8, _cc: u8, value: i32) -> bool {
         self.cc0 = value;

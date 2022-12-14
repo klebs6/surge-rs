@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl SurgeSynthesizer<'plugin_layer> {
+impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
     pub fn reset_patch(&mut self) {
         self.active_patch.init();

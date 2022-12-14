@@ -3,9 +3,9 @@ crate::ix!();
 impl Emphasize {
 
     pub fn new(
-        tuner:  & TunerHandle,
-        tables: & TablesHandle,
-        srunit: & SampleRateHandle) -> Self 
+        tuner:  &TunerHandle,
+        tables: &TablesHandle,
+        srunit: &SampleRateHandle) -> Self 
     {
         Self {
             pre:              Align16(HalfRateFilterSSE::default()),

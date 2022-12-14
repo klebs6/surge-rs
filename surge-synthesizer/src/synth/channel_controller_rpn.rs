@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl SurgeSynthesizer<'plugin_layer> {
+impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
     #[inline] pub fn channel_controller_handle_rpn_nrpn(&mut self, 
         channel: u8, cc: u8, fval: &mut f32) -> usize 

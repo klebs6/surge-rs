@@ -1,4 +1,3 @@
-#![feature(in_band_lifetimes)]
 #![feature(box_syntax)]
 #![feature(stdarch)]
 

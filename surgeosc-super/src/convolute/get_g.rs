@@ -25,7 +25,7 @@ impl SurgeSuperOscillator {
     {
         match fm {
             true  => self.fm_delay as u32,
-            false => ((ipos >> 24) & 0x3f),
+            false => (ipos >> 24) & 0x3f,
         }
     }
 

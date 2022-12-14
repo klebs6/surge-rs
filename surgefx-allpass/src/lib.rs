@@ -1,5 +1,3 @@
-#![feature(in_band_lifetimes)]
-
 #[cfg(test)] mod tests;
 #[macro_use] mod imports; use imports::*;
 

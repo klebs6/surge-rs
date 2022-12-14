@@ -13,9 +13,9 @@ pub struct SynthEnvironment<'a> {
     synth_in:        &'a mut SynthInputHandle,
 }
 
-impl SurgeSynthesizer<'plugin_layer> {
+impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
-    pub fn new_default_patch(environment: &SynthEnvironment<'synth_out>) -> Box<SurgePatch> {
+    pub fn new_default_patch<'synth_out>(environment: &SynthEnvironment<'synth_out>) -> Box<SurgePatch> {
         box SurgePatch::new(
             SceneConstructorHandles{
                 timeunit:         environment.timeunit, 
@@ -30,7 +30,7 @@ impl SurgeSynthesizer<'plugin_layer> {
         )
     }
 
-    pub fn new_fx_unit(environment: &SynthEnvironment<'synth_out>) -> FXUnit {
+    pub fn new_fx_unit<'synth_out>(environment: &SynthEnvironment<'synth_out>) -> FXUnit {
         FXUnit::new(
             environment.tuner,
             environment.tables,
@@ -39,7 +39,7 @@ impl SurgeSynthesizer<'plugin_layer> {
         )
     }
 
-    pub fn new_default(environment: SynthEnvironment<'synth_out>) -> Self {
+    pub fn new_default<'synth_out>(environment: SynthEnvironment<'synth_out>) -> Self {
 
         let mut x = Self {
             synth_out:                 environment.output.clone(),

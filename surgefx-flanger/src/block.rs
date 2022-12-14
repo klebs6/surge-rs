@@ -10,54 +10,9 @@ impl Flanger {
         data_l:    &mut [f32; N],
         data_r:    &mut [f32; N]) 
     {
-        for channel_idx in 0_usize..2 {
+        self.process_lfos_and_delays_for_each_comb(block_idx, combs, vweights);
 
-            combs.buf[channel_idx][block_idx] = 0.0;
-
-            for i in 0..FLANGER_COMBS_PER_CHANNEL {
-
-                if vweights.buf[channel_idx][i as usize] > 0.0 {
-
-                    let tap: f32 = 
-                        self.delaybase[[ channel_idx, i as usize ]].v * 
-                        ( 1.0 + self.lfoval[[channel_idx, i as usize]].v * self.depth.v ) + 1.0;
-
-                    let v:   f32 = self.idels[channel_idx].value(tap);
-
-                    combs.buf[channel_idx][block_idx] += vweights.buf[channel_idx][i as usize] * v;
-                }
-
-                self.lfoval[[ channel_idx, i ]].process();
-                self.delaybase[[ channel_idx, i ]].process();
-            }
-        }
-
-        // softclip the feedback to avoid explosive runaways
-        let mut fbl: f32 = 0.0;
-        let mut fbr: f32 = 0.0;
-
-        if self.feedback.v > 0.0 {
-
-            fbl = limit_range( self.feedback.v * combs.buf[0][block_idx], -1.0, 1.0 );
-            fbr = limit_range( self.feedback.v * combs.buf[1][block_idx], -1.0, 1.0 );
-
-            fbl = 1.5 * fbl - 0.5 * fbl * fbl * fbl;
-            fbr = 1.5 * fbr - 0.5 * fbr * fbr * fbr;
-
-            // and now we have clipped, apply the damping. 
-            // FIXME - move to one mul form
-            self.onepole_state.lpa_l = 
-                self.onepole_state.lpa_l * ( 1.0 - self.fb_lf_damping.v ) + 
-                fbl * self.fb_lf_damping.v;
-
-            fbl -= self.onepole_state.lpa_l;
-
-            self.onepole_state.lpa_r = 
-                self.onepole_state.lpa_r * ( 1.0 - self.fb_lf_damping.v ) + 
-                fbr * self.fb_lf_damping.v;
-
-            fbr -= self.onepole_state.lpa_r;
-        }
+        let (fbl, fbr) = self.softclip_the_feedback_to_avoid_explosions(block_idx,combs);
 
         let (vl, vr) = {
             let vl: f32 = data_l[block_idx] - fbl;
@@ -68,20 +23,30 @@ impl Flanger {
         self.idels[0].push( vl );
         self.idels[1].push( vr );
 
-        let mut origw: f32 = 1.0;
-
-        if mtype == FlangerType::Doppler {
-            // doppler modes
-            origw = 0.0;
-        }
+        let origw: f32 = match mtype {
+            FlangerType::Doppler => 0.0,
+            _                    => 1.0,
+        };
 
         let (mut outl, mut outr) = {
 
-            let outl: f32 = origw * data_l[block_idx] + 
-                self.mix.v * combs.buf[0][block_idx];
+            let outl: f32 = {
+                let a = origw;
+                let x = data_l[block_idx];
+                let b = self.mix.v;
+                let y = combs.buf[0][block_idx];
 
-            let outr: f32 = origw * data_r[block_idx] + 
-                self.mix.v * combs.buf[1][block_idx];
+                a * x + b * y
+            };
+
+            let outr: f32 = {
+                let a = origw;
+                let x = data_r[block_idx];
+                let b = self.mix.v;
+                let y = combs.buf[1][block_idx];
+
+                a * x + b * y
+            };
 
             (outl, outr)
         };

@@ -33,7 +33,7 @@ impl<const LEN: usize> Default for TwoByTwoBlock<LEN> {
     }
 }
 
-impl SurgeSynthesizer<'plugin_layer> {
+impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
     #[inline] pub fn set_amp_from_volume(&mut self) {
         let volume_db = pvalf![self.active_patch.params[PatchParam::Volume]];

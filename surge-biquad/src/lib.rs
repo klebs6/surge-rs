@@ -1,4 +1,3 @@
-#![feature(in_band_lifetimes)]
 #![feature(stdarch)]
 
 #[cfg(test)] pub mod tests;

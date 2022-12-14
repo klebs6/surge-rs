@@ -1,4 +1,3 @@
-#![feature(in_band_lifetimes)]
 #![feature(test)]
 
 #[macro_use] mod imports; use imports::*;

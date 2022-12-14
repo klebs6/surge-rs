@@ -12,7 +12,8 @@ pub struct SceneConstructorHandles<'a> {
 }
 
 impl SurgeScene {
-    pub fn new(ctor: SceneConstructorHandles<'a>) -> Self {
+
+    pub fn new<'a>(ctor: SceneConstructorHandles<'a>) -> Self {
         Self {
             osc:                 vec![
                 box SurgeSuperOscillator::new(ctor.tuner.clone(),ctor.tables.clone(),ctor.srunit.clone()),

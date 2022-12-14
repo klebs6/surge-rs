@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl SurgeSynthesizer<'plugin_layer> {
+impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
     #[inline] pub fn get_split_key(&self) -> u8 {
         pvali![self.active_patch.params[PatchParam::SplitKey]].try_into().unwrap()

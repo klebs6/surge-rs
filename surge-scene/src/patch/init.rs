@@ -2,7 +2,8 @@ crate::ix!();
 
 impl SurgePatch {
 
-    pub fn new(ctor: SceneConstructorHandles<'a>) -> Self {
+    pub fn new<'a>(ctor: SceneConstructorHandles<'a>) -> Self {
+
         let mut x = Self {
             metadata:              PatchMetadata::default(),
             scene:                 vec![SurgeScene::new(ctor)],
@@ -13,7 +14,9 @@ impl SurgePatch {
             maybe_pitchbend_range: None,
             mpe_enabled:           MpeEnableSwitch(false),
         };
+
         x.params[PatchParam::PolyLimit].val = PData::Int(8);
+
         x
     }
 }

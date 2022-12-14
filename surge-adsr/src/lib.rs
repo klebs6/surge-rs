@@ -1,5 +1,3 @@
-#![feature(in_band_lifetimes)]
-
 #![allow(clippy::redundant_field_names)]
 #[allow(non_camel_case_types)]
 

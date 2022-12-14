@@ -17,7 +17,9 @@ enhanced_enum![
 rt![ConditionerParam];
 
 impl Param for ConditionerParam {
+
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+
     fn control_type(&self) -> ControlType {
         match self {
             ConditionerParam::Bass        => ControlType::DecibelExtraNarrow,
@@ -31,6 +33,7 @@ impl Param for ConditionerParam {
             ConditionerParam::ReturnLevel => ControlType::Percent,
         }
     }
+
     fn default_value(&self) -> PData {
         match self {
             ConditionerParam::Bass        => PData::Float(0.0),
@@ -44,10 +47,12 @@ impl Param for ConditionerParam {
             ConditionerParam::ReturnLevel => PData::Float(0.5),
         }
     }
+
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+
     fn min_value(&self) -> PData {
         match self {
             ConditionerParam::Bass        => PData::Float(-12.0),
@@ -61,6 +66,7 @@ impl Param for ConditionerParam {
             ConditionerParam::ReturnLevel => PData::Float(0.0),
         }
     }
+
     fn max_value(&self) -> PData {
         match self {
             ConditionerParam::Bass        => PData::Float(12.0),
@@ -74,6 +80,7 @@ impl Param for ConditionerParam {
             ConditionerParam::ReturnLevel => PData::Float(1.0),
         }
     }
+
     fn value_type(&self) -> ValType {
         match self {
             ConditionerParam::Bass        => ValType::VtFloat,
@@ -87,6 +94,7 @@ impl Param for ConditionerParam {
             ConditionerParam::ReturnLevel => ValType::VtFloat,
         }
     }
+
     fn moverate(&self) -> f32 {
         match self {
             ConditionerParam::Bass        => 1.0,
@@ -103,6 +111,7 @@ impl Param for ConditionerParam {
 }
 
 impl ConditionerParam {
+
     #[inline] pub fn new_runtime() -> ConditionerParamArrayRT {
         ConditionerParamArrayRT::new_with(|x| match x {
             ConditionerParam::Bass        => ConditionerParamRT::new(ConditionerParam::Bass        ),

@@ -1,6 +1,5 @@
 #![allow(dead_code)]
 #![feature(const_mut_refs)]
-#![feature(in_band_lifetimes)]
 #![feature(associated_type_defaults)]
 #![feature(trait_alias)]
 #![feature(core_intrinsics)]

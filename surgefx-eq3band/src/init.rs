@@ -21,9 +21,9 @@ impl Init for Eq3Band {
 impl Eq3Band {
 
     pub fn new(
-        tuner:  &  TunerHandle,
-        tables: & TablesHandle,
-        srunit: & SampleRateHandle,
+        tuner:  &TunerHandle,
+        tables: &TablesHandle,
+        srunit: &SampleRateHandle,
     ) -> Self {
 
         let mut x = Self {

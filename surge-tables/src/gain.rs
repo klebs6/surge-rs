@@ -34,7 +34,7 @@ impl ClipScale for GainTables {
                 self.db_to_linear(freq * 0.55),
 
             // * db_to_linear(freq*0.55f);
-            FilterSubType::Smooth => (1.0 / 1024.0), 
+            FilterSubType::Smooth => 1.0 / 1024.0, 
 
             _ => 0.0,
         }

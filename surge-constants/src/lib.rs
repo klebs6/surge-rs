@@ -13,14 +13,14 @@ pub const FIR_OFFSET:             usize = FIR_IPOL_N >> 1;
 pub const FIR_OFFSET_F32:         f32   = (FIR_IPOL_N >> 1) as f32;
 pub const FIR_OFFSET_I16:         usize = FIR_IPOL_I16_N >> 1;
 pub const HPF_CYCLE_LOSS:         f32   = 0.99;
-pub const MAX_FB_COMB:            usize = 2048; // must be 2^n
+pub const MAX_FB_COMB:            usize = 2048; /// must be 2^n
 pub const MAX_MIPMAP_LEVELS:      usize = 16;
 pub const MAX_SUBTABLES:          usize = 512;
 pub const MAX_UNISON:             usize = 16;
 pub const MAX_VOICES:             usize = 64;
 pub const MAX_WAVETABLE_SIZE:     usize = 4096;
-pub const METAPARAM_OFFSET:       usize = 20480; // has to be bigger than total + 16 * 130 for fake VST3 mapping
-pub const N_CUSTOMCONTROLLERS:    usize = 8; //TODO remove this one
+pub const METAPARAM_OFFSET:       usize = 20480; /// has to be bigger than total + 16 * 130 for fake VST3 mapping
+pub const N_CUSTOMCONTROLLERS:    usize = 8; /// TODO: remove this one
 pub const N_FILTER_REGISTERS:     usize = 15;
 pub const N_FX_PARAMS:            usize = 12;
 pub const N_GLOBAL_PARAMS:        usize = 113;
@@ -59,7 +59,7 @@ pub const MAX_WAVETABLE_SAMPLES:         usize = 2097152;
 
 /// const int max_wtable_samples =  268000; // delay pops 4 uses the most
 
-pub const NUM_CONTROLINTERPOLATORS:  usize = 32; // midicontrol-interpolators
+pub const NUM_CONTROLINTERPOLATORS:  usize = 32; /// midicontrol-interpolators
 pub const RINGOUT_DEFAULT:           usize = 10000000;
 pub const N_COEFFMAKER_COEFFS:       usize = 8;
 

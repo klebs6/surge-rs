@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl SurgeSynthesizer<'plugin_layer> {
+impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
     pub fn all_notes_off(&mut self) {
 
@@ -34,7 +34,7 @@ impl SurgeSynthesizer<'plugin_layer> {
 }
 
 //TODO eliminate this
-impl Drop for SurgeSynthesizer<'plugin_layer>  {
+impl<'plugin_layer> Drop for SurgeSynthesizer<'plugin_layer>  {
 
     fn drop(&mut self) {
 
