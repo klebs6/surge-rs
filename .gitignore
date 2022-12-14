@@ -1,5 +1,6 @@
 target/*
 vendor/*
+ignore/*
 u/*
 **/.DS_Store
 
