@@ -6,7 +6,7 @@ description = "adsr envelopes from the surge synthesizer"
 edition = "2021"
 license = "GPL-3.0"
 name = "surge-imports"
-version = "0.2.8-alpha.0"
+version = "0.2.9-alpha.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
