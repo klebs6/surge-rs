@@ -1,18 +1,18 @@
 [dependencies.surge-imports]
 path = "../surge-imports"
-version = "0.2.9-alpha.0"
+version = "0.2.11-alpha.0"
 [dependencies.surge-constants]
 path = "../surge-constants"
-version = "0.2.9-alpha.0"
+version = "0.2.11-alpha.0"
 [dependencies.surge-macros]
 path = "../surge-macros"
-version = "0.2.9-alpha.0"
+version = "0.2.11-alpha.0"
 [dependencies.surge-math]
 path = "../surge-math"
-version = "0.2.9-alpha.0"
+version = "0.2.11-alpha.0"
 [dependencies.surge-param]
 path = "../surge-param"
-version = "0.2.9-alpha.0"
+version = "0.2.11-alpha.0"
 [dependencies.serde]
 features = [ "derive" ]
 version = "1.0"
@@ -24,4 +24,4 @@ description = "surge synthesizer -- primarily comprised of enumerations used to 
 edition = "2018"
 license = "GPL-3.0"
 name = "surge-types"
-version = "0.2.9-alpha.0"
+version = "0.2.11-alpha.0"
