@@ -1,6 +1,6 @@
 [dependencies.surge-imports]
 path = "../surge-imports"
-version = "0.2.5-alpha.0"
+version = "0.2.6-alpha.0"
 
 [dependencies.surge-constants]
 path = "../surge-constants"
@@ -13,7 +13,7 @@ path = "../surge-lag"
 version = "0.2.6-alpha.0"
 [dependencies.surge-macros]
 path = "../surge-macros"
-version = "0.2.5-alpha.0"
+version = "0.2.6-alpha.0"
 [dependencies.surge-math]
 path = "../surge-math"
 version = "0.2.6-alpha.0"
@@ -22,7 +22,7 @@ path = "../surge-param"
 version = "0.2.6-alpha.0"
 [dependencies.surge-quadrosc]
 path = "../surge-quadrosc"
-version = "0.2.5-alpha.0"
+version = "0.2.6-alpha.0"
 [dependencies.surge-tables]
 path = "../surge-tables"
 version = "0.2.6-alpha.0"

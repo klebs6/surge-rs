@@ -4,7 +4,7 @@ version = "0.2.6-alpha.0"
 
 [dependencies.surge-imports]
 path = "../surge-imports"
-version = "0.2.5-alpha.0"
+version = "0.2.6-alpha.0"
 
 [dependencies.surge-input]
 path = "../surge-input"
@@ -16,7 +16,7 @@ version = "0.2.6-alpha.0"
 
 [dependencies.surge-macros]
 path = "../surge-macros"
-version = "0.2.5-alpha.0"
+version = "0.2.6-alpha.0"
 
 [dependencies.surge-math]
 path = "../surge-math"
@@ -28,7 +28,7 @@ version = "0.2.6-alpha.0"
 
 [dependencies.surge-quadrosc]
 path = "../surge-quadrosc"
-version = "0.2.5-alpha.0"
+version = "0.2.6-alpha.0"
 
 [dependencies.surge-samplerate]
 path = "../surge-samplerate"

@@ -1,15 +1,15 @@
 [dependencies.surge-imports]
 path = "../surge-imports"
-version = "0.2.5-alpha.0"
+version = "0.2.6-alpha.0"
 [dependencies.surge-constants]
 path = "../surge-constants"
 version = "0.2.6-alpha.0"
 [dependencies.surge-macros]
 path = "../surge-macros"
-version = "0.2.5-alpha.0"
+version = "0.2.6-alpha.0"
 [dependencies.surge-quadrosc]
 path = "../surge-quadrosc"
-version = "0.2.5-alpha.0"
+version = "0.2.6-alpha.0"
 [dependencies.surge-types]
 path = "../surge-types"
 version = "0.2.6-alpha.0"

@@ -1,6 +1,6 @@
 [dependencies.surge-imports]
 path = "../surge-imports"
-version = "0.2.5-alpha.0"
+version = "0.2.6-alpha.0"
 
 [dependencies.surge-tables]
 path = "../surge-tables"

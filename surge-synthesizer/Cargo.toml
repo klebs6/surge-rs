@@ -3,7 +3,7 @@ vst = "0.2.1"
 coreaudio-rs = "0.10.0"
 [dependencies.surge-imports]
 path = "../surge-imports"
-version = "0.2.5-alpha.0"
+version = "0.2.6-alpha.0"
 [dependencies.surge-adsr]
 path = "../surge-adsr"
 version = "0.2.6-alpha.0"
@@ -39,7 +39,7 @@ path = "../surge-lipol"
 version = "0.2.6-alpha.0"
 [dependencies.surge-macros]
 path = "../surge-macros"
-version = "0.2.5-alpha.0"
+version = "0.2.6-alpha.0"
 [dependencies.surge-math]
 path = "../surge-math"
 version = "0.2.6-alpha.0"
@@ -63,7 +63,7 @@ path = "../surge-qfunit"
 version = "0.2.6-alpha.0"
 [dependencies.surge-quadrosc]
 path = "../surge-quadrosc"
-version = "0.2.5-alpha.0"
+version = "0.2.6-alpha.0"
 [dependencies.surge-samplerate]
 path = "../surge-samplerate"
 version = "0.2.6-alpha.0"
