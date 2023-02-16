@@ -1,6 +1,5 @@
 crate::ix!();
 
-
 impl LipolPs {
 
     /**
@@ -15,15 +14,13 @@ impl LipolPs {
 
         let one = m128_one![];
 
+        let one_minus_a         = _mm_sub_ps(one, *a);
+        let one_minus_a_by_left = _mm_mul_ps(one_minus_a, *left);
+        let b_by_right          = _mm_mul_ps(*b, *right);
+
         _mm_sub_ps(
-            _mm_mul_ps(
-                _mm_sub_ps(one, *a), 
-                *left
-            ),
-            _mm_mul_ps(
-                *b, 
-                *right
-            )
+            one_minus_a_by_left,
+            b_by_right
         )
     }
 
@@ -39,15 +36,13 @@ impl LipolPs {
 
         let one = m128_one![];
 
+        let a_by_left           = _mm_mul_ps(*a, *left);
+        let one_plus_b          = _mm_add_ps(one, *b);
+        let one_plus_b_by_right = _mm_mul_ps(one_plus_b, *right);
+
         _mm_add_ps(
-            _mm_mul_ps(
-                *a, 
-                *left
-            ), 
-            _mm_mul_ps(
-                _mm_add_ps(one, *b), 
-                *right
-            )
+            a_by_left, 
+            one_plus_b_by_right
         )
     }
 
