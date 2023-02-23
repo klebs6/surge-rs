@@ -2,41 +2,77 @@ crate::ix!();
 
 impl ModulationSourceControl for AdsrEnvelope {
 
+    /// returns the type of modulation source, in
+    /// this case `ModSrcType::Adsr`.
+    ///
     fn get_type(&self) -> ModSrcType
     {
         ModSrcType::Adsr
     }
 
+    /// sets the output value of the ADSR envelope
+    /// to `x`, casted to a `f32`.
+    ///
     fn set_output(&mut self, x: f64) {
         self.output = x as f32;
     }
 
-    //TODO: is this correct? it seems incorrect
+    /// returns the current output value of the
+    /// ADSR envelope. This is currently not
+    /// implemented and always returns `0.0`.
+    ///
+    /// TODO: is this correct? it seems incorrect
     fn get_output(&self) -> f64 {
         0.0
     }
 
-    //TODO: is this correct? it seems incorrect
+    /// returns the current output value of the
+    /// ADSR envelope, scaled to a range between
+    /// 0 and 1, which is not implemented and
+    /// always returns `0.0`.
+    ///
+    /// TODO: is this correct? it seems incorrect
+    ///
     fn get_output01(&self) -> f64 {
         0.0
     }
 
+    /// indicates whether this modulation source
+    /// is per-voice or per-note, returning `true`
+    /// since the ADSR envelope is per-voice.
+    ///
     fn per_voice(&self) -> bool { 
         true 
     }
 
+    /// indicates whether the output of this
+    /// modulation source is bipolar, returning
+    /// `false` since the ADSR envelope is
+    /// unipolar.
+    ///
     fn is_bipolar(&self) -> bool { 
         false
     }
 
+    /// returns whether the ADSR envelope is
+    /// currently enabled or not.
+    ///
     fn enabled(&self) -> bool {
         self.enabled
     }
 
+    /// sets the enabled state of the ADSR
+    /// envelope to `v`.
+    ///
     fn enable(&mut self, v: bool) {
         self.enabled = v;
     }
 
+    /// processes a block of samples for the ADSR
+    /// envelope, either using the analog or
+    /// digital implementation depending on the
+    /// value of the `Mode` parameter.
+    ///
     fn process_block(&mut self)
     {
         let do_analog: bool = 
@@ -50,6 +86,11 @@ impl ModulationSourceControl for AdsrEnvelope {
         }
     }
 
+    /// starts the attack phase of the ADSR
+    /// envelope, resetting the internal state and
+    /// setting the envelope state to
+    /// `AdsrState::Attack`.
+    ///
     fn attack(&mut self) {
         self.phase         = 0.0;
         self.output        = 0.0;
@@ -74,17 +115,34 @@ impl ModulationSourceControl for AdsrEnvelope {
         }
     }
 
+    /// starts the release phase of the ADSR
+    /// envelope, setting the internal state to
+    /// the beginning of the release phase and
+    /// setting the envelope state to
+    /// `AdsrState::Release`.
+    ///
     fn release(&mut self) {
-        //note, there was some other commented logic here before the port
+
+        // note, there was some other commented
+        // logic here before the port
+        //
         self.scalestage = self.output as f32;
         self.phase      = 1.0;
         self.envstate   = AdsrState::Release;
     }
 
-    //TODO: is this correct? it seems incorrect
+    /// resets the internal state of the ADSR
+    /// envelope. currently not implemented and does
+    /// nothing.
+    ///
     fn reset(&mut self) {
 
     }
 
+    /// sets whether the output of the ADSR
+    /// envelope should be bipolar or not, which
+    /// is a no-op since the ADSR envelope is
+    /// always unipolar.
+    ///
     #[inline] fn set_bipolar(&mut self, _b: bool) { /* no-op */ }
 }

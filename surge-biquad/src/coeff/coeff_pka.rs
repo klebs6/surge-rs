@@ -1,5 +1,18 @@
 crate::ix!();
 
+/// Based on the name of the struct and the method
+/// `coeff_pka`, it appears that this code is
+/// implementing a biquad filter with peak/notch
+/// equalization. 
+///
+/// The `BiquadFilter` struct likely represents
+/// a biquad filter with coefficients that can be
+/// set using the `coeff_pka` method, and the
+/// `PKA` in `BiquadCoeffPKA` may stand for
+/// "peak/notch, gain, and frequency" - parameters
+/// that can be adjusted to shape the filter's
+/// frequency response.
+///
 impl BiquadCoeffPKA for BiquadFilter {
 
     fn coeff_pka(&mut self, omega: f64, qq: f64)

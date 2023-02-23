@@ -1,5 +1,14 @@
 crate::ix!();
 
+/// The `Redo` trait only has one method,
+/// `redo()`, which in this implementation does
+/// nothing but can be used to change
+/// interpolation. 
+///
+/// It seems that the purpose of this trait is to
+/// provide a way to trigger a recalculation of
+/// the filter coefficients if necessary.
+///
 impl Redo for BiquadFilter {
 
     ///coeff_same_as_last_time
@@ -9,6 +18,13 @@ impl Redo for BiquadFilter {
     }
 }
 
+/// The `BiquadSetCoeffs` trait defines a method
+/// `set_coef()` that sets the coefficients of
+/// a biquad filter, which is used to process
+/// audio signals. The implementation of this
+/// trait sets the coefficients for the filter and
+/// updates them with new values.
+///
 impl BiquadSetCoeffs for BiquadFilter {
 
     fn set_coef(&mut self, 

@@ -2,6 +2,16 @@ crate::ix!();
 
 impl BiquadCoeffAPF for BiquadFilter {
 
+    /// This code implements a method called
+    /// `coeff_apf` that calculates the
+    /// coefficients of a biquad all-pass filter
+    /// based on the given `omega` and
+    /// `quality_factor` parameters. 
+    ///
+    /// If `omega` is not within the range of 0 to
+    /// pi, the method sets the filter
+    /// coefficients to a simple identity filter.
+    ///
     fn coeff_apf(&mut self, omega: f64, quality_factor: f64)
     {
         if !(0.0..=PI).contains(&omega) {

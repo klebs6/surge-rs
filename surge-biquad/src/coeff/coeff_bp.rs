@@ -1,5 +1,19 @@
+/// This code implements two traits,
+/// `BiquadCoeffBP` and `BiquadCoeffBP2A`, that
+/// set the coefficients of a biquad filter for
+/// bandpass filtering with different
+/// parameterizations.
+/// 
 crate::ix!();
 
+/// The `BiquadCoeffBP` trait sets the
+/// coefficients for a bandpass filter using the
+/// center frequency `omega` and the quality
+/// factor `quality_factor`. It calculates the
+/// necessary filter coefficients and passes them
+/// to the `set_coef` method of the `BiquadFilter`
+/// struct.
+///
 impl BiquadCoeffBP for BiquadFilter {
 
     fn coeff_bp(&mut self, omega: f64, quality_factor: f64)
@@ -17,6 +31,14 @@ impl BiquadCoeffBP for BiquadFilter {
     }
 }
 
+/// The `BiquadCoeffBP2A` trait sets the
+/// coefficients for a bandpass filter using the
+/// center frequency `omega` and the bandwidth
+/// `bandwidth`. It calculates the necessary
+/// filter coefficients and passes them to the
+/// `set_coef` method of the `BiquadFilter`
+/// struct.
+///
 impl BiquadCoeffBP2A for BiquadFilter {
 
     fn coeff_bp2a(&mut self, omega: f64, bandwidth: f64)
