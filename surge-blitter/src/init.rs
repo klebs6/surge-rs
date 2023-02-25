@@ -1,5 +1,30 @@
 crate::ix!();
 
+/// Calculates and returns the high-pass filter
+/// coefficient for the integrator.
+///
+/// The `samplerate_inv` parameter represents the
+/// inverse of the sampling rate, and is used to
+/// calculate the filter coefficient. The function
+/// uses a formula to calculate the coefficient
+/// based on the `samplerate_inv` value and
+/// returns the result.
+///
+/// # Arguments
+///
+/// * `samplerate_inv` - The inverse of the sampling rate, expressed as a `f32` value.
+///
+/// # Example
+///
+/// ```
+/// use crate::AbstractBlitter;
+///
+/// let samplerate_inv = 44100.0_f32.recip();
+/// let integrator_hpf = new_integrator_hpf(samplerate_inv);
+///
+/// assert_eq!(integrator_hpf, 0.9599225);
+/// ```
+///
 pub fn new_integrator_hpf(samplerate_inv: f32) -> f32 {
     let x = 1.0 - 2.0 * 20.0 * samplerate_inv;
     x * x

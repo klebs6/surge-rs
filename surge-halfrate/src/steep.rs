@@ -1,7 +1,67 @@
+/// This code defines a HalfRateFilterSSE
+/// structure and some functions that load
+/// coefficients into it for different filter
+/// orders. The filter coefficients are used in
+/// digital signal processing to filter signals.
+/// 
+/// The `load_steep_coefficients` function takes
+/// an `order` parameter and loads the
+/// corresponding filter coefficients using
+/// a match statement. 
+///
+/// The `load_steep_rejectionXdb_tbandY` functions
+/// define the filter coefficients for different
+/// values of X and Y in their names. 
+///
+/// For instance,
+/// `load_steep_rejection104db_tband0_01` defines
+/// filter coefficients with a rejection of 104db
+/// and a transition band of 0.01. 
+///
+/// Each of these functions creates an array of
+/// `a_coefficients` and `b_coefficients`, and
+/// then calls the `store_coefficients` function
+/// with pointers to those arrays. The
+/// `store_coefficients` function is not defined
+/// in the code provided, but it is likely
+/// a method of the `HalfRateFilterSSE` structure
+/// that stores the filter coefficients in the
+/// object.
+/// 
+/// The code makes use of the `unsafe` keyword
+/// when calling `store_coefficients` because it
+/// is using raw pointers to access memory
+/// directly. This is not considered safe because
+/// it can cause memory errors or security
+/// vulnerabilities, but it is necessary in some
+/// cases when interacting with low-level systems.
+/// 
+/// Overall, this code is defining a set of filter
+/// coefficients for a HalfRateFilterSSE object,
+/// allowing the object to be used for filtering
+/// signals in digital signal processing
+/// applications.
+/// 
+
 crate::ix!();
 
 impl crate::HalfRateFilterSSE {
 
+    /// This method takes an `order` argument,
+    /// which is the number of coefficients to
+    /// load, and loads a set of coefficients
+    /// corresponding to the given order. It is
+    /// a public method of the `HalfRateFilterSSE`
+    /// struct.
+    /// 
+    /// The method uses a `match` statement to
+    /// choose which set of coefficients to load
+    /// based on the given order. If the order is
+    /// not 2, 4, 6, 8, 10, or 12, then the
+    /// `unreachable!()` macro is called, which
+    /// indicates that the program has entered an
+    /// unreachable state and should panic.
+    ///
     pub fn load_steep_coefficients(&mut self, order: usize) {
         match order {
             12 => self.load_steep_rejection104db_tband0_01(),
@@ -14,6 +74,10 @@ impl crate::HalfRateFilterSSE {
         }
     }
 
+    /// This method loads a set of coefficients for
+    /// a half-rate filter with a steep rejection of
+    /// 104 dB and a transition band of 0.01
+    ///
     pub fn load_steep_rejection104db_tband0_01(&mut self) {
 
         // rejection=104db, transition band=0.01
@@ -43,6 +107,11 @@ impl crate::HalfRateFilterSSE {
         }
     }
 
+    /// This method loads a set of coefficients
+    /// for a half-rate filter with a steep
+    /// rejection of 86 dB and a transition band
+    /// of 0.01
+    ///
     pub fn load_steep_rejection86db_tband0_01(&mut self) {
 
         // rejection=86db, transition band=0.01
@@ -69,6 +138,12 @@ impl crate::HalfRateFilterSSE {
         }
     }
 
+    /// This method loads a set of coefficients for
+    /// a half-rate filter with a steep rejection of
+    /// 69 dB and a transition band of 0.01. It is
+    /// a public method of the `HalfRateFilterSSE`
+    /// struct.
+    /// 
     pub fn load_steep_rejection69db_tband0_01(&mut self) {
 
         // rejection=69db, transition band=0.01
@@ -93,6 +168,10 @@ impl crate::HalfRateFilterSSE {
         }
     }
 
+    /// This method loads a set of coefficients for
+    /// a half-rate filter with a steep rejection of
+    /// 51 dB and a transition band of 0.01
+    /// 
     pub fn load_steep_rejection51db_tband0_01(&mut self) {
 
         // rejection=51db, transition band=0.01
@@ -115,6 +194,11 @@ impl crate::HalfRateFilterSSE {
         }
     }
 
+    /// This method loads a set of coefficients
+    /// for a half-rate filter with a steep
+    /// rejection of 53 dB and a transition band
+    /// of 0.05.
+    ///
     pub fn load_steep_rejection53db_tband0_05(&mut self) {
 
         // rejection=53db,transition band=0.05
@@ -135,6 +219,11 @@ impl crate::HalfRateFilterSSE {
         }
     }
 
+    /// This method loads a set of coefficients
+    /// for a half-rate filter with a steep
+    /// rejection of 36 dB and a transition band
+    /// of 0.1.
+    ///
     pub fn load_steep_rejection36db_tband0_1(&mut self) {
 
         // order=2, rejection=36db, transition band=0.1
