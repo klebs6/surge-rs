@@ -1,3 +1,5 @@
+#![feature(stdarch)]
+
 /// 14> could you describe more about how filter
 /// coefficients are chosen, more generally? but
 /// please be specific as to how this applies to
@@ -61,9 +63,6 @@
 /// requirements of the application, including the
 /// desired frequency response, phase response,
 /// and passband and stopband ripple.
-
-#![feature(stdarch)]
-
 #[macro_use] mod imports; use imports::*;
 
 x![coeff];
