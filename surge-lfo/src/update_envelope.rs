@@ -1,9 +1,15 @@
-// hello! could you please help me document and test this code? thanks!
-
 crate::ix!();
 
 impl Lfo {
 
+    /// This method calculates the envelope rate based on the LFO parameter and tempo sync ratio. 
+    ///
+    /// It takes in a `lfo_param` of type `LfoParam` which represents the LFO parameter to be used
+    /// for envelope rate calculation and `temposyncratio` of type `f32` which represents the tempo
+    /// sync ratio. 
+    ///
+    /// It returns the calculated envelope rate as a `f32`.
+    ///
     #[inline] pub fn calculate_envrate_with_lfo_param(
         &mut self,
         lfo_param:      LfoParam, 
@@ -20,6 +26,13 @@ impl Lfo {
         envrate
     }
 
+    /// This method updates the current LFO envelope state to the next state. 
+    ///
+    /// It takes in a `sustainlevel` of type `f32` which represents the sustain level of the
+    /// envelope. 
+    ///
+    /// It updates the `env_state` and `env_phase` variables accordingly.
+    ///
     #[inline] pub fn next_env_state(&mut self, sustainlevel: f32) {
         match self.env_state {
             LfoEnvState::Delay => {
@@ -48,6 +61,13 @@ impl Lfo {
         }
     }
 
+    /// This method calculates the envelope rate based on the current envelope state and tempo sync
+    /// ratio. 
+    ///
+    /// It takes in a `temposyncratio` of type `f32` which represents the tempo sync ratio. 
+    ///
+    /// It returns the calculated envelope rate as a `f32`.
+    ///
     #[inline] pub fn calculate_envrate(&mut self, temposyncratio: f32) -> f32 {
         match self.env_state {
             LfoEnvState::Delay   => self.calculate_envrate_with_lfo_param(LfoParam::Delay,   temposyncratio),
@@ -59,6 +79,14 @@ impl Lfo {
         }
     }
 
+    /// This method updates the envelope value based on the current envelope state and sustain
+    /// level. 
+    ///
+    /// It takes in a `sustainlevel` of type `f32` which represents the sustain level of the
+    /// envelope. 
+    ///
+    /// It updates the `env_val` variable accordingly.
+    ///
     #[inline] pub fn update_envelope_value(&mut self, sustainlevel: f32) {
 
         match self.env_state {
@@ -71,6 +99,17 @@ impl Lfo {
         }
     }
 
+    /// This method updates the LFO envelope for processing. 
+    ///
+    /// It takes in a `temposyncratio` of type `f32` which represents the tempo sync ratio. 
+    ///
+    /// It calculates the envelope rate using the `calculate_envrate` method, updates the
+    /// `env_phase` variable, and updates the envelope value using the `update_envelope_value`
+    /// method. 
+    ///
+    /// If the envelope phase goes over 1.0, it updates the envelope state using the
+    /// `next_env_state` method.
+    ///
     pub fn update_envelope_for_process(&mut self,temposyncratio: f32) {
 
         let envrate: f32 = self.calculate_envrate(temposyncratio);

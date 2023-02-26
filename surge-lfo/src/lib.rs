@@ -42,3 +42,5 @@ xt!{test_process_shape_stepseq}
 xt!{test_process_shapes}
 xt!{test_release}
 xt!{test_set}
+xt!{test_update}
+xt!{test_update_envelope}
