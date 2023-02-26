@@ -1,9 +1,12 @@
-/// This code implements two traits,
-/// `BiquadCoeffBP` and `BiquadCoeffBP2A`, that
-/// set the coefficients of a biquad filter for
-/// bandpass filtering with different
-/// parameterizations.
-/// 
+/*!
+  | This code implements two traits,
+  | `BiquadCoeffBP` and `BiquadCoeffBP2A`, that
+  | set the coefficients of a biquad filter for
+  | bandpass filtering with different
+  | parameterizations.
+  |
+  */
+
 crate::ix!();
 
 /// The `BiquadCoeffBP` trait sets the

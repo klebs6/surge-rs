@@ -1,43 +1,45 @@
-/// Stereo processing is a technique used in audio
-/// processing that involves processing two audio
-/// signals simultaneously - one for the left
-/// channel and one for the right channel. This is
-/// in contrast to mono processing, where only
-/// a single audio signal is processed.
-/// 
-/// Stereo processing is often used in situations
-/// where it's important to maintain the stereo
-/// image of the original signal. For example,
-/// when applying a filter to an audio signal, you
-/// might want to apply the same filter to both
-/// the left and right channels to maintain the
-/// relative balance between them.
-/// 
-/// To perform stereo processing, the audio
-/// signals for the left and right channels are
-/// processed separately, but typically using the
-/// same processing algorithm. The processed
-/// signals are then combined into a single stereo
-/// signal before being output. This can be done
-/// using a variety of techniques, such as panning
-/// the processed left and right signals to their
-/// respective channels, or summing the left and
-/// right signals together.
-/// 
-/// In the context of the code you provided, the
-/// `process_block_stereo` function processes two
-/// audio signals simultaneously, one for the left
-/// channel and one for the right channel. The
-/// processed signals are then optionally output
-/// as a stereo signal, which is represented by
-/// the `out` argument. If `out` is `Some`, the
-/// processed signals are written to the memory
-/// locations pointed to by the two pointers
-/// contained in the `out` tuple. Otherwise, the
-/// processed signals are written to the memory
-/// locations pointed to by `data_l` and `data_r`,
-/// representing the left and right channels
-/// respectively.
+/*!
+  | Stereo processing is a technique used in audio
+  | processing that involves processing two audio
+  | signals simultaneously - one for the left
+  | channel and one for the right channel. This is
+  | in contrast to mono processing, where only
+  | a single audio signal is processed.
+  |
+  | Stereo processing is often used in situations
+  | where it's important to maintain the stereo
+  | image of the original signal. For example,
+  | when applying a filter to an audio signal, you
+  | might want to apply the same filter to both
+  | the left and right channels to maintain the
+  | relative balance between them.
+  |
+  | To perform stereo processing, the audio
+  | signals for the left and right channels are
+  | processed separately, but typically using the
+  | same processing algorithm. The processed
+  | signals are then combined into a single stereo
+  | signal before being output. This can be done
+  | using a variety of techniques, such as panning
+  | the processed left and right signals to their
+  | respective channels, or summing the left and
+  | right signals together.
+  |
+  | In the context of the code you provided, the
+  | `process_block_stereo` function processes two
+  | audio signals simultaneously, one for the left
+  | channel and one for the right channel. The
+  | processed signals are then optionally output
+  | as a stereo signal, which is represented by
+  | the `out` argument. If `out` is `Some`, the
+  | processed signals are written to the memory
+  | locations pointed to by the two pointers
+  | contained in the `out` tuple. Otherwise, the
+  | processed signals are written to the memory
+  | locations pointed to by `data_l` and `data_r`,
+  | representing the left and right channels
+  | respectively.
+  */
 
 crate::ix!();
 

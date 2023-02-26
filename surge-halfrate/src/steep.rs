@@ -1,47 +1,49 @@
-/// This code defines a HalfRateFilterSSE
-/// structure and some functions that load
-/// coefficients into it for different filter
-/// orders. The filter coefficients are used in
-/// digital signal processing to filter signals.
-/// 
-/// The `load_steep_coefficients` function takes
-/// an `order` parameter and loads the
-/// corresponding filter coefficients using
-/// a match statement. 
-///
-/// The `load_steep_rejectionXdb_tbandY` functions
-/// define the filter coefficients for different
-/// values of X and Y in their names. 
-///
-/// For instance,
-/// `load_steep_rejection104db_tband0_01` defines
-/// filter coefficients with a rejection of 104db
-/// and a transition band of 0.01. 
-///
-/// Each of these functions creates an array of
-/// `a_coefficients` and `b_coefficients`, and
-/// then calls the `store_coefficients` function
-/// with pointers to those arrays. The
-/// `store_coefficients` function is not defined
-/// in the code provided, but it is likely
-/// a method of the `HalfRateFilterSSE` structure
-/// that stores the filter coefficients in the
-/// object.
-/// 
-/// The code makes use of the `unsafe` keyword
-/// when calling `store_coefficients` because it
-/// is using raw pointers to access memory
-/// directly. This is not considered safe because
-/// it can cause memory errors or security
-/// vulnerabilities, but it is necessary in some
-/// cases when interacting with low-level systems.
-/// 
-/// Overall, this code is defining a set of filter
-/// coefficients for a HalfRateFilterSSE object,
-/// allowing the object to be used for filtering
-/// signals in digital signal processing
-/// applications.
-/// 
+/*!
+  | This code defines a HalfRateFilterSSE
+  | structure and some functions that load
+  | coefficients into it for different filter
+  | orders. The filter coefficients are used in
+  | digital signal processing to filter signals.
+  |
+  | The `load_steep_coefficients` function takes
+  | an `order` parameter and loads the
+  | corresponding filter coefficients using
+  | a match statement.
+  |
+  | The `load_steep_rejectionXdb_tbandY` functions
+  | define the filter coefficients for different
+  | values of X and Y in their names.
+  |
+  | For instance,
+  | `load_steep_rejection104db_tband0_01` defines
+  | filter coefficients with a rejection of 104db
+  | and a transition band of 0.01.
+  |
+  | Each of these functions creates an array of
+  | `a_coefficients` and `b_coefficients`, and
+  | then calls the `store_coefficients` function
+  | with pointers to those arrays. The
+  | `store_coefficients` function is not defined
+  | in the code provided, but it is likely
+  | a method of the `HalfRateFilterSSE` structure
+  | that stores the filter coefficients in the
+  | object.
+  |
+  | The code makes use of the `unsafe` keyword
+  | when calling `store_coefficients` because it
+  | is using raw pointers to access memory
+  | directly. This is not considered safe because
+  | it can cause memory errors or security
+  | vulnerabilities, but it is necessary in some
+  | cases when interacting with low-level systems.
+  |
+  | Overall, this code is defining a set of filter
+  | coefficients for a HalfRateFilterSSE object,
+  | allowing the object to be used for filtering
+  | signals in digital signal processing
+  | applications.
+  |
+  */
 
 crate::ix!();
 

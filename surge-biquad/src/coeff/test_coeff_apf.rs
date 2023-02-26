@@ -1,8 +1,3 @@
-/// One way to test this code is to write unit
-/// tests that ensure the method is correctly
-/// calculating the filter coefficients. Here's an
-/// example of a unit test:
-///
 crate::ix!();
 
 /// The first test verifies that the filter

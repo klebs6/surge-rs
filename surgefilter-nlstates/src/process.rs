@@ -1,66 +1,114 @@
-/// 14> how would you improve the algorithm?
-/// 
-/// Without knowing the specific use case and performance requirements, it's difficult to provide
-/// a specific answer on how to improve the algorithm. However, here are some general ideas that
-/// might help:
-/// 
-/// 1. Consider using a more efficient nonlinear function: The current implementation uses either
-/// a hyperbolic tangent or softclip function for the nonlinear component. There are many other
-/// functions that could be used instead, some of which might be more efficient to compute.
-/// 
-/// 2. Use SIMD instructions for the nonlinear function: SIMD instructions can be used to perform
-/// the same nonlinear function on multiple data points simultaneously. This could potentially
-/// speed up the nonlinear component of the filter.
-/// 
-/// 3. Consider a different filter structure: The current implementation uses a Direct Form
-/// 1 filter structure. There are many other filter structures that could be used instead, some of
-/// which might be more efficient for certain applications.
-/// 
-/// 4. Use more efficient memory access patterns: The current implementation accesses the filter
-/// coefficients and state variables in a linear fashion. Depending on the memory layout and access
-/// patterns, it might be possible to speed up the algorithm by accessing memory in a different
-/// way.
-/// 
-/// 5. Consider parallelization: If the filter is being used in a real-time system, it might be
-/// possible to parallelize the computation across multiple threads or cores. This could
-/// potentially improve the performance of the algorithm.
-/// 
-/// 15> could you describe each of these points in more detail with some examples?
-/// 
-/// Sure, here are some possible ways to improve the algorithm, along with examples:
-/// 
-/// 1. Use a better nonlinearity function: The nonlinearity function used in the current
-/// implementation is a choice between a hyperbolic tangent (tanh) and a soft clipper. These are
-/// both common choices, but there are many other nonlinearity functions that could be used. For
-/// example, one could try using a sigmoid function, a Gaussian function, or a piecewise linear
-/// function. The choice of nonlinearity function can have a significant impact on the sound of the
-/// filter, so it's worth experimenting with different options to find the best one for
-/// a particular application.
-/// 
-/// 2. Adjust the filter coefficients more frequently: The current implementation adjusts the
-/// filter coefficients once per processing block. Depending on the application, it may be
-/// beneficial to adjust the coefficients more frequently, such as every sample or every few
-/// samples. This can help the filter better adapt to changes in the input signal, resulting in
-/// better sound quality. However, adjusting the coefficients more frequently can also increase the
-/// computational cost of the filter.
-/// 
-/// 3. Use a different filter topology: The current implementation uses a biquad filter topology,
-/// which is a popular choice for audio filters. However, there are many other filter topologies
-/// that could be used, such as higher-order filters or allpass filters. The choice of filter
-/// topology can affect the sound of the filter, so it's worth experimenting with different
-/// options.
-/// 
-/// 4. Optimize the filter implementation: There are many possible ways to optimize the
-/// implementation of the filter. For example, one could try using different SIMD instructions,
-/// using more efficient memory access patterns, or using loop unrolling. These optimizations can
-/// help improve the performance of the filter, which can be especially important when processing
-/// large amounts of audio data in real time.
-/// 
-/// 5. Add more filter stages: The current implementation uses a fixed number of filter stages,
-/// which is determined by the subtype of the filter. However, it may be beneficial to allow for
-/// more filter stages, especially for more complex or demanding applications. Adding more filter
-/// stages can help the filter achieve a more complex frequency response, but it can also increase
-/// the computational cost of the filter.
+/*!
+  | 14> how would you improve the algorithm?
+  |
+  | Without knowing the specific use case and
+  | performance requirements, it's difficult to
+  | provide a specific answer on how to improve
+  | the algorithm. However, here are some general
+  | ideas that might help:
+  |
+  | 1. Consider using a more efficient nonlinear
+  | function: The current implementation uses
+  | either a hyperbolic tangent or softclip
+  | function for the nonlinear component. There
+  | are many other functions that could be used
+  | instead, some of which might be more efficient
+  | to compute.
+  |
+  | 2. Use SIMD instructions for the nonlinear
+  | function: SIMD instructions can be used to
+  | perform the same nonlinear function on
+  | multiple data points simultaneously. This
+  | could potentially speed up the nonlinear
+  | component of the filter.
+  |
+  | 3. Consider a different filter structure: The
+  | current implementation uses a Direct Form
+  | 1 filter structure. There are many other
+  | filter structures that could be used instead,
+  | some of which might be more efficient for
+  | certain applications.
+  |
+  | 4. Use more efficient memory access patterns:
+  | The current implementation accesses the filter
+  | coefficients and state variables in a linear
+  | fashion. Depending on the memory layout and
+  | access patterns, it might be possible to speed
+  | up the algorithm by accessing memory in
+  | a different way.
+  |
+  | 5. Consider parallelization: If the filter is
+  | being used in a real-time system, it might be
+  | possible to parallelize the computation across
+  | multiple threads or cores. This could
+  | potentially improve the performance of the
+  | algorithm.
+  |
+  | 15> could you describe each of these points in
+  | more detail with some examples?
+  |
+  | Sure, here are some possible ways to improve
+  | the algorithm, along with examples:
+  |
+  | 1. Use a better nonlinearity function: The
+  | nonlinearity function used in the current
+  | implementation is a choice between
+  | a hyperbolic tangent (tanh) and a soft
+  | clipper. These are both common choices, but
+  | there are many other nonlinearity functions
+  | that could be used. For example, one could try
+  | using a sigmoid function, a Gaussian function,
+  | or a piecewise linear function. The choice of
+  | nonlinearity function can have a significant
+  | impact on the sound of the filter, so it's
+  | worth experimenting with different options to
+  | find the best one for a particular
+  | application.
+  |
+  | 2. Adjust the filter coefficients more
+  | frequently: The current implementation adjusts
+  | the filter coefficients once per processing
+  | block. Depending on the application, it may be
+  | beneficial to adjust the coefficients more
+  | frequently, such as every sample or every few
+  | samples. This can help the filter better adapt
+  | to changes in the input signal, resulting in
+  | better sound quality. However, adjusting the
+  | coefficients more frequently can also increase
+  | the computational cost of the filter.
+  |
+  | 3. Use a different filter topology: The
+  | current implementation uses a biquad filter
+  | topology, which is a popular choice for audio
+  | filters. However, there are many other filter
+  | topologies that could be used, such as
+  | higher-order filters or allpass filters. The
+  | choice of filter topology can affect the sound
+  | of the filter, so it's worth experimenting
+  | with different options.
+  |
+  | 4. Optimize the filter implementation: There
+  | are many possible ways to optimize the
+  | implementation of the filter. For example, one
+  | could try using different SIMD instructions,
+  | using more efficient memory access patterns,
+  | or using loop unrolling. These optimizations
+  | can help improve the performance of the
+  | filter, which can be especially important when
+  | processing large amounts of audio data in real
+  | time.
+  |
+  | 5. Add more filter stages: The current
+  | implementation uses a fixed number of filter
+  | stages, which is determined by the subtype of
+  | the filter. However, it may be beneficial to
+  | allow for more filter stages, especially for
+  | more complex or demanding applications. Adding
+  | more filter stages can help the filter achieve
+  | a more complex frequency response, but it can
+  | also increase the computational cost of the
+  | filter.
+  */
 
 crate::ix!();
 
@@ -136,8 +184,8 @@ impl FilterProcessQuad for crate::NonlinearStatesFilter {
             // These lines extract the `z1` and `z2` values from the `reg` field of the
             // `QuadFilterUnitState` using the current `reg_offset`.
             //
-            let z1 = qfu.z1(reg_offset);
-            let z2 = qfu.z2(reg_offset);
+            let z1 = qfu.reg(R::Z1 as usize, reg_offset);
+            let z2 = qfu.reg(R::Z2 as usize, reg_offset);
 
             // These lines extract the filter coefficients from the `coeff` field of the
             // `QuadFilterUnitState` using the appropriate constants from the `NLSFCoeff` enum.
@@ -202,13 +250,13 @@ impl FilterProcessQuad for crate::NonlinearStatesFilter {
                 //
                 match sat {
                     NLSFSaturator::Tanh => {
-                        *qfu.z1_mut(reg_offset) = fasttanh_sse_clamped(z1);
-                        *qfu.z2_mut(reg_offset) = fasttanh_sse_clamped(z2);
+                        *qfu.reg_mut(R::Z1 as usize, reg_offset) = fasttanh_sse_clamped(z1);
+                        *qfu.reg_mut(R::Z2 as usize, reg_offset) = fasttanh_sse_clamped(z2);
                     },
                     NLSFSaturator::SoftClip => {
                         // note, this is a bit different to Jatin's softclipper
-                        *qfu.z1_mut(reg_offset) = softclip_ps(z1); 
-                        *qfu.z2_mut(reg_offset) = softclip_ps(z2);
+                        *qfu.reg_mut(R::Z1 as usize, reg_offset) = softclip_ps(z1); 
+                        *qfu.reg_mut(R::Z2 as usize, reg_offset) = softclip_ps(z2);
                     },
                 }
 

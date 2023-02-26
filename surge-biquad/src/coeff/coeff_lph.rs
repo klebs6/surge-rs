@@ -1,9 +1,13 @@
-/// This code implements the `BiquadCoeffLPHMorph`
-/// trait for the `BiquadFilter` type. The
-/// `BiquadCoeffLPHMorph` trait is a collection of
-/// methods that provide coefficients for a biquad
-/// filter, which is a type of digital filter
-/// commonly used in audio processing.
+/*!
+  | This code implements the `BiquadCoeffLPHMorph`
+  | trait for the `BiquadFilter` type.
+  |
+  | The `BiquadCoeffLPHMorph` trait is
+  | a collection of methods that provide
+  | coefficients for a biquad filter, which is
+  | a type of digital filter commonly used in
+  | audio processing.
+  */
 
 crate::ix!();
 

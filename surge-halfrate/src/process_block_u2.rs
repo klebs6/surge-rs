@@ -1,16 +1,18 @@
-/// This code implements a half-rate IIR filter
-///
-/// The filter takes interleaved stereo samples
-/// and upsamples them by two, while also applying
-/// a low-pass filter. 
-///
-/// The code uses SIMD instructions to achieve
-/// better performance.
-/// 
-/// The use of unsafe Rust is necessary to work
-/// with the SSE instruction set, but the code is
-/// designed to ensure that memory is accessed in
-/// a safe manner.
+/*!
+  | This code implements a half-rate IIR filter
+  |
+  | The filter takes interleaved stereo samples
+  | and upsamples them by two, while also applying
+  | a low-pass filter.
+  |
+  | The code uses SIMD instructions to achieve
+  | better performance.
+  |
+  | The use of unsafe Rust is necessary to work
+  | with the SSE instruction set, but the code is
+  | designed to ensure that memory is accessed in
+  | a safe manner.
+  */
 
 crate::ix!();
 
@@ -126,7 +128,7 @@ impl HalfRateFilterSSE {
     /// The function stores the output sample in
     /// the buffer.
     ///
-    fn u2_process_filters(&mut self) {
+    fn u2_process_filters(&mut self, nsamples: usize, o: &mut A1d<__m128>) {
 
         // process filters
         for j in 0..self.m {
@@ -226,7 +228,7 @@ impl ProcessBlockU2 for crate::HalfRateFilterSSE {
 
         let mut o = create_work_buffer(l_in, r_in, nsamples);
 
-        self.u2_process_filters();
+        self.u2_process_filters(nsamples, &mut o);
 
         let f_l: *mut f32 = l as *mut f32;
         let f_r: *mut f32 = r as *mut f32;

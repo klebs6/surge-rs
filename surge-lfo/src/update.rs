@@ -1,3 +1,5 @@
+// hello! could you please help me document and test this code? thanks!
+
 crate::ix!();
 
 impl Lfo {
@@ -35,10 +37,11 @@ impl Lfo {
         self.phase = rand01();
 
         self.step = {
-            let randi = rand01() as i32;
+            let randi = rand01() as usize;
             let mask  = N_STEPSEQUENCER_STEPS - 1;
-            let step  = (randi % self.stepsequencer.loop_end) as usize;
-            (step & mask) as isize
+            let step  = randi % self.stepsequencer.loop_end();
+
+            step & mask
         };
     }
 
@@ -55,15 +58,17 @@ impl Lfo {
 
         let (integral_part, _fractional_part) = split_float(x);
 
-        let loop_start = self.stepsequencer.loop_start;
-        let loop_end   = self.stepsequencer.loop_end;
+        let loop_start = self.stepsequencer.loop_start();
+        let loop_end   = self.stepsequencer.loop_end();
 
         self.step = {
-            let ipart               = integral_part as i32;
+
+            let ipart               = integral_part as usize;
             let stepsequencer_delta = loop_end - loop_start;
             let delta_clamped       = std::cmp::max( 1, stepsequencer_delta);
             let offset              = loop_start;
-            ( (ipart % delta_clamped ) + offset) as isize
+
+            (ipart % delta_clamped ) + offset
         };
     }
 

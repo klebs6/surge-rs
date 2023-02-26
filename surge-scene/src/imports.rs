@@ -5,6 +5,7 @@ pub(crate) use surge_halfrate::*;
 pub(crate) use surge_imports::*;
 pub(crate) use surge_input::*;
 pub(crate) use surge_lfo::*;
+pub(crate) use surge_stepseq::*;
 pub(crate) use surge_lipol::*;
 pub(crate) use surge_macros::*;
 pub(crate) use surge_math::*;

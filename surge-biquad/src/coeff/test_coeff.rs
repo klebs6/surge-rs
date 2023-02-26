@@ -1,12 +1,15 @@
-/// To test this code, you could write unit tests
-/// that check if the coefficients are set
-/// correctly and if the filter processes the
-/// input signal as expected. You could also write
-/// integration tests that simulate processing an
-/// audio signal with a known input and compare
-/// the output of the filter to the expected
-/// output.
-/// 
+/*!
+  | To test this module, you could write unit tests
+  | that check if the coefficients are set
+  | correctly and if the filter processes the
+  | input signal as expected. You could also write
+  | integration tests that simulate processing an
+  | audio signal with a known input and compare
+  | the output of the filter to the expected
+  | output.
+  |
+  */
+
 crate::ix!();
 
 /// These tests create a `BiquadFilter` instance

@@ -18,13 +18,9 @@ impl BiquadCoeffEQ for BiquadFilter {
     fn coeff_peak_eq(&mut self, 
         omega: f64, mut bandwidth: f64, gain: f64)
     {
-
-        /// These lines define variables `g`,
-        /// `gb`, and `g0`. `g` is the linear gain
-        /// corresponding to the input `gain`,
-        /// `gb` is half of `g`, and `g0` is the
-        /// unity gain.
-        ///
+        // These lines define variables `g`, `gb`, and `g0`. `g` is the linear gain corresponding
+        // to the input `gain`, `gb` is half of `g`, and `g0` is the unity gain.
+        //
         let mut g: f64 = self.tables.db_to_linear(gain as f32).into();
         let gb:    f64 = self.tables.db_to_linear(gain as f32 * 0.5).into();
         let g0:    f64 = 1.0;
@@ -32,72 +28,49 @@ impl BiquadCoeffEQ for BiquadFilter {
         // min(PI-0.000001,omega);
         let mut w0: f64 = omega; 
 
-        /// This line clamps the `bandwidth`
-        /// parameter to a minimum value defined
-        /// as `VLAG_MIN_BW` and reassigns the
-        /// result back to `bandwidth`.
-        ///
+        // This line clamps the `bandwidth` parameter to a minimum value defined as `VLAG_MIN_BW`
+        // and reassigns the result back to `bandwidth`.
+        //
         bandwidth = std::cmp::max(FloatOrd(VLAG_MIN_BW), FloatOrd(bandwidth)).0;
 
-        /// This line computes `dww`, which is
-        /// a intermediate value used later in the
-        /// calculation of the coefficients. It is
-        /// computed using the `sinh()` function, which
-        /// calculates the hyperbolic sine.
-        ///
-        /// sinh = (e^x - e^-x)/2
+        // This line computes `dww`, which is a intermediate value used later in the calculation of
+        // the coefficients. 
+        //
+        // It is computed using the `sinh()` function, which calculates the hyperbolic sine.
+        //
+        // sinh = (e^x - e^-x)/2
         //
         let dww: f64 = 2.0 * w0 * ((2.0_f64.log10() / 2.0) * bandwidth).sinh(); 
 
-        /// This line checks if the difference
-        /// between `g` and `g0` is greater than
-        /// `0.00001`. 
-        ///
-        /// If it is, then the filter coefficients
-        /// are computed. 
-        ///
-        /// Otherwise, the coefficients are set to
-        /// unity gain.
-        ///
+        // This line checks if the difference between `g` and `g0` is greater than `0.00001`. 
+        //
+        // If it is, then the filter coefficients are computed. 
+        //
+        // Otherwise, the coefficients are set to unity gain.
+        //
         if (g - g0).abs() > 0.00001
         {
-            /// These lines define variables used
-            /// in the coefficient
-            /// calculation. `gg_minus_gbgb` is
-            /// the absolute difference between
-            /// `g^2` and `gb^2`, `g00` is the
-            /// absolute difference between `g^2`
-            /// and `g0^2`, and `f00` is the
-            /// absolute difference between `gb^2`
-            /// and `g0
-            ///
+            // These lines define variables used in the coefficient calculation. `gg_minus_gbgb` is
+            // the absolute difference between `g^2` and `gb^2`, `g00` is the absolute difference
+            // between `g^2` and `g0^2`, and `f00` is the absolute difference between `gb^2` and `g0
+            //
             let gg_minus_gbgb: f64 = (g * g - gb * gb).abs();
             let mut g00:       f64 = (g * g - g0 * g0).abs();
             let mut f00:       f64 = (gb * gb - g0 * g0).abs();
 
-            /// In these lines of code, the
-            /// numerator and denominator are
-            /// calculated to obtain the value of
-            /// `g1`, which is used to compute the
-            /// filter coefficients. 
-            ///
-            /// The numerator `num` is computed by
-            /// multiplying `g0 * g0` with the
-            /// difference between `w0 * w0` and
-            /// `PI * PI`, and then adding to it
-            /// `g * g` multiplied with `f00 * (PI
-            /// * PI) * dww * dww` divided by
-            /// `gg_minus_gbgb`. 
-            ///
-            /// The denominator `den` is
-            /// calculated similarly, but instead
-            /// of `g * g` it uses `f00` and
-            /// divides by `gg_minus_gbgb`. 
-            ///
-            /// Finally, `g1` is computed as the
-            /// square root of the ratio of `num`
-            /// and `den`.
-            ///
+            // In these lines of code, the numerator and denominator are calculated to obtain the
+            // value of `g1`, which is used to compute the filter coefficients. 
+            //
+            // The numerator `num` is computed by multiplying `g0 * g0` with the difference between
+            // `w0 * w0` and `PI * PI`, and then adding to it 
+            //
+            // `g * g` multiplied with `f00 * (PI * PI) * dww * dww` divided by `gg_minus_gbgb`. 
+            //
+            // The denominator `den` is calculated similarly, but instead of `g * g` it uses `f00`
+            // and divides by `gg_minus_gbgb`. 
+            //
+            // Finally, `g1` is computed as the square root of the ratio of `num` and `den`.
+            //
             let num:        f64 = 
                 g0 * g0 * square(w0 * w0 - (PI * PI)) 
                 + g * g * f00 * (PI * PI) * dww * dww / gg_minus_gbgb;
@@ -108,26 +81,22 @@ impl BiquadCoeffEQ for BiquadFilter {
 
             let g1:         f64 = (num / den).sqrt();
 
-            /// These lines of code check if
-            /// `omega` is greater than `PI`. 
-            ///
-            /// If it is, then 
-            ///
-            /// `g` is set to `g1 * 0.9999`, 
-            ///
-            /// `w0` is set to `PI - 0.00001`, 
-            ///
-            /// and `g00` and `f00` are
-            /// recalculated. 
-            ///
-            /// After that, several variables are
-            /// calculated based on the values of
-            /// `g`, `gb`, `g0`, and `g1`. 
-            ///
-            /// These variables are used in the
-            /// following calculations to
-            /// determine the filter coefficients.
-            ///
+            // These lines of code check if `omega` is greater than `PI`. 
+            //
+            // If it is, then 
+            //
+            // `g` is set to `g1 * 0.9999`, 
+            //
+            // `w0` is set to `PI - 0.00001`, 
+            //
+            // and `g00` and `f00` are recalculated. 
+            //
+            // After that, several variables are calculated based on the values of `g`, `gb`, `g0`,
+            // and `g1`. 
+            //
+            // These variables are used in the following calculations to determine the filter
+            // coefficients.
+            //
             if omega > PI
             {
                 g = g1 * 0.9999;

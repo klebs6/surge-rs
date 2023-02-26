@@ -1,0 +1,16 @@
+[package]
+repository = "https://github.com/klebz/surge-rs"
+authors = [ "klebs <none>" ]
+
+description = "surge synthesizer -- lfos used for modulation"
+edition = "2021"
+license = "GPL-3.0"
+name = "surge-stepseq"
+version = "0.0.1"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies.surge-imports]
+path = "../surge-imports"
+version = "0.2.11-alpha.0"
+

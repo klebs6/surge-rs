@@ -187,48 +187,55 @@ pub trait BiquadCoeffLPHMorph {
         morph:          f64);
 }
 
-/// A trait defining two functions, `apply` and
-/// `reset`, for applying the filter to an input
-/// value and resetting the filter's internal
-/// state, respectively. This trait is used for
-/// applying filters to input values.
-///
-pub trait BiquadFilterApply {
-    fn apply(&mut self, x: f64) -> f64;
-    fn reset(&mut self);
-}
-
-/// This trait is used for getting the
-/// state of a filter.
-///
-pub trait BiquadGetState {
-
-    /// returns a `BiquadFilterState` struct
-    /// representing the internal state of
-    /// a filter. 
-    fn get_state(&self) -> BiquadFilterState;
-}
-
-/// This trait is used for setting the state of
-/// a filter.
-///
-pub trait BiquadSetState {
-
-    /// sets the internal state of a filter to
-    /// a given `BiquadFilterState` struct. 
+// These were suggested by the AI and may be implemented later...
+//
+lazy_static!{
+    /*
+    /// A trait defining two functions, `apply` and
+    /// `reset`, for applying the filter to an input
+    /// value and resetting the filter's internal
+    /// state, respectively. This trait is used for
+    /// applying filters to input values.
     ///
-    fn set_state(&mut self, state: &BiquadFilterState);
+    pub trait BiquadFilterApply {
+        fn apply(&mut self, x: f64) -> f64;
+        fn reset(&mut self);
+    }
+
+    /// This trait is used for getting the
+    /// state of a filter.
+    ///
+    pub trait BiquadGetState {
+
+        /// returns a `BiquadFilterState` struct
+        /// representing the internal state of
+        /// a filter. 
+        fn get_state(&self) -> BiquadFilterState;
+    }
+
+    /// This trait is used for setting the state of
+    /// a filter.
+    ///
+    pub trait BiquadSetState {
+
+        /// sets the internal state of a filter to
+        /// a given `BiquadFilterState` struct. 
+        ///
+        fn set_state(&mut self, state: &BiquadFilterState);
+    }
+
+    pub trait BiquadCascade {
+
+        /// takes a mutable reference to another
+        /// filter implementing the
+        /// `BiquadFilterApply` trait and returns
+        /// a mutable reference to itself. 
+        ///
+        /// This function is used for cascading two
+        /// filters together.
+        ///
+        fn cascade(&mut self, other: &mut dyn BiquadFilterApply) -> &mut Self;
+    }
+    */
 }
 
-pub trait BiquadCascade {
-
-    /// takes a mutable reference to another
-    /// filter implementing the
-    /// `BiquadFilterApply` trait and returns
-    /// a mutable reference to itself. 
-    ///
-    /// This function is used for cascading two
-    /// filters together.
-    ///
-    fn cascade(&mut self, other: &mut dyn BiquadFilterApply) -> &mut Self;
-}

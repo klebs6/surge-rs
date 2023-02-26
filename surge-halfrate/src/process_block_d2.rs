@@ -1,13 +1,18 @@
-/// This code appears to be a part of a larger project
-/// involving audio processing, possibly in the context of
-/// digital signal processing. The specific purpose of the
-/// code is to create a half-rate output buffer from
-/// a stereo input buffer and then apply a HalfRateFilterSSE
-/// to the output buffer.
-///
-/// Note: In this code, "__m128" is a type representing
-/// a 128-bit packed floating-point vector.
-///
+/*!
+  | This code appears to be a part of a larger
+  | project involving audio processing, possibly
+  | in the context of digital signal
+  | processing. The specific purpose of the code
+  | is to create a half-rate output buffer from
+  | a stereo input buffer and then apply
+  | a HalfRateFilterSSE to the output buffer.
+  |
+  | Note: In this code, "__m128" is a type
+  | representing a 128-bit packed floating-point
+  | vector.
+  |
+  */
+
 crate::ix!();
 
 impl ProcessBlockD2 for HalfRateFilterSSE {
@@ -28,7 +33,7 @@ impl ProcessBlockD2 for HalfRateFilterSSE {
 
         let mut o = create_halfrate_scratch_buffer(nsamples,l,r);
 
-        self.downsample_2x_process_filters(nsamples);
+        self.downsample_2x_process_filters(nsamples, &mut o);
 
         if let Some(x) = out_l {
             l = x as *mut __m128;
@@ -38,7 +43,7 @@ impl ProcessBlockD2 for HalfRateFilterSSE {
             r = x as *mut __m128;
         }
 
-        self.downsample_2x_apply(l, r, nsamples);
+        self.downsample_2x_apply(l, r, nsamples, &o);
     }
 }
 
@@ -66,9 +71,10 @@ impl HalfRateFilterSSE {
     fn downsample_2x_apply(&mut self, 
         l:        *mut __m128, 
         r:        *mut __m128, 
-        nsamples: usize) {
+        nsamples: usize,
+        o:        &A1d<__m128>) {
 
-        let ctx = detail::Downsample2xApplyContext::default();
+        let mut ctx = detail::Downsample2xApplyContext::default();
 
         // Loop over the input samples in steps of eight,
         // processing each group of eight interleaved
@@ -77,12 +83,12 @@ impl HalfRateFilterSSE {
         for k in (0..nsamples).step_by(8) {
 
             unsafe {
-                ctx.downsample_2x_apply_block(k, l, r, nsamples)
+                ctx.downsample_2x_apply_block(k, l, r, o)
             }
         }
     }
 
-    fn downsample_2x_process_filters(&mut self, nsamples: usize) {
+    fn downsample_2x_process_filters(&mut self, nsamples: usize, o: &mut A1d<__m128>) {
 
         // process filters
         for j in 0..self.m {
@@ -174,7 +180,7 @@ mod detail {
             k:        usize,
             l:        *mut __m128, 
             r:        *mut __m128, 
-            nsamples: usize) {
+            o:        &A1d<__m128>) {
 
             // We use `_mm_shuffle_ps()` to extract the
             // left and right channel data for the first

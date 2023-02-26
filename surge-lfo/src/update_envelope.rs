@@ -1,3 +1,5 @@
+// hello! could you please help me document and test this code? thanks!
+
 crate::ix!();
 
 impl Lfo {

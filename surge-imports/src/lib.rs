@@ -5,6 +5,12 @@
     }
 }
 
+#[macro_export] macro_rules! xt { 
+    ($x:ident) => { 
+        #[cfg(test)] mod $x; 
+    }
+}
+
 #[macro_export] macro_rules! ix { 
     () => { 
         use crate::{ 
@@ -23,7 +29,6 @@
         }
     })
 }
-
 
 #[cfg(target_arch = "x86_64")] pub use core::arch::x86_64::*;
 pub use ::approx_eq::*;

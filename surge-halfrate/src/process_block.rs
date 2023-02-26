@@ -37,7 +37,7 @@ impl ProcessBlock for HalfRateFilterSSE {
 
         let mut o = create_halfrate_scratch_buffer(nsamples,l,r);
 
-        self.process_filters(l, r, &mut o, nsamples);
+        self.process_filters(&mut o, nsamples);
 
         // The last block of code performs some
         // final processing on the samples. 
@@ -74,8 +74,6 @@ impl HalfRateFilterSSE {
 
     fn process_filters(
         &mut self, 
-        l:        *mut __m128, 
-        r:        *mut __m128, 
         o:        &mut A1d<__m128>,
         nsamples: usize)
     {

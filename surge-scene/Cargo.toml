@@ -28,6 +28,9 @@ version = "0.2.11-alpha.0"
 [dependencies.surge-lfo]
 path = "../surge-lfo"
 version = "0.2.11-alpha.0"
+[dependencies.surge-stepseq]
+path = "../surge-stepseq"
+version = "*"
 [dependencies.surge-lipol]
 path = "../surge-lipol"
 version = "0.2.11-alpha.0"

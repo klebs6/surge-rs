@@ -1,9 +1,13 @@
-/// This code defines a BiquadFilter struct that
-/// implements a low-pass biquad filter. It
-/// provides two functions for calculating the
-/// coefficients for the filter: `coeff_lp` and
-/// `coeff_lp_with_bw`.
-/// 
+/*!
+  | This code defines a BiquadFilter struct that
+  | implements a low-pass biquad filter.
+  |
+  | It provides two functions for calculating the
+  | coefficients for the filter: `coeff_lp` and
+  | `coeff_lp_with_bw`.
+  |
+  */
+
 crate::ix!();
 
 /// The `BiquadCoeffLP` trait represents

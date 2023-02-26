@@ -25,20 +25,12 @@ pub struct QuadFilterUnitState {
 
 impl QuadFilterUnitState {
 
-    #[inline] pub fn z1(&self, reg_offset: usize) -> __m128 {
-        self.reg[(R::Z1 as usize) + reg_offset]
+    #[inline] pub fn reg(&self, base: usize, offset: usize) -> __m128 {
+        self.reg[base + offset]
     }
 
-    #[inline] pub fn z2(&self, reg_offset: usize) -> __m128 {
-        self.reg[(R::Z2 as usize) + reg_offset]
-    }
-
-    #[inline] pub fn z1_mut<'a>(&'a self, reg_offset: usize) -> &'a mut __m128 {
-        &mut self.reg[(R::Z1 as usize) + reg_offset]
-    }
-
-    #[inline] pub fn z2_mut<'a>(&'a self, reg_offset: usize) -> &'a mut __m128 {
-        &mut self.reg[(R::Z2 as usize) + reg_offset]
+    #[inline] pub fn reg_mut<'a>(&'a mut self, base: usize, reg_offset: usize) -> &'a mut __m128 {
+        &mut self.reg[base + reg_offset]
     }
 
     pub fn new(

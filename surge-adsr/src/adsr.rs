@@ -1,9 +1,10 @@
 crate::ix!();
 
-/// defines the various states the ADSR envelope
-/// can be in
-///
 enhanced_enum![
+
+    // defines the various states the ADSR envelope
+    // can be in
+    //
     AdsrState {
         Attack,
         Decay,

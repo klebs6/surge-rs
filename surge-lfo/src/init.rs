@@ -1,10 +1,36 @@
+/*!
+  | This code is an implementation of an LFO
+  | (Low-Frequency Oscillator) module for
+  | a digital audio workstation (DAW).
+  |
+  | The LFO generates a periodic waveform at a low
+  | frequency (typically less than 20 Hz) and can
+  | be used to modulate various parameters of the
+  | audio signal, such as volume, pitch, or filter
+  | cutoff frequency.
+  |
+  | The `Lfo` struct contains various properties
+  | and methods that define the behavior of the
+  | LFO.
+  |
+  | The `new()` method is a constructor that
+  | creates a new instance of the LFO and
+  | initializes its properties. The
+  | `init_phase_from_start_phase()` method
+  | initializes the phase of the LFO based on
+  | a starting phase value.
+  |
+  */
+
 crate::ix!();
 
 impl Lfo {
 
+    /// The new() method creates a new instance of
+    /// the LFO with the given time unit and
+    /// tables handles.
+    ///
     pub fn new( 
-        //time_unit: &'timeunit TimeUnitHandle<'timeunit>,
-        //tables: & TablesHandle) -> Self 
         time_unit: TimeUnitHandle,
         tables:    TablesHandle) -> Self 
     {
@@ -35,9 +61,18 @@ impl Lfo {
         }
     }
 
+    /// The init_phase_from_start_phase() method
+    /// initializes the LFO phase based on
+    /// a starting phase value.
+    ///
     #[inline] pub fn init_phase_from_start_phase(&mut self) {
+
+        // Set the LFO phase to the starting phase value.
         self.phase = pvalf![self.params[LfoParam::StartPhase]];
+
         self.phase_initialized = true;
+
+        // Make sure the phase is between 0 and 1.
         while self.phase < 0.0 { self.phase += 1.0 ; }
         while self.phase > 1.0 { self.phase -= 1.0 ; }
     }

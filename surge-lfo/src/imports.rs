@@ -1,4 +1,5 @@
 pub(crate) use surge_quadrosc::*;
+pub(crate) use surge_stepseq::*;
 pub(crate) use surge_tables::*;
 pub(crate) use surge_timeunit::*;
 pub(crate) use surge_math::*;
