@@ -8,5 +8,6 @@
         \/            /_____/      \/          \/\/         \/          \/     \/     \/         \/    \/       
 
 
-alpha release until bugs are gone 
+alpha release
+
 enjoy :)

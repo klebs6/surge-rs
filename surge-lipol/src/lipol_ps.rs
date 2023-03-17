@@ -1,7 +1,7 @@
 crate::ix!();
 
-/// lipol_ps is a small utility class for generating small line segments
-/// between values
+/// lipol_ps is a small utility class for
+/// generating small line segments between values
 ///
 /// usage would be
 ///
@@ -22,23 +22,70 @@ crate::ix!();
 /// mypol.store_block(values, SIZE_OVER_FOUR);
 /// ```
 ///
-/// and block would contain the linear interpolation between the 
-/// last queried value and the target.
+/// and block would contain the linear
+/// interpolation between the last queried value
+/// and the target.
 ///
 #[derive(Debug,Clone)]
 pub struct LipolPs {
-    target:            __m128,
-    currentval:        __m128,
-    coef:              __m128,
-    coef_m1:           __m128,
-    lipol_block_size:  __m128,
-    m128_lipolstarter: __m128,
-    m128_bs4_inv:      __m128,
 
+    /// A 128-bit `__m128` variable representing
+    /// the target value to which the line
+    /// segments should interpolate. When the
+    /// `LipolPs` instance is first created, the
+    /// target is initialized to 0.
+    ///
+    target:            __m128,
+
+    /// A 128-bit `__m128` variable representing
+    /// the current value of the line
+    /// segments. Initially set to 0, and set
+    /// equal to the `target` value after each
+    /// call to `instantize()`.
+    ///
+    currentval:        __m128,
+
+    /// A 128-bit `__m128` variable representing
+    /// the coefficient used in the linear
+    /// interpolation formula. The default value
+    /// is 0.25.
+    ///
+    coef:              __m128,
+
+    /// A 128-bit `__m128` variable representing
+    /// 1 minus the coefficient used in the linear
+    /// interpolation formula. Computed as
+    /// `m128_one![] - coef`.
+    ///
+    coef_m1:           __m128,
+
+    /// A 128-bit `__m128` variable representing
+    /// the size of each block of line
+    /// segments. When the `LipolPs` instance is
+    /// first created, the block size is
+    /// initialized to 64.
+    ///
+    lipol_block_size:  __m128,
+
+    /// A 128-bit `__m128` variable representing
+    /// the starting coefficients for the line
+    /// segments. Computed as `_mm_set_ps(1.0,
+    /// 0.75, 0.5, 0.25)`.
+    ///
+    m128_lipolstarter: __m128,
+
+    /// A 128-bit `__m128` variable representing
+    /// the inverse of the block size multiplied
+    /// by 4. Computed as `_mm_div_ss(m128_four![],
+    /// lipol_block_size)`.
+    ///
+    m128_bs4_inv:      __m128,
 }
 
 impl Default for LipolPs {
+
     fn default() -> Self {
+
         unsafe {
             let coef             =  _mm_set1_ps(0.25);
             let lipol_block_size = _mm_cvt_si2ss(z128![], 64);
@@ -58,18 +105,26 @@ impl Default for LipolPs {
 
 impl LipolPs {
 
+    /// Constructs a new `LipolPs` instance with
+    /// default settings.
+    ///
     pub fn new() -> Self {
         Self {
             .. Default::default()
         }
     }
 
+    /// Constructs a new `LipolPs`
+    /// instance with a block size of `n`.
+    ///
     pub fn new_with_blocksize(n: usize) -> Self {
         let mut x = Self::new();
         x.set_blocksize(n as i32);
         x
     }
 
+    /// Sets the block size to `bs`.
+    ///
     #[inline] pub fn set_blocksize(&mut self, bs: i32) {
         unsafe {
             self.lipol_block_size = _mm_cvt_si2ss(z128![], bs);
@@ -77,6 +132,10 @@ impl LipolPs {
         }
     }
 
+    /// Sets the target value to `t`. Sets the
+    /// current value to the previous target
+    /// value.
+    ///
     #[inline] pub fn set_target(&mut self, t: f32) {
         self.currentval = self.target;
         unsafe {
@@ -84,18 +143,30 @@ impl LipolPs {
         }
     }
 
+    /// Sets the target value to the 128-bit
+    /// vector `t`. Sets the current value to the
+    /// previous target value.
+    ///
     #[inline] pub fn set_target_m128(&mut self, t: __m128)
     {
         self.currentval = self.target;
         self.target = t;
     }
 
+    /// Sets the target value to `t` and sets the
+    /// current value to the new target value.
+    ///
     #[inline] pub fn set_target_instantize(&mut self, t: f32)
     {
         self.target = unsafe{ _mm_set_ss(t) };
         self.currentval = self.target;
     }
 
+    /// Sets the target value to a smoothed value
+    /// between the current value and `t`. Sets
+    /// the current value to the previous target
+    /// value.
+    ///
     #[inline] pub fn set_target_smoothed(&mut self, t: f32)
     {
         self.currentval = self.target;
@@ -106,16 +177,28 @@ impl LipolPs {
         }
     }
 
+    /// Sets the current value to the target
+    /// value.
+    ///
     #[inline] pub fn instantize(&mut self) {
         self.currentval = self.target;
     }
 
+    /// Returns the target value as a `f32`.
+    ///
     #[inline] pub fn get_target(&self) -> f32 {
         let mut f: f32 = 0.0;
         unsafe{ _mm_store_ss(&mut f, self.target) };
         f
     }
 
+    /// Initializes the `y` and `dy` vectors for
+    /// use in `store_block()`. `y` will contain
+    /// the current value of the line segments,
+    /// and `dy` will contain the difference
+    /// between the target value and the current
+    /// value, scaled by the block size.
+    ///
     #[inline] pub fn initblock(&mut self, 
         y: &mut __m128, 
         dy: &mut __m128) 
@@ -151,10 +234,25 @@ impl LipolPs {
         }
     }
 
+    /// Stores a block of line segments in memory
+    /// starting at the address `dst`. The number
+    /// of line segments to store is given by the
+    /// `nquads` argument. 
+    ///
+    /// The `dst` pointer must be a valid,
+    /// contiguous block of memory with enough
+    /// space to hold the requested number of line
+    /// segments. 
+    ///
+    /// The `NQ` type parameter must be a type
+    /// that can be converted to `usize`. The
+    /// block of line segments is computed
+    ///
     /// # Safety
     ///
-    /// need to be able to access nquads blocks safely and contiguously
-    /// from dst
+    /// need to be able to access nquads blocks
+    /// safely and contiguously from dst
+    ///
     pub unsafe fn store_block<NQ>(&mut self, 
         dst: *mut f32, nquads: NQ) 
         where <NQ as TryInto<usize>>::Error: Debug, NQ: TryInto<usize>

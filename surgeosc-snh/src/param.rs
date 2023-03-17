@@ -15,7 +15,9 @@ enhanced_enum![
 rt![SampleAndHoldOscillatorParam];
 
 impl Param for SampleAndHoldOscillatorParam {
+
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
+
     fn control_type(&self) -> ControlType {
         match self {
             SampleAndHoldOscillatorParam::Correlation => ControlType::PercentBidirectional,
@@ -27,6 +29,7 @@ impl Param for SampleAndHoldOscillatorParam {
             SampleAndHoldOscillatorParam::UniCount    => ControlType::OscCount,
         }
     }
+
     fn default_value(&self) -> PData {
         match self {
             SampleAndHoldOscillatorParam::Correlation => PData::Float(0.0),
@@ -38,10 +41,12 @@ impl Param for SampleAndHoldOscillatorParam {
             SampleAndHoldOscillatorParam::UniCount    => PData::Float(1.0),
         }
     }
+
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+
     fn min_value(&self) -> PData {
         match self {
             SampleAndHoldOscillatorParam::Correlation => PData::Float(-1.0),     
@@ -53,6 +58,7 @@ impl Param for SampleAndHoldOscillatorParam {
             SampleAndHoldOscillatorParam::UniCount    => PData::Int(1),          
         }
     }
+
     fn max_value(&self) -> PData {
         match self {
             SampleAndHoldOscillatorParam::Correlation => PData::Float(1.0),     
@@ -64,6 +70,7 @@ impl Param for SampleAndHoldOscillatorParam {
             SampleAndHoldOscillatorParam::UniCount    => PData::Int(16),        
         }
     }
+
     fn value_type(&self) -> ValType {
         match self {
             SampleAndHoldOscillatorParam::Correlation => ValType::VtFloat,
@@ -75,6 +82,7 @@ impl Param for SampleAndHoldOscillatorParam {
             SampleAndHoldOscillatorParam::UniCount    => ValType::VtInt,  
         }
     }
+
     fn moverate(&self) -> f32 {
         match self {
             SampleAndHoldOscillatorParam::Correlation => 1.0,
@@ -89,6 +97,7 @@ impl Param for SampleAndHoldOscillatorParam {
 }
 
 impl SampleAndHoldOscillatorParam {
+
     pub fn new_runtime() -> SampleAndHoldOscillatorParamArrayRT {
         SampleAndHoldOscillatorParamArrayRT::new_with(|x| match x {
             SampleAndHoldOscillatorParam::Correlation => SampleAndHoldOscillatorParamRT::new(SampleAndHoldOscillatorParam::Correlation),

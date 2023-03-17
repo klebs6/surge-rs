@@ -91,6 +91,7 @@ impl Param for FM2OscillatorParam {
 }
 
 impl FM2OscillatorParam {
+
     #[inline] pub fn new_runtime() -> FM2OscillatorParamArrayRT {
         FM2OscillatorParamArrayRT::new_with(|x| match x {
             FM2OscillatorParam::M1Amount     => FM2OscillatorParamRT::new(FM2OscillatorParam::M1Amount),

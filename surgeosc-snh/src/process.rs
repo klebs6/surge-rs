@@ -93,12 +93,12 @@ impl OscillatorProcess for SampleAndHoldOscillator {
         let mut hpfblock = WetBlock1::<BLOCK_SIZE_OS>::default();
 
         unsafe {
-            self.li_hpf.store_block(hpfblock.buf.as_mut_ptr(), BLOCK_SIZE_OS_QUAD);
-        }
 
-        unsafe {
-            let mdc: __m128 = _mm_load_ss(&self.dc);
+            self.li_hpf.store_block(hpfblock.buf.as_mut_ptr(), BLOCK_SIZE_OS_QUAD);
+
+            let mdc:    __m128 = _mm_load_ss(&self.dc);
             let mut oa: __m128 = _mm_load_ss(&self.blitter.out_attenuation);
+
             oa = _mm_mul_ss(oa, _mm_load_ss(&self.blitter.pitchmult));
 
             for k in (0..BLOCK_SIZE_OS).step_by(1) 
@@ -162,4 +162,3 @@ impl OscillatorProcess for SampleAndHoldOscillator {
         }
     }
 }
-

@@ -26,4 +26,3 @@ impl FM2Oscillator {
         }
     }
 }
-

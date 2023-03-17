@@ -5,6 +5,7 @@ crate::ix!();
     use crate::LiPol;
 
     let mut x = LiPol::<f32>::default();
+
     x.set_blocksize(BLOCK_SIZE);
     x.instantize();
     x.new_value(5.0);

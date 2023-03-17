@@ -1,5 +1,7 @@
 crate::ix!();
 
+pub const INITIAL_RATE: f64 = 0.05;
+
 impl Init for SampleAndHoldOscillator {
 
     fn init(&mut self) {
@@ -12,14 +14,12 @@ impl Init for SampleAndHoldOscillator {
         }
 
         self.blitter.bufpos = 0;
-        self.dc = 0.0;
+        self.dc             = 0.0;
 
-        let rate: f32 = 0.05;
-        self.l_pw.set_rate(rate as f64);
-
-        self.l_shape.set_rate(rate as f64);
-        self.l_sub.set_rate(rate as f64);
-        self.l_sync.set_rate(rate as f64);
+        self.l_pw.set_rate(INITIAL_RATE);
+        self.l_shape.set_rate(INITIAL_RATE);
+        self.l_sub.set_rate(INITIAL_RATE);
+        self.l_sync.set_rate(INITIAL_RATE);
 
         self.blitter.n_unison = limit_range(
             self.pvali(SampleAndHoldOscillatorParam::UniCount), 
