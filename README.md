@@ -12,4 +12,4 @@ alpha release
 
 enjoy :)
 
-discord link for discussion and support:  https://discord.gg/CdHsMHJGX8
+NEW: March 17, 2023 -- discord link for discussion and support:  https://discord.gg/CdHsMHJGX8
