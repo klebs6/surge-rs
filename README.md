@@ -11,5 +11,3 @@
 alpha release
 
 enjoy :)
-
-discord link for discussion and support:  https://discord.gg/CdHsMHJGX8
