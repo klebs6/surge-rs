@@ -416,7 +416,7 @@ implement a basic 3-band equalizer in Verilog-A:
 Here is an example Verilog-A code that implements
 a simple 3-band equalizer:
 
-```
+```verilog
 module three_band_eq(in, out, clk, rst);
 
   // Input and output signals

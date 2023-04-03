@@ -8,6 +8,7 @@ pub struct VocoderBlockCfg {
 }
 
 impl VocoderBlockCfg {
+
     pub fn new(xxx: &Vocoder) -> Self {
 
         let f_rate:      f32 = xxx.pvalf(VocoderParam::Rate);
