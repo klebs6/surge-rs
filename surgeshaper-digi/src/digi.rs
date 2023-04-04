@@ -93,4 +93,3 @@ impl Waveshaper for DigiShaper {
     let result = shaper.shape(result, half);
     println!("shaper: {:?}, result: {:?}", shaper, result);
 }
-
