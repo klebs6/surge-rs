@@ -86,8 +86,8 @@ pub fn create_voice_oscillators( tuner: TunerHandle)
 -> MaybeVoiceOscillators 
 {
     [
-        Some(box SineWaveOscillator::new(tuner.clone())),
-        Some(box SineWaveOscillator::new(tuner.clone())),
-        Some(box SineWaveOscillator::new(tuner.clone())),
+        Some(Box::new(SineWaveOscillator::new(tuner.clone()))),
+        Some(Box::new(SineWaveOscillator::new(tuner.clone()))),
+        Some(Box::new(SineWaveOscillator::new(tuner.clone()))),
     ]
 }

@@ -10,10 +10,10 @@ impl StepSequencer {
     ///
     pub fn random_sequence(min: f32, max: f32) -> StepSequencer {
 
-        let rng = rand::thread_rng();
+        let rng = thread_rng();
 
         let seq: [f32; N_STEPSEQUENCER_STEPS] = rng
-            .sample_iter(rand::distributions::Uniform::new(min, max))
+            .sample_iter(distributions::Uniform::new(min, max))
             .take(N_STEPSEQUENCER_STEPS)
             .collect::<Vec<f32>>()
             .try_into()
@@ -33,7 +33,7 @@ impl StepSequencer {
     ///
     pub fn mutate_sequence(&mut self, mutation_rate: f32, mutation_range: f32) {
 
-        let mut rng = rand::thread_rng();
+        let mut rng = thread_rng();
 
         for i in 0..N_STEPSEQUENCER_STEPS {
 

@@ -52,9 +52,12 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
             self.mpe_unit.set_pitchbend((value as f32) / 8192.0);
 
             for scene in self.active_patch.scene.iter_mut() {
-                match &mut scene.modsources[ ModSource::PitchBend ] {
-                    Some(box ModulationSource::ControllerModulationSource(ref mut inner)) => 
+
+                match &mut scene.modsources[ ModSource::PitchBend ].as_deref_mut() {
+
+                    Some(ModulationSource::ControllerModulationSource(ref mut inner)) => 
                         inner.set_target(self.mpe_unit.pitchbend().0 as f64),
+
                     _ => unreachable!(),
                 };
             }

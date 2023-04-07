@@ -71,7 +71,7 @@ impl Plugin for SpencaPlugin {
         Info {
             name: "SpencaPlugin".to_string(),
             vendor: "KlebsSoftware".to_string(),
-            unique_id: 6667,
+            unique_id: 667,
             category: Category::Synth,
             inputs: 2,
             outputs: 2,

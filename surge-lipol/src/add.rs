@@ -59,7 +59,7 @@ impl crate::LipolPs {
         &mut self, 
         src: *mut f32, 
         nquads: NQ) 
-        where <NQ as TryInto<usize>>::Error: Debug
+        where <NQ as TryInto<usize>>::Error: fmt::Debug
     {
         let nquads: usize = nquads.try_into().unwrap();
 
@@ -117,7 +117,7 @@ impl crate::LipolPs {
         &mut self, 
         src: *mut f32, 
         nquads: NQ) 
-        where <NQ as TryInto<usize>>::Error: Debug
+        where <NQ as TryInto<usize>>::Error: fmt::Debug
     {
         let nquads: usize = nquads.try_into().unwrap();
 

@@ -1,6 +1,3 @@
-and here is the struct definition itself!
-
-
 crate::ix!();
 
 enhanced_enum![ 

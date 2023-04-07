@@ -11,7 +11,7 @@ pub fn copy_block<NQ>(
     nquads: NQ) 
 
     where 
-    <NQ as TryInto<usize>>::Error: Debug, 
+    <NQ as TryInto<usize>>::Error: fmt::Debug, 
     NQ: TryInto<usize>
 {
    let nquads: usize = nquads.try_into().unwrap();
@@ -45,7 +45,7 @@ pub fn copy_block_unaligned_source<NQ>(
     nquads: NQ) 
 
     where 
-    <NQ as TryInto<usize>>::Error: Debug, 
+    <NQ as TryInto<usize>>::Error: fmt::Debug, 
     NQ: TryInto<usize>
 {
     let nquads: usize = nquads.try_into().unwrap();
@@ -79,7 +79,7 @@ pub fn copy_block_unaligned_destination<NQ>(
     nquads: NQ) 
 
     where 
-    <NQ as TryInto<usize>>::Error: Debug, 
+    <NQ as TryInto<usize>>::Error: fmt::Debug, 
     NQ: TryInto<usize>
 {
     let nquads: usize = nquads.try_into().unwrap();
@@ -113,7 +113,7 @@ pub fn copy_block_unaligned_src_and_dst<NQ>(
     nquads: NQ) 
 
     where 
-    <NQ as TryInto<usize>>::Error: Debug, 
+    <NQ as TryInto<usize>>::Error: fmt::Debug, 
     NQ: TryInto<usize>
 
 {

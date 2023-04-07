@@ -16,18 +16,18 @@ pub struct SynthEnvironment<'a> {
 impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
     pub fn new_default_patch<'synth_out>(environment: &SynthEnvironment<'synth_out>) -> Box<SurgePatch> {
-        box SurgePatch::new(
-            SceneConstructorHandles{
-                timeunit:         environment.timeunit, 
-                tables:           environment.tables, 
-                tuner:            environment.tuner, 
-                srunit:           environment.srunit,
-                hold_pedal_unit:  environment.hold_pedal_unit, 
-                midi_unit:        environment.midi_unit, 
-                mpe_unit:         environment.mpe_unit,
-                synth_in:         environment.synth_in
-            }
-        )
+        Box::new(SurgePatch::new(
+                SceneConstructorHandles{
+                    timeunit:         environment.timeunit, 
+                    tables:           environment.tables, 
+                    tuner:            environment.tuner, 
+                    srunit:           environment.srunit,
+                    hold_pedal_unit:  environment.hold_pedal_unit, 
+                    midi_unit:        environment.midi_unit, 
+                    mpe_unit:         environment.mpe_unit,
+                    synth_in:         environment.synth_in
+                }
+        ))
     }
 
     pub fn new_fx_unit<'synth_out>(environment: &SynthEnvironment<'synth_out>) -> FXUnit {

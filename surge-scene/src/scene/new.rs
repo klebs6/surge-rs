@@ -16,9 +16,9 @@ impl SurgeScene {
     pub fn new<'a>(ctor: SceneConstructorHandles<'a>) -> Self {
         Self {
             osc:                 vec![
-                box SurgeSuperOscillator::new(ctor.tuner.clone(),ctor.tables.clone(),ctor.srunit.clone()),
-                box SurgeSuperOscillator::new(ctor.tuner.clone(),ctor.tables.clone(),ctor.srunit.clone()),
-                box SurgeSuperOscillator::new(ctor.tuner.clone(),ctor.tables.clone(),ctor.srunit.clone()),
+                Box::new(SurgeSuperOscillator::new(ctor.tuner.clone(),ctor.tables.clone(),ctor.srunit.clone())),
+                Box::new(SurgeSuperOscillator::new(ctor.tuner.clone(),ctor.tables.clone(),ctor.srunit.clone())),
+                Box::new(SurgeSuperOscillator::new(ctor.tuner.clone(),ctor.tables.clone(),ctor.srunit.clone())),
             ],
             params:              SceneParam::new_runtime(),
             filterunit:          vec![
@@ -62,11 +62,11 @@ impl SurgeScene {
             returnfx:      LipolPs::new_with_blocksize(BLOCK_SIZE),
             halfband:      HalfRateFilterSSE::default(),
             highpass:      BiquadFilter::new(ctor.tuner,ctor.tables,ctor.srunit),
-            fbq:           box QuadFilterChain::new(MAX_VOICES >> 2, ctor.tables),
+            fbq:           Box::new(QuadFilterChain::new(MAX_VOICES >> 2, ctor.tables)),
             voices:        vec![], 
 
             //MAX_VOICES = 64
-            voices_array:  std::pin::Pin::new(box [ 
+            voices_array:  std::pin::Pin::new(Box::new([ 
                 None, None, None, None, None, None, None, None,
                 None, None, None, None, None, None, None, None,
                 None, None, None, None, None, None, None, None,
@@ -75,7 +75,7 @@ impl SurgeScene {
                 None, None, None, None, None, None, None, None,
                 None, None, None, None, None, None, None, None,
                 None, None, None, None, None, None, None, None,
-            ]),
+            ])),
             out:                    WetBlock1Dual::<BLOCK_SIZE_OS>::default(),
             tables:                 ctor.tables.clone(),
             tuner:                  ctor.tuner.clone(),

@@ -27,6 +27,7 @@ impl SampleRateHandle {
 }
 
 impl Default for SampleRateHandle {
+
     fn default() -> Self {
         Self {
             inner: Rc::new(RefCell::new(SampleRateUnit::new_with_samplerate(48_000.0_f64))),
@@ -35,6 +36,7 @@ impl Default for SampleRateHandle {
 }
 
 impl GetVuFalloff for SampleRateHandle {
+
     #[inline] fn vu_falloff(&self) -> f32 {
         self.inner.borrow().vu_falloff
     }
@@ -49,7 +51,7 @@ impl Ms2Samples for SampleRateHandle {
     {
         let inner = self.inner.borrow();
 
-        let sr = inner.samplerate.load( atomic::Ordering::SeqCst );
+        let sr = inner.samplerate.load(atomic::Ordering::SeqCst);
 
         let a: f32 =  sr * ms * 0.001;
 

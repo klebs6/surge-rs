@@ -16,8 +16,8 @@ impl SurgeVoice {
 
     #[inline] pub fn init_aftertouch(&mut self) {
 
-        if let Some(box ModulationSource::ControllerModulationSource(ref mut aftertouch)) = 
-            &mut self.modsources[ModSource::AmpEg]
+        if let Some(ModulationSource::ControllerModulationSource(ref mut aftertouch)) = 
+            &mut self.modsources[ModSource::AmpEg].as_deref_mut()
         { 
             let key      = self.state.key;
 
@@ -28,8 +28,8 @@ impl SurgeVoice {
 
     #[inline] pub fn init_velocitysource(&mut self) {
 
-        if let Some(box ModulationSource::ControllerModulationSource(ref mut velocity_source)) = 
-            &mut self.modsources[ModSource::Velocity]
+        if let Some(ModulationSource::ControllerModulationSource(ref mut velocity_source)) = 
+            &mut self.modsources[ModSource::Velocity].as_deref_mut()
         { 
             velocity_source.output = self.state.fvel;
         }
@@ -37,8 +37,8 @@ impl SurgeVoice {
 
     #[inline] pub fn init_releasevelocitysource(&mut self) {
 
-        if let Some(box ModulationSource::ControllerModulationSource(ref mut release_velocity_source)) = 
-            &mut self.modsources[ModSource::ReleaseVelocity]
+        if let Some(ModulationSource::ControllerModulationSource(ref mut release_velocity_source)) = 
+            &mut self.modsources[ModSource::ReleaseVelocity].as_deref_mut()
         { 
             release_velocity_source.output = self.state.freleasevel;
         }
@@ -46,8 +46,8 @@ impl SurgeVoice {
 
     #[inline] pub fn init_keytracksource(&mut self) {
 
-        if let Some(box ModulationSource::ControllerModulationSource(ref mut keytrack_source)) = 
-            &mut self.modsources[ModSource::KeyTrack]
+        if let Some(ModulationSource::ControllerModulationSource(ref mut keytrack_source)) = 
+            &mut self.modsources[ModSource::KeyTrack].as_deref_mut()
         { 
             keytrack_source.output = 0.0;
         }
@@ -55,8 +55,8 @@ impl SurgeVoice {
 
     #[inline] pub fn init_amp_eg(&mut self) {
 
-        if let Some(box ModulationSource::AdsrEnvelope(ref mut amp_eg)) = 
-            &mut self.modsources[ModSource::AmpEg]
+        if let Some(ModulationSource::AdsrEnvelope(ref mut amp_eg)) = 
+            &mut self.modsources[ModSource::AmpEg].as_deref_mut()
         { 
             amp_eg.init();
         }
@@ -64,8 +64,8 @@ impl SurgeVoice {
 
     #[inline] pub fn init_filter_eg(&mut self) {
 
-        if let Some(box ModulationSource::AdsrEnvelope(ref mut filter_eg)) = 
-            &mut self.modsources[ModSource::FilterEg]
+        if let Some(ModulationSource::AdsrEnvelope(ref mut filter_eg)) = 
+            &mut self.modsources[ModSource::FilterEg].as_deref_mut()
         { 
             filter_eg.init();
         }
@@ -73,8 +73,8 @@ impl SurgeVoice {
 
     #[inline] pub fn init_channel_aftertouch(&mut self) {
 
-        if let Some(box ModulationSource::ControllerModulationSource(ref mut mono_aftertouch)) = 
-            &mut self.modsources[ModSource::ChannelAfterTouch]
+        if let Some(ModulationSource::ControllerModulationSource(ref mut mono_aftertouch)) = 
+            &mut self.modsources[ModSource::ChannelAfterTouch].as_deref_mut()
         { 
             unsafe {
                 mono_aftertouch.output = (*self.state.voice_channel_state).pressure as f64;
@@ -84,8 +84,8 @@ impl SurgeVoice {
 
     #[inline] pub fn init_modsource_timbre(&mut self) {
 
-        if let Some(box ModulationSource::ControllerModulationSource(ref mut timbre_source)) = 
-            &mut self.modsources[ModSource::Timbre]
+        if let Some(ModulationSource::ControllerModulationSource(ref mut timbre_source)) = 
+            &mut self.modsources[ModSource::Timbre].as_deref_mut()
         { 
             unsafe {
                 timbre_source.output = (*self.state.voice_channel_state).timbre as f64;

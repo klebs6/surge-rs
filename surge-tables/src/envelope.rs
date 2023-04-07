@@ -1,3 +1,4 @@
+/*
 i'll show these tables to you, one by one. i would like to know the following:
 
 1) what is this table used for?
@@ -6,6 +7,7 @@ i'll show these tables to you, one by one. i would like to know the following:
 4) how can we improve this table?
 
 let's answer these four questions for each table I show you.  here are the EnvelopeTables:
+*/
 
 crate::ix!();
 

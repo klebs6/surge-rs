@@ -1,4 +1,3 @@
-interesting! here is the do_fm_block function:
 crate::ix!();
 
 impl FMOscillator {

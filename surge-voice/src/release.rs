@@ -6,8 +6,9 @@ impl SurgeVoice {
 
         macro_rules! release {
             ($key:ident,$variant:tt) => {
-                match &mut self.modsources[ModSource::$key] {
-                    Some(box ModulationSource::$variant(modsource)) => {
+
+                match &mut self.modsources[ModSource::$key].as_deref_mut() {
+                    Some(ModulationSource::$variant(modsource)) => {
                         modsource.release();
                     },
                     _ => panic!("bug in release function"),
@@ -27,8 +28,9 @@ impl SurgeVoice {
 
         self.state.gate = false;
 
-        match &mut self.modsources[ModSource::ReleaseVelocity] {
-            Some(box ModulationSource::ControllerModulationSource(rv)) => {
+        match &mut self.modsources[ModSource::ReleaseVelocity].as_deref_mut() {
+
+            Some(ModulationSource::ControllerModulationSource(rv)) => {
                 rv.output = self.state.releasevelocity as f64 / 127.0;
             },
             _ => panic!("bug in release function"),
@@ -38,8 +40,8 @@ impl SurgeVoice {
     pub fn uber_release(&mut self) {
         macro_rules! uber_release {
             ($key:ident,$variant:tt) => {
-                match &mut self.modsources[ModSource::$key] {
-                    Some(box ModulationSource::$variant(modsource)) => {
+                match &mut self.modsources[ModSource::$key].as_deref_mut() {
+                    Some(ModulationSource::$variant(modsource)) => {
                         modsource.uber_release();
                     },
                     _ => panic!("bug in release function"),

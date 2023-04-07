@@ -1,5 +1,3 @@
-#![feature(box_syntax)]
-
 #[macro_use] mod imports; use imports::*;
 
 x!{bound_value}

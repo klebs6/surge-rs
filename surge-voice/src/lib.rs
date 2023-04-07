@@ -1,4 +1,3 @@
-#![feature(box_syntax)]
 #![feature(box_patterns)]
 
 #[macro_use] mod imports; use imports::*;

@@ -52,8 +52,11 @@ impl SurgeScene {
     }
 
     pub fn set_channel_aftertouch_target(&mut self, fval: f32) {
-        match &mut self.modsources[ModSource::ChannelAfterTouch] {
-            Some(box ModulationSource::ControllerModulationSource(ref mut inner)) => inner.set_target(fval as f64),
+
+        match &mut self.modsources[ModSource::ChannelAfterTouch].as_deref_mut() {
+
+            Some(ModulationSource::ControllerModulationSource(ref mut inner)) 
+                => inner.set_target(fval as f64),
             _                                                                           => unreachable!(),
         }
     }
@@ -64,9 +67,9 @@ impl SurgeScene {
     {
         let ctrli = ModSource::ctrl(ctrl_idx);
 
-        match &mut self.modsources[ctrli] 
+        match &mut self.modsources[ctrli].as_deref_mut() 
         {
-            Some(box ModulationSource::ControllerModulationSource(ref mut inner)) 
+            Some(ModulationSource::ControllerModulationSource(ref mut inner)) 
                 => inner.set_target01(fval as f64, false),
             _ => unreachable!(),
         };

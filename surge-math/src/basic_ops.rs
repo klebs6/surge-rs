@@ -38,7 +38,7 @@ pub fn mul_block<NQ>(
     dst:  *mut f32, 
     nquads: NQ) 
     where 
-    <NQ as TryInto<u32>>::Error: Debug, 
+    <NQ as TryInto<u32>>::Error: fmt::Debug, 
     NQ: TryInto<u32>
 {
     let do_mul = |offset: usize| {
@@ -79,7 +79,7 @@ pub fn accumulate_block<NQ>(
     dst:   *mut f32, 
     nquads: NQ) 
 
-    where <NQ as TryInto<u32>>::Error: Debug,
+    where <NQ as TryInto<u32>>::Error: fmt::Debug,
           NQ: TryInto<u32>
 {
     let nquads: u32 = nquads.try_into().unwrap();
@@ -110,7 +110,7 @@ pub fn add_block<NQ>(
     dst:  *mut f32, 
     nquads: NQ)
 
-where <NQ as TryInto<u32>>::Error: Debug,
+where <NQ as TryInto<u32>>::Error: fmt::Debug,
       NQ: TryInto<u32>
 
 {
@@ -146,7 +146,7 @@ pub fn subtract_block<NQ>(
     nquads: NQ) 
 
 where 
-    <NQ as TryInto<u32>>::Error: Debug,
+    <NQ as TryInto<u32>>::Error: fmt::Debug,
     NQ: TryInto<u32>
 
 {
@@ -185,7 +185,7 @@ where
     d:     *mut f32, 
     nquads: NQ) -> f32
 
-where <NQ as TryInto<u32>>::Error: Debug, 
+where <NQ as TryInto<u32>>::Error: fmt::Debug, 
       NQ: TryInto<u32>
 {
     unsafe {
@@ -223,7 +223,7 @@ where <NQ as TryInto<u32>>::Error: Debug,
     nquads: NQ) -> f32
 
 where 
-    <NQ as TryInto<u32>>::Error: Debug, 
+    <NQ as TryInto<u32>>::Error: fmt::Debug, 
     NQ: TryInto<u32>
 
 {

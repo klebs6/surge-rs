@@ -11,8 +11,8 @@ impl SurgeVoice {
         {
             let key      = self.state.key;
 
-            if let Some(box ModulationSource::ControllerModulationSource(ref mut x)) = 
-                &mut self.modsources[ModSource::PolyphonicAfterTouch] 
+            if let Some(ModulationSource::ControllerModulationSource(ref mut x)) = 
+                &mut self.modsources[ModSource::PolyphonicAfterTouch].as_deref_mut()
             {
                 let target = 
                     self.mpe_unit.get_poly_aftertouch( key );

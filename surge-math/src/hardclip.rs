@@ -36,7 +36,7 @@ pub fn hardclip8_sd(x: __m128d) -> __m128d
 ///ensure we can access nquads * 4 elements
 ///contiguousely from a valid starting point x
 pub unsafe fn hardclip_block<NQ>(x: *mut f32, nquads: NQ) 
-    where <NQ as TryInto<usize>>::Error: Debug, NQ: TryInto<usize>
+    where <NQ as TryInto<usize>>::Error: fmt::Debug, NQ: TryInto<usize>
 {
     let nquads: usize = nquads.try_into().unwrap();
 
@@ -64,7 +64,7 @@ pub unsafe fn hardclip_block<NQ>(x: *mut f32, nquads: NQ)
 pub unsafe fn hardclip_block8<NQ>(x: *mut f32, nquads: NQ) 
 where 
     NQ: TryInto<usize>,
-    <NQ as TryInto<usize>>::Error: Debug
+    <NQ as TryInto<usize>>::Error: fmt::Debug
 {
     let nquads: usize = nquads.try_into().unwrap();
 

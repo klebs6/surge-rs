@@ -6,7 +6,6 @@
 #![feature(platform_intrinsics)]
 #![feature(stdsimd)]
 #![feature(associated_type_bounds)]
-#![feature(box_syntax)]
 #![feature(box_patterns)]
 #![feature(stdarch)]
 #![allow(non_camel_case_types)]

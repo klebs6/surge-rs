@@ -39,7 +39,7 @@ impl SampleHost{
             audio_unit 
         };
 
-        type Args = render_callback::Args<data::NonInterleaved<f32>>;
+        type Args = render_callback::Args<NonInterleaved<f32>>;
 
         let in1: Vec<f32> = (0..BUFFER_SIZE).map(|x| x as f32).collect();
 

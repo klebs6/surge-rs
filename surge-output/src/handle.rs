@@ -30,13 +30,13 @@ impl<const N: usize> SynthOutputHandle<N> {
 
     #[inline] pub fn out_l(&mut self) -> *mut f32 {
         let mut inner = self.inner.borrow_mut();
-        let ax     = Axis(0);
+        let ax     = ndarray::Axis(0);
         inner.buffer.index_axis_mut(ax,0).as_mut_ptr()
     }
 
     #[inline] pub fn out_r(&mut self) -> *mut f32 {
         let mut inner = self.inner.borrow_mut();
-        let ax     = Axis(0);
+        let ax        = ndarray::Axis(0);
         inner.buffer.index_axis_mut(ax,1).as_mut_ptr()
     }
 
@@ -45,7 +45,7 @@ impl<const N: usize> SynthOutputHandle<N> {
     }
 
     #[inline] pub fn set_masterfade<T: TryInto<f32>>(&self, x: T) 
-    where <T as TryInto<f32>>::Error: Debug 
+    where <T as TryInto<f32>>::Error: fmt::Debug 
     { 
         let x: f32 = x.try_into().unwrap();
         self.inner.borrow_mut().masterfade = x;
@@ -54,9 +54,9 @@ impl<const N: usize> SynthOutputHandle<N> {
     #[inline] pub fn set_vu_peak<IDX, T>(&self, idx: IDX, x: T) 
     where 
         IDX: TryInto<usize>,
-        <IDX as TryInto<usize>>::Error: Debug,
+        <IDX as TryInto<usize>>::Error: fmt::Debug,
         T: TryInto<f32>,
-        <T as TryInto<f32>>::Error: Debug,
+        <T as TryInto<f32>>::Error: fmt::Debug,
     { 
         let idx: usize = idx.try_into().unwrap();
         let x:     f32 = x.try_into().unwrap();
@@ -66,7 +66,7 @@ impl<const N: usize> SynthOutputHandle<N> {
     #[inline] pub fn get_vu_peak<IDX>(&self, idx: IDX)  -> f32
     where 
         IDX: TryInto<usize>,
-        <IDX as TryInto<usize>>::Error: Debug,
+        <IDX as TryInto<usize>>::Error: fmt::Debug,
     { 
         let idx: usize = idx.try_into().unwrap();
         self.inner.borrow_mut().vu_peak[idx]

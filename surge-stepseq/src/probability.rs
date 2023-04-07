@@ -5,6 +5,7 @@ impl StepSequencer {
     /// set the probability for a single step
     ///
     pub fn set_probability(&mut self, step: usize, probability: f32) {
+
         if step < N_STEPSEQUENCER_STEPS {
             self.probabilities[step] = probability;
         }
@@ -33,6 +34,7 @@ impl StepSequencer {
     /// retrieve probabilities for all steps.
     ///
     pub fn get_probabilities(&self) -> &[f32] {
+
         &self.probabilities[..]
     }
 

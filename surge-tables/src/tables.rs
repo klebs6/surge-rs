@@ -44,7 +44,7 @@ pub trait SincTable1X {
 
     fn sinctable_1x<T: TryInto<usize>>(&self, idx: T) -> f32  
     where 
-        <T as TryInto<usize>>::Error: std::fmt::Debug {
+        <T as TryInto<usize>>::Error: Debug {
             let idx: usize = idx.try_into().unwrap(); 
             self._sinctable_1x(idx)
 
@@ -58,7 +58,7 @@ pub trait SincTable {
 
     fn sinctable<T: TryInto<usize>>(&self, idx: T) -> f32  
     where 
-        <T as TryInto<usize>>::Error: std::fmt::Debug {
+        <T as TryInto<usize>>::Error: Debug {
             let idx: usize = idx.try_into().unwrap(); 
             self._sinctable(idx)
     }
@@ -71,7 +71,7 @@ pub trait SincTableI16 {
 
     fn sinctable_i16<T: TryInto<usize>>(&self, idx: T) -> i16  
     where 
-        <T as TryInto<usize>>::Error: std::fmt::Debug {
+        <T as TryInto<usize>>::Error: Debug {
             let idx: usize = idx.try_into().unwrap(); 
             self._sinctable_i16(idx)
 
@@ -85,7 +85,7 @@ pub trait SincTable1XPtr {
 
     fn sinctable_1x_ptr<T: TryInto<usize>>(&self, idx: T) -> *const f32  
     where 
-        <T as TryInto<usize>>::Error: std::fmt::Debug {
+        <T as TryInto<usize>>::Error: Debug {
             let idx: usize = idx.try_into().unwrap(); 
             self._sinctable_1x_ptr(idx)
     }
@@ -98,7 +98,7 @@ pub trait SincTablePtr {
 
     fn sinctable_ptr<T: TryInto<usize>>(&self, idx: T) -> *const f32  
     where 
-        <T as TryInto<usize>>::Error: std::fmt::Debug {
+        <T as TryInto<usize>>::Error: Debug {
             let idx: usize = idx.try_into().unwrap(); 
             self._sinctable_ptr(idx)
     }
@@ -111,7 +111,7 @@ pub trait SincTableI16Ptr {
 
     fn sinctable_i16_ptr<T: TryInto<usize>>(&self, idx: T) -> *const i16  
     where 
-        <T as TryInto<usize>>::Error: std::fmt::Debug {
+        <T as TryInto<usize>>::Error: Debug {
             let idx: usize = idx.try_into().unwrap(); 
             self._sinctable_i16_ptr(idx)
     }
@@ -124,7 +124,7 @@ pub trait GetWaveshaperPtr {
 
     fn get_waveshaper_ptr<T: TryInto<isize>>(&self, idx: usize, _offset: T) -> *const f32  
     where 
-        <T as TryInto<isize>>::Error: std::fmt::Debug 
+        <T as TryInto<isize>>::Error: Debug 
     {
             assert!(idx < WaveshapeTables::ntables());
             let offset: isize = idx.try_into().unwrap(); 

@@ -16,7 +16,7 @@ pub unsafe fn encode_mid_side<NQ>(
     nquads: NQ)
 
 where 
-    <NQ as TryInto<usize>>::Error: Debug, 
+    <NQ as TryInto<usize>>::Error: fmt::Debug, 
     NQ: TryInto<usize>
 {
     let nquads: usize = nquads.try_into().unwrap();
@@ -55,7 +55,7 @@ pub unsafe fn decode_mid_side<NQ>(
     nquads: NQ) 
 
 where 
-    <NQ as TryInto<usize>>::Error: Debug, 
+    <NQ as TryInto<usize>>::Error: fmt::Debug, 
     NQ: TryInto<usize>
 {
     let nquads: usize = nquads.try_into().unwrap();

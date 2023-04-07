@@ -4,7 +4,7 @@ pub trait AssocParam {
     type ParamType;
 }
 
-pub trait Param: std::fmt::Debug { 
+pub trait Param: Debug { 
     //___________________________________________
     fn control_type(&self)
         -> ControlType { ControlType::Nil }
@@ -159,7 +159,7 @@ pub trait ClearFlags {
     fn clear_flags(&mut self) ;
 }
 
-pub trait GetSetModulation: std::fmt::Debug {
+pub trait GetSetModulation: Debug {
     fn set_modulation_val(&mut self, val: PData);
     fn get_modulation_val(&self) -> PData;
 
