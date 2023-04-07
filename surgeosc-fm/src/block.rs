@@ -1,3 +1,4 @@
+interesting! here is the do_fm_block function:
 crate::ix!();
 
 impl FMOscillator {
@@ -35,6 +36,7 @@ impl FMOscillator {
         if fm {
             self.fm_depth.process();
         }
+
         self.feedback_depth.process();
     }
 }

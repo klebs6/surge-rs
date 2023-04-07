@@ -20,6 +20,7 @@ impl Vocoder {
         assert!(self.active_bands <= N_VOCODER_BANDS as i32);
 
         for j in 0..(self.active_bands >> 2) {
+
             let ju = j as usize;
 
             let mut modulator: __m128 = self.modulator[ju].calc_bpf(input);

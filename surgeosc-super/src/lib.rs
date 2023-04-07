@@ -11,5 +11,4 @@ x![init];
 x![set];
 x![new];
 x![params];
-x![constants];
 x![sso];

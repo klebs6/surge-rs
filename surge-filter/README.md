@@ -67,7 +67,8 @@ efficient implementations and optimized algorithms
 make it well-suited for use in real-time audio
 processing applications.
 
------------------
+## description
+
 Based on the source code you provided, here is
 a possible crate description for `surge-filter`:
 

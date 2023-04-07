@@ -62,6 +62,7 @@ impl Param for AudioInputOscillatorParam {
 }
 
 impl AudioInputOscillatorParam {
+
     #[inline] pub fn new_runtime() -> AudioInputOscillatorParamArrayRT {
         AudioInputOscillatorParamArrayRT::new_with(|x| match x {
             AudioInputOscillatorParam::Input => AudioInputOscillatorParamRT::new(AudioInputOscillatorParam::Input), 
