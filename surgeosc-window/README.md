@@ -161,7 +161,7 @@ supports multiple control types, modulation, and
 different value types for a flexible and powerful
 audio synthesis experience.
 
-3> /file surge-rs/surgeosc-window/src/window.rs
+3> could you explain the window oscillator struct?
 
 The `WindowOscillator` struct represents the state
 and configuration of a window oscillator in the
@@ -253,7 +253,7 @@ oscillator's pitch. The `set_pitch` function
 updates the active number of sub-oscillators to
 1 when the `is_display` flag is set.
 
-4> /file surge-rs/surgeosc-window/src/suboscs.rs
+4> what about how we process the sub oscillators?
 
 The `WindowOscillator` implementation contains the
 `process_sub_oscs` function, which is responsible
@@ -317,7 +317,7 @@ to generate the audio output. The function is
 designed to handle both mono and stereo output, as
 well as applying frequency modulation if desired.
 
-5> /file surge-rs/surgeosc-window/src/subosc.rs
+5> what about each individual sub oscillator?
 
 The `process_sub_osc` function in the
 `WindowOscillator` implementation processes
@@ -381,7 +381,7 @@ function is called by the `process_sub_oscs`
 function for each active sub-oscillator in the
 window oscillator.
 
-6> /file surge-rs/surgeosc-window/src/scratch.rs
+6> what about how we manage scratch space?
 
 The `create_wetblock` function in the
 `WindowOscillator` implementation is responsible
@@ -430,7 +430,7 @@ intrinsics for efficient data conversion and
 performs some preprocessing on the data before it
 is used in the oscillator processing.
 
-7> /file surge-rs/surgeosc-window/src/process_cfg.rs
+7> which custom data structures do we use?
 
 These are custom data structures used in the
 `WindowOscillator` implementation to represent
@@ -505,7 +505,7 @@ that is either shared among all sub-oscillators or
 specific to each sub-oscillator, allowing for
 efficient and modular processing.
 
-8> /file surge-rs/surgeosc-window/src/process_block.rs
+8> how do we process each oscillator block?
 
 The `process_oscillator_block` function is a part
 of the `WindowOscillator` implementation. This
@@ -565,7 +565,7 @@ a sub-oscillator at a specific block index,
 considering the configuration data provided in
 `subosc_cfg` and `subosc_block_cfg`.
 
-9> /file surge-rs/surgeosc-window/src/process.rs
+9> what about the other processing?
 
 The `process_block` function is an implementation
 of the `OscillatorProcess` trait for the
@@ -605,7 +605,7 @@ into account the provided configuration (pitch,
 drift, stereo, and frequency modulation) and
 updating the oscillator's internal state.
 
-10> /file surge-rs/surgeosc-window/src/param.rs
+10> which parameters do we use?
 
 The `WindowOscillatorParam` is an enumerated type
 representing the parameters of the
@@ -665,7 +665,7 @@ array of `WindowOscillatorParamRT` elements. This
 method initializes a new runtime array with the
 respective runtime parameter objects.
 
-11> /file surge-rs/surgeosc-window/src/init.rs
+11> how do we initialize?
 
 The `WindowOscillator` struct implements the
 `Init` trait, which provides an `init`
@@ -706,7 +706,7 @@ various settings and configurations of the
 oscillator parameters to ensure that the
 oscillator is set up correctly and ready for use.
 
-12> /file surge-rs/surgeosc-window/src/formant.rs
+12> what about formant processing?
 
 The `WindowOscillator` struct has a method
 `get_formant_mul` which takes a `formant`
@@ -744,7 +744,7 @@ the characteristics of the window and wave
 wavetables. This value is used in the oscillator's
 processing to adjust the formant frequencies.
 
-13> /file surge-rs/surgeosc-window/src/clear.rs
+13> how do we reset this module?
 
 The `clear` method in the `WindowOscillator`
 struct is used to reset its internal state. It
@@ -766,7 +766,7 @@ The `clear` method is generally called during the
 initialization process or when resetting the
 oscillator's state is necessary.
 
-14> /file surge-rs/surgeosc-window/src/block_update.rs
+14> how do we update each block?
 
 The `block_update_mono_out` and
 `block_update_stereo_out` methods in the
@@ -818,7 +818,7 @@ their corresponding gains. They are typically
 called during the processing loop when generating
 audio output.
 
-15> /file surge-rs/surgeosc-window/src/access.rs
+15> how do we access the various fields?
 
 The `WindowOscillator` implementation provided
 here includes several methods to access various
