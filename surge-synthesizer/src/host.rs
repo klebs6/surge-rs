@@ -2,6 +2,8 @@ crate::ix!();
 
 const BUFFER_SIZE: usize = 512;
 
+use coreaudio::audio_unit::render_callback::data::NonInterleaved;
+
 #[allow(dead_code)]
 pub struct SampleHost;
 
