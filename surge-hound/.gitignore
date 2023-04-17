@@ -1,0 +1,10 @@
+# Cargo files
+/target
+
+# Editor files
+*.swp
+*.swo
+
+# Example and test output
+/append.wav
+/sine.wav

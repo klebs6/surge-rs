@@ -30,6 +30,23 @@
     })
 }
 
+pub fn assert_m128_eq(a: __m128, b: __m128, epsilon: f32) {
+
+    let a_arr: [f32; 4] = unsafe { std::mem::transmute(a) };
+    let b_arr: [f32; 4] = unsafe { std::mem::transmute(b) };
+
+    for i in 0..4 {
+        assert!(
+            (a_arr[i] - b_arr[i]).abs() <= epsilon,
+            "Vectors not equal at index {}: {:?} != {:?}",
+            i,
+            a_arr,
+            b_arr
+        );
+    }
+}
+
+
 #[cfg(target_arch = "x86_64")] pub use core::arch::x86_64::*;
 pub use ::approx_eq::*;
 pub use atomic_float::{AtomicF64,AtomicF32};

@@ -1,49 +1,55 @@
 crate::ix!();
 
-#[test] fn api_smoke() {
+#[cfg(test)]
+mod tests {
 
-    let mut r: f64 = 0.5;
-    let mut p: f64 = 0.0;
+    use super::*;
 
-    let mut quadr = QuadrOsc::new();
-    println!("created quadr: {:?}",quadr);
+    #[test] fn api_smoke() {
 
-    println!("setting rate {}",r); quadr.set_rate(r);
-    println!("quadr: {:?}",quadr);
+        let mut r: f64 = 0.5;
+        let mut p: f64 = 0.0;
 
-    println!("setting phase {}",p); quadr.set_phase(p);
-    println!("quadr: {:?}",quadr);
+        let mut quadr = QuadrOsc::new();
+        println!("created quadr: {:?}",quadr);
 
-    for _i in 0..4 {
-        quadr.process();
+        println!("setting rate {}",r); quadr.set_rate(r);
         println!("quadr: {:?}",quadr);
-    }
 
-    r = core::f64::consts::PI;
-    println!("setting rate {}",r); quadr.set_rate(r);
-    println!("quadr: {:?}",quadr);
-
-    for _i in 0..4 {
-        quadr.process();
+        println!("setting phase {}",p); quadr.set_phase(p);
         println!("quadr: {:?}",quadr);
-    }
 
-    r = core::f64::consts::PI + 0.1;
-    println!("setting rate {}",r); quadr.set_rate(r);
-    println!("quadr: {:?}",quadr);
+        for _i in 0..4 {
+            quadr.process();
+            println!("quadr: {:?}",quadr);
+        }
 
-    for _i in 0..4 {
-        quadr.process();
+        r = core::f64::consts::PI;
+        println!("setting rate {}",r); quadr.set_rate(r);
         println!("quadr: {:?}",quadr);
-    }
 
-    p = 0.5;
-    println!("setting phase {}",p); quadr.set_phase(p);
-    println!("quadr: {:?}",quadr);
+        for _i in 0..4 {
+            quadr.process();
+            println!("quadr: {:?}",quadr);
+        }
 
-    for _i in 0..4 {
-        quadr.process();
+        r = core::f64::consts::PI + 0.1;
+        println!("setting rate {}",r); quadr.set_rate(r);
         println!("quadr: {:?}",quadr);
-    }
 
+        for _i in 0..4 {
+            quadr.process();
+            println!("quadr: {:?}",quadr);
+        }
+
+        p = 0.5;
+        println!("setting phase {}",p); quadr.set_phase(p);
+        println!("quadr: {:?}",quadr);
+
+        for _i in 0..4 {
+            quadr.process();
+            println!("quadr: {:?}",quadr);
+        }
+
+    }
 }

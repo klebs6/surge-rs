@@ -3,6 +3,8 @@ crate::ix!();
 #[cfg(test)]
 mod coeffmaker_tests {
 
+    use super::*;
+
     /// Test `make_coeffs()` with a dummy coefficient generator that always returns a fixed set of
     /// coefficients. 
     ///
@@ -96,7 +98,7 @@ mod coeffmaker_tests {
     /// has been set to `true`.
     ///
     #[test]
-    fn test_reset() {
+    fn test_reset2() {
         let srunit = SampleRateHandle::default();
         let tuner  = TunerHandle::new(&srunit);
         let tables = TablesHandle::new(&srunit);

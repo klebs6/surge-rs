@@ -66,7 +66,7 @@ impl FilterCoefficientMaker {
     /// updates the `dcoeff` and `tcoeff` arrays
     /// based on the values in `coeffs`.
     ///
-    fn from_direct(&mut self, coeffs: [f32; N_COEFFMAKER_COEFFS]) 
+    pub fn from_direct(&mut self, coeffs: [f32; N_COEFFMAKER_COEFFS]) 
     {
         // checks if this is the first run of the
         // filter coefficient maker. 

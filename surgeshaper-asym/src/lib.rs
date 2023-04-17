@@ -10,19 +10,24 @@ x![sse1];
 #[cfg(target_arch = "x86_64")] 
 x![sse2];
 
-#[test] fn smoke() {
+#[cfg(test)]
+mod tests {
 
-    ix!();
-    use surge_math::simd_m128;
+    use super::*;
 
-    let srunit = SampleRateHandle::default();
-    let tables = TablesHandle::new(&srunit);
+    #[test] fn smoke() {
 
-    let shaper = AsymShaper::new(&tables);
+        use surge_math::simd_m128;
 
-    let result = shaper.shape(simd_m128::one(), simd_m128::half());
-    println!("result: {:?}", result);
+        let srunit = SampleRateHandle::default();
+        let tables = TablesHandle::new(&srunit);
 
-    let result = shaper.shape(result, simd_m128::half());
-    println!("result: {:?}", result);
+        let shaper = AsymShaper::new(&tables);
+
+        let result = shaper.shape(simd_m128::one(), simd_m128::half());
+        println!("result: {:?}", result);
+
+        let result = shaper.shape(result, simd_m128::half());
+        println!("result: {:?}", result);
+    }
 }

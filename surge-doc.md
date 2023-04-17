@@ -2,6 +2,7 @@
 documentclass: extarticle
 fontsize: 14pt
 ---
+-- conversation recorded by t.klebanoff with chatgpt, march 2023
 # surge-adsr
 
 The `AdsrEnvelope` is a symbol in the context of

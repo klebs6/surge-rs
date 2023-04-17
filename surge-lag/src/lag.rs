@@ -29,15 +29,15 @@ pub struct Lag<T: Num + From<f32> + Clone + AddAssign > {
     /// A boolean that tracks whether the `Lag`
     /// struct is being used for the first time.
     ///
-    first_run:    bool,
+    pub(crate) first_run:    bool,
 
     /// The low-pass filter coefficient.
-    lp:           T,
+    pub(crate) lp:           T,
 
     /// The inverse of the low-pass filter
     /// coefficient.
     ///
-    lpinv:        T,
+    pub(crate) lpinv:        T,
 }
 
 

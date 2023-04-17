@@ -20,7 +20,7 @@ mod tests {
         x.instantize();
         x.new_value(5.0);
 
-        let val = x.get_target_value();
+        let _val = x.get_target_value();
 
         x.process();
     }

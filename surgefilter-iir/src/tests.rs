@@ -1,14 +1,19 @@
 crate::ix!();
 
-#[test] fn construct_iir_filter() {
+#[cfg(test)]
+mod tests {
 
-    let srunit = SampleRateHandle::default();
-    let tuner  = TunerHandle::new(&srunit);
-    let tables = TablesHandle::new(&srunit);
+    use super::*;
 
-    let mut filter = crate::IIRFilter::new_default(&tables,&tuner);
-    filter.iirtype =  FilterTypeIIR::HighPass;
+    #[test] fn construct_iir_filter() {
 
-    println!("filter: {:?}",filter);
+        let srunit = SampleRateHandle::default();
+        let tuner  = TunerHandle::new(&srunit);
+        let tables = TablesHandle::new(&srunit);
+
+        let mut filter = crate::IIRFilter::new_default(&tables,&tuner);
+        filter.iirtype =  FilterTypeIIR::HighPass;
+
+        println!("filter: {:?}",filter);
+    }
 }
-

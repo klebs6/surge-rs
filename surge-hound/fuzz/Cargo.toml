@@ -1,0 +1,32 @@
+[package]
+name = "hound-fuzz"
+version = "0.0.1"
+publish = false
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+honggfuzz = "0.5"
+
+[dependencies.hound]
+path = ".."
+
+[dependencies.libfuzzer-sys]
+git = "https://github.com/rust-fuzz/libfuzzer-sys.git"
+
+# Prevent this from interfering with workspaces
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "decode_full"
+path = "fuzz_targets/decode_full.rs"
+
+[[bin]]
+name = "decode_full_honggfuzz"
+path = "fuzz_targets/decode_full_honggfuzz.rs"
+
+[[bin]]
+name = "append"
+path = "fuzz_targets/append.rs"
