@@ -1,10 +1,29 @@
 crate::ix!();
 
+/// Accesses the given pointer as a mutable f32 pointer.
+///
+/// # Arguments
+///
+/// * `x` - A pointer to be cast to a mutable f32 pointer.
 fn access_f32<T>(x: *mut T) -> *mut f32 {
     x as *mut f32
 }
 
-// copy block (requires aligned data)
+/// Copies a block of memory between two aligned f32 arrays.
+///
+/// # Safety
+///
+/// Both `src` and `dst` must be valid and point to aligned contiguous memory regions.
+///
+/// # Arguments
+///
+/// * `src` - A pointer to the source f32 array.
+/// * `dst` - A pointer to the destination f32 array.
+/// * `nquads` - The number of quads (groups of four f32 values) to copy.
+///
+/// # Panics
+///
+/// Panics if `nquads` cannot be converted into a usize.
 pub fn copy_block<NQ>(
     src:    *mut f32, 
     dst:    *mut f32, 
@@ -38,7 +57,21 @@ pub fn copy_block<NQ>(
    }
 }
 
-// copy block (unaligned source)
+/// Copies a block of memory between two f32 arrays with an unaligned source.
+///
+/// # Safety
+///
+/// Both `src` and `dst` must be valid and point to contiguous memory regions.
+///
+/// # Arguments
+///
+/// * `src` - A pointer to the unaligned source f32 array.
+/// * `dst` - A pointer to the destination f32 array.
+/// * `nquads` - The number of quads (groups of four f32 values) to copy.
+///
+/// # Panics
+///
+/// Panics if `nquads` cannot be converted into a usize.
 pub fn copy_block_unaligned_source<NQ>(
     src:    *mut f32, 
     dst:    *mut f32, 
@@ -72,7 +105,21 @@ pub fn copy_block_unaligned_source<NQ>(
         }
 }
 
-// copy block (unaligned destination)
+/// Copies a block of memory between two f32 arrays with an unaligned destination.
+///
+/// # Safety
+///
+/// Both `src` and `dst` must be valid and point to contiguous memory regions.
+///
+/// # Arguments
+///
+/// * `src` - A pointer to the source f32 array.
+/// * `dst` - A pointer to the unaligned destination f32 array.
+/// * `nquads` - The number of quads (groups of four f32 values) to copy.
+///
+/// # Panics
+///
+/// Panics if `nquads` cannot be converted into a usize.
 pub fn copy_block_unaligned_destination<NQ>(
     src:    *mut f32, 
     dst:    *mut f32, 
@@ -106,7 +153,21 @@ pub fn copy_block_unaligned_destination<NQ>(
     }
 }
 
-// copy block (unaligned source + destination)
+/// Copies a block of memory between two unaligned f32 arrays.
+///
+/// # Safety
+///
+/// Both `src` and `dst` must be valid and point to contiguous memory regions.
+///
+/// # Arguments
+///
+/// * `src` - A pointer to the unaligned source f32 array.
+/// * `dst` - A pointer to the unaligned destination f32 array.
+/// * `nquads` - The number of quads (groups of four f32 values) to copy.
+///
+/// # Panics
+///
+/// Panics if `nquads` cannot be converted into a usize.
 pub fn copy_block_unaligned_src_and_dst<NQ>(
     src:    *mut f32, 
     dst:    *mut f32, 

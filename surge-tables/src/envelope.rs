@@ -1,14 +1,3 @@
-/*
-i'll show these tables to you, one by one. i would like to know the following:
-
-1) what is this table used for?
-2) which calculations are involved in the precomputation?
-3) how much performance are we saving?
-4) how can we improve this table?
-
-let's answer these four questions for each table I show you.  here are the EnvelopeTables:
-*/
-
 crate::ix!();
 
 pub const ENVELOPE_TABLE_SIZE_D:  f64 = 512.0;

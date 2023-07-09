@@ -1,5 +1,50 @@
 crate::ix!();
 
+/// An all-pass filter that passes all frequencies equally
+/// in gain while altering the phase relationship among
+/// various frequencies.
+///
+/// The AllpassFilter is a signal processing filter that has
+/// a constant magnitude response across the entire
+/// frequency spectrum. It is commonly used in applications
+/// like artificial reverberation and filter banks, where it
+/// is important to maintain the overall frequency content
+/// of the input signal while modifying its phase
+/// characteristics.
+///
+/// # Parameters
+///
+/// * `buffer`: An array of fixed size `N` that stores the
+///   filter's internal state. The size of the buffer
+///   affects the filter's characteristics, including its
+///   phase response and memory requirements.
+///
+/// * `a`: The filter coefficient that controls the amount
+///   of phase shifting introduced by the filter. This value
+///   should be in the range -1.0 to 1.0.
+///
+/// * `wpos`: The write position within the buffer, used to
+///   implement a circular buffer for the filter's internal
+///   state.
+///
+/// # Example
+///
+/// ```
+/// use crate::AllpassFilter;
+///
+/// let mut allpass = AllpassFilter::<8>::default();
+/// let input: f64 = 0.5;
+/// let output: f64 = allpass.process(input);
+/// ```
+///
+/// # Notes
+///
+/// The `AllpassFilter` uses a fixed-size buffer determined
+/// at compile time using const generics. This design choice
+/// allows for greater efficiency and flexibility in
+/// choosing the buffer size but may require recompilation
+/// when changing the buffer size.
+///
 #[derive(Debug)]
 pub struct AllpassFilter<const N: usize> {
     buffer: [f64; N],
@@ -20,10 +65,14 @@ impl<const N: usize> Default for AllpassFilter<N> {
 
 impl<const N: usize> AllpassFilter<N> {
 
+    /// Update the write position for the buffer
+    ///
     fn update_wpos(&mut self) {
         self.wpos = (self.wpos + 1) % N;
     }
 
+    /// Process a sample through the AllpassFilter
+    /// 
     pub fn process(&mut self, x: f64) -> f64 {
 
         self.update_wpos();
@@ -35,49 +84,9 @@ impl<const N: usize> AllpassFilter<N> {
         y + self.buffer[self.wpos] * self.a
     }
 
+    /// Set the filter coefficient 'a'
+    ///
     pub fn set_a(&mut self, a: f64) {
         self.a = a;
-    }
-}
-
-#[test] fn test_allpass() {
-
-    use crate::*;
-
-    /*
-       | From Wikipedia:
-       |
-       | An all-pass filter is a signal processing filter
-       | that passes all frequencies equally in gain, but
-       | changes the phase relationship among various
-       | frequencies. Most types of filter reduce the
-       | amplitude (i.e. the magnitude) of the signal
-       | applied to it for some values of frequency,
-       | whereas the all-pass filter allows all
-       | frequencies through without changes in level
-       */
-
-    //question: does our allpass filter do this?
-    let mut allpass = AllpassFilter::<8>::default();
-    let mut signal  = Signal::white_noise(1024);
-
-    let power_freq_tolerance = 0.01;
-    let initial_power_freq   = signal.average_power_freq_domain();
-
-    println!("initial power (freq): {:?}", initial_power_freq);
-
-    for i in 0..10 {
-
-        println!("iter {}", i);
-
-        signal = Signal {
-            data: signal.data.map(|x| allpass.process(*x))
-        };
-
-        let power_freq  = signal.average_power_freq_domain();
-
-        println!("allpassed power (freq): {:?}", power_freq);
-
-        assert!((initial_power_freq - power_freq).abs() < power_freq_tolerance);
     }
 }

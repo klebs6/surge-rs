@@ -1,13 +1,23 @@
 crate::ix!();
 
+/// Generates a random float in the range [0.0, 1.0).
+///
 pub fn rand01() -> f32 {
     thread_rng().gen_range(0.0..1.0)
 }
 
+/// Generates a random float in the range [-1.0, 1.0).
+///
 pub fn rand11() -> f32 {
     thread_rng().gen_range(-1.0..1.0)
 }
 
+/// Generates a correlated noise value.
+///
+/// # Arguments
+///
+/// * `lastval` - The last noise value.
+/// * `correlation` - The correlation factor.
 pub fn correlated_noise( lastval: f64, correlation: f64) 
     -> f64 
 {
@@ -21,6 +31,12 @@ pub fn correlated_noise( lastval: f64, correlation: f64)
     randt
 }
 
+/// Generates a correlated noise value (mk2 version).
+///
+/// # Arguments
+///
+/// * `lastval` - The last noise value.
+/// * `correlation` - The correlation factor.
 pub fn correlated_noise_mk2(mut lastval: f32, correlation: f32) -> f32 
 {
     let wf:     f32 = correlation * 0.9;
@@ -33,6 +49,11 @@ pub fn correlated_noise_mk2(mut lastval: f32, correlation: f32) -> f32
     lastval * m
 }
 
+/// Generates a drift noise value.
+///
+/// # Arguments
+///
+/// * `lastval` - The last noise value.
 pub fn drift_noise(mut lastval: f32) -> f32 
 {
     let filter: f32 = 0.00001;
@@ -44,6 +65,13 @@ pub fn drift_noise(mut lastval: f32) -> f32
     lastval * m
 }
 
+/// Generates a correlated noise value (o2 version).
+///
+/// # Arguments
+///
+/// * `lastval` - The last noise value.
+/// * `lastval2` - The second last noise value.
+/// * `correlation` - The correlation factor.
 pub fn correlated_noise_o2(lastval: f32, mut lastval2: f32, correlation: f32) -> f32 
 {
     let wf:     f32 = correlation * 0.9;
@@ -56,6 +84,13 @@ pub fn correlated_noise_o2(lastval: f32, mut lastval2: f32, correlation: f32) ->
     randt
 }
 
+/// Generates a correlated noise value (o2mk2 version).
+///
+/// # Arguments
+///
+/// * `lastval` - The last noise value.
+/// * `lastval2` - The second last noise value.
+/// * `correlation` - The correlation factor.
 pub fn correlated_noise_o2mk2(mut lastval: f32, mut lastval2: f32, correlation: f32) -> f32 
 {
     let mut wf:    f32 = correlation;
@@ -88,4 +123,3 @@ pub fn correlated_noise_o2mk2(mut lastval: f32, mut lastval2: f32, correlation: 
     lastval = lastval2 * (1.0 - wfabs) - wf * lastval;
     lastval * m
 }
-

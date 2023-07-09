@@ -46,14 +46,16 @@ pub fn assert_m128_eq(a: __m128, b: __m128, epsilon: f32) {
     }
 }
 
+#[cfg(target_arch = "x86_64")] 
+pub use core::arch::x86_64::*;
 
-#[cfg(target_arch = "x86_64")] pub use core::arch::x86_64::*;
+pub use core::arch::x86_64::*;
+
 pub use ::approx_eq::*;
 pub use atomic_float::{AtomicF64,AtomicF32};
 pub use auto_impl::*;
 pub use bitflags::*;
 pub use byteorder::{ByteOrder,BigEndian,LittleEndian};
-pub use core::arch::x86_64::*;
 pub use core::convert::*;
 pub use core::ffi::*;
 pub use core::ops::*;

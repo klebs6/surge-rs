@@ -1,6 +1,6 @@
 .PHONY: default test vendor build all clippy
 
-default: test_all
+default: build
 
 #--release
 #--color always 
@@ -14,7 +14,7 @@ RUSTFLAGS := ""
 #ACTIVE_PACKAGE := surgefx-distortion
 
 #ACTIVE_PACKAGE := surge-imports
-ACTIVE_PACKAGE := surge-lfo
+#ACTIVE_PACKAGE := surge-lfo
 #ACTIVE_PACKAGE := surge-biquad
 #ACTIVE_PACKAGE := surge-blitter
 #ACTIVE_PACKAGE := surge-coeffmaker
@@ -69,7 +69,7 @@ ACTIVE_PACKAGE := surge-lfo
 #ACTIVE_PACKAGE := surgefx-rotary
 #ACTIVE_PACKAGE := surgefx-vocoder
 #ACTIVE_PACKAGE := surgeosc-audioin
-#ACTIVE_PACKAGE := surgeosc-fm
+ACTIVE_PACKAGE := surgeosc-fm
 #ACTIVE_PACKAGE := surgeosc-fm2
 #ACTIVE_PACKAGE := surgeosc-sine
 #ACTIVE_PACKAGE := surgeosc-snh

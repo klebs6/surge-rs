@@ -10,7 +10,6 @@
 
 x!{align}
 x!{allpass}
-x!{bench}
 x!{value_cast}
 x!{clamp}
 x!{clear}

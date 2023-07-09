@@ -15,6 +15,7 @@ pub struct SampleRateUnit {
 }
 
 impl SampleRateUnit {
+
     pub fn new_with_samplerate(sr: f64) -> Self {
 
         let sr32: f32 = sr as f32;

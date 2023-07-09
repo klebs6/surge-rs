@@ -1,5 +1,13 @@
 crate::ix!();
 
+/// Returns the sign of an i32 integer as -1 or 1.
+///
+/// On x86_64 target architecture, this function uses
+/// a simple match expression.
+///
+/// On other architectures, the function uses inline
+/// assembly.
+///
 #[cfg(target_arch = "x86_64")]
 pub fn sign(x: i32) -> i32 
 {
@@ -9,18 +17,29 @@ pub fn sign(x: i32) -> i32
     }
 }
 
+/// Returns the sign of an i32 integer as -1 or 1 using
+/// inline assembly.
+///
+/// This function uses inline assembly to determine the sign
+/// of the input value x.
+///
+/// Note that inline assembly is only supported on the
+/// nightly Rust.
+///
 #[cfg(not(target_arch = "x86_64"))]
-pub fn sign(x: i32) -> i32 
-{
-    todo!("extract result");
+pub fn sign(x: i32) -> i32 {
+    let result: i32;
     unsafe {
-        asm![
+        asm!(
             "mov eax, 1",
             "mov edx, -1",
-            "cmp x, 0",
-            "cmovle eax, edx",
-        ]
+            "test {input}, {input}",
+            "cmovs eax, edx",
+            input = in(reg) x,
+            out("eax") result,
+        );
     }
+    result
 }
 
 unsafe fn access_mut(ptr: *mut f32, offset: usize) -> *mut __m128 {
@@ -31,7 +50,20 @@ unsafe fn access(ptr: *const f32, offset: usize) -> *const __m128 {
     (ptr as *const __m128).add(offset) 
 }
 
-//______________________________________________________
+///______________________________________________________
+/// Performs an element-wise multiplication of two memory
+/// blocks, storing the result in the destination memory
+/// block.
+///
+/// The src1, src2, and dst pointers are expected to be
+/// aligned to a multiple of 16 bytes.
+///
+/// This function processes the input data in blocks of four
+/// 32-bit floating-point numbers.
+///
+/// The number of blocks is determined by the nquads
+/// parameter.
+///
 pub fn mul_block<NQ>(
     src1: *mut f32, 
     src2: *mut f32, 
@@ -70,10 +102,18 @@ pub fn rcp(mut x: f32) -> f32
     x
 }
 
-/**
-  | dst += src
-  |
-  */
+/// Adds the contents of the source memory block to the
+/// destination memory block.
+///
+/// The src and dst pointers are expected to be aligned to
+/// a multiple of 16 bytes.
+///
+/// This function processes the input data in blocks of four
+/// 32-bit floating-point numbers.
+///
+/// The number of blocks is determined by the nquads
+/// parameter.
+///
 pub fn accumulate_block<NQ>(
     src:   *mut f32, 
     dst:   *mut f32, 
@@ -104,6 +144,18 @@ pub fn accumulate_block<NQ>(
     }
 }
 
+/// Performs an element-wise addition of two memory blocks,
+/// storing the result in the destination memory block.
+///
+/// The src1, src2, and dst pointers are expected to be
+/// aligned to a multiple of 16 bytes.
+///
+/// This function processes the input data in blocks of four
+/// 32-bit floating-point numbers.
+///
+/// The number of blocks is determined by the nquads
+/// parameter.
+///
 pub fn add_block<NQ>(
     src1: *const f32, 
     src2: *const f32, 
@@ -138,7 +190,20 @@ where <NQ as TryInto<u32>>::Error: fmt::Debug,
     }
 }
 
-//______________________________________________________
+///______________________________________________________
+/// Performs an element-wise subtraction of two memory
+/// blocks, storing the result in the destination memory
+/// block.
+///
+/// The src1, src2, and dst pointers are expected to be
+/// aligned to a multiple of 16 bytes.
+///
+/// This function processes the input data in blocks of four
+/// 32-bit floating-point numbers.
+///
+/// The number of blocks is determined by the nquads
+/// parameter.
+///
 pub fn subtract_block<NQ>(
     src1: *const f32, 
     src2: *const f32, 
@@ -181,6 +246,18 @@ where
     unsafe{ _mm_and_ps(x, m128_mask_absval![]) }
 }
 
+/// Returns the maximum absolute value found in a memory
+/// block.
+///
+/// The d pointer is expected to be aligned to a multiple of
+/// 16 bytes.
+///
+/// This function processes the input data in blocks of four
+/// 32-bit floating-point numbers.
+///
+/// The number of blocks is determined by the nquads
+/// parameter.
+///
 #[inline] pub fn get_absmax<NQ>(
     d:     *mut f32, 
     nquads: NQ) -> f32
@@ -217,6 +294,18 @@ where <NQ as TryInto<u32>>::Error: fmt::Debug,
     }
 }
 
+/// Returns the maximum absolute value found in two memory
+/// blocks.
+///
+/// The d1 and d2 pointers are expected to be aligned to
+/// a multiple of 16 bytes.
+///
+/// This function processes the input data in blocks of four
+/// 32-bit floating-point numbers.
+///
+/// The number of blocks is determined by the nquads
+/// parameter.
+///
 #[inline] pub fn get_absmax_2<NQ>(
     d1:    *mut f32, 
     d2:    *mut f32, 
@@ -266,18 +355,30 @@ where
     }
 }
 
+/// Performs an element-wise multiply-add operation.
+///
+/// Multiplies a and b, then adds the result to c.
+///
 #[inline] pub fn v_madd(a: __m128, b: __m128, c: __m128) -> __m128 {
     unsafe { 
         _mm_add_ps( _mm_mul_ps(a, b), c) 
     }
 }
 
+/// Performs an element-wise negative multiply-subtract
+/// operation.
+///
+/// Multiplies a and b, then subtracts the result from c.
+///
 #[inline] pub fn v_nmsub(a: __m128, b: __m128, c: __m128) -> __m128 {
     unsafe { 
         _mm_sub_ps( c, _mm_mul_ps(a, b)) 
     }
 }
 
+/// Sums the elements of a __m128 vector and returns the
+/// result as a f32 value.
+///
 #[inline] pub fn v_sum(x: __m128) -> f32 
 {
     unsafe {
@@ -303,7 +404,10 @@ where
     }
 }
 
-/// 64-bit unsigned multiply with right shift by 16 bits
+/// Multiplies two 32-bit unsigned integers, shifts the
+/// 64-bit result right by 16 bits, and returns the result
+/// as a 32-bit unsigned integer.
+///
 #[inline] pub fn big_mul_r16(a: u32, b: u32) -> u32 
 {
     let c: u64 = (a as u64) * (b as u64);
