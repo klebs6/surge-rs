@@ -1,7 +1,5 @@
 use surge_math::*;
 
-use std::mem::MaybeUninit;
-
 #[test]
 #[cfg(target_feature = "sse")]
 fn test_clear_block() {

@@ -1,4 +1,4 @@
-crate::ix!();
+use surge_math::*;
 
 /// Test function to verify the alignment of the generated
 /// structs

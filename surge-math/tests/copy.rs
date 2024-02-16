@@ -1,7 +1,5 @@
+use surge_imports::*;
 use surge_math::*;
-
-use rand::Rng;
-use std::mem;
 
 fn generate_aligned_f32_vec(len: usize) -> Vec<f32> {
     let mut rng = rand::thread_rng();

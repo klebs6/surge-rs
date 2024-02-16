@@ -1,4 +1,4 @@
-crate::ix!();
+use surge_math::*;
 
 #[test] fn amp_linear() {
     let lin = 0.5;

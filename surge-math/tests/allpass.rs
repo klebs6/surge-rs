@@ -1,4 +1,4 @@
-crate::ix!();
+use surge_math::*;
 
 /// From Wikipedia:
 ///

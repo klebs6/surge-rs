@@ -1,4 +1,6 @@
 #![allow(soft_unstable)]
+#![allow(internal_features)]
+#![allow(unused_imports)]
 #![feature(test)]
 #![feature(core_intrinsics)]
 #![feature(platform_intrinsics)]

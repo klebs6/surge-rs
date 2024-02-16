@@ -1,3 +1,5 @@
+#![allow(unused_imports)]
+
 #[macro_export] macro_rules! x { 
     ($x:ident) => { 
         mod $x; 
@@ -51,7 +53,10 @@ pub use core::arch::x86_64::*;
 
 pub use core::arch::x86_64::*;
 
+pub use std::mem::MaybeUninit;
+pub use std::mem;
 pub use ::approx_eq::*;
+pub use approx;
 pub use atomic_float::{AtomicF64,AtomicF32};
 pub use auto_impl::*;
 pub use bitflags::*;
@@ -84,7 +89,7 @@ pub use num_traits::pow::*;
 pub use num_traits;
 pub use paste::*;
 pub use proc_macro2::*;
-pub use rand::{distributions,thread_rng,Rng};
+pub use rand::{self,distributions,thread_rng,Rng};
 //pub use coreaudio::audio_unit::render_callback::*;
 //pub use half::*;
 //pub use mopa::*;

@@ -41,7 +41,7 @@ libxml        = "0.3.0"
 lockfree      = "0.5.1"
 mopa          = "0.2.2"
 uuid          = "0.8.2"
-proc-macro2   = "1.0.40"
+proc-macro2   = "*"
 ndarray       = "0.15.3"
 num           = "0.4.0"
 num-complex   = "0.4.0"
@@ -55,8 +55,8 @@ vst           = "0.2.1"
 xml-rs        = "0.8.4"
 
 [dependencies.simba]
-version = "0.6.0"
-features = ["packed_simd"]
+version = "*"
+#features = ["packed_simd"]
 [dependencies.serde]
 features = [ "derive" ]
 version = "1.0"

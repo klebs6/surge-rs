@@ -1,3 +1,4 @@
+use surge_imports::*;
 use surge_math::*;
 
 #[test] fn test_rand01() {
@@ -111,7 +112,7 @@ fn test_correlated_noise_noisey() {
 
 #[test]
 fn test_correlated_noise_mk2_noisey() {
-    let mut lastval = 0.0;
+    let mut lastval: f64 = 0.0;
     let correlation = 0.5;
     let num_samples = 1000;
     test_noisey(|| {
@@ -123,7 +124,7 @@ fn test_correlated_noise_mk2_noisey() {
 
 #[test]
 fn test_drift_noise_noisey() {
-    let mut lastval = 0.0;
+    let mut lastval: f64 = 0.0;
     let num_samples = 1000;
     test_noisey(|| {
         let noise = drift_noise(lastval) as f64;
@@ -134,7 +135,7 @@ fn test_drift_noise_noisey() {
 
 #[test]
 fn test_correlated_noise_o2_noisey() {
-    let mut lastval = 0.0;
+    let mut lastval: f64 = 0.0;
     let mut lastval2 = 0.0;
     let correlation = 0.5;
     let num_samples = 1000;
@@ -148,7 +149,7 @@ fn test_correlated_noise_o2_noisey() {
 
 #[test]
 fn test_correlated_noise_o2mk2_noisey() {
-    let mut lastval = 0.0;
+    let mut lastval: f64 = 0.0;
     let mut lastval2 = 0.0;
     let correlation = 0.5;
     let num_samples = 1000;

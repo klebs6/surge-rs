@@ -1,4 +1,4 @@
-crate::ix!();
+use surge_math::*;
 
 #[test]
 fn test_sign() {
@@ -58,15 +58,17 @@ fn test_subtract_block() {
 
 #[test]
 fn test_get_absmax() {
-    let src = [-1.0, 2.0, -3.0, 4.0, -5.0, 6.0, -7.0, 8.0];
 
-    assert_eq!(get_absmax(src.as_ptr(), 2), 8.0);
+    let mut src = [-1.0, 2.0, -3.0, 4.0, -5.0, 6.0, -7.0, 8.0];
+
+    assert_eq!(get_absmax(src.as_mut_ptr(), 2), 8.0);
 }
 
 #[test]
 fn test_get_absmax_2() {
-    let src1 = [-1.0, 2.0, -3.0, 4.0, -5.0, 6.0, -7.0, 8.0];
-    let src2 = [1.0, -2.0, 3.0, -4.0, 5.0, -6.0, 7.0, -9.0];
 
-    assert_eq!(get_absmax_2(src1.as_ptr(), src2.as_ptr(), 2), 9.0);
+    let mut src1 = [-1.0, 2.0, -3.0, 4.0, -5.0, 6.0, -7.0, 8.0];
+    let mut src2 = [1.0, -2.0, 3.0, -4.0, 5.0, -6.0, 7.0, -9.0];
+
+    assert_eq!(get_absmax_2(src1.as_mut_ptr(), src2.as_mut_ptr(), 2), 9.0);
 }
