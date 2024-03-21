@@ -1,6 +1,6 @@
 .PHONY: default test vendor build all clippy
 
-default: test
+default: build
 
 #--release
 #--color always 

@@ -3,8 +3,7 @@
 #![allow(unused_imports)]
 #![feature(test)]
 #![feature(core_intrinsics)]
-#![feature(platform_intrinsics)]
-#![feature(stdarch)]
+#![feature(stdarch_x86_mm_shuffle)]
 #![feature(trait_alias)]
 
 #[macro_use] mod imports; use imports::*;

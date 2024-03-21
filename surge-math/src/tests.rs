@@ -37,8 +37,10 @@ pub mod test {
     }
 
     #[test] fn test_lerp() {
+
         let result = lerp(0.25, 5.0, 7.0);
-        approx_eq::assert_approx_eq!(result, 5.5);
+
+        assert_approx_eq!(result, 5.5);
     }
 
     #[test] fn test_within_range() {

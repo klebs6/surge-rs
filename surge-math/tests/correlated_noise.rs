@@ -62,14 +62,19 @@ fn stddev<I>(iter: I, mean: f64) -> f64
 where
     I: IntoIterator<Item = f64>,
 {
-    let iter = iter.into_iter();
-    let sum_of_squares = iter.fold(0.0, |acc, val| acc + (val - mean).powi(2));
-    (sum_of_squares / iter.len() as f64).sqrt()
+    let (sum_of_squares, count) = iter.into_iter().fold((0.0, 0), |(acc, cnt), val| {
+        (acc + (val - mean).powi(2), cnt + 1)
+    });
+    (sum_of_squares / count as f64).sqrt()
 }
 
-fn test_noisey<F>(mut noise_fn: F, num_samples: usize, stddev_threshold: f64)
+fn test_noisey<F: Float, NoiseFn>(
+    mut noise_fn:     NoiseFn, 
+    num_samples:      usize, 
+    stddev_threshold: f64
+)
 where
-    F: FnMut() -> f64,
+    NoiseFn: FnMut() -> F,
 {
     let mut noise_values = Vec::new();
 
@@ -78,11 +83,12 @@ where
         noise_values.push(noise);
     }
 
-    let mean = mean(noise_values.iter().cloned());
-    let stddev = stddev(noise_values.iter().cloned(), mean);
+    // Assuming `mean` and `stddev` are modified to work with f64 directly
+    let mean = mean(noise_values.iter().cloned().filter_map(|f| f.to_f64()));
+    let stddev = stddev(noise_values.iter().cloned().filter_map(|f| f.to_f64()), mean);
     assert!(
         stddev > stddev_threshold,
-        "Standard deviation too low: {}",
+        "Standard deviation too low: {:.2}",
         stddev
     );
 }
@@ -112,11 +118,11 @@ fn test_correlated_noise_noisey() {
 
 #[test]
 fn test_correlated_noise_mk2_noisey() {
-    let mut lastval: f64 = 0.0;
+    let mut lastval: f32 = 0.0;
     let correlation = 0.5;
     let num_samples = 1000;
     test_noisey(|| {
-        let noise = correlated_noise_mk2(lastval, correlation) as f64;
+        let noise = correlated_noise_mk2(lastval, correlation) as f32;
         lastval = noise;
         noise
     }, num_samples, 0.1);
@@ -124,10 +130,10 @@ fn test_correlated_noise_mk2_noisey() {
 
 #[test]
 fn test_drift_noise_noisey() {
-    let mut lastval: f64 = 0.0;
+    let mut lastval: f32 = 0.0;
     let num_samples = 1000;
     test_noisey(|| {
-        let noise = drift_noise(lastval) as f64;
+        let noise = drift_noise(lastval) as f32;
         lastval = noise;
         noise
     }, num_samples, 0.1);
@@ -135,12 +141,12 @@ fn test_drift_noise_noisey() {
 
 #[test]
 fn test_correlated_noise_o2_noisey() {
-    let mut lastval: f64 = 0.0;
+    let mut lastval: f32 = 0.0;
     let mut lastval2 = 0.0;
     let correlation = 0.5;
     let num_samples = 1000;
     test_noisey(|| {
-        let noise = correlated_noise_o2(lastval, lastval2, correlation) as f64;
+        let noise = correlated_noise_o2(lastval, lastval2, correlation) as f32;
         lastval2 = lastval;
         lastval = noise;
         noise
@@ -149,12 +155,12 @@ fn test_correlated_noise_o2_noisey() {
 
 #[test]
 fn test_correlated_noise_o2mk2_noisey() {
-    let mut lastval: f64 = 0.0;
+    let mut lastval: f32 = 0.0;
     let mut lastval2 = 0.0;
     let correlation = 0.5;
     let num_samples = 1000;
     test_noisey(|| {
-        let noise = correlated_noise_o2mk2(lastval, lastval2, correlation) as f64;
+        let noise = correlated_noise_o2mk2(lastval, lastval2, correlation) as f32;
         lastval2 = lastval;
         lastval = noise;
         noise

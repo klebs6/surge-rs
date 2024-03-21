@@ -5,10 +5,12 @@ crate::ix!();
 //
 // TODO: Verify if the functions are correctly imported
 //
+/*
 extern "platform-intrinsic" {
     pub fn simd_insert<T, E>(x: T, idx: u32, y: E) -> T;
     pub fn simd_extract<T, E>(x: T, idx: u32) -> E;
 }
+*/
 
 macro_rules! impl_align_n {
     ($n:expr) => {
