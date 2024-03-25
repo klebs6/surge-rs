@@ -1,4 +1,4 @@
-#![feature(stdarch)]
+#![feature(stdarch_x86_mm_shuffle)]
 
 #[macro_use] mod imports; use imports::*;
 

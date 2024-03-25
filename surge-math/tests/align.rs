@@ -5,7 +5,7 @@ use surge_math::*;
 ///
 #[test] fn test_align() {
 
-    #[derive(Clone,Default)]
+    #[derive(Clone,Default,PartialEq)]
     struct TestStruct { }
 
     let x0 = Align16::<TestStruct>(TestStruct{});

@@ -1,23 +1,23 @@
 crate::ix!();
 
+coeffidx![
+    C;
+    Ar,
+    Ai,
+    B1,
+    Unused,
+    C1,
+    C2,
+    D,
+    Clipgain
+];
+
 /// State-space with clipgain (2nd order, limit within register)
 #[cfg(target_arch = "x86_64")] 
 pub fn iir_24_cfc_quad(
     qfu: &mut QuadFilterUnitState, 
     input: __m128) -> __m128 
 {
-    coeffidx![
-        C;
-        Ar,
-        Ai,
-        B1,
-        Unused,
-        C1,
-        C2,
-        D,
-        Clipgain
-    ];
-
     unsafe {
 
         qfu.coeff[C::Ar] = _mm_add_ps(qfu.coeff[C::Ar], qfu.dcoeff[C::Ar]); // ar

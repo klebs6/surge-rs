@@ -1,18 +1,19 @@
 crate::ix!();
 
+coeffidx!{
+    C;
+    E1bySC,
+    E2bySC,
+    MinusE1overSC,
+    MinusE2overSC,
+    C1,
+    C2,
+    D,
+    Clipgain
+}
+
 #[cfg(target_arch = "x86_64")] 
 pub fn iir_12_wdf_quad(qfu: &mut QuadFilterUnitState, input: __m128) -> __m128 {
-
-    coeffidx![C;
-        E1bySC,
-        E2bySC,
-        MinusE1overSC,
-        MinusE2overSC,
-        C1,
-        C2,
-        D,
-        Clipgain
-    ];
 
     unsafe {
 

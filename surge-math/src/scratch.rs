@@ -51,11 +51,11 @@ impl<const X: usize> Default for WetBlock1<X> {
 
 #[derive(Debug,Clone)]
 #[repr(align(16))]
-pub struct WetBlock1t<T: Default + std::marker::Copy ,const X: usize> {
+pub struct WetBlock1t<T: PartialEq + Default + std::marker::Copy ,const X: usize> {
     pub buf: Align16<[T; X]>,
 }
 
-impl<T: Default + std::marker::Copy,const X: usize> Default for WetBlock1t<T,X> {
+impl<T: PartialEq + Default + std::marker::Copy,const X: usize> Default for WetBlock1t<T,X> {
     fn default() -> Self {
         Self {
             buf: Align16([T::default(); X]),
@@ -156,7 +156,7 @@ impl MSBlock {
 
 pub type ScratchChannel<T> = Align16<A1d::<T>>;
 
-impl<T: Clone + Zero> ScratchChannel<T> {
+impl<T: Clone + Zero + PartialEq> ScratchChannel<T> {
     pub fn new(len: usize) -> Self {
         Align16(A1d::<T>::zeros(len))
     }

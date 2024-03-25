@@ -1,11 +1,12 @@
 .PHONY: default test vendor build all clippy
 
-DEFAULT         := test_file
+#DEFAULT         := test_file
+DEFAULT         := test_all
 #DEFAULT         := test_file_one
 
 CARGO           := cargo
 TEST            := test
-TEST_FILE       := surge-math/tests/basic_ops.rs
+TEST_FILE       := surge-math/tests/absmax.rs
 INDIVIDUAL_TEST := test_add_block
 
 default: $(DEFAULT)

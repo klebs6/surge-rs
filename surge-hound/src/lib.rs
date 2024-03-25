@@ -54,6 +54,7 @@
 //! ```
 
 #![warn(missing_docs)]
+#![allow(dead_code)]
 
 use std::error;
 use std::fmt;

@@ -53,6 +53,8 @@ pub use core::arch::x86_64::*;
 
 pub use core::arch::x86_64::*;
 
+pub use std::ptr::NonNull;
+pub use std::alloc::{Layout,alloc,dealloc};
 pub use std::mem::MaybeUninit;
 pub use std::mem;
 pub use ::approx_eq::*;

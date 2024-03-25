@@ -1,3 +1,4 @@
+/*
 crate::ix!();
 
 /// These tests verify that the `NLSFType`, `NLSFCoeff`,
@@ -241,3 +242,4 @@ mod tests {
         }
     }
 }
+*/

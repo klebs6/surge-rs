@@ -1,17 +1,18 @@
 crate::ix!();
 
+coeffidx!{
+    C;
+    Ar,
+    Ai,
+    B1,
+    Unused,
+    C1,
+    C2,
+    D
+}
+
 #[cfg(target_arch = "x86_64")] 
 pub fn iir_12_cfl_quad(qfu: &mut QuadFilterUnitState, input: __m128) -> __m128 {
-
-    coeffidx![C;
-        Ar,
-        Ai,
-        B1,
-        Unused,
-        C1,
-        C2,
-        D
-    ];
 
     unsafe {
         // State-space with softer limiter

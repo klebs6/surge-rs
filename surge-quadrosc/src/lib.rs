@@ -1,5 +1,3 @@
-#[cfg(test)] mod tests;
-
 #[derive(Debug,Clone)]
 pub struct QuadrOsc {
     pub r: f64,

@@ -429,15 +429,11 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
         let out_l = self.synth_out.out_l();
         let out_r = self.synth_out.out_r();
 
-        self.synth_out.set_vu_peak(0,maxf(
-                vu_peak0, 
-                get_absmax(out_l, BLOCK_SIZE_QUAD)
-        ));
+        let max_l = unsafe { get_absmax(out_l, BLOCK_SIZE_QUAD) };
+        let max_r = unsafe { get_absmax(out_r, BLOCK_SIZE_QUAD) };
 
-        self.synth_out.set_vu_peak(1,maxf(
-            vu_peak1, 
-            get_absmax(out_r, BLOCK_SIZE_QUAD)
-        ));
+        self.synth_out.set_vu_peak(0,maxf(vu_peak0, max_l));
+        self.synth_out.set_vu_peak(1,maxf(vu_peak1, max_r));
 
         unsafe {
             hardclip_block8(out_l, BLOCK_SIZE_QUAD);

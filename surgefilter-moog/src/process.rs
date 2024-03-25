@@ -1,5 +1,8 @@
 crate::ix!();
 
+//TODO: fix unknown coefficient names
+coeffidx![ C; X0, X1, X2, X3, X4, X5, X6, X7 ];
+
 impl FilterProcessQuad for LpMoogFilter {
 
     #[cfg(target_arch = "x86_64")] 
@@ -7,9 +10,6 @@ impl FilterProcessQuad for LpMoogFilter {
         qfu: &mut QuadFilterUnitState, 
         input: __m128) -> __m128 
     {
-
-        //TODO: fix unknown coefficient names
-        coeffidx![ C; X0, X1, X2, X3, X4, X5, X6, X7 ];
 
         unsafe {
 

@@ -1,19 +1,20 @@
 crate::ix!();
 
+coeffidx!{
+    C;
+    K1,
+    K2,
+    Q1,
+    Q2,
+    V1,
+    V2,
+    V3
+}
+
 #[cfg(target_arch = "x86_64")] 
 pub fn iir_12_a_quad(
     qfu: &mut QuadFilterUnitState, 
     input: __m128) -> __m128 {
-
-    coeffidx![C;
-        K1,
-        K2,
-        Q1,
-        Q2,
-        V1,
-        V2,
-        V3
-    ];
 
     unsafe {
 

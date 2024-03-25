@@ -5,12 +5,14 @@ crate::ix!();
 //
 // TODO: Verify if the functions are correctly imported
 //
-/*
-extern "platform-intrinsic" {
-    pub fn simd_insert<T, E>(x: T, idx: u32, y: E) -> T;
-    pub fn simd_extract<T, E>(x: T, idx: u32) -> E;
+/* extern "platform-intrinsic" { } */
+pub fn simd_insert<T, E>(_x: T, _idx: u32, _y: E) -> T {
+    todo!();
 }
-*/
+
+pub fn simd_extract<T, E>(_x: T, _idx: u32) -> E {
+    todo!();
+}
 
 macro_rules! impl_align_n {
     ($n:expr) => {
@@ -59,3 +61,9 @@ impl_align_n![32];
 impl_align_n![64];
 impl_align_n![128];
 impl_align_n![256];
+
+#[macro_export] macro_rules! align16  { ($data:expr) => { $crate::Align16($data) } }
+#[macro_export] macro_rules! align32  { ($data:expr) => { $crate::Align32($data) } }
+#[macro_export] macro_rules! align64  { ($data:expr) => { $crate::Align64($data) } }
+#[macro_export] macro_rules! align128 { ($data:expr) => { $crate::Align128($data) } }
+#[macro_export] macro_rules! align256 { ($data:expr) => { $crate::Align256($data) } }

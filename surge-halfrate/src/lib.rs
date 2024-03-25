@@ -1,4 +1,4 @@
-#![feature(stdarch)]
+#![feature(stdarch_x86_mm_shuffle)]
 
 /// 14> could you describe more about how filter
 /// coefficients are chosen, more generally? but

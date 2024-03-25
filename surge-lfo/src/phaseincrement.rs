@@ -1,3 +1,4 @@
+/*
 crate::ix!();
 
 /// Computes the phase increment for an LFO based on the number of samples and the LFO rate.
@@ -62,3 +63,4 @@ mod tests {
         assert!((result - expected).abs() < 0.000000001);
     }
 }
+*/

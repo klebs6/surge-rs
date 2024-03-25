@@ -99,16 +99,22 @@ impl Conditioner {
 
         self.vu[0] = maxf(
             self.vu[0], 
-            get_absmax(
-                data_l.as_mut_ptr(), 
-                block_size_quad![N])
+            unsafe {
+                get_absmax(
+                    data_l.as_mut_ptr(), 
+                    block_size_quad![N]
+                )
+            }
         );
 
         self.vu[1] = maxf(
             self.vu[1], 
-            get_absmax(
-                data_r.as_mut_ptr(), 
-                block_size_quad![N])
+            unsafe {
+                get_absmax(
+                    data_r.as_mut_ptr(), 
+                    block_size_quad![N]
+                )
+            }
         );
     }
 
@@ -119,16 +125,22 @@ impl Conditioner {
 
         self.vu[4] = maxf(
             self.vu[4], 
-            get_absmax(
-                data_l.as_mut_ptr(), 
-                block_size_quad![N])
+            unsafe {
+                get_absmax(
+                    data_l.as_mut_ptr(), 
+                    block_size_quad![N]
+                )
+            }
         );
 
         self.vu[5] = maxf(
             self.vu[5], 
-            get_absmax(
-                data_r.as_mut_ptr(), 
-                block_size_quad![N])
+            unsafe {
+                get_absmax(
+                    data_r.as_mut_ptr(), 
+                    block_size_quad![N]
+                )
+            }
         );
     }
 

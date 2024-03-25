@@ -82,25 +82,27 @@ impl Default for Scale {
     }
 }
 
-impl<R: std::io::Read> From<&mut BufReader<R>> for Scale {
-    fn from(reader: &mut BufReader<R>) -> Self {
+enhanced_enum!{
+    ParsePosition {
+        ReadHeader,
+        ReadCount,
+        ReadNote,
+    }
+}
 
-        enhanced_enum![
-            ParsePosition {
-                ReadHeader,
-                ReadCount,
-                ReadNote,
-            }
-        ];
-        impl ParsePosition {
-            pub fn next(&self) -> Self {
-                match self {
-                    ParsePosition::ReadHeader => ParsePosition::ReadCount,
-                    ParsePosition::ReadCount  => ParsePosition::ReadNote,
-                    ParsePosition::ReadNote   => ParsePosition::ReadNote,//last state
-                }
-            }
+impl ParsePosition {
+    pub fn next(&self) -> Self {
+        match self {
+            ParsePosition::ReadHeader => ParsePosition::ReadCount,
+            ParsePosition::ReadCount  => ParsePosition::ReadNote,
+            ParsePosition::ReadNote   => ParsePosition::ReadNote,//last state
         }
+    }
+}
+
+impl<R: std::io::Read> From<&mut BufReader<R>> for Scale {
+
+    fn from(reader: &mut BufReader<R>) -> Self {
 
         let mut res    = Scale::default();
         let mut raw_oss = Vec::<u8>::new();
