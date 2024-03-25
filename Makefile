@@ -1,6 +1,14 @@
 .PHONY: default test vendor build all clippy
 
-default: build
+DEFAULT         := test_file
+#DEFAULT         := test_file_one
+
+CARGO           := cargo
+TEST            := test
+TEST_FILE       := surge-math/tests/basic_ops.rs
+INDIVIDUAL_TEST := test_add_block
+
+default: $(DEFAULT)
 
 #--release
 #--color always 
@@ -83,28 +91,37 @@ ACTIVE_PACKAGE := surge-math
 #ACTIVE_PACKAGE := surgeshaper-tanh
 
 all:
-	RUSTFLAGS=$(RUSTFLAGS) cargo build $(TAIL_FLAGS)
+	RUSTFLAGS=$(RUSTFLAGS) $(CARGO) build $(TAIL_FLAGS)
 
 build:
-	RUSTFLAGS=$(RUSTFLAGS) cargo build -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS)
+	RUSTFLAGS=$(RUSTFLAGS) $(CARGO) build -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS)
 
 tracemacro:
-	RUSTFLAGS="-Z macro-backtrace -Awarnings" cargo build -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS)
+	RUSTFLAGS="-Z macro-backtrace -Awarnings" $(CARGO) build -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS)
 
 test:
-	RUST_BACKTRACE=1 RUSTFLAGS=$(RUSTFLAGS) cargo test -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS) -- --nocapture
+	RUST_BACKTRACE=1 RUSTFLAGS=$(RUSTFLAGS) $(CARGO) $(TEST) -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS) -- --nocapture
 
 bench:
-	RUST_BACKTRACE=1 RUSTFLAGS=$(RUSTFLAGS) cargo bench -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS) -- --nocapture
+	RUST_BACKTRACE=1 RUSTFLAGS=$(RUSTFLAGS) $(CARGO) bench -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS) -- --nocapture
 
 test_all:
-	RUST_BACKTRACE=full RUSTFLAGS=$(RUSTFLAGS) cargo test
+	RUST_BACKTRACE=full RUSTFLAGS=$(RUSTFLAGS) $(CARGO) $(TEST)
+
+
+TEST_FILE_TARGET := $(basename $(notdir $(TEST_FILE)))
+
+test_file:
+	RUSTFLAGS=$(RUSTFLAGS) $(CARGO) $(TEST) -p $(ACTIVE_PACKAGE) --test $(TEST_FILE_TARGET) -- --nocapture
+
+test_file_one:
+	RUSTFLAGS=$(RUSTFLAGS) $(CARGO) $(TEST) -p $(ACTIVE_PACKAGE) --test $(TEST_FILE_TARGET) $(INDIVIDUAL_TEST) -- --nocapture
 
 vendor:
-	cargo vendor
+	$(CARGO) vendor
 
 fixhelp:
-	cargo help fix
+	$(CARGO) help fix
 
 protogen: 
 	protoc \
@@ -115,11 +132,11 @@ protogen:
 	    --proto_path \
 	    ./surge-protos/protos ./surge-protos/protos/surge.proto
 clippy:
-	RUSTFLAGS=$(RUSTFLAGS) cargo clippy -p $(ACTIVE_PACKAGE)  -- \
+	RUSTFLAGS=$(RUSTFLAGS) $(CARGO) clippy -p $(ACTIVE_PACKAGE)  -- \
 		  -A clippy::redundant_field_names \
 		  -W clippy::all 
 
 clippy_all:
-	RUSTFLAGS=$(RUSTFLAGS) cargo clippy  -- \
+	RUSTFLAGS=$(RUSTFLAGS) $(CARGO) clippy  -- \
 		  -A clippy::redundant_field_names \
 		  -W clippy::all 
