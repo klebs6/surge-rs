@@ -13,7 +13,7 @@ impl Lfo {
     ///
     /// # Example
     ///
-    /// ```
+    /// ```ignore
     /// use rust_audio::Lfo;
     ///
     /// let mut lfo = Lfo::new();

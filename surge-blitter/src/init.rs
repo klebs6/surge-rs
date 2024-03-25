@@ -16,7 +16,7 @@ crate::ix!();
 ///
 /// # Example
 ///
-/// ```
+/// ```ignore
 /// use crate::AbstractBlitter;
 ///
 /// let samplerate_inv = 44100.0_f32.recip();

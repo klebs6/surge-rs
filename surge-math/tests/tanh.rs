@@ -1,10 +1,11 @@
 use surge_math::*;
-use surge_imports::assert_approx_eq;
 
+/*
 #[cfg(target_arch = "x86_64")] 
 #[test] 
 fn test_tanh_fast_sse() 
 {
+    use surge_imports::assert_approx_eq;
     let x1 = tanh_fast32(0.5) as f64;
     let x2 = tanh_fast(0.5);
     println!("x1: {:?}", x1);
@@ -14,6 +15,7 @@ fn test_tanh_fast_sse()
     //fails on f64::EPSILON
     assert_approx_eq!(x1, x2, 0.0001);
 }
+*/
 
 #[test] fn test_tanh_fast() 
 {

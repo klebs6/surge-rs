@@ -4,7 +4,7 @@ crate::ix!();
 ///
 /// # Example
 ///
-/// ```
+/// ```no_run
 /// use surge_math::clamp01;
 ///
 /// let value = clamp01(1.5);
@@ -19,7 +19,7 @@ pub fn clamp01<T: LimitRange + From<f32>>(x: T) -> T {
 ///
 /// # Example
 ///
-/// ```
+/// ```no_run
 /// use surge_math::clamp1_bipolar;
 ///
 /// let value = clamp1_bipolar(1.5);
@@ -34,7 +34,7 @@ pub fn clamp1_bipolar<T: LimitRange + From<f32>>(x: T) -> T {
 ///
 /// # Example
 ///
-/// ```
+/// ```no_run
 /// use surge_math::within_range;
 ///
 /// assert!(within_range(1, 2, 3));

@@ -21,7 +21,7 @@ impl crate::LipolPs {
     ///
     /// # Examples
     ///
-    /// ```rust
+    /// ```ignore
     /// # use std::mem::size_of;
     /// # use std::ptr::null_mut;
     /// # use crate::LipolPs;
@@ -90,7 +90,7 @@ impl crate::LipolPs {
     ///
     /// # Example
     ///
-    /// ```rust
+    /// ```ignore
     /// # use std::mem::MaybeUninit;
     /// # use std::ptr;
     /// # use lipol::LipolPs;

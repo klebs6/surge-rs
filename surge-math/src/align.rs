@@ -26,7 +26,7 @@ macro_rules! impl_align_n {
             ///
             /// # Example
             ///
-            /// ```
+            /// ```ignore
             /// #[derive(Clone, Default)]
             /// struct TestStruct { }
             ///

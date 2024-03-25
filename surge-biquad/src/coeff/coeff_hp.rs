@@ -54,7 +54,7 @@ impl BiquadCoeffHP for BiquadFilter {
      ///
      /// # Examples
      ///
-     /// ```
+     /// ```ignore
      /// use biquad::BiquadFilter;
      /// use biquad::coefficients::{BiquadCoeffHP, BiquadCoeff};
      ///
@@ -96,7 +96,7 @@ impl BiquadCoeffHP for BiquadFilter {
      ///
      /// # Examples
      ///
-     /// ```
+     /// ```ignore
      /// use biquad::BiquadFilter;
      /// use biquad::coefficients::{BiquadCoeffHP, BiquadCoeff};
      ///

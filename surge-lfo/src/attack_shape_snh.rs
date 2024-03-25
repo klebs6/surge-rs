@@ -28,7 +28,7 @@ impl Lfo {
     ///
     /// # Example
     ///
-    /// ```
+    /// ```ignore
     /// use my_crate::Lfo;
     ///
     /// let mut lfo = Lfo::new();

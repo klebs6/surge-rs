@@ -40,7 +40,7 @@ pub type VDouble  = [f64; 2];
 ///
 /// # Example
 ///
-/// ```rust
+/// ```ignore
 /// use crate::VLag;
 ///
 /// let mut filter = VLag::new_x87();
@@ -72,7 +72,7 @@ impl VLag {
     ///
     /// # Example
     ///
-    /// ```rust
+    /// ```ignore
     /// use crate::VLag;
     ///
     /// let filter = VLag::new_x87();
@@ -91,7 +91,7 @@ impl VLag {
     ///
     /// # Example
     ///
-    /// ```rust
+    /// ```ignore
     /// use crate::VLag;
     ///
     /// let mut filter = VLag::new_x87();
@@ -114,7 +114,7 @@ impl VLag {
     ///
     /// # Example
     ///
-    /// ```rust
+    /// ```ignore
     /// use crate::VLag;
     ///
     /// let mut filter = VLag::new_x87();

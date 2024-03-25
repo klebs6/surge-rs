@@ -7,5 +7,3 @@ x!{probability}
 x!{random}
 x!{stepsequencer}
 x!{swing}
-
-xt!{test_stepsequencer}

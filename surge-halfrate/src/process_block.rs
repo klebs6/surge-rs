@@ -11,7 +11,7 @@ impl ProcessBlock for HalfRateFilterSSE {
     /// samples
     ///
     /// inputs:
-    /// ```rust
+    /// ```ignore
     /// l:        *mut f32      // A pointer to the left channel samples
     /// r:        *mut f32      // A pointer to the right channel samples
     /// nsamples: Option<usize> // An optional number of samples to process

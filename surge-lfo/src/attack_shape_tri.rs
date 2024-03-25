@@ -39,7 +39,7 @@ crate::ix!();
 /// 
 /// So mathematically, we can represent the behavior of this function as:
 /// 
-/// ```
+/// ```ignore
 /// if !pvalb![self.params[LfoParam::Unipolar]] {
 ///     self.phase = (self.phase + 0.25) % 1.0;
 /// }
@@ -59,7 +59,7 @@ impl Lfo {
     ///
     /// # Example
     ///
-    /// ```
+    /// ```ignore
     /// # use your_crate::Lfo;
     /// let mut lfo = Lfo::new();
     /// lfo.set_param(LfoParam::Unipolar, true);

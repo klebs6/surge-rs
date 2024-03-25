@@ -13,7 +13,7 @@ impl Lfo {
     ///
     /// # Examples
     ///
-    /// ```
+    /// ```ignore
     /// use rustsynth::lfo::{Lfo, LfoShape};
     ///
     /// let mut lfo = Lfo::default();

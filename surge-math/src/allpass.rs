@@ -29,7 +29,7 @@ crate::ix!();
 ///
 /// # Example
 ///
-/// ```
+/// ```ignore
 /// use crate::AllpassFilter;
 ///
 /// let mut allpass = AllpassFilter::<8>::default();

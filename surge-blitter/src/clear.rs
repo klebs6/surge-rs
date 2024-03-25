@@ -10,7 +10,7 @@ impl crate::AbstractBlitter {
     ///
     /// # Example
     ///
-    /// ```
+    /// ```ignore
     /// use crate::AbstractBlitter;
     ///
     /// let mut blitter = AbstractBlitter::new(&sample_rate);
@@ -39,7 +39,7 @@ impl crate::AbstractBlitter {
     ///
     /// # Example
     ///
-    /// ```
+    /// ```ignore
     /// use crate::AbstractBlitter;
     ///
     /// let mut blitter = AbstractBlitter::new(&sample_rate);

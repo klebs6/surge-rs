@@ -21,7 +21,7 @@ crate::ix!();
 /// coefficients for a given cutoff frequency and
 /// Q factor using the formula:
 /// 
-/// ```
+/// ```pseudocode
 /// b0 = (1 - cos(omega)) / 2
 /// b1 = 1 - cos(omega)
 /// b2 = (1 - cos(omega)) / 2

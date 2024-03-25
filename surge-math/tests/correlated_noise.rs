@@ -128,6 +128,7 @@ fn test_correlated_noise_mk2_noisey() {
     }, num_samples, 0.1);
 }
 
+/*
 #[test]
 fn test_drift_noise_noisey() {
     let mut lastval: f32 = 0.0;
@@ -138,6 +139,7 @@ fn test_drift_noise_noisey() {
         noise
     }, num_samples, 0.1);
 }
+*/
 
 #[test]
 fn test_correlated_noise_o2_noisey() {

@@ -1,10 +1,12 @@
 .PHONY: default test vendor build all clippy
 
+CARGO  := MAKEFLAGS= env CARGO_BUILD_JOBS=12 NUM_JOBS=12 cargo
+
 #DEFAULT         := test_file
+DEFAULT         := test
 DEFAULT         := test_all
 #DEFAULT         := test_file_one
 
-CARGO           := cargo
 TEST            := test
 TEST_FILE       := surge-math/tests/absmax.rs
 INDIVIDUAL_TEST := test_add_block
@@ -24,8 +26,9 @@ RUSTFLAGS := ""
 
 #ACTIVE_PACKAGE := surge-imports
 #ACTIVE_PACKAGE := surge-lfo
+#ACTIVE_PACKAGE := surge-math
 #ACTIVE_PACKAGE := surge-biquad
-#ACTIVE_PACKAGE := surge-blitter
+ACTIVE_PACKAGE := surge-blitter
 #ACTIVE_PACKAGE := surge-coeffmaker
 #ACTIVE_PACKAGE := surge-constants
 #ACTIVE_PACKAGE := surge-filter 
@@ -35,7 +38,6 @@ RUSTFLAGS := ""
 #ACTIVE_PACKAGE := surge-lfo
 #ACTIVE_PACKAGE := surge-lipol
 #ACTIVE_PACKAGE := surge-macros
-ACTIVE_PACKAGE := surge-math
 #ACTIVE_PACKAGE := surge-midi
 #ACTIVE_PACKAGE := surge-modulation
 #ACTIVE_PACKAGE := surge-mpe

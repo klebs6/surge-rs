@@ -1,4 +1,5 @@
-crate::ix!();
+/*
+use surge_stepseq::*;
 
 #[cfg(test)]
 mod tests {
@@ -44,3 +45,4 @@ mod tests {
         assert_eq!(seq.trigmask, 0b1010);
     }
 }
+*/

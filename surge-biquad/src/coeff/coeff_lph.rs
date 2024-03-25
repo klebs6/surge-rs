@@ -24,12 +24,12 @@ crate::ix!();
 /// a low-pass/high-pass morph filter using the
 /// following formulae:
 ///
-///     b0 = alpha
-///     b1 = 0
-///     b2 = -alpha
-///     a0 = 1 + alpha
-///     a1 = -2*cos(omega)
-///     a2 = 1 - alpha
+///     // b0 = alpha
+///     // b1 = 0
+///     // b2 = -alpha
+///     // a0 = 1 + alpha
+///     // a1 = -2*cos(omega)
+///     // a2 = 1 - alpha
 ///
 /// where `alpha` is defined as `sin(omega) / (2 * quality_factor)`.
 ///

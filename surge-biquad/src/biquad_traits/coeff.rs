@@ -158,6 +158,7 @@ pub trait BiquadCoeffAPF {
     /// * `omega` - Angular frequency of the filter (in radians)
     /// * `quality_factor` - Quality factor of the filter
     ///
+    /// ```ignore
     /// use my_crate::BiquadFilter;
     ///
     /// let mut filter = BiquadFilter::new();

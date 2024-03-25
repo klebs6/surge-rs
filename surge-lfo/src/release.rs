@@ -9,7 +9,7 @@ impl Lfo {
     ///
     /// # Example
     ///
-    /// ```
+    /// ```ignore
     /// # use your_crate::Lfo;
     /// let mut lfo = Lfo::new();
     /// lfo.process();

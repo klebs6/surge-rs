@@ -18,7 +18,7 @@ impl Lfo {
     ///
     /// # Examples
     ///
-    /// ```
+    /// ```ignore
     /// use synth::Lfo;
     ///
     /// let mut lfo = Lfo::new();

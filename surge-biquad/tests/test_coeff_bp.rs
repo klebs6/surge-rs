@@ -58,7 +58,7 @@ crate::ix!();
 /// factor of 0.5. The coefficients were
 /// calculated using the formula:
 /// 
-/// ```
+/// ```no_run
 /// alpha = sin(omega) / (2 * Q)
 /// b0 = alpha
 /// b2 = -alpha
