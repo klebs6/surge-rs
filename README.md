@@ -16,3 +16,5 @@
 alpha release
 
 enjoy :)
+
+4/3/2024 Note: bug fixes and test suite coming soon!
