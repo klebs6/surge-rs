@@ -16,7 +16,7 @@ enhanced_enum![
 
 rt![ChorusParam];
 
-impl Param for ChorusParam {
+impl ParameterInterface for ChorusParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
 

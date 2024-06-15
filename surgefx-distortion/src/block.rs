@@ -24,7 +24,7 @@ impl Distortion {
         self.right += a; // denormal
     }
 
-    #[inline] fn do_waveshape_channels(&mut self, waveshapeidx: i32) {
+    #[inline] fn do_waveshape_channels(&mut self, waveshapeidx: usize) {
         self.left  = self.tables.lookup_waveshape(waveshapeidx, self.left);
         self.right = self.tables.lookup_waveshape(waveshapeidx, self.right);
     }
@@ -37,7 +37,7 @@ impl Distortion {
     #[inline] pub fn do_distortion_block<const N: usize, const T: usize>(
         &mut self, 
         k:            usize, 
-        waveshapeidx: i32, 
+        waveshapeidx: usize, 
         feedback:     f32, 
         data_l:        &mut [f32; N],
         data_r:        &mut [f32; N]) 

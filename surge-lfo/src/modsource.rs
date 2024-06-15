@@ -18,11 +18,11 @@ crate::ix!();
 ///
 impl ModulationSourceControl for Lfo {
 
-    /// The `get_type` method returns the
+    /// The `modulation_source_type` method returns the
     /// `ModSrcType::LFO` value, indicating that
     /// this modulation source is an LFO.
     ///
-    fn get_type(&self) -> ModSrcType {
+    fn modulation_source_type(&self) -> ModSrcType {
         ModSrcType::LFO
     }
 

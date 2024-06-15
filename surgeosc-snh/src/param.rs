@@ -14,7 +14,7 @@ enhanced_enum![
 
 rt![SampleAndHoldOscillatorParam];
 
-impl Param for SampleAndHoldOscillatorParam {
+impl ParameterInterface for SampleAndHoldOscillatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
 

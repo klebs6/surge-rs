@@ -16,7 +16,7 @@ enhanced_enum![
 
 rt![ConditionerParam];
 
-impl Param for ConditionerParam {
+impl ParameterInterface for ConditionerParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
 

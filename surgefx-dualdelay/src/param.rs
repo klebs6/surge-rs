@@ -17,7 +17,7 @@ enhanced_enum![DualDelayParam {
 
 rt![DualDelayParam];
 
-impl Param for DualDelayParam {
+impl ParameterInterface for DualDelayParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
 

@@ -19,7 +19,7 @@ enhanced_enum![
 
 rt![ReverbParam];
 
-impl Param for ReverbParam {
+impl ParameterInterface for ReverbParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
 

@@ -9,7 +9,7 @@ enhanced_enum![
 
 rt![AudioInputOscillatorParam];
 
-impl Param for AudioInputOscillatorParam {
+impl ParameterInterface for AudioInputOscillatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
 

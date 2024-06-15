@@ -23,7 +23,7 @@ enhanced_enum![
 
 rt![DistortionParam];
 
-impl Param for DistortionParam {
+impl ParameterInterface for DistortionParam {
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
     fn control_type(&self) -> ControlType {
         match self {

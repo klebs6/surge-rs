@@ -50,7 +50,7 @@ moverate![SSOParam;
 ];
 */
 
-impl Param for SSOParam {
+impl ParameterInterface for SSOParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
 

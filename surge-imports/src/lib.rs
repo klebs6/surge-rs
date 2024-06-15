@@ -77,6 +77,7 @@ pub use downcast_rs::*;
 pub use enhanced_enum::*;
 pub use enum_dispatch::*;
 pub use float_ord::*;
+pub use delegate::*;
 pub use getset::*;
 pub use indoc::*;
 pub use lazy_static::*;

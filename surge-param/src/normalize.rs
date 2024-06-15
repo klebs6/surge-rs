@@ -1,9 +1,14 @@
 crate::ix!();
 
-impl<P: Param> crate::ConvertValueToFromNormalized for ParamRT<P> {
+pub trait ConvertValueToFromNormalized {
+    fn value2normalized(&self, value: f32) -> f32;
+    fn normalized2value(&self, value: f32) -> f32;
+}
+
+impl<P: ParameterInterface> crate::ConvertValueToFromNormalized for ParamRT<P> {
 
     fn value2normalized(&self, value: f32) -> f32 {
-        match (self.val, 
+        match (self.get_value(), 
             self.delegate.min_value(), 
             self.delegate.max_value()) 
         {

@@ -74,11 +74,13 @@ impl Distortion {
 
     #[inline] fn process_blocks<const N: usize>(
         &mut self, 
-        data_l: &mut [f32; N], 
-        data_r: &mut [f32; N],
-        waveshapeidx: i32, 
-        feedback: f32) 
-    {
+        data_l:       &mut [f32; N], 
+        data_r:       &mut [f32; N],
+        waveshapeidx: usize, 
+        feedback:     f32
+
+    ) {
+
         for k in 0..N {
             self.do_distortion_block::<N,128>(
                 k,

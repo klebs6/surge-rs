@@ -1,63 +1,78 @@
 crate::ix!();
 
-pub type ControlGroupEntry = i16;
-
 #[derive(Debug,Clone)]
-pub struct ParamRT<P: Param + ?Sized> {
-    pub val:                    PData,//want interior mutability
-    pub modulation_delta:       PData,//want interior mutability
-
-    pub midictrl:               Option<i32>,
+#[parameter_interface]
+pub struct ParamRT<P: ParameterInterface + ?Sized> {
+    val:                    PData,//want interior mutability
+    modulation_delta:       PData,//want interior mutability
+    midictrl:               Option<i32>,
 
     //are these compile time values?
-    pub per_voice_processing:   bool,
-    pub temposync:              bool,
-    pub extend_range:           bool,
-    pub absolute:               bool,
-    pub snap:                   bool,
-    pub delegate:               Box<P>,
+    per_voice_processing:   bool,
+    temposync:              bool,
+    extend_range:           bool,
+    absolute:               bool,
+    snap:                   bool,
+    pub(crate) delegate:    Box<P>,
 }
 
-impl<P: Param + ?Sized> Param for ParamRT<P> {
+impl<P: ParameterInterface + ?Sized> SetSnap for ParamRT<P> {
 
-    fn control_type(&self)
-        -> ControlType { self.delegate.control_type() }
-
-    fn control_style(&self)
-        -> ControlStyle { self.delegate.control_style() }
-
-    fn control_group(&self)
-        -> ControlGroup { self.delegate.control_group() }
-
-    fn default_value(&self)
-        -> PData { self.delegate.default_value() }
-
-    fn modulateable(&self)
-        -> bool { self.delegate.modulateable() }
-
-    fn min_value(&self)
-        -> PData { self.delegate.min_value() }
-
-    fn max_value(&self)
-        -> PData { self.delegate.max_value() }
-
-    fn value_type(&self)
-        -> ValType { self.delegate.value_type() }
-
-    fn moverate(&self)
-        -> f32 { self.delegate.moverate() }
-
-    fn snap(&self)
-        -> bool { self.delegate.snap() }
-
-    fn extend_range(&self)
-        -> bool { self.delegate.extend_range() }
-
-    fn affect_other_parameters(&self)
-        -> bool { self.delegate.affect_other_parameters() }
+    fn set_snap(&mut self, snap: bool) {
+        self.snap = snap;
+    }
 }
 
-impl<P: Param> ParamRT<P> {
+impl<P: ParameterInterface + ?Sized> ParamRT<P> {
+
+    pub fn get_midictrl(&self) -> Option<i32> {
+        self.midictrl
+    }
+
+    pub fn get_per_voice_processing(&self) -> bool {
+        self.per_voice_processing
+    }
+
+    pub fn get_value(&self) -> PData {
+        self.val
+    }
+
+    pub fn set_value(&mut self, value: PData) {
+        self.val = value;
+    }
+
+    pub fn get_temposync(&self) -> bool {
+        self.temposync
+    }
+
+    pub fn set_temposync(&mut self, x: bool) {
+        self.temposync = x;
+    }
+
+    pub fn set_extend_range(&mut self, x: bool) {
+        self.extend_range = x;
+    }
+
+    pub fn set_absolute(&mut self, x: bool) {
+        self.absolute = x;
+    }
+}
+
+impl<P: ParameterInterface + ?Sized> GetModulationVal for ParamRT<P> {
+
+    fn get_modulation_val(&self) -> PData {
+        self.modulation_delta
+    }
+}
+
+impl<P: ParameterInterface + ?Sized> SetModulationVal for ParamRT<P> {
+
+    fn set_modulation_val(&mut self, val: PData) {
+        self.modulation_delta = val;
+    }
+}
+
+impl<P: ParameterInterface> ParamRT<P> {
 
     pub fn default_modulation_delta(default_val: PData) -> PData {
         match default_val {

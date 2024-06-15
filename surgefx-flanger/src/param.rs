@@ -18,7 +18,7 @@ enhanced_enum![FlangerParam {
 
 rt![FlangerParam];
 
-impl Param for FlangerParam {
+impl ParameterInterface for FlangerParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
 

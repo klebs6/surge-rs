@@ -16,11 +16,11 @@ pub type ModulationSourceArray
 
 impl ModulationSourceControl for ModulationSource {
 
-    fn get_type(&self) -> ModSrcType {
+    fn modulation_source_type(&self) -> ModSrcType {
         match self {
-            ModulationSource::Lfo(inner)                        => inner.get_type(),
-            ModulationSource::AdsrEnvelope(inner)               => inner.get_type(),
-            ModulationSource::ControllerModulationSource(inner) => inner.get_type(),
+            ModulationSource::Lfo(inner)                        => inner.modulation_source_type(),
+            ModulationSource::AdsrEnvelope(inner)               => inner.modulation_source_type(),
+            ModulationSource::ControllerModulationSource(inner) => inner.modulation_source_type(),
         }
     }
     fn get_output(&self) -> f64 {

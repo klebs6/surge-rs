@@ -1,17 +1,22 @@
 crate::ix!();
 
-impl<P: Param + Clone> crate::Morph for ParamRT<P> {
+pub trait Morph {
+    fn morph(&mut self, b: &mut Self, x: f32) -> PData;
+    fn morph_alt( &mut self, a: &mut Self, b: &mut Self, x: f32);
+}
+
+impl<P: ParameterInterface + Clone> crate::Morph for ParamRT<P> {
 
     fn morph(&mut self, b: &mut Self, x: f32) -> PData {
         let fallback = {
             if x > 0.5 {
-                b.val
+                b.get_value()
             } else {
-                self.val
+                self.get_value()
             }
         };
 
-        match (self.val, b.val, self.control_type(), b.control_type()) {
+        match (self.get_value(), b.get_value(), self.control_type(), b.control_type()) {
 
             (PData::Float(f1), PData::Float(f2), t1, t2) => {
                 if t1 == t2 {
@@ -31,15 +36,15 @@ impl<P: Param + Clone> crate::Morph for ParamRT<P> {
         let mut do_fallback: bool = false;
 
         match ( 
-            a.val,
-            b.val,
+            a.get_value(),
+            b.get_value(),
             a.control_type(),
             b.control_type() 
         ) {
             (PData::Float(f1), PData::Float(f2), t1, t2) => {
                 if t1 == t2 {
                     *self = a.clone();
-                    self.val = PData::Float((1.0 - x) * f1 + x * f2);
+                    self.set_value(PData::Float((1.0 - x) * f1 + x * f2));
 
                 } else {
                     do_fallback = true;

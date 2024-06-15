@@ -15,7 +15,7 @@ enhanced_enum!{
     }
 }
 
-impl Param for WaveshaperParam {
+impl ParameterInterface for WaveshaperParam {
     /* TODO */
     fn control_group(&self) -> ControlGroup { ControlGroup::Filter } 
 }

@@ -10,7 +10,7 @@ enhanced_enum![
 
 rt![SineWaveOscillatorParam];
 
-impl Param for SineWaveOscillatorParam {
+impl ParameterInterface for SineWaveOscillatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
 

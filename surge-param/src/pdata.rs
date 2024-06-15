@@ -40,23 +40,6 @@ enhanced_enum![
     }
 ];
 
-#[derive(Debug,Copy,Clone)]
-pub struct ParamUserData {
-
-}
-
-#[derive(Debug)]
-pub struct ParameterMeta {
-    pub fmin:     f32,
-    pub fmax:     f32,
-    pub fdefault: f32,
-    pub flags:    ControlStyle,
-    pub clump:    u32,
-    pub hide:     bool,
-    pub expert:   bool,
-    pub meta:     bool,
-}
-
 //do we want to leave this in here since there is a panic case?
 impl std::ops::Sub for PData {
     type Output = Self;

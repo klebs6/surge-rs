@@ -628,7 +628,7 @@ following parameters:
    voices.
 
 The `WindowOscillatorParam` enum implements the
-`Param` trait, which provides methods to configure
+`ParameterInterface` trait, which provides methods to configure
 the parameters. These methods include:
 
 - control_group: Returns the control group to

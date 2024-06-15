@@ -18,7 +18,7 @@ enhanced_enum![
 
 rt![AllpassReverbParam];
 
-impl Param for AllpassReverbParam {
+impl ParameterInterface for AllpassReverbParam {
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
     fn control_type(&self) -> ControlType {
         match self {

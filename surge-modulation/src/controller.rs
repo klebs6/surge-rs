@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug)]
+#[name("ControllerModulationSource")]
 pub struct ControllerModulationSource {
     pub output:   f64,
     pub target:   f64,
@@ -13,10 +14,9 @@ pub struct ControllerModulationSource {
     srunit: SampleRateHandle,
 }
 
-name![ControllerModulationSource,"ControllerModulationSource"];
-
 impl ModulationSourceControl for ControllerModulationSource {
-    fn get_type(&self) -> ModSrcType {
+
+    fn modulation_source_type(&self) -> ModSrcType {
         ModSrcType::Controller
     }
 

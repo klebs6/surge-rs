@@ -1,38 +1,26 @@
 crate::ix!();
 
-/// A blitter, short for "block transfer engine",
-/// is a type of hardware accelerator used for
-/// performing high-speed memory operations. It
-/// was originally developed for early graphics
-/// systems, but has since been used for a wide
-/// range of applications including audio
-/// processing.
+/// A blitter, short for "block transfer engine", is a type of hardware
+/// accelerator used for performing high-speed memory operations. It was
+/// originally developed for early graphics systems, but has since been used for
+/// a wide range of applications including audio processing.
 /// 
-/// In graphics, a blitter is used to move blocks
-/// of pixels between different areas of the
-/// screen memory. This can be used for tasks like
-/// scrolling, animation, and sprite
-/// rendering. The blitter typically operates
-/// independently of the CPU, allowing it to
-/// perform these operations in parallel with
-/// other tasks.
+/// In graphics, a blitter is used to move blocks of pixels between different
+/// areas of the screen memory. This can be used for tasks like scrolling,
+/// animation, and sprite rendering. The blitter typically operates
+/// independently of the CPU, allowing it to perform these operations in
+/// parallel with other tasks.
 /// 
-/// In audio, a blitter can be used for tasks like
-/// sample rate conversion, filtering, and
-/// mixing. It works by loading blocks of audio
-/// data into a buffer, performing the necessary
-/// processing, and then transferring the results
-/// back to main memory. This can significantly
-/// reduce the CPU overhead required for audio
-/// processing, allowing for more complex audio
-/// effects and synthesis to be performed in
-/// real-time.
+/// In audio, a blitter can be used for tasks like sample rate conversion,
+/// filtering, and mixing. It works by loading blocks of audio data into
+/// a buffer, performing the necessary processing, and then transferring the
+/// results back to main memory. This can significantly reduce the CPU overhead
+/// required for audio processing, allowing for more complex audio effects and
+/// synthesis to be performed in real-time.
 ///
-/// This struct contains various fields that
-/// describe the blitter's internal state,
-/// including buffers for audio output, oscillator
-/// coefficients, pitch multiplier,
-/// synchronization state, and LFO drift. 
+/// This struct contains various fields that describe the blitter's internal
+/// state, including buffers for audio output, oscillator coefficients, pitch
+/// multiplier, synchronization state, and LFO drift. 
 ///
 #[derive(Debug)]
 pub struct AbstractBlitter {

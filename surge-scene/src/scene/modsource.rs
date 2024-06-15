@@ -2,7 +2,7 @@ crate::ix!();
 
 impl SurgeScene {
 
-    pub fn handle_boolsolo<P: Param + ?Sized>(&mut self, param: &mut ParamRT<P>) 
+    pub fn handle_boolsolo<P: ParameterInterface + ?Sized>(&mut self, param: &mut ParamRT<P>) 
     {
         if pvalb![param] {
             self.params[SceneParam::SoloO1].val     = PData::Bool(false);
@@ -27,7 +27,7 @@ impl SurgeScene {
         (self.filterunit_keytrack(0), self.filterunit_keytrack(1))
     }
 
-    pub fn handle_boolrelative_switching<P: Param + ?Sized>(&mut self, 
+    pub fn handle_boolrelative_switching<P: ParameterInterface + ?Sized>(&mut self, 
         param: &mut ParamRT<P>, 
         oldvalb: bool) 
     {

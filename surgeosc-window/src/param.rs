@@ -12,7 +12,7 @@ enhanced_enum![
 
 rt![WindowOscillatorParam];
 
-impl Param for WindowOscillatorParam {
+impl ParameterInterface for WindowOscillatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
 

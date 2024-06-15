@@ -43,35 +43,19 @@ impl FmConfiguration {
     }
 }
 
-enhanced_enum![
-    OscillatorParam {
-        Type,
-        Pitch,
-        Octave,
-        KeyTrack,
-        Retrigger,
-    }
-];
-
-rt![OscillatorParam];
-
-impl OscillatorParam {
-    pub fn runtime_array() -> OscillatorParamArrayRT {
-        OscillatorParamArrayRT::new_with(|x| match x {
-            OscillatorParam::Type      => OscillatorParamRT::new(OscillatorParam::Type),
-            OscillatorParam::Pitch     => OscillatorParamRT::new(OscillatorParam::Pitch),
-            OscillatorParam::Octave    => OscillatorParamRT::new(OscillatorParam::Octave),
-            OscillatorParam::KeyTrack  => OscillatorParamRT::new(OscillatorParam::KeyTrack),
-            OscillatorParam::Retrigger => OscillatorParamRT::new(OscillatorParam::Retrigger),
-        })
-    }
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameter_with_runtime]
+pub enum OscillatorParam {
+    Type,
+    Pitch,
+    Octave,
+    KeyTrack,
+    Retrigger,
 }
 
-impl Param for OscillatorParam {
+impl GetControlGroup for OscillatorParam {
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
     /* TODO */
 }
-
-
 
 pub type OscillatorOut = WetBlock2::<BLOCK_SIZE_OS>;

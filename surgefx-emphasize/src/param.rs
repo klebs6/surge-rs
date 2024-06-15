@@ -7,7 +7,7 @@ enhanced_enum![EmphasizeParam {
 
 rt![EmphasizeParam];
 
-impl Param for EmphasizeParam {
+impl ParameterInterface for EmphasizeParam {
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
 
     fn control_type(&self) -> ControlType {

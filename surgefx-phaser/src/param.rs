@@ -15,7 +15,7 @@ enhanced_enum![
 
 rt![PhaserParam];
 
-impl Param for PhaserParam {
+impl ParameterInterface for PhaserParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
 

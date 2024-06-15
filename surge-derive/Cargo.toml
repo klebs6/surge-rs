@@ -1,0 +1,16 @@
+[package]
+name = "surge-derive"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+syn = { version = "2.0.52", features = ["full","derive"] }
+derive-error = "0.0.5"
+export-magic = "0.1.0"
+quote = "1.0"
+proc-macro2 = "1.0"
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3", default-features = false, features = ["fmt", "std", "env-filter"] }
+
+[lib]
+proc-macro = true

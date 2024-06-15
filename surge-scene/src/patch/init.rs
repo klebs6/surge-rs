@@ -23,7 +23,7 @@ impl SurgePatch {
 
 impl SurgePatch {
 
-    pub fn get_param_by_idx(&self, _idx: usize) -> ParamRT<dyn Param> {
+    pub fn get_param_by_idx(&self, _idx: usize) -> ParamRT<dyn ParameterInterface> {
         todo!();
     }
 }

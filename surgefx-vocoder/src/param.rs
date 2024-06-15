@@ -18,7 +18,7 @@ enhanced_enum![
 
 rt![VocoderParam];
 
-impl Param for VocoderParam {
+impl ParameterInterface for VocoderParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
 

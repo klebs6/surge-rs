@@ -15,7 +15,7 @@ enhanced_enum![
 
 rt![WTOscillatorParam];
 
-impl Param for WTOscillatorParam {
+impl ParameterInterface for WTOscillatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
 

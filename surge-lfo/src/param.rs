@@ -46,7 +46,7 @@ enhanced_enum![
 //
 rt![LfoParam];
 
-/// The `Param` trait is implemented for
+/// The `ParameterInterface` trait is implemented for
 /// `LfoParam`, indicating that it is a parameter
 /// that can be controlled. 
 ///
@@ -55,7 +55,7 @@ rt![LfoParam];
 /// these parameters are part of the LFO control
 /// group.
 ///
-impl Param for LfoParam {
+impl ParameterInterface for LfoParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Lfo } 
 }

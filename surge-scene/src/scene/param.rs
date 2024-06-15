@@ -58,7 +58,7 @@ enhanced_enum![
 
 rt![SceneParam];
 
-impl Param for SceneParam {
+impl ParameterInterface for SceneParam {
     fn control_group(&self) -> ControlGroup { ControlGroup::Global } 
     /* TODO */
 }

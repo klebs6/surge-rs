@@ -18,7 +18,7 @@ enhanced_enum![
 
 rt![Eq3BandParam];
 
-impl Param for Eq3BandParam {
+impl ParameterInterface for Eq3BandParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
 

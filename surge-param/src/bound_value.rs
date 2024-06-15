@@ -1,31 +1,19 @@
 crate::ix!();
 
-impl<P: Param + ?Sized> BoundValue for ParamRT<P> {
+pub trait BoundParameterValue: LimitParameterRange {
 
-    fn limit_range(&mut self) {
+    // TODO: this implementation relies on ParameterSetUserData, which should be
+    // eliminated
+    //
+    fn bound_value(&mut self, is_force_integer: bool);
+}
 
-        /*
-           |clamp value between parameter minimum
-           |and maximum should not need to be
-           |called from the outside, because
-           |a limited range is and invariant which
-           |should be upheld internally
-           */
-        match (self.val, self.min_value(), self.max_value()) {
-            (PData::Float(f), PData::Float(min), PData::Float(max)) => {
-                self.val = PData::Float(limit_range(f,min,max));
-            },
-            (PData::Int(i), PData::Int(min), PData::Int(max)) => {
-                self.val = PData::Int(limit_range(i,min,max));
-            },
-            _ => { /*noop*/ }
-        }
-    }
+impl<P: ParameterInterface + ?Sized> BoundParameterValue for ParamRT<P> {
 
     fn bound_value(&mut self, force_integer: bool) {
-        match self.val {
+        match self.get_value() {
             PData::Float(f) => {
-                if self.temposync {
+                if self.get_temposync() {
 
                     let (mut a, mut b) = split_float(f);
 
@@ -44,14 +32,14 @@ impl<P: Param + ?Sized> BoundValue for ParamRT<P> {
                     };
 
                     /* val.f = floor(val.f * 4.f + 0.5f) / 4.f; // was commented*/
-                    self.val = PData::Float(a + b); 
+                    self.set_value(PData::Float(a + b)); 
                 }
 
                 if force_integer {
-                    self.val = PData::Float((f + 0.5).floor());
+                    self.set_value(PData::Float((f + 0.5).floor()));
                 }
 
-                if self.snap 
+                if self.snap() 
                     && self.control_type() == ControlType::CountedSetPercent 
                 {
                         /*
@@ -69,11 +57,11 @@ impl<P: Param + ?Sized> BoundValue for ParamRT<P> {
             },
             PData::Int(i) => {
                 if self.control_type() == ControlType::VocoderBandcount {
-                    self.val = PData::Int(i - i % 4);
+                    self.set_value(PData::Int(i - i % 4));
                 }
             },
             _ => unreachable!(),
         }
-        self.limit_range();
+        self.limit_parameter_range();
     }
 }

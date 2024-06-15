@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl AdsrEnvelope {
+impl DigitalRelease for AdsrEnvelope {
 
     /// Processes a block of samples during the
     /// release stage of the envelope.
@@ -13,9 +13,9 @@ impl AdsrEnvelope {
     /// its idle state once the release stage is
     /// complete.
     ///
-    pub fn process_block_digital_release(&mut self) {
+    fn digital_release(&mut self) {
 
-        let release = pvalf![self.params[AdsrParam::Release]];
+        let release = self.get_release_parameter();
 
         // It subtracts the envelope rate (calculated from the release parameter) multiplied by the
         // release time sync ratio from the phase of the envelope. 

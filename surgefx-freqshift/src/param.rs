@@ -11,7 +11,7 @@ enhanced_enum![FreqShiftParam {
 
 rt![FreqShiftParam];
 
-impl Param for FreqShiftParam {
+impl ParameterInterface for FreqShiftParam {
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
     fn control_type(&self) -> ControlType {
         match self {

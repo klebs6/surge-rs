@@ -3,7 +3,7 @@ crate::ix!();
 //-------------------------------------------------------------------------------------------------
 impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
-    pub fn is_valid_modulation<P: Param + ?Sized>(&mut self, p: &ParamRT<P>, modsource: ModSource) -> bool 
+    pub fn is_valid_modulation<P: ParameterInterface + ?Sized>(&mut self, p: &ParamRT<P>, modsource: ModSource) -> bool 
     {
         let failure_conditions: Vec<bool> = vec![
             (modsource == ModSource::Original),

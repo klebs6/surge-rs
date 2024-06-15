@@ -2,7 +2,7 @@ crate::ix!();
 
 impl SurgeScene {
 
-    pub fn release_old_notes_if_previous_polymode_was_latch<P: Param + ?Sized>(
+    pub fn release_old_notes_if_previous_polymode_was_latch<P: ParameterInterface + ?Sized>(
         &mut self, 
         param: &mut ParamRT<P>,
         oldvali: i32)
@@ -21,7 +21,7 @@ impl SurgeScene {
     //note, this function had much more logic in C++
     //what is written here is something like a placeholder until
     //we find out which bugs exist
-    pub fn set_parameter01<P: Param + ?Sized>(
+    pub fn set_parameter01<P: ParameterInterface + ?Sized>(
         &mut self, 
         param: &mut ParamRT<P>, 
         value: f32, 

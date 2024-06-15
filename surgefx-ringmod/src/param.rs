@@ -17,7 +17,7 @@ enhanced_enum![
 
 rt![RingModulatorParam];
 
-impl Param for RingModulatorParam {
+impl ParameterInterface for RingModulatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
 

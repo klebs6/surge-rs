@@ -14,7 +14,7 @@ enhanced_enum![
 
 rt![FMOscillatorParam];
 
-impl Param for FMOscillatorParam {
+impl ParameterInterface for FMOscillatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
 

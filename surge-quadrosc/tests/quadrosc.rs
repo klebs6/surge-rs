@@ -5,7 +5,7 @@ use surge_quadrosc::*;
     let mut r: f64 = 0.5;
     let mut p: f64 = 0.0;
 
-    let mut quadr = QuadrOsc::new();
+    let mut quadr = QuadrOsc::default();
     println!("created quadr: {:?}",quadr);
 
     println!("setting rate {}",r); quadr.set_rate(r);
