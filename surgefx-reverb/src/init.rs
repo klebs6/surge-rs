@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for Reverb {
+impl Initialize for Reverb {
 
     fn init(&mut self) {
 

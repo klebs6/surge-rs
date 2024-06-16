@@ -10,7 +10,7 @@ impl SineWaveOscillator {
             out:         OscillatorOut::default(),
             params:      SineWaveOscillatorParam::new_runtime(),
             osc_params:  OscillatorParam::runtime_array(),
-            sine:        QuadrOsc::new(),
+            sine:        QuadrOsc::default(),
             phase:       0.0,
             driftlfo1:   0.0,
             driftlfo2:   0.0,

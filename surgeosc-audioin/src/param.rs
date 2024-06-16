@@ -1,17 +1,34 @@
 crate::ix!();
 
-enhanced_enum![
-    AudioInputOscillatorParam {
-        Input,
-        Gain,
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum AudioInputOscillatorParam {
+    Input,
+    Gain,
+}
 
-rt![AudioInputOscillatorParam];
+impl_trait_defaults!{
+    AudioInputOscillatorParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetExtendRange,
+    GetExtendedValue,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+}
 
-impl ParameterInterface for AudioInputOscillatorParam {
+impl GetControlGroup for AudioInputOscillatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
+}
+
+impl GetControlType for AudioInputOscillatorParam {
 
     fn control_type(&self) -> ControlType {
         match self {
@@ -19,6 +36,9 @@ impl ParameterInterface for AudioInputOscillatorParam {
             AudioInputOscillatorParam::Gain => ControlType::Decibel,
         }
     }
+}
+
+impl GetDefaultParameterValue for AudioInputOscillatorParam {
 
     fn default_value(&self) -> PData {
         match self {
@@ -26,11 +46,17 @@ impl ParameterInterface for AudioInputOscillatorParam {
             AudioInputOscillatorParam::Gain  => PData::Float(0.0),
         }
     }
+}
+
+impl CheckIfModulateable for AudioInputOscillatorParam {
 
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+}
+
+impl GetMinParameterValue for AudioInputOscillatorParam {
 
     fn min_value(&self) -> PData {
         match self {
@@ -38,6 +64,9 @@ impl ParameterInterface for AudioInputOscillatorParam {
             AudioInputOscillatorParam::Gain  => PData::Float(-48.0),
         }
     }
+}
+
+impl GetMaxParameterValue for AudioInputOscillatorParam {
 
     fn max_value(&self) -> PData {
         match self {
@@ -45,6 +74,9 @@ impl ParameterInterface for AudioInputOscillatorParam {
             AudioInputOscillatorParam::Gain  => PData::Float(48.0),
         }
     }
+}
+
+impl GetParameterValueType for AudioInputOscillatorParam {
 
     fn value_type(&self) -> ValType {
         match self {
@@ -52,21 +84,14 @@ impl ParameterInterface for AudioInputOscillatorParam {
             AudioInputOscillatorParam::Gain  => ValType::VtFloat,
         }
     }
+}
+
+impl GetMoverate for AudioInputOscillatorParam {
 
     fn moverate(&self) -> f32 {
         match self {
             AudioInputOscillatorParam::Input => 1.0,
             AudioInputOscillatorParam::Gain  => 1.0,
         }
-    }
-}
-
-impl AudioInputOscillatorParam {
-
-    #[inline] pub fn new_runtime() -> AudioInputOscillatorParamArrayRT {
-        AudioInputOscillatorParamArrayRT::new_with(|x| match x {
-            AudioInputOscillatorParam::Input => AudioInputOscillatorParamRT::new(AudioInputOscillatorParam::Input), 
-            AudioInputOscillatorParam::Gain  => AudioInputOscillatorParamRT::new(AudioInputOscillatorParam::Gain), 
-        })
     }
 }

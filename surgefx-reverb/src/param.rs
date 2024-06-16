@@ -1,27 +1,43 @@
 crate::ix!();
 
-enhanced_enum![
-    ReverbParam {
-        PreDelay,
-        RoomShape,
-        RoomSize,
-        DecayTime,
-        Damping,
-        LowCut,
-        Band1Freq,
-        Band1Gain,
-        HighCut,
-        Mix,
-        Width,
-        ReturnLevel,
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum ReverbParam {
+    PreDelay,
+    RoomShape,
+    RoomSize,
+    DecayTime,
+    Damping,
+    LowCut,
+    Band1Freq,
+    Band1Gain,
+    HighCut,
+    Mix,
+    Width,
+    ReturnLevel,
+}
 
-rt![ReverbParam];
+impl_trait_defaults!{
+    ReverbParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+    GetExtendedValue,
+}
 
-impl ParameterInterface for ReverbParam {
+impl GetControlGroup for ReverbParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+}
+
+impl GetControlType for ReverbParam {
 
     fn control_type(&self) -> ControlType {
         match self {
@@ -39,6 +55,9 @@ impl ParameterInterface for ReverbParam {
             ReverbParam::ReturnLevel => ControlType::Percent,
         }
     }
+}
+
+impl GetDefaultParameterValue for ReverbParam {
 
     fn default_value(&self) -> PData {
         match self {
@@ -56,10 +75,16 @@ impl ParameterInterface for ReverbParam {
             ReverbParam::ReturnLevel => PData::Float(0.5),
         }
     }
+}
+
+impl CheckIfModulateable for ReverbParam {
 
     fn modulateable(&self) -> bool {
         !matches![self, ReverbParam::PreDelay]
     }
+}
+
+impl GetMinParameterValue for ReverbParam {
 
     fn min_value(&self) -> PData {
         match self {
@@ -77,6 +102,9 @@ impl ParameterInterface for ReverbParam {
             ReverbParam::ReturnLevel => PData::Float(0.0),
         }
     }
+}
+
+impl GetMaxParameterValue for ReverbParam {
 
     fn max_value(&self) -> PData {
         match self {
@@ -94,6 +122,9 @@ impl ParameterInterface for ReverbParam {
             ReverbParam::ReturnLevel => PData::Float(1.0),
         }
     }
+}
+
+impl GetParameterValueType for ReverbParam {
 
     fn value_type(&self) -> ValType {
         match self {
@@ -111,6 +142,9 @@ impl ParameterInterface for ReverbParam {
             ReverbParam::ReturnLevel => ValType::VtFloat,
         }
     }
+}
+
+impl GetMoverate for ReverbParam {
 
     fn moverate(&self) -> f32 {
         match self {
@@ -127,24 +161,5 @@ impl ParameterInterface for ReverbParam {
             ReverbParam::Width       => 1.0,
             ReverbParam::ReturnLevel => 1.0,
         }
-    }
-}
-
-impl ReverbParam {
-    #[inline] pub fn new_runtime() -> ReverbParamArrayRT {
-        ReverbParamArrayRT::new_with(|x| match x {
-            ReverbParam::PreDelay    => ReverbParamRT::new(ReverbParam::PreDelay),
-            ReverbParam::RoomShape   => ReverbParamRT::new(ReverbParam::RoomShape),
-            ReverbParam::RoomSize    => ReverbParamRT::new(ReverbParam::RoomSize),
-            ReverbParam::DecayTime   => ReverbParamRT::new(ReverbParam::DecayTime),
-            ReverbParam::Damping     => ReverbParamRT::new(ReverbParam::Damping),
-            ReverbParam::LowCut      => ReverbParamRT::new(ReverbParam::LowCut),
-            ReverbParam::Band1Freq   => ReverbParamRT::new(ReverbParam::Band1Freq),
-            ReverbParam::Band1Gain   => ReverbParamRT::new(ReverbParam::Band1Gain),
-            ReverbParam::HighCut     => ReverbParamRT::new(ReverbParam::HighCut),
-            ReverbParam::Mix         => ReverbParamRT::new(ReverbParam::Mix),
-            ReverbParam::Width       => ReverbParamRT::new(ReverbParam::Width),
-            ReverbParam::ReturnLevel => ReverbParamRT::new(ReverbParam::ReturnLevel),
-        })
     }
 }

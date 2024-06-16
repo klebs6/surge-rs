@@ -1,6 +1,8 @@
 crate::ix!();
 
-enhanced_enum![FlangerParam {
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum FlangerParam {
     Rate,
     Depth,
     Mode,
@@ -14,13 +16,30 @@ enhanced_enum![FlangerParam {
     StereoWidth,
     Mix,
     ReturnLevel,
-}];
+}
 
-rt![FlangerParam];
+impl_trait_defaults!{
+    FlangerParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+    GetExtendedValue,
+    GetExtendRange,
+}
 
-impl ParameterInterface for FlangerParam {
+impl GetControlGroup for FlangerParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+}
+
+impl GetControlType for FlangerParam {
 
     fn control_type(&self) -> ControlType {
         match self {
@@ -39,6 +58,9 @@ impl ParameterInterface for FlangerParam {
             FlangerParam::ReturnLevel    => ControlType::Percent,
         }
     }
+}
+
+impl GetDefaultParameterValue for FlangerParam {
 
     fn default_value(&self) -> PData {
         match self {
@@ -57,11 +79,17 @@ impl ParameterInterface for FlangerParam {
             FlangerParam::ReturnLevel    => PData::Float(0.5),
         }
     }
+}
+
+impl CheckIfModulateable for FlangerParam {
 
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+}
+
+impl GetMinParameterValue for FlangerParam {
 
     fn min_value(&self) -> PData {
         match self {
@@ -80,6 +108,9 @@ impl ParameterInterface for FlangerParam {
             FlangerParam::ReturnLevel    => PData::Float(0.0),
         }
     }
+}
+
+impl GetMaxParameterValue for FlangerParam {
 
     fn max_value(&self) -> PData {
         match self {
@@ -98,6 +129,9 @@ impl ParameterInterface for FlangerParam {
             FlangerParam::ReturnLevel    => PData::Float(1.0),
         }
     }
+}
+
+impl GetParameterValueType for FlangerParam {
 
     fn value_type(&self) -> ValType {
         match self {
@@ -116,6 +150,9 @@ impl ParameterInterface for FlangerParam {
             FlangerParam::ReturnLevel    => ValType::VtFloat,
         }
     }
+}
+
+impl GetMoverate for FlangerParam {
 
     fn moverate(&self) -> f32 {
         match self {
@@ -133,25 +170,5 @@ impl ParameterInterface for FlangerParam {
             FlangerParam::Mix            => 1.0, 
             FlangerParam::ReturnLevel    => 1.0,
         }
-    }
-}
-
-impl FlangerParam {
-    #[inline] pub fn new_runtime() -> FlangerParamArrayRT {
-        FlangerParamArrayRT::new_with(|x| match x {
-            FlangerParam::Rate           => FlangerParamRT::new(FlangerParam::Rate          ),
-            FlangerParam::Depth          => FlangerParamRT::new(FlangerParam::Depth         ),
-            FlangerParam::Mode           => FlangerParamRT::new(FlangerParam::Mode          ),
-            FlangerParam::Voices         => FlangerParamRT::new(FlangerParam::Voices        ),
-            FlangerParam::VoiceZeroPitch => FlangerParamRT::new(FlangerParam::VoiceZeroPitch),
-            FlangerParam::VoiceDetune    => FlangerParamRT::new(FlangerParam::VoiceDetune   ),
-            FlangerParam::VoiceChord     => FlangerParamRT::new(FlangerParam::VoiceChord    ),
-            FlangerParam::Feedback       => FlangerParamRT::new(FlangerParam::Feedback      ),
-            FlangerParam::FbLFDamping    => FlangerParamRT::new(FlangerParam::FbLFDamping   ),
-            FlangerParam::Gain           => FlangerParamRT::new(FlangerParam::Gain          ),
-            FlangerParam::StereoWidth    => FlangerParamRT::new(FlangerParam::StereoWidth   ),
-            FlangerParam::Mix            => FlangerParamRT::new(FlangerParam::Mix           ),
-            FlangerParam::ReturnLevel    => FlangerParamRT::new(FlangerParam::ReturnLevel   ),
-        })
     }
 }

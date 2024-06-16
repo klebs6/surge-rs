@@ -76,7 +76,7 @@ impl LookupWaveshapeWarp for WaveshapeTables {
     }
 }
 
-impl Init for WaveshapeTables {
+impl Initialize for WaveshapeTables {
     fn init(&mut self) {
 
         let mult: f64 = 1.0 / 32.0;

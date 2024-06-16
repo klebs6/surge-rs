@@ -1,58 +1,40 @@
 crate::ix!();
 
-enhanced_enum![
-    SSOParam {
-        Shape,
-        Width,
-        SubWidth,
-        SubLevel,
-        SyncPitch,
-        UniSpread,
-        UniCount,
-        Character,
-    }
-];
-
-rt![SSOParam];
-
-/*
-control_type!{SSOParam;
-    (Shape,      PercentBidirectional),
-    (Width,      Percent),
-    (SubWidth,   Percent),
-    (SubLevel,   Percent),
-    (SyncPitch,  SyncPitch),
-    (UniSpread,  OscSpread),
-    (UniCount,   OscCount),
-    (Character,  Character),
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum SSOParam {
+    Shape,
+    Width,
+    SubWidth,
+    SubLevel,
+    SyncPitch,
+    UniSpread,
+    UniCount,
+    Character,
 }
 
-value_type![SSOParam;
-    (Shape,      VtFloat),
-    (Width,      VtFloat),
-    (SubWidth,   VtFloat),
-    (SubLevel,   VtFloat),
-    (SyncPitch,  VtFloat),
-    (UniSpread,  VtFloat),
-    (UniCount,   VtInt),  
-    Character,   VtInt),
-];
+impl_trait_defaults!{
+    SSOParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetExtendRange,
+    GetExtendedValue,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+}
 
-moverate![SSOParam;
-    (Shape,     1.0),
-    (Width,     1.0),
-    (SubWidth,  1.0),
-    (SubLevel,  1.0),
-    (SyncPitch, 1.0),
-    (UniSpread, 1.0),
-    (UniCount,  1.0),
-    (Character, 1.0),
-];
-*/
-
-impl ParameterInterface for SSOParam {
+impl GetControlGroup for SSOParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
+}
+
+impl GetControlType for SSOParam {
 
     fn control_type(&self) -> ControlType {
         match self {
@@ -67,6 +49,10 @@ impl ParameterInterface for SSOParam {
         }
 
     }
+}
+
+impl GetDefaultParameterValue for SSOParam {
+
     fn default_value(&self) -> PData {
         match self {
             SSOParam::Shape     => PData::Float(0.0),
@@ -79,9 +65,17 @@ impl ParameterInterface for SSOParam {
             SSOParam::Character => PData::Int(0),
         }
     }
+}
+
+impl CheckIfModulateable for SSOParam {
+
     fn modulateable(&self) -> bool {
         true
     }
+}
+
+impl GetMinParameterValue for SSOParam {
+
     fn min_value(&self) -> PData {
         match self {
             SSOParam::Shape     => PData::Float(-1.0),
@@ -94,6 +88,10 @@ impl ParameterInterface for SSOParam {
             SSOParam::Character => PData::Int(0),
         }
     }
+}
+
+impl GetMaxParameterValue for SSOParam {
+
     fn max_value(&self) -> PData {
         match self {
             SSOParam::Shape     => PData::Float(1.0), 
@@ -106,6 +104,10 @@ impl ParameterInterface for SSOParam {
             SSOParam::Character => PData::Int(2),
         }
     }
+}
+
+impl GetParameterValueType for SSOParam {
+
     fn value_type(&self) -> ValType {
         match self {
             SSOParam::Shape     => ValType::VtFloat,
@@ -118,6 +120,10 @@ impl ParameterInterface for SSOParam {
             SSOParam::Character => ValType::VtInt,
         }
     }
+}
+
+impl GetMoverate for SSOParam {
+
     fn moverate(&self) -> f32 {
         match self {
             SSOParam::Shape     => 1.0,
@@ -129,20 +135,5 @@ impl ParameterInterface for SSOParam {
             SSOParam::UniCount  => 1.0,
             SSOParam::Character => 1.0,
         }
-    }
-}
-
-impl SSOParam {
-    #[inline] pub fn new_runtime() -> SSOParamArrayRT {
-        SSOParamArrayRT::new_with(|x| match x {
-            SSOParam::Shape     => SSOParamRT::new(SSOParam::Shape     ),
-            SSOParam::Width     => SSOParamRT::new(SSOParam::Width     ),
-            SSOParam::SubWidth  => SSOParamRT::new(SSOParam::SubWidth  ),
-            SSOParam::SubLevel  => SSOParamRT::new(SSOParam::SubLevel  ),
-            SSOParam::SyncPitch => SSOParamRT::new(SSOParam::SyncPitch ),
-            SSOParam::UniSpread => SSOParamRT::new(SSOParam::UniSpread ),
-            SSOParam::UniCount  => SSOParamRT::new(SSOParam::UniCount  ),
-            SSOParam::Character => SSOParamRT::new(SSOParam::Character ),
-        })
     }
 }

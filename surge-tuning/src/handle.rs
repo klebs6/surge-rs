@@ -1,7 +1,7 @@
 crate::ix!();
 
 #[enum_dispatch(
-    Init,
+    Initialize,
     Note2Pitch,
     CurrentScaleCount,
     CurrentScale,
@@ -46,7 +46,7 @@ impl TunerHandle {
     }
 }
 
-impl Init for TunerHandle {
+impl Initialize for TunerHandle {
 
     fn init(&mut self) {
         self.inner.borrow_mut().init()

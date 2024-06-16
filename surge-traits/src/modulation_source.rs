@@ -1,5 +1,23 @@
 crate::ix!();
 
+//TODO can we get enum_dipatch for lifetimes?
+#[enum_dispatch]
+pub trait ModulationSourceControl
+: Debug 
++ Attack
++ CheckBipolar
++ CheckEnabled
++ CheckIsModulationSourcePerVoice
++ Enable
++ GetModulationSourceOutput
++ GetModulationSourceType
++ ModulationSourceProcessBlock
++ Release
++ Reset
++ SetBipolar
++ SetModulationSourceOutput
+{ }
+
 pub trait GetModulationSourceType {
     fn modulation_source_type(&self) -> ModSrcType;
 }
@@ -13,19 +31,19 @@ pub trait GetModulationSourceOutput {
     fn get_output01(&self)  -> f64;
 }
 
-pub const trait CheckIsModulationSourcePerVoice {
-    const fn per_voice(&self) -> bool { false }
+pub trait CheckIsModulationSourcePerVoice {
+    fn per_voice(&self) -> bool { false }
 }
 
-pub const trait CheckIsModulationSourceBipolar {
-    const fn is_bipolar(&self) -> bool { false }
+pub trait CheckBipolar {
+    fn is_bipolar(&self) -> bool { false }
 }
 
 pub trait SetBipolar {
     fn set_bipolar(&mut self, b: bool);
 }
 
-pub trait ProcessBlock {
+pub trait ModulationSourceProcessBlock {
     fn process_block(&mut self);
 }
 
@@ -37,33 +55,10 @@ pub trait Release {
     fn release(&mut self) {}
 }
 
-pub trait Reset {
-    fn reset(&mut self) {}
-}
-
 pub trait Enable {
     fn enable(&mut self, v: bool);
 }
 
-pub trait CheckIsModulationSourceEnabled {
+pub trait CheckEnabled {
     fn enabled(&self) -> bool;
 }
-
-//TODO can we get enum_dipatch for lifetimes?
-#[enum_dispatch]
-pub trait ModulationSourceControl
-: Debug 
-+ Attack
-+ CheckIsModulationSourceBipolar
-+ CheckIsModulationSourceEnabled
-+ CheckIsModulationSourcePerVoice
-+ Enable
-+ GetModulationSourceOutput
-+ GetModulationSourceType
-+ ModulationSourceControl
-+ ProcessBlock
-+ Release
-+ Reset
-+ SetBipolar
-+ SetModulationSourceOutput
-{ }

@@ -12,9 +12,9 @@ impl Flanger {
     }
 }
 
-impl Process for Flanger {
+impl StereoProcess for Flanger {
 
-    fn process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
+    fn stereo_process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
 
         // So here is a flanger with everything fixed
         let rate_temposyncratio = self.maybe_temposyncratio(FlangerParam::Rate);

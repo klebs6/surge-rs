@@ -18,7 +18,7 @@ impl Default for SineTables {
         }
     }
 }
-impl Init for SineTables {
+impl Initialize for SineTables {
     fn init(&mut self) {
 
         for i in 0_usize..SIN_TABLE_SIZE_U {

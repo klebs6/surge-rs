@@ -1,23 +1,10 @@
 ///------------------------------------------------------------------------------------------
-///this macro defines associated types to hold 
-///Runtime (RT) Parameter values
-#[macro_export] macro_rules! rt {
-    ($param_type:ident) => {
-        use surge_imports::paste;
-        paste![
-            pub type [<$param_type RT>]      = ParamRT::<$param_type>;
-            pub type [<$param_type ArrayRT>] = [<$param_type Array>]::< [<$param_type RT>] >;
-        ];
-    }
-}
-///------------------------------------------------------------------------------------------
-#[macro_export] macro_rules! name {
-
-    ($ty:ident $(<$($life:lifetime),*>)?, $n:expr) => {
-
-        impl$(<$( $life ),*>)? Named for $ty $(< $( $life ),* >)? {
-            const NAME: &'static str = $n;
-        }
+#[macro_export]
+macro_rules! impl_trait_defaults {
+    ($type:ty; $($trait:ident),* $(,)?) => {
+        $(
+            impl $trait for $type { }
+        )*
     };
 }
 
@@ -35,7 +22,7 @@
 
     ($ty:ident $(< $( $life:lifetime ),* >)? ) => {
 
-        impl $(<$($life),*>)? Init for $ty $(< $($life),*>)? { /* no-op */ }
+        impl $(<$($life),*>)? Initialize for $ty $(< $($life),*>)? { /* no-op */ }
     };
 }
 
@@ -44,7 +31,7 @@
 
     ($ty:ident $(< $( $life:lifetime ),* >)? ) => {
 
-        impl $(<$( $life ),* >)? Init for $ty $(< $( $life ),* >)? {
+        impl $(<$( $life ),* >)? Initialize for $ty $(< $( $life ),* >)? {
             fn init(&mut self) {
                 self.update();
             }
@@ -163,7 +150,7 @@
         impl $(<$($life),*>)? $ty $(<$($life),*>)? { 
 
             pub fn temposync(&self, p: $paramty) -> bool {
-                self.params[p].temposync
+                self.params[p].get_temposync()
             }
 
             pub fn pvalf(&self, p: $paramty) -> f32 {
@@ -192,14 +179,14 @@
 
         impl$(<$($life),*>)? $ty $(< $( $life ),*>)? { 
             pub fn maybe_temposyncratio(&self, p: $paramty) -> f32 {
-                match self.params[p].temposync {
+                match self.params[p].get_temposync() {
                     true => self.time_unit.temposyncratio(),
                     false => 1.0,
                 }
             }
 
             pub fn maybe_temposyncratio_inv(&self, p: $paramty) -> f32 {
-                match self.params[p].temposync {
+                match self.params[p].get_temposync() {
                     true =>  self.time_unit.temposyncratio_inv(),
                     false => 1.0,
                 }

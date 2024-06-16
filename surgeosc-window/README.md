@@ -668,7 +668,7 @@ respective runtime parameter objects.
 11> how do we initialize?
 
 The `WindowOscillator` struct implements the
-`Init` trait, which provides an `init`
+`Initialize` trait, which provides an `init`
 method. This method initializes the
 `WindowOscillator` with the necessary default
 values and settings:

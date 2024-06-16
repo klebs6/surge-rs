@@ -14,7 +14,7 @@ impl SurgeSuperOscillator {
             out:               OscillatorOut::default(),
             blitter:           AbstractBlitter::new(&srunit),
             params:            SSOParam::new_runtime(),
-            osc_params:        OscillatorParam::runtime_array(),
+            osc_params:        OscillatorParam::new_runtime(),
             li_hpf:            LipolPs::new(),
             li_dc:             LipolPs::new(),
             li_integratormult: LipolPs::new(),

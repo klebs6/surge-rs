@@ -20,7 +20,7 @@ impl Default for SurgeTuning {
     }
 }
 
-impl Init for SurgeTuning {
+impl Initialize for SurgeTuning {
     fn init(&mut self) {
         self.is_standard_tuning = true;
     }

@@ -16,7 +16,7 @@ crate::ix!();
 /// value of the LFO, as well as controlling its
 /// enable state and processing audio blocks.
 ///
-impl ModulationSourceControl for Lfo {
+impl GetModulationSourceType for Lfo {
 
     /// The `modulation_source_type` method returns the
     /// `ModSrcType::LFO` value, indicating that
@@ -25,6 +25,9 @@ impl ModulationSourceControl for Lfo {
     fn modulation_source_type(&self) -> ModSrcType {
         ModSrcType::LFO
     }
+}
+
+impl SetModulationSourceOutput for Lfo {
 
     /// The `set_output` method sets the current
     /// output value of the LFO to the specified
@@ -33,6 +36,9 @@ impl ModulationSourceControl for Lfo {
     fn set_output(&mut self, x: f64) {
         self.output = x;
     }
+}
+
+impl GetModulationSourceOutput for Lfo {
 
     /// The `get_output` method returns the
     /// current output value of the LFO.
@@ -50,6 +56,9 @@ impl ModulationSourceControl for Lfo {
         //TODO
         0.0
     }
+}
+
+impl CheckIsModulationSourcePerVoice for Lfo {
 
     /// The `per_voice` method returns a boolean
     /// value indicating whether the modulation
@@ -60,6 +69,9 @@ impl ModulationSourceControl for Lfo {
         //TODO
         false 
     }
+}
+
+impl CheckBipolar for Lfo {
 
     /// The `is_bipolar` method returns a boolean
     /// value indicating whether the output of the
@@ -70,6 +82,9 @@ impl ModulationSourceControl for Lfo {
     fn is_bipolar(&self) -> bool { 
         true
     }
+}
+
+impl SetBipolar for Lfo {
 
     /// The `set_bipolar` method sets the bipolar
     /// flag of the modulation source. Since the
@@ -81,6 +96,9 @@ impl ModulationSourceControl for Lfo {
         assert!(b);
         /* no-op */
     }
+}
+
+impl ModulationSourceProcessBlock for Lfo {
 
     /// The `process_block` method processes
     /// a block of audio for the LFO.
@@ -88,6 +106,9 @@ impl ModulationSourceControl for Lfo {
     fn process_block(&mut self) {
         self.process();
     }
+}
+
+impl Enable for Lfo {
 
     /// The `enable` method sets the enabled state
     /// of the LFO.
@@ -95,6 +116,9 @@ impl ModulationSourceControl for Lfo {
     fn enable(&mut self, v: bool) {
         self.enabled = v;
     }
+}
+
+impl CheckEnabled for Lfo {
 
     /// The `enabled` method returns a boolean
     /// value indicating whether the LFO is

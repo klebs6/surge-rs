@@ -22,7 +22,7 @@ impl Emphasize {
     }
 }
 
-impl Init for Emphasize {
+impl Initialize for Emphasize {
     fn init(&mut self) {
         todo!();
     }

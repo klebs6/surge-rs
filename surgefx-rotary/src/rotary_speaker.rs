@@ -5,6 +5,7 @@ pub const ROTARY_SPEAKER_MAX_DELAY_LENGTH: usize = 1 << 18;
 pub const ROTARY_SPEAKER_RINGOUT:          usize = ROTARY_SPEAKER_MAX_DELAY_LENGTH >> 5;
 
 #[derive(Debug,Clone)]
+#[name("rotary")]
 pub struct RotarySpeaker {
     pub ringout:     Ringout,
     pub params:      RotarySpeakerParamArrayRT,
@@ -26,5 +27,4 @@ pub struct RotarySpeaker {
 
 effect!        [RotarySpeaker, RotarySpeakerParam ];
 has_timeunit!  [RotarySpeaker, RotarySpeakerParam ];
-name!          [RotarySpeaker, "rotary"           ];
 no_update!     [RotarySpeaker                     ];

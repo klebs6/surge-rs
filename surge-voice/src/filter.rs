@@ -67,7 +67,7 @@ impl Default for FU {
     }
 }
 
-impl Init for FU {
+impl Initialize for FU {
     fn init(&mut self) {
         self.coeff               = [0.0; N_COEFFMAKER_COEFFS];
         self.reg                 = [0.0; N_FILTER_REGISTERS];

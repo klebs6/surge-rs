@@ -1,25 +1,44 @@
 crate::ix!();
 
-enhanced_enum![
-    AllpassReverbParam {
-        PreDelay,
-        RoomSize,
-        DecayTime,
-        Diffusion,
-        BuildUp,
-        Modulation,
-        LFDamping,
-        HFDamping,
-        Mix,
-        Width,
-        ReturnLevel,
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum AllpassReverbParam {
+    PreDelay,
+    RoomSize,
+    DecayTime,
+    Diffusion,
+    BuildUp,
+    Modulation,
+    LFDamping,
+    HFDamping,
+    Mix,
+    Width,
+    ReturnLevel,
+}
 
-rt![AllpassReverbParam];
+impl_trait_defaults!{
+    AllpassReverbParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetExtendRange,
+    GetExtendedValue,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+}
 
-impl ParameterInterface for AllpassReverbParam {
+impl GetControlGroup for AllpassReverbParam {
+
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+}
+
+impl GetControlType for AllpassReverbParam {
+
     fn control_type(&self) -> ControlType {
         match self {
             AllpassReverbParam::PreDelay    => ControlType::ReverbPreDelayTime,
@@ -35,6 +54,10 @@ impl ParameterInterface for AllpassReverbParam {
             AllpassReverbParam::ReturnLevel => ControlType::Percent,
         }
     }
+}
+
+impl GetDefaultParameterValue for AllpassReverbParam {
+
     fn default_value(&self) -> PData {
         match self {
             AllpassReverbParam::PreDelay    => PData::Float(-4.0),
@@ -50,10 +73,18 @@ impl ParameterInterface for AllpassReverbParam {
             AllpassReverbParam::ReturnLevel => PData::Float(0.75),
         }
     }
+}
+
+impl CheckIfModulateable for AllpassReverbParam {
+
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+}
+
+impl GetMinParameterValue for AllpassReverbParam {
+
     fn min_value(&self) -> PData {
         match self {
             AllpassReverbParam::PreDelay    => PData::Float(-4.0),
@@ -69,6 +100,10 @@ impl ParameterInterface for AllpassReverbParam {
             AllpassReverbParam::ReturnLevel => PData::Float(0.0),
         }
     }
+}
+
+impl GetMaxParameterValue for AllpassReverbParam {
+
     fn max_value(&self) -> PData {
         match self {
             AllpassReverbParam::PreDelay    => PData::Float(1.0),
@@ -84,6 +119,10 @@ impl ParameterInterface for AllpassReverbParam {
             AllpassReverbParam::ReturnLevel => PData::Float(1.0),
         }
     }
+}
+
+impl GetParameterValueType for AllpassReverbParam {
+
     fn value_type(&self) -> ValType {
         match self {
             AllpassReverbParam::PreDelay    => ValType::VtFloat,
@@ -99,6 +138,9 @@ impl ParameterInterface for AllpassReverbParam {
             AllpassReverbParam::ReturnLevel => ValType::VtFloat,
         }
     }
+}
+
+impl GetMoverate for AllpassReverbParam {
 
     fn moverate(&self) -> f32 {
         match self {
@@ -114,23 +156,5 @@ impl ParameterInterface for AllpassReverbParam {
             AllpassReverbParam::Width       => 1.0,
             AllpassReverbParam::ReturnLevel => 1.0,
         }
-    }
-}
-
-impl AllpassReverbParam {
-    pub fn new_runtime() -> AllpassReverbParamArrayRT {
-        AllpassReverbParamArrayRT::new_with(|x| match x {
-            AllpassReverbParam::PreDelay    => AllpassReverbParamRT::new(AllpassReverbParam::PreDelay),
-            AllpassReverbParam::RoomSize    => AllpassReverbParamRT::new(AllpassReverbParam::RoomSize),
-            AllpassReverbParam::DecayTime   => AllpassReverbParamRT::new(AllpassReverbParam::DecayTime),
-            AllpassReverbParam::Diffusion   => AllpassReverbParamRT::new(AllpassReverbParam::Diffusion),
-            AllpassReverbParam::BuildUp     => AllpassReverbParamRT::new(AllpassReverbParam::BuildUp),
-            AllpassReverbParam::Modulation  => AllpassReverbParamRT::new(AllpassReverbParam::Modulation),
-            AllpassReverbParam::LFDamping   => AllpassReverbParamRT::new(AllpassReverbParam::LFDamping),
-            AllpassReverbParam::HFDamping   => AllpassReverbParamRT::new(AllpassReverbParam::HFDamping),
-            AllpassReverbParam::Mix         => AllpassReverbParamRT::new(AllpassReverbParam::Mix),
-            AllpassReverbParam::Width       => AllpassReverbParamRT::new(AllpassReverbParam::Width),
-            AllpassReverbParam::ReturnLevel => AllpassReverbParamRT::new(AllpassReverbParam::ReturnLevel),
-        })
     }
 }

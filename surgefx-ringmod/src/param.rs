@@ -1,25 +1,26 @@
 crate::ix!();
 
-enhanced_enum![
-    RingModulatorParam {
-        CarrierShape,
-        CarrierFreq,
-        UnisonDetune,
-        UnisonVoices,
-        DiodeForwardBias,
-        DiodeLinearRegion,
-        LowCut,
-        HighCut,
-        Mix,
-        ReturnLevel,
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum RingModulatorParam {
+    CarrierShape,
+    CarrierFreq,
+    UnisonDetune,
+    UnisonVoices,
+    DiodeForwardBias,
+    DiodeLinearRegion,
+    LowCut,
+    HighCut,
+    Mix,
+    ReturnLevel,
+}
 
-rt![RingModulatorParam];
-
-impl ParameterInterface for RingModulatorParam {
+impl GetControlGroup for RingModulatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+}
+
+impl GetControlType for RingModulatorParam {
 
     fn control_type(&self) -> ControlType {
         match self {
@@ -35,6 +36,9 @@ impl ParameterInterface for RingModulatorParam {
             RingModulatorParam::ReturnLevel       => ControlType::Percent,
         }
     }
+}
+
+impl GetDefaultParameterValue for RingModulatorParam {
 
     fn default_value(&self) -> PData {
         match self {
@@ -50,6 +54,9 @@ impl ParameterInterface for RingModulatorParam {
             RingModulatorParam::ReturnLevel       => PData::Float(1.0),
         }
     }
+}
+
+impl GetMinParameterValue for RingModulatorParam {
 
     fn min_value(&self) -> PData {
         match self {
@@ -65,6 +72,9 @@ impl ParameterInterface for RingModulatorParam {
             RingModulatorParam::ReturnLevel       => PData::Float(0.0),
         }
     }
+}
+
+impl GetMaxParameterValue for RingModulatorParam {
 
     fn max_value(&self) -> PData {
         match self {
@@ -80,6 +90,9 @@ impl ParameterInterface for RingModulatorParam {
             RingModulatorParam::ReturnLevel       => PData::Float(1.0),
         }
     }
+}
+
+impl GetParameterValueType for RingModulatorParam {
 
     fn value_type(&self) -> ValType {
         match self {
@@ -95,6 +108,9 @@ impl ParameterInterface for RingModulatorParam {
             RingModulatorParam::ReturnLevel       => ValType::VtFloat,
         }
     }
+}
+
+impl GetMoverate for RingModulatorParam {
 
     fn moverate(&self) -> f32 {
         match self {
@@ -110,27 +126,12 @@ impl ParameterInterface for RingModulatorParam {
             RingModulatorParam::ReturnLevel       => 1.0,
         }
     }
+}
+
+impl CheckIfModulateable for RingModulatorParam {
 
     fn modulateable(&self) -> bool {
         //true for all
         true
-    }
-}
-
-impl RingModulatorParam {
-
-    pub fn new_runtime() -> RingModulatorParamArrayRT {
-        RingModulatorParamArrayRT::new_with(|x| match x {
-            RingModulatorParam::CarrierShape      => RingModulatorParamRT::new(RingModulatorParam::CarrierShape),
-            RingModulatorParam::CarrierFreq       => RingModulatorParamRT::new(RingModulatorParam::CarrierFreq),
-            RingModulatorParam::UnisonDetune      => RingModulatorParamRT::new(RingModulatorParam::UnisonDetune),
-            RingModulatorParam::UnisonVoices      => RingModulatorParamRT::new(RingModulatorParam::UnisonVoices),
-            RingModulatorParam::DiodeForwardBias  => RingModulatorParamRT::new(RingModulatorParam::DiodeForwardBias),
-            RingModulatorParam::DiodeLinearRegion => RingModulatorParamRT::new(RingModulatorParam::DiodeLinearRegion),
-            RingModulatorParam::LowCut            => RingModulatorParamRT::new(RingModulatorParam::LowCut),
-            RingModulatorParam::HighCut           => RingModulatorParamRT::new(RingModulatorParam::HighCut),
-            RingModulatorParam::Mix               => RingModulatorParamRT::new(RingModulatorParam::Mix),
-            RingModulatorParam::ReturnLevel       => RingModulatorParamRT::new(RingModulatorParam::ReturnLevel),
-        })
     }
 }

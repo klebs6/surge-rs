@@ -1,11 +1,12 @@
 [package]
 name = "surge-derive"
-version = "0.1.0"
+version = "0.2.12-alpha.0"
 edition = "2021"
 
 [dependencies]
 syn = { version = "2.0.52", features = ["full","derive"] }
 derive-error = "0.0.5"
+paste = "*"
 export-magic = "0.1.0"
 quote = "1.0"
 proc-macro2 = "1.0"

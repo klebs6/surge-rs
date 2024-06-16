@@ -122,7 +122,7 @@ impl GetWaveshaperPtr for SurgeTables {
     }
 }
 
-impl Init for SurgeTables {
+impl Initialize for SurgeTables {
 
     fn init(&mut self) {
         self.envelope.init();

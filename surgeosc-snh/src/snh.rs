@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug)]
+#[name("oscillator.snh")]
 pub struct SampleAndHoldOscillator {
     pub out:                 OscillatorOut,
     pub params:              SampleAndHoldOscillatorParamArrayRT,
@@ -36,7 +37,6 @@ pub struct SampleAndHoldOscillator {
 
 oscillator!      [SampleAndHoldOscillator,  SampleAndHoldOscillatorParam];
 no_op!           [SampleAndHoldOscillator,     HandleStreamingMismatches];
-name!            [SampleAndHoldOscillator,              "oscillator.snh"];
 no_op!           [SampleAndHoldOscillator,                      AssignFM];
 allow_display!   [SampleAndHoldOscillator,                          true];
 default_default! [SampleAndHoldOscillator                                ];

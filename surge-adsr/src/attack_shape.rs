@@ -7,6 +7,13 @@ pub enum AdsrEnvelopeAttackShape {
     Two,
 }
 
+pub trait GetAttackShape {
+
+    type AttackShape;
+
+    fn get_attack_shape(&self) -> Self::AttackShape;
+}
+
 impl GetAttackShape for AdsrEnvelope {
 
     type AttackShape = AdsrEnvelopeAttackShape;
@@ -16,7 +23,7 @@ impl GetAttackShape for AdsrEnvelope {
             0 => AdsrEnvelopeAttackShape::Zero,
             1 => AdsrEnvelopeAttackShape::One,
             2 => AdsrEnvelopeAttackShape::Two,
-            _ => panic!("for the AdsrEnvelope, the AttackShape paramter should be a member of the set: {0,1,2}"),
+            _ => panic!("for the AdsrEnvelope, the AttackShape paramter should be a member of the set: [0,1,2]"),
         }
     }
 }

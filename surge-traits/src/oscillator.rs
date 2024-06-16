@@ -3,7 +3,7 @@ crate::ix!();
 pub trait Oscillator:
 OscillatorProcess 
 + AllowDisplay 
-+ Init 
++ Initialize 
 + SetPitch 
 + HandleStreamingMismatches 
 + AssignFM 

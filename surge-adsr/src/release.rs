@@ -13,8 +13,8 @@ impl Release for AdsrEnvelope {
         // note, there was some other commented
         // logic here before the port
         //
-        self.scalestage = self.output as f32;
-        self.phase      = 1.0;
-        self.envstate   = AdsrState::Release;
+        self.set_scalestage(self.get_output() as f32);
+        self.set_phase(1.0);
+        self.set_envstate(AdsrState::Release);
     }
 }

@@ -1,13 +1,13 @@
 crate::ix!();
 
-impl CheckIsModulationSourceBipolar for AdsrEnvelope {
+impl CheckBipolar for AdsrEnvelope {
 
     /// indicates whether the output of this
     /// modulation source is bipolar, returning
     /// `false` since the ADSR envelope is
     /// unipolar.
     ///
-    const fn is_bipolar(&self) -> bool { 
+    fn is_bipolar(&self) -> bool { 
         false
     }
 }

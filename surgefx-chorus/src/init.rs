@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for Chorus {
+impl Initialize for Chorus {
 
     fn init(&mut self) {
 

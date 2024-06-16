@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for BiquadFilter {
+impl Initialize for BiquadFilter {
 
     fn init(&mut self) {
         self.a1        = Align16(VLag::new_x87());

@@ -48,7 +48,7 @@ impl EnvelopeTables {
     }
 }
 
-impl Init for EnvelopeTables {
+impl Initialize for EnvelopeTables {
     fn init(&mut self) {
 
         let sr = self.srunit.dsamplerate_os();

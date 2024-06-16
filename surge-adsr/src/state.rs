@@ -14,14 +14,7 @@ pub enum AdsrState {
     Idle,
 }
 
-impl GetState for AdsrEnvelope {
-    type State = AdsrState;
+pub trait GetAdsrEnvelopeState {
 
-    /// `AdsrEnvelope::get_env_state`: This
-    /// function returns the current state of the
-    /// envelope.
-    ///
-    fn get_env_state(&self) -> Self::State { 
-        self.envstate
-    }
+    fn get_envstate(&self) -> AdsrState;
 }

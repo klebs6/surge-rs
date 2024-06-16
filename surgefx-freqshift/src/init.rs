@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for FreqShift {
+impl Initialize for FreqShift {
 
     fn init(&mut self) {
 
@@ -43,10 +43,10 @@ impl FreqShift {
             inithadtempo:   false,
             buffer:         Self::new_buffer(),
             wpos:           0,
-            o1_l:           QuadrOsc::new(),
-            o2_l:           QuadrOsc::new(),
-            o1_r:           QuadrOsc::new(),
-            o2_r:           QuadrOsc::new(),
+            o1_l:           QuadrOsc::default(),
+            o2_l:           QuadrOsc::default(),
+            o1_r:           QuadrOsc::default(),
+            o2_r:           QuadrOsc::default(),
             time_unit:      time_unit.clone(),
             tables:         tables.clone(),
             tuner:          tuner.clone(),

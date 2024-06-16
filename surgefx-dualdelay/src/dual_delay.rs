@@ -3,6 +3,7 @@ crate::ix!();
 pub const DUAL_DELAY_MAX_DELAY_LENGTH: usize = 1 << 18;
 
 #[derive(Debug,Clone)]
+#[name("dualdelay")]
 pub struct DualDelay {
     pub feedback:        Align16<LipolPs>,
     pub crossfeed:       Align16<LipolPs>,
@@ -38,7 +39,6 @@ pub struct DualDelay {
     pub srunit:          SampleRateHandle,
 }
 
-name!        [DualDelay, "dualdelay"   ]; 
 effect!      [DualDelay, DualDelayParam];
 no_op!       [DualDelay, Suspend       ];
 has_timeunit![DualDelay, DualDelayParam];

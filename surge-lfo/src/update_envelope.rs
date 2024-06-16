@@ -19,7 +19,7 @@ impl Lfo {
             pvalf![self.params[lfo_param]]
         );
 
-        if self.params[lfo_param].temposync {
+        if self.params[lfo_param].get_temposync() {
             envrate *= temposyncratio;
         }
 

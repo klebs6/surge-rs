@@ -1,5 +1,10 @@
 crate::ix!();
 
+pub trait Clamp01 {
+
+    fn clamp01(&mut self);
+}
+
 /// Clamps the given value `x` within the range [0, 1].
 ///
 /// # Example

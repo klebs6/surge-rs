@@ -1,18 +1,38 @@
 crate::ix!();
 
-enhanced_enum![
-    RotarySpeakerParam {
-        HornRate,
-        Doppler,
-        AmpMod,
-        ReturnLevel,
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum RotarySpeakerParam {
+    HornRate,
+    Doppler,
+    AmpMod,
+    ReturnLevel,
+}
+
+impl_trait_defaults!{
+    RotarySpeakerParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetExtendedValue,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+}
+
+impl GetControlGroup for RotarySpeakerParam {
+
+    fn control_group(&self) -> ControlGroup { 
+        ControlGroup::Fx 
     }
-];
+}
 
-rt![RotarySpeakerParam];
+impl GetControlType for RotarySpeakerParam {
 
-impl ParameterInterface for RotarySpeakerParam {
-    fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
     fn control_type(&self) -> ControlType {
         match self {
             RotarySpeakerParam::HornRate    => ControlType::LfoRate,
@@ -21,6 +41,10 @@ impl ParameterInterface for RotarySpeakerParam {
             RotarySpeakerParam::ReturnLevel => ControlType::Percent,
         }
     }
+}
+
+impl GetDefaultParameterValue for RotarySpeakerParam {
+
     fn default_value(&self) -> PData {
         match self {
             RotarySpeakerParam::HornRate    => PData::Float(1.0),
@@ -29,9 +53,17 @@ impl ParameterInterface for RotarySpeakerParam {
             RotarySpeakerParam::ReturnLevel => PData::Float(0.5),
         }
     }
+}
+
+impl CheckIfModulateable for RotarySpeakerParam {
+
     fn modulateable(&self) -> bool {
         true
     }
+}
+
+impl GetMinParameterValue for RotarySpeakerParam {
+
     fn min_value(&self) -> PData {
         match self {
             RotarySpeakerParam::HornRate    => PData::Float(-7.0),
@@ -40,6 +72,10 @@ impl ParameterInterface for RotarySpeakerParam {
             RotarySpeakerParam::ReturnLevel => PData::Float(0.0),
         }
     }
+}
+
+impl GetMaxParameterValue for RotarySpeakerParam {
+
     fn max_value(&self) -> PData {
         match self {
             RotarySpeakerParam::HornRate    => PData::Float(9.0),
@@ -48,6 +84,10 @@ impl ParameterInterface for RotarySpeakerParam {
             RotarySpeakerParam::ReturnLevel => PData::Float(1.0),
         }
     }
+}
+
+impl GetParameterValueType for RotarySpeakerParam {
+
     fn value_type(&self) -> ValType {
         match self {
             RotarySpeakerParam::HornRate    => ValType::VtFloat,
@@ -56,6 +96,10 @@ impl ParameterInterface for RotarySpeakerParam {
             RotarySpeakerParam::ReturnLevel => ValType::VtFloat,
         }
     }
+}
+
+impl GetMoverate for RotarySpeakerParam {
+
     fn moverate(&self) -> f32 {
         match self {
             RotarySpeakerParam::HornRate    => 0.33,

@@ -3,17 +3,18 @@ crate::ix!();
 #[enum_dispatch]
 pub trait Effect : 
 Debug 
-+ Init 
++ Initialize 
 + ProcessRingout 
 + GetReturnLevel
 + Update
++ Reset
 + Suspend { }
 
 pub type MaybeEffect = Option<Box<dyn Effect>>;
 pub type MaybeEffects = Vec<MaybeEffect>;
 
 #[enum_dispatch]
-pub trait Init {
+pub trait Initialize {
     fn init(&mut self) {}
 }
 
@@ -23,7 +24,7 @@ pub trait Update {
 }
 
 #[enum_dispatch]
-pub trait Suspend: Init {
+pub trait Suspend: Initialize {
     fn suspend(&mut self) { self.init() }
 }
 

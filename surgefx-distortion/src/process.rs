@@ -2,11 +2,11 @@ crate::ix!();
 
 //pub const DISTORTION_OVERSAMPLE_BLOCK_SIZE: usize = BLOCK_SIZE << DISTORTION_OS_BITS;
 
-impl Process for Distortion {
+impl StereoProcess for Distortion {
 
     // eventually loosen the constraint on N
     #[allow(clippy::assertions_on_constants)] 
-    fn process<const N: usize>( &mut self, 
+    fn stereo_process<const N: usize>( &mut self, 
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N]) 
     {

@@ -8,7 +8,7 @@ pub struct SynthInput {
     pub audio_in_non_os: Align16<A2d::<f32>>,
 }
 
-impl Init for SynthInput {
+impl Initialize for SynthInput {
     fn init(&mut self) {
         self.audio_in.fill(0.0);
     }

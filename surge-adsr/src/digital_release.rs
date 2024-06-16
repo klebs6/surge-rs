@@ -1,5 +1,10 @@
 crate::ix!();
 
+pub trait DigitalRelease {
+
+    fn digital_release(&mut self);
+}
+
 impl DigitalRelease for AdsrEnvelope {
 
     /// Processes a block of samples during the
@@ -15,8 +20,6 @@ impl DigitalRelease for AdsrEnvelope {
     ///
     fn digital_release(&mut self) {
 
-        let release = self.get_release_parameter();
-
         // It subtracts the envelope rate (calculated from the release parameter) multiplied by the
         // release time sync ratio from the phase of the envelope. 
         //
@@ -25,11 +28,9 @@ impl DigitalRelease for AdsrEnvelope {
         //
         // The result is stored in the `phase` variable.
         //
-        self.phase -= 
-            self.tables.envelope_rate_linear(release ) 
-            * tsyncratio![self,Release];
+        self.decrement_phase(self.release_rate());
 
-        self.output = self.phase;
+        self.set_output(self.phase());
 
         // loop based on the value of the release shape parameter. 
         //
@@ -38,8 +39,9 @@ impl DigitalRelease for AdsrEnvelope {
         //
         // This is done to apply a shape to the release stage of the envelope.
         //
-        for _i in 0..pvali![self.params[AdsrParam::ReleaseShape]] {
-            self.output *= self.phase;
+        for _i in 0..self.release_shape() {
+
+            self.scale_output(self.phase());
         }
 
         // If the `phase` variable is less than 0, this means that the release stage is complete
@@ -48,17 +50,19 @@ impl DigitalRelease for AdsrEnvelope {
         // The `envstate` variable is set to `AdsrState::Idle` and the `output` variable is set to
         // 0.
         //
-        if self.phase < 0.0
+        if self.phase_is_negative()
         {
-            self.envstate = AdsrState::Idle;
-            self.output = 0.0;
+            self.set_envstate(AdsrState::Idle);
+            self.clear_output();
         }
+
+        let scalestage = self.scalestage();
 
         // Finally, the `output` variable is multiplied by the `scalestage` variable. 
         //
         // This is done to scale the envelope by the appropriate amount for the current stage of
         // the envelope.
         //
-        self.output *= self.scalestage;
+        self.scale_output(scalestage);
     }
 }

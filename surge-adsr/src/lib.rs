@@ -4,22 +4,27 @@
 #[macro_use] mod imports; use imports::*;
 
 x!{adsr}
-x!{analog}
 x!{attack}
+x!{attack_shape}
 x!{check_analog}
-x!{digital}
+x!{check_idle}
+x!{clamp}
+x!{decay_shape}
+x!{decay_shape_bounds}
 x!{digital_attack}
 x!{digital_decay}
 x!{digital_release}
 x!{digital_uberrelease}
-x!{enable}
-x!{imports}
+x!{get_param}
 x!{init}
-x!{measure}
 x!{param}
 x!{per_voice}
 x!{process_block}
+x!{process_block_analog}
+x!{process_block_digital}
 x!{release}
 x!{reset}
-x!{set}
+x!{retrigger}
 x!{set_bipolar}
+x!{state}
+x!{uber_release}

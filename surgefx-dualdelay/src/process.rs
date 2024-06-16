@@ -1,8 +1,8 @@
 crate::ix!();
 
-impl Process for DualDelay {
+impl StereoProcess for DualDelay {
 
-    fn process<const N: usize>(&mut self, 
+    fn stereo_process<const N: usize>(&mut self, 
         data_l: &mut [f32; N], data_r: &mut [f32; N]) 
     {
         self.update();

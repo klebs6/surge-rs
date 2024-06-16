@@ -40,7 +40,7 @@ impl ScaleNote for SurgeTuner {
     }
 }
 
-impl Init for SurgeTuner {
+impl Initialize for SurgeTuner {
     fn init(&mut self) {
         self.current_tuning.init();
         self.current_mapping.init();

@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for SineWaveOscillator {
+impl Initialize for SineWaveOscillator {
 
     fn init(&mut self) {
         self.phase       = 0.0;

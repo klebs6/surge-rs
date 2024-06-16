@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug,Clone)]
+#[name("eq")]
 pub struct Eq3Band {
 
     pub gain:             Align16<LipolPs>,
@@ -20,4 +21,3 @@ pub struct Eq3Band {
 no_op!  [Eq3Band, ProcessOnlyControl];
 effect! [Eq3Band,       Eq3BandParam];
 no_op!  [Eq3Band,            Suspend];
-name!   [Eq3Band,               "eq"]; 

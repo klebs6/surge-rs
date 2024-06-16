@@ -19,7 +19,7 @@ pub struct KeyboardMapping {
     pub name:                   String,
 }
 
-impl Init for KeyboardMapping {
+impl Initialize for KeyboardMapping {
     fn init(&mut self) {
         self.is_valid             = true;
         self.is_standard_mapping  = true;

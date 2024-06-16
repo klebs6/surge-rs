@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug,Clone)]
+#[name("phaser")]
 pub struct Phaser {
 
     pub mix:         Align16<LipolPs>,
@@ -24,7 +25,6 @@ pub struct Phaser {
     pub time_unit:   TimeUnitHandle,
 }
 
-name!         [Phaser, "phaser"]; 
 effect!       [Phaser, PhaserParam];
 no_op!        [Phaser, Suspend];
 has_timeunit! [Phaser, PhaserParam];

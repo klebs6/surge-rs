@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug,Clone)]
+#[name("vocoder")]
 pub struct Vocoder {
 
     pub carrier_l:    Align16<A1d::<VectorizedSvfFilter>>,
@@ -22,7 +23,5 @@ pub struct Vocoder {
 
 effect!          [Vocoder,       VocoderParam];
 no_op!           [Vocoder, ProcessOnlyControl];
-name!            [Vocoder,          "vocoder"];
 update_on_init!  [Vocoder                    ];
 init_on_suspend! [Vocoder                    ];
-

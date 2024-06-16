@@ -1,8 +1,8 @@
 crate::ix!();
 
-impl Process for Reverb {
+impl StereoProcess for Reverb {
 
-    fn process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
+    fn stereo_process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
 
         let mix   = self.pvalf(ReverbParam::Mix);
         let width = self.pvalf(ReverbParam::Width);

@@ -86,7 +86,7 @@ Here is a list of some traits found in the
 `surge-traits` crate, along with a brief
 description for each:
 
-1. **Init**: This trait provides a method called
+1. **Initialize**: This trait provides a method called
    `init` for initializing the implementing
    struct. It is typically used to set initial
    values for struct members or allocate
@@ -122,7 +122,7 @@ description for each:
 6. **Reset**: This trait provides a method `reset`
    for resetting the state of an implementing
    struct. It is often used in conjunction with
-   the `Init` trait to reinitialize a component
+   the `Initialize` trait to reinitialize a component
    after a change in configuration.
 
 7. **Suspend**: This trait provides a method

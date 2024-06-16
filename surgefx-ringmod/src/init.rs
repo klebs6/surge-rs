@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for RingModulator {
+impl Initialize for RingModulator {
 
     fn init(&mut self) 
     {

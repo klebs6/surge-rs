@@ -12,7 +12,7 @@ impl Default for HoldPedalUnit {
     fn default() -> Self {
         Self {
             hold_buffer:  Vec::new(), 
-            sine:         QuadrOsc::new(),
+            sine:         QuadrOsc::default(),
             demo_counter: 10,
         }
     }

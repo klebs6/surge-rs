@@ -14,7 +14,7 @@ pub trait SetRingout {
 
 #[enum_dispatch]
 pub trait ProcessRingout : 
-Process 
+StereoProcess 
 + ProcessOnlyControl 
 + GetRingout 
 + SetRingout 
@@ -53,7 +53,7 @@ Process
         }
 
         if (self.get_ringout_counter() < decay_max) || do_process {
-            self.process::<N>(data_l,data_r);
+            self.stereo_process::<N>(data_l,data_r);
             true
         } else {
             self.process_only_control::<N>();

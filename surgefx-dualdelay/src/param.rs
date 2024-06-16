@@ -1,6 +1,8 @@
 crate::ix!();
 
-enhanced_enum![DualDelayParam {
+#[derive(Debug,Copy,Clone,Hash,PartialEq,Eq)]
+#[synth_parameters]
+pub enum DualDelayParam {
     Left,
     Right,
     Feedback,
@@ -13,13 +15,29 @@ enhanced_enum![DualDelayParam {
     Mix,
     Width,
     ReturnLevel,
-}];
+}
 
-rt![DualDelayParam];
+impl_trait_defaults!{
+    DualDelayParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+    GetExtendedValue,
+}
 
-impl ParameterInterface for DualDelayParam {
+impl GetControlGroup for DualDelayParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+}
+
+impl GetControlType for DualDelayParam {
 
     fn control_type(&self) -> ControlType {
         match self {
@@ -37,6 +55,9 @@ impl ParameterInterface for DualDelayParam {
             DualDelayParam::ReturnLevel => ControlType::Percent,
         }
     }
+}
+
+impl GetDefaultParameterValue for DualDelayParam {
 
     fn default_value(&self) -> PData {
         match self {
@@ -54,11 +75,17 @@ impl ParameterInterface for DualDelayParam {
             DualDelayParam::ReturnLevel => PData::Float(0.5),
         }
     }
+}
+
+impl CheckIfModulateable for DualDelayParam {
 
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+}
+
+impl GetMinParameterValue for DualDelayParam {
 
     fn min_value(&self) -> PData {
         match self {
@@ -76,6 +103,9 @@ impl ParameterInterface for DualDelayParam {
             DualDelayParam::ReturnLevel => PData::Float(0.0),
         }
     }
+}
+
+impl GetMaxParameterValue for DualDelayParam {
 
     fn max_value(&self) -> PData {
         match self {
@@ -93,6 +123,9 @@ impl ParameterInterface for DualDelayParam {
             DualDelayParam::ReturnLevel => PData::Float(1.0),
         }
     }
+}
+
+impl GetParameterValueType for DualDelayParam {
 
     fn value_type(&self) -> ValType {
         match self {
@@ -110,6 +143,9 @@ impl ParameterInterface for DualDelayParam {
             DualDelayParam::ReturnLevel => ValType::VtFloat,
         }
     }
+}
+
+impl GetMoverate for DualDelayParam {
 
     fn moverate(&self) -> f32 {
         match self {
@@ -126,25 +162,5 @@ impl ParameterInterface for DualDelayParam {
             DualDelayParam::Width       => 1.0,
             DualDelayParam::ReturnLevel => 1.0,
         }
-    }
-}
-
-impl DualDelayParam {
-
-    #[inline] pub fn new_runtime() -> DualDelayParamArrayRT {
-        DualDelayParamArrayRT::new_with(|x| match x {
-            DualDelayParam::Left        => DualDelayParamRT::new(DualDelayParam::Left     ),
-            DualDelayParam::Right       => DualDelayParamRT::new(DualDelayParam::Right    ),
-            DualDelayParam::Feedback    => DualDelayParamRT::new(DualDelayParam::Feedback ),
-            DualDelayParam::CrossFeed   => DualDelayParamRT::new(DualDelayParam::CrossFeed),
-            DualDelayParam::LowCut      => DualDelayParamRT::new(DualDelayParam::LowCut   ),
-            DualDelayParam::HighCut     => DualDelayParamRT::new(DualDelayParam::HighCut  ),
-            DualDelayParam::Rate        => DualDelayParamRT::new(DualDelayParam::Rate     ),
-            DualDelayParam::Depth       => DualDelayParamRT::new(DualDelayParam::Depth    ),
-            DualDelayParam::Pan         => DualDelayParamRT::new(DualDelayParam::Pan      ),
-            DualDelayParam::Mix         => DualDelayParamRT::new(DualDelayParam::Mix      ),
-            DualDelayParam::Width       => DualDelayParamRT::new(DualDelayParam::Width    ),
-            DualDelayParam::ReturnLevel => DualDelayParamRT::new(DualDelayParam::ReturnLevel),
-        })
     }
 }

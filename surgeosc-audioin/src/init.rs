@@ -10,7 +10,7 @@ impl AudioInputOscillator {
             synth_in,
             out:          OscillatorOut::default(),
             params:       AudioInputOscillatorParam::new_runtime(),
-            osc_params:   OscillatorParam::runtime_array(),
+            osc_params:   OscillatorParam::new_runtime(),
         }
     }
 }

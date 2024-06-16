@@ -1,6 +1,9 @@
 [dependencies.surge-imports]
 path = "../surge-imports"
 version = "0.2.12-alpha.0"
+[dependencies.surge-derive]
+path = "../surge-derive"
+version = "0.2.12-alpha.0"
 [dependencies.surge-stepseq]
 path = "../surge-stepseq"
 version = "0.2.12-alpha.0"

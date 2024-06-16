@@ -11,7 +11,7 @@ pub struct MPEUnit {
     pub last_key:                  i32,
 }
 
-impl Init for MPEUnit {
+impl Initialize for MPEUnit {
     fn init(&mut self) {
         self.last_key = 60;
         self.pitchbend = PitchBendValue(0.0);

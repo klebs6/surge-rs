@@ -59,7 +59,7 @@ pub struct Scale {
     pub tones: Vec<Tone>,
 }
 
-impl Init for Scale {
+impl Initialize for Scale {
 
     fn init(&mut self) {
         self.name         = "empty scale".to_string();

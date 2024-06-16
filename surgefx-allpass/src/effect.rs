@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug,Clone)]
+#[name("reverb2")]
 pub struct AllpassVerb {
     pub mix                 : Align16<LipolPs>,
     pub width               : Align16<LipolPs>,
@@ -28,7 +29,6 @@ pub struct AllpassVerb {
     pub srunit              : SampleRateHandle,
 }
 
-name!             [AllpassVerb, "reverb2"];
 effect!           [AllpassVerb, AllpassReverbParam];
 update_on_init!   [AllpassVerb];
 default_default!  [AllpassVerb];

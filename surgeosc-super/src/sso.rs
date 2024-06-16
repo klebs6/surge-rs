@@ -4,6 +4,7 @@ pub const SSO_INTEGRATOR_HPF: f32 = 0.9982;
 pub const SSO_HPF_CYCLE_LOSS: f32 = 0.995;
 
 #[derive(Debug)]
+#[name("oscillator.sso")]
 pub struct SurgeSuperOscillator {
     pub drift:             f32,
     pub master_osc:        *mut f32,
@@ -42,7 +43,6 @@ pub struct SurgeSuperOscillator {
 }
 
 oscillator!    [SurgeSuperOscillator,                  SSOParam];
-name!          [SurgeSuperOscillator,          "oscillator.sso"];
 no_op!         [SurgeSuperOscillator, HandleStreamingMismatches];
 no_op!         [SurgeSuperOscillator,                  AssignFM];
 allow_display! [SurgeSuperOscillator,                      true];

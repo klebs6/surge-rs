@@ -10,7 +10,7 @@ impl Suspend for RotarySpeaker {
     }
 }
 
-impl Init for RotarySpeaker {
+impl Initialize for RotarySpeaker {
 
     fn init(&mut self) {
         self.buffer.fill(0.0);

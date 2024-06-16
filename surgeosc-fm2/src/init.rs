@@ -5,7 +5,7 @@ pub fn fm2_calcmd(x: f64) -> f64
     x * x * x * 8.0 * PI
 }
 
-impl Init for FM2Oscillator {
+impl Initialize for FM2Oscillator {
 
     fn init(&mut self) {
 

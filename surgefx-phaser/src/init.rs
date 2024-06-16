@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for Phaser {
+impl Initialize for Phaser {
 
     fn init(&mut self) {
         self.lfophase = 0.25;

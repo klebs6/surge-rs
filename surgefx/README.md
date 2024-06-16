@@ -67,7 +67,7 @@ which represents different audio effects that can
 be applied to audio data. The enum implements
 several traits (`Effect`, `Process`,
 `ProcessOnlyControl`, `GetRingout`, `SetRingout`,
-`ProcessRingout`, `Suspend`, `Init`, `Update`,
+`ProcessRingout`, `Suspend`, `Initialize`, `Update`,
 `ClearBuffers`, `GetReturnLevel`) that define
 behavior related to processing audio data and
 managing audio effect state.
@@ -106,7 +106,7 @@ effect to a "suspended" state. This can be useful
 for effects that need to be temporarily disabled
 (e.g. to conserve CPU resources).
 
-The `Init` trait defines an `init` method that
+The `Initialize` trait defines an `init` method that
 initializes the state of the audio effect.
 
 The `Update` trait defines an `update` method that

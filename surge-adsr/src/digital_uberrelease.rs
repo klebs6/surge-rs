@@ -1,5 +1,10 @@
 crate::ix!();
 
+pub trait DigitalUberRelease {
+
+    fn digital_uberrelease(&mut self);
+}
+
 impl DigitalUberRelease for AdsrEnvelope {
 
     /// responsible for calculating the output of the envelope generator in
@@ -19,13 +24,13 @@ impl DigitalUberRelease for AdsrEnvelope {
         // a constant value of -6.5 dB. This corresponds to an exponential rate
         // of decay.
         //
-        self.phase -= self.tables.envelope_rate_linear(-6.5);
+        self.decrement_phase(self.uberrelease_rate());
 
         // assigns the `phase` variable to the `output` variable of the
         // struct. This is the value that will be returned by the envelope
         // generator.
         //
-        self.output = self.phase;
+        self.set_output(self.phase());
 
         // multiplies the `output` variable by the `phase` variable a number of
         // times, based on the value of a parameter called `ReleaseShape`. 
@@ -36,8 +41,8 @@ impl DigitalUberRelease for AdsrEnvelope {
         // The purpose of this loop is to shape the release curve of the
         // envelope, which is a polynomial function of the form `y = x^n`.
         //
-        for _i in 0..pvali![self.params[AdsrParam::ReleaseShape]] {
-            self.output *= self.phase;
+        for _i in 0..self.release_shape() {
+            self.scale_output(self.phase());
         }
 
         // checks whether the `phase` variable has become negative. 
@@ -46,16 +51,18 @@ impl DigitalUberRelease for AdsrEnvelope {
         // `output` variable is set to
         // 0.0.
         //
-        if self.phase < 0.0
+        if self.phase_is_negative()
         {
-            self.envstate = AdsrState::Idle;
-            self.output = 0.0;
+            self.set_envstate(AdsrState::Idle);
+            self.clear_output();
         }
+
+        let scalestage = self.scalestage();
 
         // scales the `output` variable by a value called `scalestage`, which is
         // a constant multiplier used to adjust the overall amplitude of the
         // envelope.
         //
-        self.output *= self.scalestage;
+        self.scale_output(scalestage);
     }
 }

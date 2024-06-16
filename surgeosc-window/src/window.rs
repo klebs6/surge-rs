@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug)]
+#[name("oscillator.window_oscillator")]
 pub struct WindowOscillator {
     pub drift:             Align16<f32>,
     pub master_osc:        Align16<*mut f32>,
@@ -32,7 +33,6 @@ pub struct WindowOscillator {
     pub srunit:            SampleRateHandle,
 }
 
-name!          [WindowOscillator, "oscillator.window_oscillator"];
 no_op!         [WindowOscillator,      HandleStreamingMismatches];
 oscillator!    [WindowOscillator,          WindowOscillatorParam];
 no_op!         [WindowOscillator,                       AssignFM];

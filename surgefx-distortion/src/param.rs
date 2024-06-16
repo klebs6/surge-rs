@@ -3,28 +3,46 @@ crate::ix!();
 //TODO: these are maybe not the best ones
 //we have six filters, a drive, and an outgain
 //find parameters that fit these blocks
-enhanced_enum![
-    DistortionParam {
-        PreGain,
-        PreFreq,
-        PreBandwidth,
-        PreHighCut,
-        Drive,
-        Feedback,
-        PostGain,
-        PostFreq,
-        PostBandwidth,
-        PostHighCut,
-        OutGain,
-        Waveshaper,
-        ReturnLevel,
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum DistortionParam {
+    PreGain,
+    PreFreq,
+    PreBandwidth,
+    PreHighCut,
+    Drive,
+    Feedback,
+    PostGain,
+    PostFreq,
+    PostBandwidth,
+    PostHighCut,
+    OutGain,
+    Waveshaper,
+    ReturnLevel,
+}
 
-rt![DistortionParam];
+impl_trait_defaults!{
+    DistortionParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+    GetExtendedValue,
+}
 
-impl ParameterInterface for DistortionParam {
+impl GetControlGroup for DistortionParam {
+
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+}
+
+impl GetControlType for DistortionParam {
+
     fn control_type(&self) -> ControlType {
         match self {
             DistortionParam::PreGain       => ControlType::DecibelExtendable       , 
@@ -42,7 +60,12 @@ impl ParameterInterface for DistortionParam {
             DistortionParam::ReturnLevel   => ControlType::Percent, 
         }
     }
+}
+
+impl GetDefaultParameterValue for DistortionParam {
+
     fn default_value(&self) -> PData {
+
         match self {
             DistortionParam::PreGain       => PData::Float(0.0), 
             DistortionParam::PreFreq       => PData::Float(0.0), 
@@ -59,10 +82,18 @@ impl ParameterInterface for DistortionParam {
             DistortionParam::ReturnLevel   => PData::Float(0.5), 
         }
     }
+}
+
+impl CheckIfModulateable for DistortionParam {
+
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+}
+
+impl GetMinParameterValue for DistortionParam {
+
     fn min_value(&self) -> PData {
         match self {
             DistortionParam::PreGain       => PData::Float(-48.0),
@@ -80,6 +111,10 @@ impl ParameterInterface for DistortionParam {
             DistortionParam::ReturnLevel   => PData::Float(0.0), 
         }
     }
+}
+
+impl GetMaxParameterValue for DistortionParam {
+
     fn max_value(&self) -> PData {
         match self {
             DistortionParam::PreGain       => PData::Float(48.0),
@@ -97,6 +132,10 @@ impl ParameterInterface for DistortionParam {
             DistortionParam::ReturnLevel   => PData::Float(1.0), 
         }
     }
+}
+
+impl GetParameterValueType for DistortionParam {
+
     fn value_type(&self) -> ValType {
         match self {
             DistortionParam::PreGain       => ValType::VtFloat,
@@ -114,6 +153,10 @@ impl ParameterInterface for DistortionParam {
             DistortionParam::ReturnLevel   => ValType::VtFloat,
         }
     }
+}
+
+impl GetMoverate for DistortionParam {
+
     fn moverate(&self) -> f32 {
         match self {
             DistortionParam::PreGain       => 1.0,
@@ -130,25 +173,5 @@ impl ParameterInterface for DistortionParam {
             DistortionParam::Waveshaper    => 1.0,
             DistortionParam::ReturnLevel   => 1.0,
         }
-    }
-}
-
-impl DistortionParam {
-    #[inline] pub fn new_runtime() -> DistortionParamArrayRT {
-        DistortionParamArrayRT::new_with(|x| match x {
-            DistortionParam::PreGain       => DistortionParamRT::new(DistortionParam::PreGain      ),
-            DistortionParam::PreFreq       => DistortionParamRT::new(DistortionParam::PreFreq      ),
-            DistortionParam::PreBandwidth  => DistortionParamRT::new(DistortionParam::PreBandwidth ),
-            DistortionParam::PreHighCut    => DistortionParamRT::new(DistortionParam::PreHighCut   ),
-            DistortionParam::Drive         => DistortionParamRT::new(DistortionParam::Drive        ),
-            DistortionParam::Feedback      => DistortionParamRT::new(DistortionParam::Feedback     ),
-            DistortionParam::PostGain      => DistortionParamRT::new(DistortionParam::PostGain     ),
-            DistortionParam::PostFreq      => DistortionParamRT::new(DistortionParam::PostFreq     ),
-            DistortionParam::PostBandwidth => DistortionParamRT::new(DistortionParam::PostBandwidth),
-            DistortionParam::PostHighCut   => DistortionParamRT::new(DistortionParam::PostHighCut  ),
-            DistortionParam::OutGain       => DistortionParamRT::new(DistortionParam::OutGain      ),
-            DistortionParam::Waveshaper    => DistortionParamRT::new(DistortionParam::Waveshaper   ),
-            DistortionParam::ReturnLevel   => DistortionParamRT::new(DistortionParam::ReturnLevel  ),
-        })
     }
 }

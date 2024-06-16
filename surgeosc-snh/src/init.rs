@@ -2,7 +2,7 @@ crate::ix!();
 
 pub const INITIAL_RATE: f64 = 0.05;
 
-impl Init for SampleAndHoldOscillator {
+impl Initialize for SampleAndHoldOscillator {
 
     fn init(&mut self) {
 

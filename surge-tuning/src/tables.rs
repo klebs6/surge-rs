@@ -26,7 +26,7 @@ impl TuningTables {
     }
 }
 
-impl Init for TuningTables {
+impl Initialize for TuningTables {
     fn init(&mut self) {
 
         for i in 0..512 {

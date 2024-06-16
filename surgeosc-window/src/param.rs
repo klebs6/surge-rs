@@ -1,24 +1,35 @@
 crate::ix!();
 
-enhanced_enum![
-    WindowOscillatorParam {
-        Morph, //oscdata->p[0].set_user_data(oscdata);
-        Formant,
-        Window,
-        UniSpread,
-        UniCount,
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum WindowOscillatorParam {
+    Morph, //oscdata->p[0].set_user_data(oscdata);
+    Formant,
+    Window,
+    UniSpread,
+    UniCount,
+}
 
-rt![WindowOscillatorParam];
+impl_trait_defaults!{
+    WindowOscillatorParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetExtendedValue,
+    GetModulation,
+    SetModulation,
+}
 
-impl ParameterInterface for WindowOscillatorParam {
+impl GetControlGroup for WindowOscillatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
+}
 
-    fn snap(&self) -> bool {
-        *self != WindowOscillatorParam::Morph
-    }
+impl GetControlType for WindowOscillatorParam {
 
     fn control_type(&self) -> ControlType {
         match self {
@@ -29,6 +40,9 @@ impl ParameterInterface for WindowOscillatorParam {
             WindowOscillatorParam::UniCount  => ControlType::OscCountWT,
         }
     }
+}
+
+impl GetDefaultParameterValue for WindowOscillatorParam {
 
     fn default_value(&self) -> PData {
         match self {
@@ -39,6 +53,9 @@ impl ParameterInterface for WindowOscillatorParam {
             WindowOscillatorParam::UniCount  => PData::Int(1),
         }
     }
+}
+
+impl GetMinParameterValue for WindowOscillatorParam {
 
     fn min_value(&self) -> PData {
         match self {
@@ -49,6 +66,9 @@ impl ParameterInterface for WindowOscillatorParam {
             WindowOscillatorParam::UniCount  => PData::Int(1),      
         }
     }
+}
+
+impl GetMaxParameterValue for WindowOscillatorParam {
 
     fn max_value(&self) -> PData {
         match self {
@@ -59,6 +79,9 @@ impl ParameterInterface for WindowOscillatorParam {
             WindowOscillatorParam::UniCount  => PData::Int(16),    
         }
     }
+}
+
+impl GetParameterValueType for WindowOscillatorParam {
 
     fn value_type(&self) -> ValType {
         match self {
@@ -69,6 +92,9 @@ impl ParameterInterface for WindowOscillatorParam {
             WindowOscillatorParam::UniCount  => ValType::VtInt,  
         }
     }
+}
+
+impl GetMoverate for WindowOscillatorParam {
 
     fn moverate(&self) -> f32 {
         match self {
@@ -79,6 +105,9 @@ impl ParameterInterface for WindowOscillatorParam {
             WindowOscillatorParam::UniCount  => 1.0,
         }
     }
+}
+
+impl CheckIfModulateable for WindowOscillatorParam {
 
     fn modulateable(&self) -> bool {
         //true for all
@@ -86,15 +115,9 @@ impl ParameterInterface for WindowOscillatorParam {
     }
 }
 
-impl WindowOscillatorParam {
+impl GetSnap for WindowOscillatorParam {
 
-    #[inline] pub fn new_runtime() -> WindowOscillatorParamArrayRT {
-        WindowOscillatorParamArrayRT::new_with(|x| match x {
-            WindowOscillatorParam::Morph     => WindowOscillatorParamRT::new(WindowOscillatorParam::Morph),
-            WindowOscillatorParam::Formant   => WindowOscillatorParamRT::new(WindowOscillatorParam::Formant),
-            WindowOscillatorParam::Window    => WindowOscillatorParamRT::new(WindowOscillatorParam::Window),
-            WindowOscillatorParam::UniSpread => WindowOscillatorParamRT::new(WindowOscillatorParam::UniSpread),
-            WindowOscillatorParam::UniCount  => WindowOscillatorParamRT::new(WindowOscillatorParam::UniCount),
-        })
+    fn snap(&self) -> bool {
+        *self != WindowOscillatorParam::Morph
     }
 }

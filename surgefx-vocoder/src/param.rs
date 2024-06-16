@@ -1,26 +1,43 @@
 crate::ix!();
 
-enhanced_enum![
-    VocoderParam {
-        Gain,
-        GateLevel,
-        Rate,
-        UnvoicedThreshold,
-        Quality,
-        NumBands,
-        FreqLo,
-        FreqHi,
-        ModExpand,
-        ModCenter,
-        ReturnLevel
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum VocoderParam {
+    Gain,
+    GateLevel,
+    Rate,
+    UnvoicedThreshold,
+    Quality,
+    NumBands,
+    FreqLo,
+    FreqHi,
+    ModExpand,
+    ModCenter,
+    ReturnLevel
+}
 
-rt![VocoderParam];
+impl_trait_defaults!{
+    VocoderParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+    GetExtendedValue,
+    GetExtendRange,
+}
 
-impl ParameterInterface for VocoderParam {
+impl GetControlGroup for VocoderParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+}
+
+impl GetControlType for VocoderParam {
 
     fn control_type(&self) -> ControlType {
         match self {
@@ -37,6 +54,9 @@ impl ParameterInterface for VocoderParam {
             VocoderParam::ReturnLevel       => ControlType::Percent,
         }
     }
+}
+
+impl GetDefaultParameterValue for VocoderParam {
 
     fn default_value(&self) -> PData {
         match self {
@@ -53,10 +73,16 @@ impl ParameterInterface for VocoderParam {
             VocoderParam::ReturnLevel       => PData::Float(0.5),
         }
     }
+}
+
+impl CheckIfModulateable for VocoderParam {
 
     fn modulateable(&self) -> bool {
         true
     }
+}
+
+impl GetMinParameterValue for VocoderParam {
 
     fn min_value(&self) -> PData {
         match self {
@@ -73,7 +99,9 @@ impl ParameterInterface for VocoderParam {
             VocoderParam::ReturnLevel       => PData::Float(0.0),
         }
     }
+}
 
+impl GetMaxParameterValue for VocoderParam {
     fn max_value(&self) -> PData {
         match self {
             VocoderParam::Gain              => PData::Float(48.0),
@@ -89,7 +117,9 @@ impl ParameterInterface for VocoderParam {
             VocoderParam::ReturnLevel       => PData::Float(1.0),
         }
     }
+}
 
+impl GetParameterValueType for VocoderParam {
     fn value_type(&self) -> ValType {
         match self {
             VocoderParam::Gain              => ValType::VtFloat,
@@ -105,7 +135,9 @@ impl ParameterInterface for VocoderParam {
             VocoderParam::ReturnLevel       => ValType::VtFloat,
         }
     }
+}
 
+impl GetMoverate for VocoderParam {
     fn moverate(&self) -> f32 {
         match self {
             VocoderParam::Gain              => 1.0,
@@ -120,23 +152,5 @@ impl ParameterInterface for VocoderParam {
             VocoderParam::ModCenter         => 1.0,
             VocoderParam::ReturnLevel       => 1.0,
         }
-    }
-}
-
-impl VocoderParam {
-    #[inline] pub fn new_runtime() -> VocoderParamArrayRT {
-        VocoderParamArrayRT::new_with(|x| match x {
-            VocoderParam::Gain              => VocoderParamRT::new(VocoderParam::Gain),
-            VocoderParam::GateLevel         => VocoderParamRT::new(VocoderParam::GateLevel),
-            VocoderParam::Rate              => VocoderParamRT::new(VocoderParam::Rate),
-            VocoderParam::UnvoicedThreshold => VocoderParamRT::new(VocoderParam::UnvoicedThreshold),
-            VocoderParam::Quality           => VocoderParamRT::new(VocoderParam::Quality),
-            VocoderParam::NumBands          => VocoderParamRT::new(VocoderParam::NumBands),
-            VocoderParam::FreqLo            => VocoderParamRT::new(VocoderParam::FreqLo),
-            VocoderParam::FreqHi            => VocoderParamRT::new(VocoderParam::FreqHi),
-            VocoderParam::ModExpand         => VocoderParamRT::new(VocoderParam::ModExpand),
-            VocoderParam::ModCenter         => VocoderParamRT::new(VocoderParam::ModCenter),
-            VocoderParam::ReturnLevel       => VocoderParamRT::new(VocoderParam::ReturnLevel),
-        })
     }
 }

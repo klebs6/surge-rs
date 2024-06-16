@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug,Clone)]
+#[name("chorus")]
 pub struct Chorus {
 
     pub feedback:     Align16<Box<LipolPs>>,
@@ -32,4 +33,3 @@ no_op!        [Chorus, ProcessOnlyControl];
 effect!       [Chorus,        ChorusParam];
 has_timeunit! [Chorus,        ChorusParam];
 no_op!        [Chorus,            Suspend];
-name!         [Chorus,           "chorus"];

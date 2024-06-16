@@ -1,9 +1,9 @@
 crate::ix!();
 
 //TODO: if possible, clean up/factor out this RINGMOD_OVERSAMPLE funny business
-impl Process for RingModulator {
+impl StereoProcess for RingModulator {
 
-    fn process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) 
+    fn stereo_process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) 
     {
         let mut dphase = A1d::<f32>::zeros(RINGMOD_MAX_UNISON as usize);
 

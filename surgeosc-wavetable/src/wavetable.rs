@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug)]
+#[name("oscillator.wavetable_oscillator")]
 pub struct WTOscillator {
     pub drift:               f32,
     pub master_osc:          *mut f32,
@@ -47,7 +48,6 @@ pub struct WTOscillator {
     //float wavetable[wavetable_steps];
 }
 
-name!             [WTOscillator, "oscillator.wavetable_oscillator"];
 no_op!            [WTOscillator, HandleStreamingMismatches];
 oscillator!       [WTOscillator, WTOscillatorParam];
 no_op!            [WTOscillator, AssignFM];

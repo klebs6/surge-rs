@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl ProcessBlock for AdsrEnvelope {
+impl ModulationSourceProcessBlock for AdsrEnvelope {
 
     /// processes a block of samples for the ADSR
     /// envelope, either using the analog or

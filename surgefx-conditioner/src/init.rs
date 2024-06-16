@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for Conditioner {
+impl Initialize for Conditioner {
 
     fn init(&mut self) {
 

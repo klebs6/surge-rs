@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for WTOscillator {
+impl Initialize for WTOscillator {
 
     fn init(&mut self) { 
 

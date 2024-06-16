@@ -15,7 +15,7 @@ pub trait Note2Pitch {
 
 /*
 #[enum_dispatch]
-pub trait Retune: Init + RetuneToScale  {
+pub trait Retune: Initialize + RetuneToScale  {
     fn retune_to_standard_tuning(&mut self) { 
         self.init(); 
     }

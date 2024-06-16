@@ -1,5 +1,9 @@
 crate::ix!();
 
+pub trait Retrigger {
+    fn retrigger(&mut self);
+}
+
 impl Retrigger for AdsrEnvelope {
 
     /// `AdsrEnvelope::retrigger`: This function
@@ -9,7 +13,7 @@ impl Retrigger for AdsrEnvelope {
     ///
     fn retrigger(&mut self) {
 
-        if self.envstate < AdsrState::Release {
+        if self.envstate_is_before_release() {
             self.attack();
         }
     }

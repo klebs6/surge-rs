@@ -5,6 +5,7 @@ pub const RINGMOD_OVERSAMPLE: bool = true;
 
 /// http://recherche.ircam.fr/pub/dafx11/Papers/66_e.pdf
 #[derive(Debug,Clone)]
+#[name("ringmod")]
 pub struct RingModulator {
     pub ringout:       Ringout,
     pub params:        RingModulatorParamArrayRT,
@@ -23,6 +24,5 @@ pub struct RingModulator {
 
 effect!         [RingModulator, RingModulatorParam];
 no_op!          [RingModulator, ProcessOnlyControl];
-name!           [RingModulator,    "RingModulator"];
 no_op!          [RingModulator,             Update];
 init_on_suspend![RingModulator                    ];

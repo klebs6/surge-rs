@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug,Clone)]
+#[name("reverb")]
 pub struct Reverb {
     pub delay_pan_l: Align16<A1d::<f32>>,
     pub delay_pan_r: Align16<A1d::<f32>>,
@@ -30,6 +31,5 @@ pub struct Reverb {
 no_op!        [Reverb, ProcessOnlyControl];
 effect!       [Reverb,        ReverbParam];
 has_timeunit! [Reverb,        ReverbParam];
-name!         [Reverb,           "reverb"];
 no_op!        [Reverb,            Suspend];
 no_update!    [Reverb                    ];

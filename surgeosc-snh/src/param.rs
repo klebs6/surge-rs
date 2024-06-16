@@ -1,22 +1,38 @@
 crate::ix!();
 
-enhanced_enum![
-    SampleAndHoldOscillatorParam {
-        Correlation,
-        Width,
-        Smooth,
-        Sub,
-        Sync_,
-        UniSpread,
-        UniCount,
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum SampleAndHoldOscillatorParam {
+    Correlation,
+    Width,
+    Smooth,
+    Sub,
+    Sync_,
+    UniSpread,
+    UniCount,
+}
 
-rt![SampleAndHoldOscillatorParam];
+impl_trait_defaults!{
+    SampleAndHoldOscillatorParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetExtendedValue,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+}
 
-impl ParameterInterface for SampleAndHoldOscillatorParam {
+impl GetControlGroup for SampleAndHoldOscillatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
+}
+
+impl GetControlType for SampleAndHoldOscillatorParam {
 
     fn control_type(&self) -> ControlType {
         match self {
@@ -29,6 +45,9 @@ impl ParameterInterface for SampleAndHoldOscillatorParam {
             SampleAndHoldOscillatorParam::UniCount    => ControlType::OscCount,
         }
     }
+}
+
+impl GetDefaultParameterValue for SampleAndHoldOscillatorParam {
 
     fn default_value(&self) -> PData {
         match self {
@@ -41,11 +60,17 @@ impl ParameterInterface for SampleAndHoldOscillatorParam {
             SampleAndHoldOscillatorParam::UniCount    => PData::Float(1.0),
         }
     }
+}
+
+impl CheckIfModulateable for SampleAndHoldOscillatorParam {
 
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+}
+
+impl GetMinParameterValue for SampleAndHoldOscillatorParam {
 
     fn min_value(&self) -> PData {
         match self {
@@ -58,6 +83,9 @@ impl ParameterInterface for SampleAndHoldOscillatorParam {
             SampleAndHoldOscillatorParam::UniCount    => PData::Int(1),          
         }
     }
+}
+
+impl GetMaxParameterValue for SampleAndHoldOscillatorParam {
 
     fn max_value(&self) -> PData {
         match self {
@@ -70,6 +98,9 @@ impl ParameterInterface for SampleAndHoldOscillatorParam {
             SampleAndHoldOscillatorParam::UniCount    => PData::Int(16),        
         }
     }
+}
+
+impl GetParameterValueType for SampleAndHoldOscillatorParam {
 
     fn value_type(&self) -> ValType {
         match self {
@@ -82,6 +113,9 @@ impl ParameterInterface for SampleAndHoldOscillatorParam {
             SampleAndHoldOscillatorParam::UniCount    => ValType::VtInt,  
         }
     }
+}
+
+impl GetMoverate for SampleAndHoldOscillatorParam {
 
     fn moverate(&self) -> f32 {
         match self {
@@ -93,20 +127,5 @@ impl ParameterInterface for SampleAndHoldOscillatorParam {
             SampleAndHoldOscillatorParam::UniSpread   => 1.0,
             SampleAndHoldOscillatorParam::UniCount    => 1.0,
         }
-    }
-}
-
-impl SampleAndHoldOscillatorParam {
-
-    pub fn new_runtime() -> SampleAndHoldOscillatorParamArrayRT {
-        SampleAndHoldOscillatorParamArrayRT::new_with(|x| match x {
-            SampleAndHoldOscillatorParam::Correlation => SampleAndHoldOscillatorParamRT::new(SampleAndHoldOscillatorParam::Correlation),
-            SampleAndHoldOscillatorParam::Width       => SampleAndHoldOscillatorParamRT::new(SampleAndHoldOscillatorParam::Width),
-            SampleAndHoldOscillatorParam::Smooth      => SampleAndHoldOscillatorParamRT::new(SampleAndHoldOscillatorParam::Smooth),
-            SampleAndHoldOscillatorParam::Sub         => SampleAndHoldOscillatorParamRT::new(SampleAndHoldOscillatorParam::Sub),
-            SampleAndHoldOscillatorParam::Sync_       => SampleAndHoldOscillatorParamRT::new(SampleAndHoldOscillatorParam::Sync_),
-            SampleAndHoldOscillatorParam::UniSpread   => SampleAndHoldOscillatorParamRT::new(SampleAndHoldOscillatorParam::UniSpread),
-            SampleAndHoldOscillatorParam::UniCount    => SampleAndHoldOscillatorParamRT::new(SampleAndHoldOscillatorParam::UniCount),
-        })
     }
 }

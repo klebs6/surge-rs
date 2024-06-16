@@ -11,8 +11,8 @@ pub trait LfoProcess {
 }
 
 #[enum_dispatch]
-pub trait Process {
-    fn process<const N: usize>(&mut self, 
+pub trait StereoProcess {
+    fn stereo_process<const N: usize>(&mut self, 
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N]);
 }

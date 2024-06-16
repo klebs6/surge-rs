@@ -44,7 +44,7 @@ impl FmConfiguration {
 }
 
 #[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
-#[synth_parameter_with_runtime]
+#[synth_parameters]
 pub enum OscillatorParam {
     Type,
     Pitch,
@@ -53,9 +53,33 @@ pub enum OscillatorParam {
     Retrigger,
 }
 
+/* TODO: possibly, some of these need to be non-default */
+impl_trait_defaults!{
+    OscillatorParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    CheckIfModulateable,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetExtendedValue,
+    GetParameterValueType,
+    GetMaxParameterValue,
+    GetMinParameterValue,
+    GetDefaultParameterValue,
+    GetControlType,
+    GetModulation,
+    GetExtendRange,
+    GetMoverate,
+    GetSnap,
+    SetModulation,
+}
+
 impl GetControlGroup for OscillatorParam {
+
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
-    /* TODO */
 }
 
 pub type OscillatorOut = WetBlock2::<BLOCK_SIZE_OS>;

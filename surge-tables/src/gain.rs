@@ -41,7 +41,7 @@ impl ClipScale for GainTables {
     }
 }
 
-impl Init for GainTables {
+impl Initialize for GainTables {
 
     fn init(&mut self) {
 

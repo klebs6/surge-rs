@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for Distortion {
+impl Initialize for Distortion {
 
     fn init(&mut self) {
 

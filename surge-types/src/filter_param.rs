@@ -1,7 +1,7 @@
 crate::ix!();
 
 #[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
-#[synth_parameter_with_runtime]
+#[synth_parameters]
 pub enum FilterParam {
     Type,
     SubType,
@@ -9,6 +9,22 @@ pub enum FilterParam {
     Resonance,
     EnvelopeMode,
     KeyTrack,
+}
+
+impl_trait_defaults!{
+    FilterParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetExtendedValue,
+    GetExtendRange,
+    GetModulation,
+    GetSnap,
+    SetModulation
 }
 
 impl GetControlGroup for FilterParam {
@@ -34,6 +50,7 @@ impl GetControlType for FilterParam {
 }
 
 impl GetDefaultParameterValue for FilterParam {
+
     fn default_value(&self) -> PData {
         match self {
             FilterParam::Type         => PData::Int(0),
@@ -61,6 +78,7 @@ impl GetMinParameterValue for FilterParam {
 }
 
 impl GetMaxParameterValue for FilterParam {
+
     fn max_value(&self) -> PData {
         match self {
             FilterParam::Type         => PData::Int(1),
@@ -73,7 +91,8 @@ impl GetMaxParameterValue for FilterParam {
     }
 }
 
-impl GetModulateable for FilterParam {
+impl CheckIfModulateable for FilterParam {
+
     fn modulateable(&self) -> bool {
         match self {
             FilterParam::Type         => false,
@@ -87,6 +106,7 @@ impl GetModulateable for FilterParam {
 }
 
 impl GetParameterValueType for FilterParam {
+
     fn value_type(&self) -> ValType {
         match self {
             FilterParam::Type         => ValType::VtFloat,
@@ -100,6 +120,7 @@ impl GetParameterValueType for FilterParam {
 }
 
 impl GetMoverate for FilterParam {
+
     fn moverate(&self) -> f32 {
         match self {
             FilterParam::Type         => 1.0,

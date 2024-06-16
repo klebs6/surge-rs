@@ -7,7 +7,7 @@ extern crate proc_macro;
 xp!{modulation_source_control}
 xp!{named}
 xp!{parameter_interface}
-xp!{synth_parameter_with_runtime}
+xp!{synth_parameters}
 
 #[proc_macro_attribute]
 pub fn modulation_source_control(attr: TokenStream, item: TokenStream) -> TokenStream {
@@ -25,6 +25,6 @@ pub fn parameter_interface(attr: TokenStream, item: TokenStream) -> TokenStream 
 }
 
 #[proc_macro_attribute]
-pub fn synth_parameter_with_runtime(attr: TokenStream, item: TokenStream) -> TokenStream {
-    _synth_parameter_with_runtime(attr,item)
+pub fn synth_parameters(attr: TokenStream, item: TokenStream) -> TokenStream {
+    _synth_parameters(attr,item)
 }

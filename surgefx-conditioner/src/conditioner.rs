@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug,Clone)]
+#[name("conditioner")]
 pub struct Conditioner {
     pub amp_l:             Align16<LipolPs>,
     pub amp_r:             Align16<LipolPs>,
@@ -27,6 +28,5 @@ pub struct Conditioner {
 }
 
 effect!          [Conditioner, ConditionerParam];
-name!            [Conditioner,    "conditioner"];
 no_op!           [Conditioner,          Suspend];
 default_default! [Conditioner                  ];

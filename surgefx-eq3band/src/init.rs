@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for Eq3Band {
+impl Initialize for Eq3Band {
 
     fn init(&mut self) {
 

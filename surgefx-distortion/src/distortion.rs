@@ -4,6 +4,7 @@ pub const DISTORTION_OS_BITS:  usize = 2;
 pub const DISTORTION_OS:       usize = 1 << DISTORTION_OS_BITS;
 
 #[derive(Debug,Clone)]
+#[name("distortion")]
 pub struct Distortion {
     // feedback kan bli knepigt med sse-packed
     pub hr_a:           Align16<HalfRateFilterSSE>,
@@ -29,5 +30,4 @@ pub struct Distortion {
 
 no_op! [Distortion, ProcessOnlyControl];
 effect![Distortion,    DistortionParam];
-name!  [Distortion,       "distortion"];
 no_op! [Distortion,            Suspend];

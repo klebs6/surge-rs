@@ -6,6 +6,13 @@ pub enum AdsrEnvelopeDecayShape {
     Cubic,
 }
 
+pub trait GetDecayShape {
+
+    type DecayShape;
+
+    fn decay_shape(&self) -> Self::DecayShape;
+}
+
 impl GetDecayShape for AdsrEnvelope {
 
     type DecayShape = AdsrEnvelopeDecayShape;
@@ -22,7 +29,7 @@ impl GetDecayShape for AdsrEnvelope {
 
 pub trait GetDecayShapeBounds {
 
-    fn get_decay_shape_bounds(&self, rate: f32) -> f32..f32;
+    fn get_decay_shape_bounds(&self, rate: f32) -> (f32,f32);
 }
 
 pub trait GetLinearDecayShapeBounds {
@@ -33,7 +40,7 @@ pub trait GetLinearDecayShapeBounds {
     /// a tuple of two values, which are the lower and upper bounds of
     /// the decay stage.
     /// 
-    fn get_linear_decay_shape_bounds(&self, rate: f32) -> f32..f32;
+    fn get_linear_decay_shape_bounds(&self, rate: f32) -> (f32,f32);
 }
 
 pub trait GetQuadraticDecayShapeBounds {
@@ -44,7 +51,7 @@ pub trait GetQuadraticDecayShapeBounds {
     /// and returns a tuple of two values, which are the lower and upper
     /// bounds of the decay stage.
     ///     
-    fn get_quadratic_decay_shape_bounds(&self, rate: f32) -> f32..f32;
+    fn get_quadratic_decay_shape_bounds(&self, rate: f32) -> (f32,f32);
 }
 
 pub trait GetCubicDecayShapeBounds {
@@ -55,5 +62,5 @@ pub trait GetCubicDecayShapeBounds {
     /// The function takes the decay rate `rate` as an argument, and returns a tuple of two values,
     /// which are the lower and upper bounds of the decay stage.
     /// 
-    fn get_cubic_decay_shape_bounds(&self, rate: f32) -> f32..f32;
+    fn get_cubic_decay_shape_bounds(&self, rate: f32) -> (f32,f32);
 }

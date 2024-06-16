@@ -7,7 +7,7 @@ crate::ix!();
   */
 #[enum_dispatch(
     DbToLinear,
-    Init,
+    Initialize,
     ClipScale,
     LookupWaveshape,
     LookupWaveshapeWarp,
@@ -49,7 +49,7 @@ impl DbToLinear for TablesHandle {
     }
 }
 
-impl Init for TablesHandle {
+impl Initialize for TablesHandle {
 
     #[inline] fn init(&mut self) { 
         self.inner.borrow_mut().init();

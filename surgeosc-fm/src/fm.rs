@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug)]
+#[name("oscillator.fm")]
 pub struct FMOscillator {
     pub tuner:           TunerHandle,
     pub out:             OscillatorOut,
@@ -23,7 +24,6 @@ pub struct FMOscillator {
 
 no_op!         [FMOscillator, HandleStreamingMismatches];
 oscillator!    [FMOscillator,         FMOscillatorParam];
-name!          [FMOscillator,           "oscillator.fm"];
 no_op!         [FMOscillator,                  SetPitch];
 no_op!         [FMOscillator,                  AssignFM];
 allow_display! [FMOscillator,                      true];

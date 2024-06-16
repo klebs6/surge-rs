@@ -23,7 +23,7 @@ impl Default for SincTables {
     }
 }
 
-impl Init for SincTables {
+impl Initialize for SincTables {
     fn init(&mut self) {
 
         fn get_table_t(i: usize, j: usize, rows: usize, cols: usize) -> f64 {

@@ -1,22 +1,45 @@
 crate::ix!();
 
-/*
-  |this is implemented as a bunch of function
-  |pointers which could potentially be passed back
-  |up to the caller
-  |
-  |TODO: eventually make a type of param which is
-  |just a selector for one of several enum options
-  */
-enhanced_enum!{
-    WaveshaperParam {
-        Type,
-        Drive,
-    }
+/// This is implemented as a bunch of function
+/// pointers which could potentially be passed
+/// back up to the caller
+/// 
+/// TODO: eventually make a type of param which is
+/// just a selector for one of several enum
+/// options
+///
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum WaveshaperParam {
+    Type,
+    Drive,
 }
 
-impl ParameterInterface for WaveshaperParam {
-    /* TODO */
+impl_trait_defaults!{
+    WaveshaperParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    CheckIfModulateable,
+    GetControlStyle,
+    GetControlType,
+    GetDefaultParameterValue,
+    GetDefaultValueF01,
+    GetExtendRange,
+    GetExtendedValue,
+    GetMaxParameterValue,
+    GetMinParameterValue,
+    GetModulation,
+    GetMoverate,
+    GetParameterValueType,
+    GetSnap,
+    SetModulation,
+}
+
+impl GetControlGroup for WaveshaperParam {
+
     fn control_group(&self) -> ControlGroup { ControlGroup::Filter } 
 }
 
@@ -28,7 +51,6 @@ pub struct WaveshaperUnit {
 impl Default for WaveshaperUnit {
     fn default() -> Self {
         todo!();
-
     }
 }
 
@@ -36,4 +58,3 @@ impl Default for WaveshaperUnit {
 pub struct WaveshaperState {
     pub tables: TablesHandle,
 }
-

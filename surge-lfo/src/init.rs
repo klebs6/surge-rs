@@ -54,7 +54,7 @@ impl Lfo {
             wf_history:         [0.0; 4],
             step:               0,
             shuffle_id:         0,
-            sine:               QuadrOsc::new(),
+            sine:               QuadrOsc::default(),
             time_unit:          time_unit.clone(),
             tables:             tables.clone(),
             enabled:            true

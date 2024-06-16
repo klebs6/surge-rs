@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug,Clone)]
+#[name("emphasize")]
 pub struct Emphasize {
     pub ringout:           Ringout,
     pub params:            EmphasizeParamArrayRT,
@@ -19,6 +20,5 @@ pub struct Emphasize {
 
 no_op!     [Emphasize, ProcessOnlyControl];
 effect!    [Emphasize,     EmphasizeParam];
-name!      [Emphasize,        "emphasize"];
 no_op!     [Emphasize,            Suspend];
 no_update! [Emphasize                    ];

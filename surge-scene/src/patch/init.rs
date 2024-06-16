@@ -28,7 +28,7 @@ impl SurgePatch {
     }
 }
 
-impl Init for SurgePatch {
+impl Initialize for SurgePatch {
     fn init(&mut self) {
         todo!();
     }

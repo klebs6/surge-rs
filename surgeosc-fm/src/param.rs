@@ -1,23 +1,39 @@
 crate::ix!();
 
-enhanced_enum![
-    FMOscillatorParam {
-        M1Amount,
-        M1Ratio,
-        M2Amount,
-        M2Ratio,
-        M3Amount,
-        M3Freq,
-        Feedback,
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum FMOscillatorParam {
+    M1Amount,
+    M1Ratio,
+    M2Amount,
+    M2Ratio,
+    M3Amount,
+    M3Freq,
+    Feedback,
+}
 
-rt![FMOscillatorParam];
+impl_trait_defaults!{
+    FMOscillatorParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+    GetExtendedValue,
+    GetExtendRange,
+}
 
-impl ParameterInterface for FMOscillatorParam {
+impl GetControlGroup for FMOscillatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
+}
 
+impl GetControlType for FMOscillatorParam {
     fn control_type(&self) -> ControlType {
         match self {
             FMOscillatorParam::M1Amount => ControlType::Percent,
@@ -29,7 +45,12 @@ impl ParameterInterface for FMOscillatorParam {
             FMOscillatorParam::Feedback => ControlType::Percent,
         }
     }
+}
+
+impl GetDefaultParameterValue for FMOscillatorParam {
+
     fn default_value(&self) -> PData {
+
         match self {
             FMOscillatorParam::M1Amount => PData::Float(0.0),
             FMOscillatorParam::M1Ratio  => PData::Float(1.0),
@@ -40,10 +61,18 @@ impl ParameterInterface for FMOscillatorParam {
             FMOscillatorParam::Feedback => PData::Float(0.0),
         }
     }
+}
+
+impl CheckIfModulateable for FMOscillatorParam {
+
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+}
+
+impl GetMinParameterValue for FMOscillatorParam {
+
     fn min_value(&self) -> PData {
         match self {
             FMOscillatorParam::M1Amount => PData::Float(0.0),  
@@ -55,6 +84,10 @@ impl ParameterInterface for FMOscillatorParam {
             FMOscillatorParam::Feedback => PData::Float(0.0),  
         }
     }
+}
+
+impl GetMaxParameterValue for FMOscillatorParam {
+
     fn max_value(&self) -> PData {
         match self {
             FMOscillatorParam::M1Amount => PData::Float(1.0), 
@@ -66,6 +99,10 @@ impl ParameterInterface for FMOscillatorParam {
             FMOscillatorParam::Feedback => PData::Float(1.0), 
         }
     }
+}
+
+impl GetParameterValueType for FMOscillatorParam {
+
     fn value_type(&self) -> ValType {
         match self {
             FMOscillatorParam::M1Amount => ValType::VtFloat,
@@ -77,6 +114,10 @@ impl ParameterInterface for FMOscillatorParam {
             FMOscillatorParam::Feedback => ValType::VtFloat,
         }
     }
+}
+
+impl GetMoverate for FMOscillatorParam {
+
     fn moverate(&self) -> f32 {
         match self {
             FMOscillatorParam::M1Amount => 1.0, 
@@ -87,19 +128,5 @@ impl ParameterInterface for FMOscillatorParam {
             FMOscillatorParam::M3Freq   => 1.0, 
             FMOscillatorParam::Feedback => 1.0, 
         }
-    }
-}
-
-impl FMOscillatorParam {
-    #[inline] pub fn new_runtime() -> FMOscillatorParamArrayRT {
-        FMOscillatorParamArrayRT::new_with(|x| match x {
-            FMOscillatorParam::M1Amount => FMOscillatorParamRT::new(FMOscillatorParam::M1Amount),
-            FMOscillatorParam::M1Ratio  => FMOscillatorParamRT::new(FMOscillatorParam::M1Ratio),
-            FMOscillatorParam::M2Amount => FMOscillatorParamRT::new(FMOscillatorParam::M2Amount),
-            FMOscillatorParam::M2Ratio  => FMOscillatorParamRT::new(FMOscillatorParam::M2Ratio),
-            FMOscillatorParam::M3Amount => FMOscillatorParamRT::new(FMOscillatorParam::M3Amount),
-            FMOscillatorParam::M3Freq   => FMOscillatorParamRT::new(FMOscillatorParam::M3Freq),
-            FMOscillatorParam::Feedback => FMOscillatorParamRT::new(FMOscillatorParam::Feedback),
-        })
     }
 }

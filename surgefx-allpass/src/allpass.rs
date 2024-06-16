@@ -7,13 +7,15 @@ pub struct Allpass {
     data: A1d::<f32>,
 }
 
-impl Default for Allpass { fn default() -> Self { 
-    Self { 
-        k: 0, 
-        len: 1, 
-        data: A1d::<f32>::zeros( ALLPASS_REVERB_MAX_ALLPASS_LEN ), 
-    } 
-}}
+impl Default for Allpass { 
+    fn default() -> Self {
+        Self { 
+            k: 0, 
+            len: 1, 
+            data: A1d::<f32>::zeros( ALLPASS_REVERB_MAX_ALLPASS_LEN ), 
+        } 
+    }
+}
 
 impl Allpass {
 

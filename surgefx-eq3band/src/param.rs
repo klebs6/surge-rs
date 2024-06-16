@@ -1,26 +1,43 @@
 crate::ix!();
 
-enhanced_enum![
-    Eq3BandParam {
-        LGain,
-        LFreq,
-        LBandwidth,
-        MGain,
-        MFreq,
-        MBandwidth,
-        HGain,
-        HFreq,
-        HBandwidth,
-        Gain,
-        ReturnLevel,
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum Eq3BandParam {
+    LGain,
+    LFreq,
+    LBandwidth,
+    MGain,
+    MFreq,
+    MBandwidth,
+    HGain,
+    HFreq,
+    HBandwidth,
+    Gain,
+    ReturnLevel,
+}
 
-rt![Eq3BandParam];
+impl_trait_defaults!{
+    Eq3BandParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+    GetExtendedValue,
+    GetExtendRange,
+}
 
-impl ParameterInterface for Eq3BandParam {
+impl GetControlGroup for Eq3BandParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+}
+
+impl GetControlType for Eq3BandParam {
 
     fn control_type(&self) -> ControlType {
         match self {
@@ -37,6 +54,9 @@ impl ParameterInterface for Eq3BandParam {
             Eq3BandParam::ReturnLevel => ControlType::Percent,
         }
     }
+}
+
+impl GetDefaultParameterValue for Eq3BandParam {
 
     fn default_value(&self) -> PData {
         match self {
@@ -53,12 +73,16 @@ impl ParameterInterface for Eq3BandParam {
             Eq3BandParam::ReturnLevel => PData::Float( 0.5 ),
         }
     }
+}
 
+impl CheckIfModulateable for Eq3BandParam {
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+}
 
+impl GetMinParameterValue for Eq3BandParam {
     fn min_value(&self) -> PData {
         match self {
             Eq3BandParam::LGain       => PData::Float(-48.0),
@@ -74,7 +98,9 @@ impl ParameterInterface for Eq3BandParam {
             Eq3BandParam::ReturnLevel => PData::Float( 0.0 ),
         }
     }
+}
 
+impl GetMaxParameterValue for Eq3BandParam {
     fn max_value(&self) -> PData {
         match self {
             Eq3BandParam::LGain       => PData::Float(48.0),
@@ -90,7 +116,9 @@ impl ParameterInterface for Eq3BandParam {
             Eq3BandParam::ReturnLevel => PData::Float( 1.0 ),
         }
     }
+}
 
+impl GetParameterValueType for Eq3BandParam {
     fn value_type(&self) -> ValType {
         match self {
             Eq3BandParam::LGain       => ValType::VtFloat,
@@ -106,7 +134,9 @@ impl ParameterInterface for Eq3BandParam {
             Eq3BandParam::ReturnLevel => ValType::VtFloat,
         }
     }
+}
 
+impl GetMoverate for Eq3BandParam {
     fn moverate(&self) -> f32 {
         match self {
             Eq3BandParam::LGain       => 1.0,
@@ -121,23 +151,5 @@ impl ParameterInterface for Eq3BandParam {
             Eq3BandParam::Gain        => 1.0,
             Eq3BandParam::ReturnLevel => 1.0,
         }
-    }
-}
-
-impl Eq3BandParam {
-    pub fn new_runtime() -> Eq3BandParamArrayRT {
-        Eq3BandParamArrayRT::new_with(|x| match x {
-            Eq3BandParam::LGain       => Eq3BandParamRT::new(Eq3BandParam::LGain),
-            Eq3BandParam::LFreq       => Eq3BandParamRT::new(Eq3BandParam::LFreq),
-            Eq3BandParam::LBandwidth  => Eq3BandParamRT::new(Eq3BandParam::LBandwidth),
-            Eq3BandParam::MGain       => Eq3BandParamRT::new(Eq3BandParam::MGain),
-            Eq3BandParam::MFreq       => Eq3BandParamRT::new(Eq3BandParam::MFreq),
-            Eq3BandParam::MBandwidth  => Eq3BandParamRT::new(Eq3BandParam::MBandwidth),
-            Eq3BandParam::HGain       => Eq3BandParamRT::new(Eq3BandParam::HGain),
-            Eq3BandParam::HFreq       => Eq3BandParamRT::new(Eq3BandParam::HFreq),
-            Eq3BandParam::HBandwidth  => Eq3BandParamRT::new(Eq3BandParam::HBandwidth),
-            Eq3BandParam::Gain        => Eq3BandParamRT::new(Eq3BandParam::Gain),
-            Eq3BandParam::ReturnLevel => Eq3BandParamRT::new(Eq3BandParam::ReturnLevel),
-        })
     }
 }

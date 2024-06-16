@@ -1,7 +1,7 @@
 crate::ix!();
 
 #[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
-#[synth_parameter_with_runtime]
+#[synth_parameters]
 pub enum AdsrParam {
     Attack,
     Decay,
@@ -13,6 +13,29 @@ pub enum AdsrParam {
     Mode,
 }
 
-impl GetParameterControlGroup for AdsrParam {
+impl_trait_defaults!{
+    AdsrParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    CheckIfModulateable,
+    GetControlStyle,
+    GetControlType,
+    GetDefaultParameterValue,
+    GetDefaultValueF01,
+    GetExtendRange,
+    GetExtendedValue,
+    GetMaxParameterValue,
+    GetMinParameterValue,
+    GetModulation,
+    GetMoverate,
+    GetParameterValueType,
+    GetSnap,
+    SetModulation,
+}
+
+impl GetControlGroup for AdsrParam {
     fn control_group(&self) -> ControlGroup { ControlGroup::Env } 
 }

@@ -12,7 +12,7 @@ pub struct TimeUnit {
     pub srunit:               SampleRateHandle,
 }
 
-impl Init for TimeUnit {
+impl Initialize for TimeUnit {
     fn init(&mut self) {
         self.temposyncratio = 1.0;
 

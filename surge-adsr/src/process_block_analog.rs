@@ -1,5 +1,10 @@
 crate::ix!();
 
+pub trait ProcessBlockAnalog {
+
+    fn process_block_analog(&mut self);
+}
+
 /// This function implements an analog-mode ADSR (Attack, Decay, Sustain,
 /// Release) envelope generator, which is a commonly used sound synthesis
 /// technique to shape the amplitude of an audio signal over time.
@@ -22,9 +27,7 @@ impl ProcessBlockAnalog for AdsrEnvelope {
         // `gate` is a boolean variable that indicates whether the envelope is
         // in Attack or Decay state.
         //
-        let gate: bool = 
-            (self.envstate == AdsrState::Attack) || 
-            (self.envstate == AdsrState::Decay);
+        let gate: bool = self.state_machine_is_attack_or_decay();
 
         unsafe {
 
@@ -40,9 +43,9 @@ impl ProcessBlockAnalog for AdsrEnvelope {
             // variable, and the `_mm_set_ss` function sets a scalar value as
             // the only element of a vector variable.
             //
-            let mut v_c1:         __m128 = _mm_load_ss(&self._v_c1);
-            let mut v_c1_delayed: __m128 = _mm_load_ss(&self._v_c1_delayed);
-            let mut discharge:    __m128 = _mm_load_ss(&self._discharge);
+            let mut v_c1:         __m128 = self.load_v_c1();
+            let mut v_c1_delayed: __m128 = self.load_v_c1_delayed();
+            let mut discharge:    __m128 = self.load_discharge();
 
             // attack->decay switch at 1 volt
             let one:      __m128 = _mm_set_ss(1.0); 
@@ -166,12 +169,11 @@ impl ProcessBlockAnalog for AdsrEnvelope {
             //
             let _shortest:    f32 = 6.0;
             let _longest:     f32 = -2.0;
-            let coeff_offset: f32 = 2.0 - (self.srunit.samplerate() / BLOCK_SIZE as f32).log2();
+            let coeff_offset: f32 = 2.0 - (self.get_samplerate() / BLOCK_SIZE as f32).log2();
 
-            let temposyncratio_a:  f32 = tsyncratio![self,Attack];
-            let temposyncratio_d:  f32 = tsyncratio![self,Decay];
-            let _temposyncratio_s: f32 = tsyncratio![self,Sustain];
-            let temposyncratio_r:  f32 = tsyncratio![self,Release];
+            let temposyncratio_a:  f32 = self.tsyncratio(AdsrParam::Attack);
+            let temposyncratio_d:  f32 = self.tsyncratio(AdsrParam::Decay);
+            let temposyncratio_r:  f32 = self.tsyncratio(AdsrParam::Release);
 
             // The code then calculates the envelope coefficients `coef_a`,
             // `coef_d`, and `coef_r` using the `lc_a`, `lc_d`, `lc_r` values
@@ -194,7 +196,7 @@ impl ProcessBlockAnalog for AdsrEnvelope {
             let coef_d: f32 = 2.0_f32.powf(std::cmp::min(FloatOrd(0.0), 
                     FloatOrd(coeff_offset - lc_d * temposyncratio_d)).0);
 
-            let coef_r: f32 = match self.envstate == AdsrState::UberRelease {
+            let coef_r: f32 = match self.state_machine_is_uberrelease() {
                 true => 6.0,
                 false => { 
                     let z = FloatOrd(0.0);
@@ -211,11 +213,11 @@ impl ProcessBlockAnalog for AdsrEnvelope {
             v_c1 = _mm_add_ss(v_c1, _mm_mul_ss(diff_v_d, _mm_load_ss(&coef_d)));
             v_c1 = _mm_add_ss(v_c1, _mm_mul_ss(diff_v_r, _mm_load_ss(&coef_r)));
 
-            _mm_store_ss(&mut self._v_c1, v_c1);
-            _mm_store_ss(&mut self._v_c1_delayed, v_c1_delayed);
-            _mm_store_ss(&mut self._discharge, discharge);
+            _mm_store_ss(self.v_c1_ref_mut(),         v_c1);
+            _mm_store_ss(self.v_c1_delayed_ref_mut(), v_c1_delayed);
+            _mm_store_ss(self.discharge_ref_mut(),    discharge);
 
-            _mm_store_ss(&mut self.output, v_c1);
+            _mm_store_ss(self.output_ref_mut(), v_c1);
         }
 
         // This code is checking whether the gate signal is off (i.e., the note
@@ -232,15 +234,13 @@ impl ProcessBlockAnalog for AdsrEnvelope {
         // This code is essentially responsible for stopping the sound output
         // when a note is released and the ADSR envelope has completed its decay
         // phase.
-        const SILENCE_THRESHOLD: f32 = 1e-6;
 
-        if !gate && 
-            self._discharge == 0.0 && 
-                self._v_c1 < SILENCE_THRESHOLD
+        if !gate && self.discharged() && 
+                self.capacitor_voltage_is_below_silence_threshold()
         {
-            self.envstate = AdsrState::Idle;
-            self.output = 0.0;
-            self.idlecount += 1;
+            self.set_envstate(AdsrState::Idle);
+            self.clear_output();
+            self.increment_idlecount();
         }
     }
 }

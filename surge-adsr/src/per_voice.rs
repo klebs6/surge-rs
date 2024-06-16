@@ -6,7 +6,7 @@ impl CheckIsModulationSourcePerVoice for AdsrEnvelope {
     /// is per-voice or per-note, returning `true`
     /// since the ADSR envelope is per-voice.
     ///
-    const fn per_voice(&self) -> bool { 
+    fn per_voice(&self) -> bool { 
         true 
     }
 }

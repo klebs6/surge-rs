@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for Flanger {
+impl Initialize for Flanger {
 
     fn init(&mut self) {
 

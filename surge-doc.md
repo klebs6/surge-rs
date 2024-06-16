@@ -13874,7 +13874,7 @@ Here is a list of some traits found in the
 `surge-traits` crate, along with a brief
 description for each:
 
-1. **Init**: This trait provides a method called
+1. **Initialize**: This trait provides a method called
    `init` for initializing the implementing
    struct. It is typically used to set initial
    values for struct members or allocate
@@ -13910,7 +13910,7 @@ description for each:
 6. **Reset**: This trait provides a method `reset`
    for resetting the state of an implementing
    struct. It is often used in conjunction with
-   the `Init` trait to reinitialize a component
+   the `Initialize` trait to reinitialize a component
    after a change in configuration.
 
 7. **Suspend**: This trait provides a method
@@ -32466,7 +32466,7 @@ which represents different audio effects that can
 be applied to audio data. The enum implements
 several traits (`Effect`, `Process`,
 `ProcessOnlyControl`, `GetRingout`, `SetRingout`,
-`ProcessRingout`, `Suspend`, `Init`, `Update`,
+`ProcessRingout`, `Suspend`, `Initialize`, `Update`,
 `ClearBuffers`, `GetReturnLevel`) that define
 behavior related to processing audio data and
 managing audio effect state.
@@ -32505,7 +32505,7 @@ effect to a "suspended" state. This can be useful
 for effects that need to be temporarily disabled
 (e.g. to conserve CPU resources).
 
-The `Init` trait defines an `init` method that
+The `Initialize` trait defines an `init` method that
 initializes the state of the audio effect.
 
 The `Update` trait defines an `update` method that

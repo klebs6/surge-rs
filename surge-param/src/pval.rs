@@ -8,7 +8,7 @@ crate::ix!();
 //
 #[macro_export] macro_rules! pval {
     ($p:expr, $t:ty) => ({
-        let result: $t = $p.val.try_into().unwrap();
+        let result: $t = $p.get_value().try_into().unwrap();
         result
     });
 }
@@ -41,14 +41,14 @@ crate::ix!();
 
 #[macro_export] macro_rules! pvalmax {
     ($p:expr, $t:ty) => ({
-        let result: $t = $p.delegate.max_value().try_into().unwrap();
+        let result: $t = $p.max_value().try_into().unwrap();
         result
     });
 }
 
 #[macro_export] macro_rules! pvalmin {
     ($p:expr, $t:ty) => ({
-        let result: $t = $p.delegate.min_value().try_into().unwrap();
+        let result: $t = $p.min_value().try_into().unwrap();
         result
     });
 }

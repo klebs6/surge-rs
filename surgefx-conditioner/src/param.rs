@@ -1,24 +1,41 @@
 crate::ix!();
 
-enhanced_enum![
-    ConditionerParam {
-        Bass,
-        Treble,
-        Width,
-        Balance,
-        Threshold,
-        AttackRate,
-        ReleaseRate,
-        Gain,
-        ReturnLevel,
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum ConditionerParam {
+    Bass,
+    Treble,
+    Width,
+    Balance,
+    Threshold,
+    AttackRate,
+    ReleaseRate,
+    Gain,
+    ReturnLevel,
+}
 
-rt![ConditionerParam];
+impl_trait_defaults!{
+    ConditionerParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+    GetExtendedValue,
+    GetExtendRange,
+}
 
-impl ParameterInterface for ConditionerParam {
+impl GetControlGroup for ConditionerParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+}
+
+impl GetControlType for ConditionerParam {
 
     fn control_type(&self) -> ControlType {
         match self {
@@ -33,6 +50,9 @@ impl ParameterInterface for ConditionerParam {
             ConditionerParam::ReturnLevel => ControlType::Percent,
         }
     }
+}
+
+impl GetDefaultParameterValue for ConditionerParam {
 
     fn default_value(&self) -> PData {
         match self {
@@ -47,11 +67,17 @@ impl ParameterInterface for ConditionerParam {
             ConditionerParam::ReturnLevel => PData::Float(0.5),
         }
     }
+}
+
+impl CheckIfModulateable for ConditionerParam {
 
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+}
+
+impl GetMinParameterValue for ConditionerParam {
 
     fn min_value(&self) -> PData {
         match self {
@@ -66,6 +92,9 @@ impl ParameterInterface for ConditionerParam {
             ConditionerParam::ReturnLevel => PData::Float(0.0),
         }
     }
+}
+
+impl GetMaxParameterValue for ConditionerParam {
 
     fn max_value(&self) -> PData {
         match self {
@@ -80,6 +109,9 @@ impl ParameterInterface for ConditionerParam {
             ConditionerParam::ReturnLevel => PData::Float(1.0),
         }
     }
+}
+
+impl GetParameterValueType for ConditionerParam {
 
     fn value_type(&self) -> ValType {
         match self {
@@ -94,6 +126,9 @@ impl ParameterInterface for ConditionerParam {
             ConditionerParam::ReturnLevel => ValType::VtFloat,
         }
     }
+}
+
+impl GetMoverate for ConditionerParam {
 
     fn moverate(&self) -> f32 {
         match self {
@@ -107,22 +142,5 @@ impl ParameterInterface for ConditionerParam {
             ConditionerParam::Gain        => 1.0,
             ConditionerParam::ReturnLevel => 1.0,
         }
-    }
-}
-
-impl ConditionerParam {
-
-    #[inline] pub fn new_runtime() -> ConditionerParamArrayRT {
-        ConditionerParamArrayRT::new_with(|x| match x {
-            ConditionerParam::Bass        => ConditionerParamRT::new(ConditionerParam::Bass        ),
-            ConditionerParam::Treble      => ConditionerParamRT::new(ConditionerParam::Treble      ),
-            ConditionerParam::Width       => ConditionerParamRT::new(ConditionerParam::Width       ),
-            ConditionerParam::Balance     => ConditionerParamRT::new(ConditionerParam::Balance     ),
-            ConditionerParam::Threshold   => ConditionerParamRT::new(ConditionerParam::Threshold   ),
-            ConditionerParam::AttackRate  => ConditionerParamRT::new(ConditionerParam::AttackRate  ),
-            ConditionerParam::ReleaseRate => ConditionerParamRT::new(ConditionerParam::ReleaseRate ),
-            ConditionerParam::Gain        => ConditionerParamRT::new(ConditionerParam::Gain        ),
-            ConditionerParam::ReturnLevel => ConditionerParamRT::new(ConditionerParam::ReturnLevel ),
-        })
     }
 }

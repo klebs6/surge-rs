@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for WindowOscillator {
+impl Initialize for WindowOscillator {
 
     fn init(&mut self) {
 

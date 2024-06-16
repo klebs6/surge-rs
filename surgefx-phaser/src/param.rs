@@ -1,23 +1,39 @@
 crate::ix!();
 
-enhanced_enum![
-    PhaserParam {
-        Base,
-        Feedback,
-        QualityFactor,
-        LFORate,
-        LFODepth,
-        Stereo,
-        Mix,
-        ReturnLevel,
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum PhaserParam {
+    Base,
+    Feedback,
+    QualityFactor,
+    LFORate,
+    LFODepth,
+    Stereo,
+    Mix,
+    ReturnLevel,
+}
 
-rt![PhaserParam];
+impl_trait_defaults!{
+    PhaserParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+    GetExtendedValue,
+}
 
-impl ParameterInterface for PhaserParam {
+impl GetControlGroup for PhaserParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+}
+
+impl GetControlType for PhaserParam {
 
     fn control_type(&self) -> ControlType {
         match self {
@@ -31,6 +47,9 @@ impl ParameterInterface for PhaserParam {
             PhaserParam::ReturnLevel   => ControlType::Percent,
         }
     }
+}
+
+impl GetDefaultParameterValue for PhaserParam {
 
     fn default_value(&self) -> PData {
         match self {
@@ -44,11 +63,17 @@ impl ParameterInterface for PhaserParam {
             PhaserParam::ReturnLevel   => PData::Float(0.5),
         }
     }
+}
+
+impl CheckIfModulateable for PhaserParam {
 
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+}
+
+impl GetMinParameterValue for PhaserParam {
 
     fn min_value(&self) -> PData {
         match self {
@@ -62,6 +87,9 @@ impl ParameterInterface for PhaserParam {
             PhaserParam::ReturnLevel   => PData::Float(0.0),
         }
     }
+}
+
+impl GetMaxParameterValue for PhaserParam {
 
     fn max_value(&self) -> PData {
         match self {
@@ -75,6 +103,9 @@ impl ParameterInterface for PhaserParam {
             PhaserParam::ReturnLevel   => PData::Float(1.0),
         }
     }
+}
+
+impl GetParameterValueType for PhaserParam {
 
     fn value_type(&self) -> ValType {
         match self {
@@ -88,6 +119,9 @@ impl ParameterInterface for PhaserParam {
             PhaserParam::ReturnLevel   => ValType::VtFloat,
         }
     }
+}
+
+impl GetMoverate for PhaserParam {
 
     fn moverate(&self) -> f32 {
         match self {
@@ -100,21 +134,5 @@ impl ParameterInterface for PhaserParam {
             PhaserParam::Mix           => 1.0,
             PhaserParam::ReturnLevel   => 1.0,
         }
-    }
-}
-
-impl PhaserParam {
-
-    #[inline] pub fn new_runtime() -> PhaserParamArrayRT {
-        PhaserParamArrayRT::new_with(|x| match x {
-            PhaserParam::Base          => PhaserParamRT::new(PhaserParam::Base),
-            PhaserParam::Feedback      => PhaserParamRT::new(PhaserParam::Feedback),
-            PhaserParam::QualityFactor => PhaserParamRT::new(PhaserParam::QualityFactor),
-            PhaserParam::LFORate       => PhaserParamRT::new(PhaserParam::LFORate),
-            PhaserParam::LFODepth      => PhaserParamRT::new(PhaserParam::LFODepth),
-            PhaserParam::Stereo        => PhaserParamRT::new(PhaserParam::Stereo),
-            PhaserParam::Mix           => PhaserParamRT::new(PhaserParam::Mix),
-            PhaserParam::ReturnLevel   => PhaserParamRT::new(PhaserParam::ReturnLevel),
-        })
     }
 }

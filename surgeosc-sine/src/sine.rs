@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug)]
+#[name("oscillator.sine")]
 pub struct SineWaveOscillator {
     pub tuner:       TunerHandle,
     pub master_osc:  *mut f32,
@@ -17,7 +18,6 @@ pub struct SineWaveOscillator {
 }
 
 oscillator!    [SineWaveOscillator, SineWaveOscillatorParam];
-name!          [SineWaveOscillator,       "oscillator.sine"];
 no_op!         [SineWaveOscillator,                SetPitch];
 no_op!         [SineWaveOscillator,                AssignFM];
 allow_display! [SineWaveOscillator,                    true];

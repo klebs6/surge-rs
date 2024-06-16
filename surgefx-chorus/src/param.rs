@@ -1,24 +1,41 @@
 crate::ix!();
 
-enhanced_enum![
-    ChorusParam {
-        Time,
-        Rate,
-        Depth,
-        Feedback,
-        LowCut,
-        HighCut,
-        Mix,
-        Width,
-        ReturnLevel,
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum ChorusParam {
+    Time,
+    Rate,
+    Depth,
+    Feedback,
+    LowCut,
+    HighCut,
+    Mix,
+    Width,
+    ReturnLevel,
+}
 
-rt![ChorusParam];
+impl_trait_defaults!{
+    ChorusParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+    GetExtendedValue,
+    GetExtendRange,
+}
 
-impl ParameterInterface for ChorusParam {
+impl GetControlGroup for ChorusParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+}
+
+impl GetControlType for ChorusParam {
 
     fn control_type(&self) -> ControlType {
         match self {
@@ -33,6 +50,9 @@ impl ParameterInterface for ChorusParam {
             ChorusParam::ReturnLevel => ControlType::Percent,
         } 
     }
+}
+
+impl GetDefaultParameterValue for ChorusParam {
 
     fn default_value(&self) -> PData {
         match self {
@@ -47,11 +67,17 @@ impl ParameterInterface for ChorusParam {
             ChorusParam::ReturnLevel => PData::Float(1.0),
         }
     }
+}
+
+impl CheckIfModulateable for ChorusParam {
 
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+}
+
+impl GetMinParameterValue for ChorusParam {
 
     fn min_value(&self) -> PData {
         match self {
@@ -66,6 +92,9 @@ impl ParameterInterface for ChorusParam {
             ChorusParam::ReturnLevel => PData::Float(0.0),
         }
     }
+}
+
+impl GetMaxParameterValue for ChorusParam {
 
     fn max_value(&self) -> PData {
         match self {
@@ -80,6 +109,9 @@ impl ParameterInterface for ChorusParam {
             ChorusParam::ReturnLevel => PData::Float(1.0),
         }
     }
+}
+
+impl GetParameterValueType for ChorusParam {
 
     fn value_type(&self) -> ValType {
         match self {
@@ -94,6 +126,9 @@ impl ParameterInterface for ChorusParam {
             ChorusParam::ReturnLevel => ValType::VtFloat,
         }
     }
+}
+
+impl GetMoverate for ChorusParam {
 
     fn moverate(&self) -> f32 {
         match self {
@@ -107,22 +142,5 @@ impl ParameterInterface for ChorusParam {
             ChorusParam::Width       => 1.0,
             ChorusParam::ReturnLevel => 1.0,
         }
-    }
-}
-
-impl ChorusParam {
-
-    #[inline] pub fn new_runtime() -> ChorusParamArrayRT {
-        ChorusParamArrayRT::new_with(|x| match x {
-            ChorusParam::Time        => ChorusParamRT::new(ChorusParam::Time),
-            ChorusParam::Rate        => ChorusParamRT::new(ChorusParam::Rate),
-            ChorusParam::Depth       => ChorusParamRT::new(ChorusParam::Depth),
-            ChorusParam::Feedback    => ChorusParamRT::new(ChorusParam::Feedback),
-            ChorusParam::LowCut      => ChorusParamRT::new(ChorusParam::LowCut),
-            ChorusParam::HighCut     => ChorusParamRT::new(ChorusParam::HighCut),
-            ChorusParam::Mix         => ChorusParamRT::new(ChorusParam::Mix),
-            ChorusParam::Width       => ChorusParamRT::new(ChorusParam::Width),
-            ChorusParam::ReturnLevel => ChorusParamRT::new(ChorusParam::ReturnLevel),
-        })
     }
 }

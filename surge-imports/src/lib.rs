@@ -22,16 +22,6 @@
     } 
 }
 
-#[macro_export] macro_rules! tsyncratio {
-    ($self:ident, $x:ident) => ({
-        let temposync = $self.params[AdsrParam::$x].temposync;
-        match temposync {
-            true => $self.time_unit.temposyncratio(),
-            false => 1.0,
-        }
-    })
-}
-
 pub fn assert_m128_eq(a: __m128, b: __m128, epsilon: f32) {
 
     let a_arr: [f32; 4] = unsafe { std::mem::transmute(a) };

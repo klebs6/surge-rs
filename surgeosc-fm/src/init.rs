@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for FMOscillator {
+impl Initialize for FMOscillator {
 
     fn init(&mut self) {
 

@@ -22,8 +22,8 @@ pub enum SurgeEffect {
 
 impl Effect for SurgeEffect { }
 
-impl Process for SurgeEffect { 
-    fn process<const N: usize>(&mut self, 
+impl StereoProcess for SurgeEffect { 
+    fn stereo_process<const N: usize>(&mut self, 
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N])
     {
@@ -195,7 +195,7 @@ impl Suspend for SurgeEffect {
     }
 }
 
-impl Init for SurgeEffect {
+impl Initialize for SurgeEffect {
     fn init(&mut self) {
         match self {
             SurgeEffect::Eq3Band(x)       => x.init(),

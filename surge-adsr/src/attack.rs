@@ -1,5 +1,23 @@
 crate::ix!();
 
+impl AdsrEnvelope {
+
+    fn get_attack_diff(&self) -> f32 {
+        let v1 = self.get_attack_parameter();
+        let v2 = self.get_attack_parameter_minimum();
+
+        let diff: f32 = v1 - v2;
+
+        diff
+    }
+
+    fn state_machine_trigger_decay_stage(&mut self) {
+        self.set_envstate(AdsrState::Decay);
+        self.set_output(1.0);
+        self.set_phase(1.0);
+    }
+}
+
 impl Attack for AdsrEnvelope {
 
     /// starts the attack phase of the ADSR
@@ -8,26 +26,19 @@ impl Attack for AdsrEnvelope {
     /// `AdsrState::Attack`.
     ///
     fn attack(&mut self) {
-        self.phase      = 0.0;
-        self.output     = 0.0;
-        self.idlecount  = 0;
-        self.scalestage = 1.0;
 
-        // Reset the analog state machine too
-        self._v_c1         = 0.0;
-        self._v_c1_delayed = 0.0;
-        self._discharge    = 0.0;
+        self.clear_phase();
+        self.clear_output();
+        self.clear_idlecount();
+        self.set_scalestage(1.0);
 
-        self.envstate = AdsrState::Attack;
+        // we do this here, too
+        self.reset_analog_state_machine();
 
-        let v1: f32   = pvalf![self.params[AdsrParam::Attack]];
-        let v2: f32   = pvalminf![self.params[AdsrParam::Attack]];
-        let diff: f32 = v1 - v2;
+        self.set_envstate(AdsrState::Attack);
 
-        if diff < 0.01 {
-            self.envstate = AdsrState::Decay;
-            self.output   = 1.0;
-            self.phase    = 1.0;
+        if self.get_attack_diff() < 0.01 {
+            self.state_machine_trigger_decay_stage();
         }
     }
 }

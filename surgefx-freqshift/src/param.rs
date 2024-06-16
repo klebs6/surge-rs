@@ -1,18 +1,39 @@
 crate::ix!();
 
-enhanced_enum![FreqShiftParam {
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum FreqShiftParam {
     Shift,
     RMult,
     Delay,
     Feedback,
     Mix,
     ReturnLevel,
-}];
+}
 
-rt![FreqShiftParam];
+impl_trait_defaults!{
+    FreqShiftParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+    GetExtendedValue,
+    GetExtendRange,
+}
 
-impl ParameterInterface for FreqShiftParam {
+impl GetControlGroup for FreqShiftParam {
+
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 
+}
+
+impl GetControlType for FreqShiftParam {
+
     fn control_type(&self) -> ControlType {
         match self {
             FreqShiftParam::Shift       => ControlType::FreqShift,
@@ -23,7 +44,12 @@ impl ParameterInterface for FreqShiftParam {
             FreqShiftParam::ReturnLevel => ControlType::Percent,
         }
     }
+}
+
+impl GetDefaultParameterValue for FreqShiftParam {
+
     fn default_value(&self) -> PData {
+
         match self {
             FreqShiftParam::Shift       => PData::Float(0.0),
             FreqShiftParam::RMult       => PData::Float(1.0),
@@ -33,10 +59,18 @@ impl ParameterInterface for FreqShiftParam {
             FreqShiftParam::ReturnLevel => PData::Float(0.5),
         }
     }
+}
+
+impl CheckIfModulateable for FreqShiftParam {
+
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
+}
+
+impl GetMinParameterValue for FreqShiftParam {
+
     fn min_value(&self) -> PData {
         match self {
             FreqShiftParam::Shift       => PData::Float(-10.0),
@@ -47,6 +81,9 @@ impl ParameterInterface for FreqShiftParam {
             FreqShiftParam::ReturnLevel => PData::Float(0.0),
         }
     }
+}
+
+impl GetMaxParameterValue for FreqShiftParam {
     fn max_value(&self) -> PData {
         match self {
             FreqShiftParam::Shift       => PData::Float(10.0),
@@ -57,6 +94,9 @@ impl ParameterInterface for FreqShiftParam {
             FreqShiftParam::ReturnLevel => PData::Float(1.0),
         }
     }
+}
+
+impl GetParameterValueType for FreqShiftParam {
     fn value_type(&self) -> ValType {
         match self {
             FreqShiftParam::Shift       => ValType::VtFloat,
@@ -67,6 +107,9 @@ impl ParameterInterface for FreqShiftParam {
             FreqShiftParam::ReturnLevel => ValType::VtFloat,
         }
     }
+}
+
+impl GetMoverate for FreqShiftParam {
     fn moverate(&self) -> f32 {
         match self {
             FreqShiftParam::Shift       => 1.0,
@@ -76,18 +119,5 @@ impl ParameterInterface for FreqShiftParam {
             FreqShiftParam::Mix         => 1.0,
             FreqShiftParam::ReturnLevel => 1.0,
         }
-    }
-}
-
-impl FreqShiftParam {
-    #[inline] pub fn new_runtime() -> FreqShiftParamArrayRT {
-        FreqShiftParamArrayRT::new_with(|x| match x {
-            FreqShiftParam::Shift       => FreqShiftParamRT::new(FreqShiftParam::Shift),
-            FreqShiftParam::RMult       => FreqShiftParamRT::new(FreqShiftParam::RMult),
-            FreqShiftParam::Delay       => FreqShiftParamRT::new(FreqShiftParam::Delay),
-            FreqShiftParam::Feedback    => FreqShiftParamRT::new(FreqShiftParam::Feedback),
-            FreqShiftParam::Mix         => FreqShiftParamRT::new(FreqShiftParam::Mix),
-            FreqShiftParam::ReturnLevel => FreqShiftParamRT::new(FreqShiftParam::ReturnLevel),
-        })
     }
 }

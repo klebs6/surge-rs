@@ -1,8 +1,8 @@
 crate::ix!();
 
-impl Process for Phaser {
+impl StereoProcess for Phaser {
 
-    fn process<const N: usize>(
+    fn stereo_process<const N: usize>(
         &mut self, 
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N])

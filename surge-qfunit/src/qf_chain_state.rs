@@ -52,7 +52,7 @@ pub struct QuadFilterChainState {
     pub dout_2r:           __m128 , 
 }
 
-impl Init for QuadFilterChainState {
+impl Initialize for QuadFilterChainState {
 
     /**
       | Original note on the out-of-line function

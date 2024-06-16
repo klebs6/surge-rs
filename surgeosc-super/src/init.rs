@@ -1,6 +1,6 @@
 crate::ix!();
 
-impl Init for SurgeSuperOscillator {
+impl Initialize for SurgeSuperOscillator {
 
     fn init(&mut self) {
 

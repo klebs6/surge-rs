@@ -1,22 +1,39 @@
 crate::ix!();
 
-enhanced_enum![
-    FM2OscillatorParam {
-        M1Amount,
-        M1Ratio,
-        M2Amount,
-        M2Ratio,
-        MxShift,
-        MxStartPhase,
-        Feedback,
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum FM2OscillatorParam {
+    M1Amount,
+    M1Ratio,
+    M2Amount,
+    M2Ratio,
+    MxShift,
+    MxStartPhase,
+    Feedback,
+}
 
-rt![FM2OscillatorParam];
+impl_trait_defaults!{
+    FM2OscillatorParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+    GetExtendedValue,
+    GetExtendRange,
+}
 
-impl ParameterInterface for FM2OscillatorParam {
+impl GetControlGroup for FM2OscillatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
+}
+
+impl GetControlType for FM2OscillatorParam {
 
     fn control_type(&self) -> ControlType {
         match self {
@@ -29,6 +46,10 @@ impl ParameterInterface for FM2OscillatorParam {
             FM2OscillatorParam::Feedback      => ControlType::Percent,
         }
     }
+}
+
+impl GetDefaultParameterValue for FM2OscillatorParam {
+
     fn default_value(&self) -> PData {
         match self {
             FM2OscillatorParam::M1Amount     => PData::Float(0.0),
@@ -40,6 +61,10 @@ impl ParameterInterface for FM2OscillatorParam {
             FM2OscillatorParam::Feedback     => PData::Float(0.0),
         }
     }
+}
+
+impl GetMinParameterValue for FM2OscillatorParam {
+
     fn min_value(&self) -> PData {
         match self {
             FM2OscillatorParam::M1Amount     => PData::Float(0.0),  
@@ -51,6 +76,10 @@ impl ParameterInterface for FM2OscillatorParam {
             FM2OscillatorParam::Feedback     => PData::Float(0.0),  
         }
     }
+}
+
+impl GetMaxParameterValue for FM2OscillatorParam {
+
     fn max_value(&self) -> PData {
         match self {
             FM2OscillatorParam::M1Amount     => PData::Float(1.0), 
@@ -62,6 +91,10 @@ impl ParameterInterface for FM2OscillatorParam {
             FM2OscillatorParam::Feedback     => PData::Float(1.0), 
         }
     }
+}
+
+impl GetParameterValueType for FM2OscillatorParam {
+
     fn value_type(&self) -> ValType {
         match self {
             FM2OscillatorParam::M1Amount     => ValType::VtFloat,
@@ -73,6 +106,10 @@ impl ParameterInterface for FM2OscillatorParam {
             FM2OscillatorParam::Feedback     => ValType::VtFloat,
         }
     }
+}
+
+impl GetMoverate for FM2OscillatorParam {
+
     fn moverate(&self) -> f32 {
         match self {
             FM2OscillatorParam::M1Amount     => 1.0, 
@@ -84,23 +121,12 @@ impl ParameterInterface for FM2OscillatorParam {
             FM2OscillatorParam::Feedback     => 1.0, 
         }
     }
+}
+
+impl CheckIfModulateable for FM2OscillatorParam {
+
     fn modulateable(&self) -> bool {
         //true for all
         true
-    }
-}
-
-impl FM2OscillatorParam {
-
-    #[inline] pub fn new_runtime() -> FM2OscillatorParamArrayRT {
-        FM2OscillatorParamArrayRT::new_with(|x| match x {
-            FM2OscillatorParam::M1Amount     => FM2OscillatorParamRT::new(FM2OscillatorParam::M1Amount),
-            FM2OscillatorParam::M1Ratio      => FM2OscillatorParamRT::new(FM2OscillatorParam::M1Ratio),
-            FM2OscillatorParam::M2Amount     => FM2OscillatorParamRT::new(FM2OscillatorParam::M2Amount),
-            FM2OscillatorParam::M2Ratio      => FM2OscillatorParamRT::new(FM2OscillatorParam::M2Ratio),
-            FM2OscillatorParam::MxShift      => FM2OscillatorParamRT::new(FM2OscillatorParam::MxShift),
-            FM2OscillatorParam::MxStartPhase => FM2OscillatorParamRT::new(FM2OscillatorParam::MxStartPhase),
-            FM2OscillatorParam::Feedback     => FM2OscillatorParamRT::new(FM2OscillatorParam::Feedback),
-        })
     }
 }

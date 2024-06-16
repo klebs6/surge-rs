@@ -4,6 +4,7 @@ crate::ix!();
 pub const FREQSHIFT_MAX_DELAY_LENGTH: usize = 1 << 18; 
 
 #[derive(Debug,Clone)]
+#[name("freqshift")]
 pub struct FreqShift {
     pub fr:            Align16<HalfRateFilterSSE>,
     pub fi:            Align16<HalfRateFilterSSE>,
@@ -30,4 +31,3 @@ pub struct FreqShift {
 effect!       [FreqShift,  FreqShiftParam];
 has_timeunit! [FreqShift,  FreqShiftParam];
 no_op!        [FreqShift,  ProcessOnlyControl];
-name!         [FreqShift,  "freqshift"];

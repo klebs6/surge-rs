@@ -1,27 +1,40 @@
 crate::ix!();
 
-enhanced_enum![
-    WTOscillatorParam {
-        //oscdata->p[0].set_user_data(oscdata);
-        Morph,
-        SkewV,
-        Saturate,
-        Formant,
-        SkewH,
-        UniSpread,
-        UniCount,
-    }
-];
+#[derive(Debug,Copy,Clone,PartialEq,Eq,Hash)]
+#[synth_parameters]
+pub enum WTOscillatorParam {
+    //oscdata->p[0].set_user_data(oscdata);
+    Morph,
+    SkewV,
+    Saturate,
+    Formant,
+    SkewH,
+    UniSpread,
+    UniCount,
+}
 
-rt![WTOscillatorParam];
+impl_trait_defaults!{
+    WTOscillatorParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetModulation,
+    SetModulation,
+    GetExtendedValue,
+    GetExtendedRange,
+}
 
-impl ParameterInterface for WTOscillatorParam {
+impl GetControlGroup for WTOscillatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 
+}
 
-    fn snap(&self) -> bool {
-        *self != WTOscillatorParam::Morph
-    }
+impl GetControlType for WTOscillatorParam {
+
     fn control_type(&self) -> ControlType {
         match self {
             WTOscillatorParam::Morph     => ControlType::CountedSetPercent,
@@ -33,7 +46,12 @@ impl ParameterInterface for WTOscillatorParam {
             WTOscillatorParam::UniCount  => ControlType::OscCountWT,
         }
     }
+}
+
+impl GetDefaultParameterValue for WTOscillatorParam {
+
     fn default_value(&self) -> PData {
+
         match self {
             WTOscillatorParam::Morph     => PData::Float(0.0),
             WTOscillatorParam::SkewV     => PData::Float(0.0),
@@ -44,6 +62,10 @@ impl ParameterInterface for WTOscillatorParam {
             WTOscillatorParam::UniCount  => PData::Float(1.0),
         }
     }
+}
+
+impl GetMinParameterValue for WTOscillatorParam {
+
     fn min_value(&self) -> PData {
         match self {
             WTOscillatorParam::Morph     => PData::Float(0.0), 
@@ -55,6 +77,10 @@ impl ParameterInterface for WTOscillatorParam {
             WTOscillatorParam::UniCount  => PData::Int(1),     
         }
     }
+}
+
+impl GetMaxParameterValue for WTOscillatorParam {
+
     fn max_value(&self) -> PData {
         match self {
             WTOscillatorParam::Morph     => PData::Float(1.0), 
@@ -66,6 +92,10 @@ impl ParameterInterface for WTOscillatorParam {
             WTOscillatorParam::UniCount  => PData::Int(16),    
         }
     }
+}
+
+impl GetParameterValueType for WTOscillatorParam {
+
     fn value_type(&self) -> ValType {
         match self {
             WTOscillatorParam::Morph     => ValType::VtFloat,
@@ -77,6 +107,10 @@ impl ParameterInterface for WTOscillatorParam {
             WTOscillatorParam::UniCount  => ValType::VtInt,  
         }
     }
+}
+
+impl GetMoverate for WTOscillatorParam {
+
     fn moverate(&self) -> f32 {
         match self {
             WTOscillatorParam::Morph     => 1.0,
@@ -88,22 +122,19 @@ impl ParameterInterface for WTOscillatorParam {
             WTOscillatorParam::UniCount  => 1.0,
         }
     }
+}
+
+impl CheckIfModulateable for WTOscillatorParam {
+
     fn modulateable(&self) -> bool {
         //true for all
         true
     }
 }
 
-impl WTOscillatorParam {
-    #[inline] pub fn new_runtime() -> WTOscillatorParamArrayRT {
-        WTOscillatorParamArrayRT::new_with(|x| match x {
-            WTOscillatorParam::Morph     => WTOscillatorParamRT::new(WTOscillatorParam::Morph),
-            WTOscillatorParam::SkewV     => WTOscillatorParamRT::new(WTOscillatorParam::SkewV),
-            WTOscillatorParam::Saturate  => WTOscillatorParamRT::new(WTOscillatorParam::Saturate),
-            WTOscillatorParam::Formant   => WTOscillatorParamRT::new(WTOscillatorParam::Formant),
-            WTOscillatorParam::SkewH     => WTOscillatorParamRT::new(WTOscillatorParam::SkewH),
-            WTOscillatorParam::UniSpread => WTOscillatorParamRT::new(WTOscillatorParam::UniSpread),
-            WTOscillatorParam::UniCount  => WTOscillatorParamRT::new(WTOscillatorParam::UniCount),
-        })
+impl GetSnap for WTOscillatorParam {
+
+    fn snap(&self) -> bool {
+        *self != WTOscillatorParam::Morph
     }
 }

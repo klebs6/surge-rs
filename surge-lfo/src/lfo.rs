@@ -58,6 +58,8 @@ enhanced_enum![
 /// (Low-Frequency Oscillator) module.
 ///
 #[derive(Debug)]
+#[name("lfo")]
+#[modulation_source_control]
 pub struct Lfo {
 
     /// The params field contains runtime
@@ -179,4 +181,8 @@ pub struct Lfo {
     pub enabled:            bool,
 }
 
-name![Lfo,"LFO"];
+impl_trait_defaults!{
+    Lfo;
+    Release,
+    Attack
+}

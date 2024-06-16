@@ -2,19 +2,17 @@ crate::ix!();
 
 //#[enum_dispatch(ModulationSourceControl)]
 #[derive(Debug)]
+#[modulation_source_control]
 pub enum ModulationSource {
     Lfo(Lfo),
     AdsrEnvelope(AdsrEnvelope),
     ControllerModulationSource(ControllerModulationSource),
 }
 
-pub type MaybeBoxedModulationSource 
-= Option<Box<ModulationSource>>;
+pub type MaybeBoxedModulationSource = Option<Box<ModulationSource>>;
+pub type ModulationSourceArray      = ModSourceArray::<MaybeBoxedModulationSource>;
 
-pub type ModulationSourceArray 
-= ModSourceArray::<MaybeBoxedModulationSource>;
-
-impl ModulationSourceControl for ModulationSource {
+impl GetModulationSourceType for ModulationSource {
 
     fn modulation_source_type(&self) -> ModSrcType {
         match self {
@@ -23,6 +21,10 @@ impl ModulationSourceControl for ModulationSource {
             ModulationSource::ControllerModulationSource(inner) => inner.modulation_source_type(),
         }
     }
+}
+
+impl GetModulationSourceOutput for ModulationSource {
+
     fn get_output(&self) -> f64 {
         match self {
             ModulationSource::Lfo(inner)                        => inner.get_output(),
@@ -30,13 +32,7 @@ impl ModulationSourceControl for ModulationSource {
             ModulationSource::ControllerModulationSource(inner) => inner.get_output(),
         }
     }
-    fn set_output(&mut self, x: f64) {
-        match self {
-            ModulationSource::Lfo(inner)                        => inner.set_output(x),
-            ModulationSource::AdsrEnvelope(inner)               => inner.set_output(x),
-            ModulationSource::ControllerModulationSource(inner) => inner.set_output(x),
-        }
-    }
+
     fn get_output01(&self) -> f64 {
         match self {
             ModulationSource::Lfo(inner)                        => inner.get_output01(),
@@ -44,6 +40,21 @@ impl ModulationSourceControl for ModulationSource {
             ModulationSource::ControllerModulationSource(inner) => inner.get_output01(),
         }
     }
+}
+
+impl SetModulationSourceOutput for ModulationSource {
+
+    fn set_output(&mut self, x: f64) {
+        match self {
+            ModulationSource::Lfo(inner)                        => inner.set_output(x),
+            ModulationSource::AdsrEnvelope(inner)               => inner.set_output(x),
+            ModulationSource::ControllerModulationSource(inner) => inner.set_output(x),
+        }
+    }
+}
+
+impl CheckIsModulationSourcePerVoice for ModulationSource {
+
     fn per_voice(&self) -> bool {
         match self {
             ModulationSource::Lfo(inner)                        => inner.per_voice(),
@@ -51,6 +62,10 @@ impl ModulationSourceControl for ModulationSource {
             ModulationSource::ControllerModulationSource(inner) => inner.per_voice(),
         }
     }
+}
+
+impl CheckBipolar for ModulationSource {
+
     fn is_bipolar(&self) -> bool {
         match self {
             ModulationSource::Lfo(inner)                        => inner.is_bipolar(),
@@ -58,6 +73,10 @@ impl ModulationSourceControl for ModulationSource {
             ModulationSource::ControllerModulationSource(inner) => inner.is_bipolar(),
         }
     }
+}
+
+impl SetBipolar for ModulationSource {
+
     fn set_bipolar(&mut self, b: bool) {
         match self {
             ModulationSource::Lfo(inner)                        => inner.set_bipolar(b),
@@ -65,6 +84,10 @@ impl ModulationSourceControl for ModulationSource {
             ModulationSource::ControllerModulationSource(inner) => inner.set_bipolar(b),
         }
     }
+}
+
+impl ModulationSourceProcessBlock for ModulationSource {
+
     fn process_block(&mut self) {
         match self {
             ModulationSource::Lfo(inner)                        => inner.process_block(),
@@ -72,6 +95,10 @@ impl ModulationSourceControl for ModulationSource {
             ModulationSource::ControllerModulationSource(inner) => inner.process_block(),
         }
     }
+}
+
+impl Attack for ModulationSource {
+
     fn attack(&mut self) {
         match self {
             ModulationSource::Lfo(inner)                        => inner.attack(),
@@ -79,6 +106,10 @@ impl ModulationSourceControl for ModulationSource {
             ModulationSource::ControllerModulationSource(inner) => inner.attack(),
         }
     }
+}
+
+impl Release for ModulationSource {
+
     fn release(&mut self) {
         match self {
             ModulationSource::Lfo(inner)                        => inner.release(),
@@ -86,6 +117,10 @@ impl ModulationSourceControl for ModulationSource {
             ModulationSource::ControllerModulationSource(inner) => inner.release(),
         }
     }
+}
+
+impl CheckEnabled for ModulationSource {
+
     fn enabled(&self) -> bool {
         match self {
             ModulationSource::Lfo(inner)                        => inner.enabled(),
@@ -93,6 +128,10 @@ impl ModulationSourceControl for ModulationSource {
             ModulationSource::ControllerModulationSource(inner) => inner.enabled(),
         }
     }
+}
+
+impl Enable for ModulationSource {
+
     fn enable(&mut self, v: bool) {
         match self {
             ModulationSource::Lfo(inner)                        => inner.enable(v),
@@ -100,6 +139,10 @@ impl ModulationSourceControl for ModulationSource {
             ModulationSource::ControllerModulationSource(inner) => inner.enable(v),
         }
     }
+}
+
+impl Reset for ModulationSource {
+
     fn reset(&mut self) {
         match self {
             ModulationSource::Lfo(inner)                        => inner.reset(),

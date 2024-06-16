@@ -1,6 +1,7 @@
 crate::ix!();
 
 #[derive(Debug,Clone)]
+#[name("flanger")]
 pub struct Flanger {
 
     pub ringout:        Ringout,
@@ -38,6 +39,5 @@ pub struct Flanger {
 no_op!         [Flanger, ProcessOnlyControl];
 effect!        [Flanger,       FlangerParam];
 has_timeunit!  [Flanger,       FlangerParam];
-name!          [Flanger,          "flanger"];
 no_op!         [Flanger,            Suspend];
 no_update!     [Flanger                    ];

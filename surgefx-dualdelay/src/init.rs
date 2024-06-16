@@ -19,7 +19,7 @@ impl DualDelay {
     }
 }
 
-impl Init for DualDelay {
+impl Initialize for DualDelay {
 
     fn init(&mut self) {
 
