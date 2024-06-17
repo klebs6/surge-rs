@@ -24,6 +24,12 @@ impl_trait_defaults!{
     GetExtendRange,
 }
 
+impl CheckIfAbsolute for SineWaveOscillatorParam {
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl GetControlGroup for SineWaveOscillatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 

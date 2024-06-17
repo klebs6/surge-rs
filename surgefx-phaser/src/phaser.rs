@@ -25,6 +25,13 @@ pub struct Phaser {
     pub time_unit:   TimeUnitHandle,
 }
 
+impl Reset for Phaser {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 effect!       [Phaser, PhaserParam];
 no_op!        [Phaser, Suspend];
 has_timeunit! [Phaser, PhaserParam];

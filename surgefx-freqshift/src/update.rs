@@ -22,7 +22,7 @@ impl Update for FreqShift {
 
         let shift: f64 = 
             (self.pvalf(FreqShiftParam::Shift) as f64) *
-            match self.params[FreqShiftParam::Shift].extend_range  { true => 1000.0, false => 10.0 } ;
+            match self.params[FreqShiftParam::Shift].extend_range()  { true => 1000.0, false => 10.0 } ;
 
         let mut omega: f64 = shift * PI * 2.0 * self.srunit.dsamplerate_inv();
 

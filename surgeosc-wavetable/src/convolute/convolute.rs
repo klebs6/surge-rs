@@ -36,7 +36,7 @@ impl WTOscillator {
         let mut dt: f32 = self.wave_wavetable.dt() * (wt_inc as f32);
 
         // add time until next statechange
-        let tempt: f64 = match self.params[WTOscillatorParam::UniSpread].absolute 
+        let tempt: f64 = match self.params[WTOscillatorParam::UniSpread].is_absolute() 
         {
             /*TODO: is UniSpread the right parameter? match with p[5] from the C*/
             true => {

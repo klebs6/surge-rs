@@ -5,7 +5,7 @@ impl SurgeSuperOscillator {
     #[inline] pub fn get_t(&self, sync: f64, detune: f64) -> (f32, f32) {
 
         let t: f32 = {
-            if self.params[SSOParam::UniSpread].absolute {
+            if self.params[SSOParam::UniSpread].is_absolute() {
 
                 // Oh so this line of code. What is it doing?
                 //

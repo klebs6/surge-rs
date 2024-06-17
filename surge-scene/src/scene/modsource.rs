@@ -5,13 +5,13 @@ impl SurgeScene {
     pub fn handle_boolsolo<P: ParameterInterface + ?Sized>(&mut self, param: &mut ParamRT<P>) 
     {
         if pvalb![param] {
-            self.params[SceneParam::SoloO1].val     = PData::Bool(false);
-            self.params[SceneParam::SoloO2].val     = PData::Bool(false);
-            self.params[SceneParam::SoloO3].val     = PData::Bool(false);
-            self.params[SceneParam::SoloRing12].val = PData::Bool(false);
-            self.params[SceneParam::SoloRing23].val = PData::Bool(false);
-            self.params[SceneParam::SoloNoise].val  = PData::Bool(false);
-            param.val = PData::Bool(true);
+            self.params[SceneParam::SoloO1].set_value(PData::Bool(false));
+            self.params[SceneParam::SoloO2].set_value(PData::Bool(false));
+            self.params[SceneParam::SoloO3].set_value(PData::Bool(false));
+            self.params[SceneParam::SoloRing12].set_value(PData::Bool(false));
+            self.params[SceneParam::SoloRing23].set_value(PData::Bool(false));
+            self.params[SceneParam::SoloNoise].set_value(PData::Bool(false));
+            param.set_value(PData::Bool(true));
         }
     }
 
@@ -46,9 +46,9 @@ impl SurgeScene {
 
         let unit = &mut self.filterunit[1];
 
-        unit.params[FilterParam::Cutoff].val        = PData::Float(c1 + polarity * c0);
-        unit.params[FilterParam::EnvelopeMode].val  = PData::Float(m1 + polarity * m0);
-        unit.params[FilterParam::KeyTrack].val      = PData::Float(kt1 + polarity * kt0);
+        unit.params[FilterParam::Cutoff].set_value(PData::Float(c1 + polarity * c0));
+        unit.params[FilterParam::EnvelopeMode].set_value(PData::Float(m1 + polarity * m0));
+        unit.params[FilterParam::KeyTrack].set_value(PData::Float(kt1 + polarity * kt0));
     }
 
     pub fn set_channel_aftertouch_target(&mut self, fval: f32) {

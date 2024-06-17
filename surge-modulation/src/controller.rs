@@ -15,6 +15,13 @@ pub struct ControllerModulationSource {
     srunit: SampleRateHandle,
 }
 
+impl_trait_defaults!{
+    ControllerModulationSource;
+    Attack,
+    Release,
+    CheckIsModulationSourcePerVoice,
+}
+
 impl GetModulationSourceType for ControllerModulationSource {
 
     fn modulation_source_type(&self) -> ModSrcType {

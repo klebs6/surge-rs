@@ -19,9 +19,16 @@ impl_trait_defaults!{
     CheckIfCanTemposync,
     GetControlStyle,
     GetDefaultValueF01,
+    GetExtendRange,
     GetExtendedValue,
     GetModulation,
     SetModulation,
+}
+
+impl CheckIfAbsolute for WindowOscillatorParam {
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
 }
 
 impl GetControlGroup for WindowOscillatorParam {

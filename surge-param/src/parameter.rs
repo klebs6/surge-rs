@@ -13,7 +13,14 @@ pub struct ParamRT<P: ParameterInterface + ?Sized> {
     extend_range:           bool,
     absolute:               bool,
     snap:                   bool,
+
     pub(crate) delegate:    Box<P>,
+}
+
+impl<P: ParameterInterface + ?Sized> CheckIfAbsolute for ParamRT<P> {
+    fn is_absolute(&self) -> bool {
+        self.absolute
+    }
 }
 
 impl<P: ParameterInterface + ?Sized> SetSnap for ParamRT<P> {
@@ -29,7 +36,7 @@ impl<P: ParameterInterface + ?Sized> ParamRT<P> {
         self.midictrl
     }
 
-    pub fn get_per_voice_processing(&self) -> bool {
+    pub fn is_per_voice_processing(&self) -> bool {
         self.per_voice_processing
     }
 

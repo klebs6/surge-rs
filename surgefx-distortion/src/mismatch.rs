@@ -8,9 +8,9 @@ impl HandleStreamingMismatches for Distortion {
     {
         if streaming_revision <= 11 
         {
-            self.params[DistortionParam::Waveshaper].val        = PData::Int(0);
-            self.params[DistortionParam::PreGain].extend_range  = false;
-            self.params[DistortionParam::PostGain].extend_range = false;
+            self.params[DistortionParam::Waveshaper].set_value(PData::Int(0));
+            self.params[DistortionParam::PreGain].set_extend_range(false);
+            self.params[DistortionParam::PostGain].set_extend_range(false);
         }
     }
 }

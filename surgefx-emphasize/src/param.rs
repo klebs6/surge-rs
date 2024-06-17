@@ -17,9 +17,17 @@ impl_trait_defaults!{
     GetControlStyle,
     GetDefaultValueF01,
     GetExtendedValue,
+    GetExtendRange,
     GetModulation,
     GetSnap,
     SetModulation,
+}
+
+impl CheckIfAbsolute for EmphasizeParam {
+
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
 }
 
 impl GetControlGroup for EmphasizeParam {

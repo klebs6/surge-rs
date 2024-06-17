@@ -25,6 +25,13 @@ pub struct RotarySpeaker {
     pub srunit:      SampleRateHandle,
 }
 
+impl Reset for RotarySpeaker {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 effect!        [RotarySpeaker, RotarySpeakerParam ];
 has_timeunit!  [RotarySpeaker, RotarySpeakerParam ];
 no_update!     [RotarySpeaker                     ];

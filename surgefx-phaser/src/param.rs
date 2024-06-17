@@ -16,6 +16,7 @@ pub enum PhaserParam {
 impl_trait_defaults!{
     PhaserParam;
     CheckIfAffectsOtherParameters,
+    GetExtendRange,
     CheckIfCanBeAbsolute,
     CheckIfCanExtendRange,
     CheckIfCanSnap,
@@ -26,6 +27,13 @@ impl_trait_defaults!{
     GetSnap,
     SetModulation,
     GetExtendedValue,
+}
+
+impl CheckIfAbsolute for PhaserParam {
+
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
 }
 
 impl GetControlGroup for PhaserParam {

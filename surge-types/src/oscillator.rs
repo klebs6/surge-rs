@@ -53,6 +53,13 @@ pub enum OscillatorParam {
     Retrigger,
 }
 
+impl CheckIfAbsolute for OscillatorParam {
+
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 /* TODO: possibly, some of these need to be non-default */
 impl_trait_defaults!{
     OscillatorParam;

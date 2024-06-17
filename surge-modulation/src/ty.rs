@@ -45,9 +45,10 @@ impl GetModulationSourceOutput for ModulationSource {
 impl SetModulationSourceOutput for ModulationSource {
 
     fn set_output(&mut self, x: f64) {
+
         match self {
             ModulationSource::Lfo(inner)                        => inner.set_output(x),
-            ModulationSource::AdsrEnvelope(inner)               => inner.set_output(x),
+            ModulationSource::AdsrEnvelope(inner)               => inner.set_output(x as f32),
             ModulationSource::ControllerModulationSource(inner) => inner.set_output(x),
         }
     }

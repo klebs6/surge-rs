@@ -11,6 +11,13 @@ pub enum FilterParam {
     KeyTrack,
 }
 
+impl CheckIfAbsolute for FilterParam {
+
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl_trait_defaults!{
     FilterParam;
     CheckIfAffectsOtherParameters,

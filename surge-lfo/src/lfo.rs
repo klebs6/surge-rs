@@ -181,6 +181,13 @@ pub struct Lfo {
     pub enabled:            bool,
 }
 
+impl Reset for Lfo {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 impl_trait_defaults!{
     Lfo;
     Release,

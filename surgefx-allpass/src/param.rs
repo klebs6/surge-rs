@@ -32,6 +32,12 @@ impl_trait_defaults!{
     SetModulation,
 }
 
+impl CheckIfAbsolute for AllpassReverbParam {
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl GetControlGroup for AllpassReverbParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 

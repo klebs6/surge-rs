@@ -28,6 +28,13 @@ pub struct FreqShift {
     pub srunit:        SampleRateHandle,
 }
 
+impl Reset for FreqShift {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 effect!       [FreqShift,  FreqShiftParam];
 has_timeunit! [FreqShift,  FreqShiftParam];
 no_op!        [FreqShift,  ProcessOnlyControl];

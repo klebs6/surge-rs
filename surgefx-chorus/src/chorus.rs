@@ -29,6 +29,13 @@ pub struct Chorus {
     pub srunit:       SampleRateHandle,
 }
 
+impl Reset for Chorus {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 no_op!        [Chorus, ProcessOnlyControl];
 effect!       [Chorus,        ChorusParam];
 has_timeunit! [Chorus,        ChorusParam];

@@ -56,6 +56,54 @@ pub enum SceneParam {
     LowCut,
 }
 
+impl_trait_defaults!{
+    SceneParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    CheckIfModulateable,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetExtendedValue,
+    GetModulation,
+    GetMoverate,
+    GetSnap,
+    SetModulation,
+}
+
+impl CheckIfAbsolute for SceneParam {
+
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl GetControlGroup for SceneParam {
     fn control_group(&self) -> ControlGroup { ControlGroup::Global } 
+}
+
+impl GetDefaultParameterValue for SceneParam {
+
+}
+
+impl GetMaxParameterValue     for SceneParam {
+
+}
+
+impl GetParameterValueType    for SceneParam {
+
+}
+
+impl GetControlType           for SceneParam {
+
+}
+
+impl GetExtendRange           for SceneParam {
+
+}
+
+impl GetMinParameterValue     for SceneParam {
+
 }

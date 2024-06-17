@@ -28,6 +28,13 @@ pub struct Reverb {
     pub srunit:      SampleRateHandle,
 }
 
+impl Reset for Reverb {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 no_op!        [Reverb, ProcessOnlyControl];
 effect!       [Reverb,        ReverbParam];
 has_timeunit! [Reverb,        ReverbParam];

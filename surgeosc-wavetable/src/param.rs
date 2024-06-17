@@ -25,7 +25,14 @@ impl_trait_defaults!{
     GetModulation,
     SetModulation,
     GetExtendedValue,
-    GetExtendedRange,
+    GetExtendRange,
+}
+
+impl CheckIfAbsolute for WTOscillatorParam {
+
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
 }
 
 impl GetControlGroup for WTOscillatorParam {

@@ -30,6 +30,13 @@ impl_trait_defaults!{
     GetExtendRange,
 }
 
+impl CheckIfAbsolute for ConditionerParam {
+
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl GetControlGroup for ConditionerParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 

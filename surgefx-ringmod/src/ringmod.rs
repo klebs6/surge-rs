@@ -22,6 +22,13 @@ pub struct RingModulator {
     pub srunit:        SampleRateHandle,
 }
 
+impl Reset for RingModulator {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 effect!         [RingModulator, RingModulatorParam];
 no_op!          [RingModulator, ProcessOnlyControl];
 no_op!          [RingModulator,             Update];

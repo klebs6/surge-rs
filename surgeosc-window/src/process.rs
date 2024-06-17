@@ -13,7 +13,7 @@ impl OscillatorProcess for WindowOscillator {
 
         self.out.clear();
 
-        let detune: f32 = match self.params[WindowOscillatorParam::UniSpread].absolute {
+        let detune: f32 = match self.params[WindowOscillatorParam::UniSpread].is_absolute() {
             // See comment in SurgeSuperOscillator
             true => {
                 self.pvalf_extended(WindowOscillatorParam::UniSpread) *

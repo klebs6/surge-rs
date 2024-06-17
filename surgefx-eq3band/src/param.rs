@@ -32,6 +32,13 @@ impl_trait_defaults!{
     GetExtendRange,
 }
 
+impl CheckIfAbsolute for Eq3BandParam {
+
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl GetControlGroup for Eq3BandParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 

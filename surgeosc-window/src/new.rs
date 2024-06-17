@@ -10,7 +10,7 @@ impl WindowOscillator {
             drift:              Align16(0.0),
             master_osc:         Align16(std::ptr::null_mut()),//TODO
             params:             WindowOscillatorParam::new_runtime(),
-            osc_params:         OscillatorParam::runtime_array(),
+            osc_params:         OscillatorParam::new_runtime(),
             out:                Align16(OscillatorOut::default()),
             pos:                A1d::<u32>::zeros(WINDOW_OSCILLATOR_NUM_SUBOSCS),
             sub_pos:            A1d::<u32>::zeros(WINDOW_OSCILLATOR_NUM_SUBOSCS),

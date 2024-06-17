@@ -17,12 +17,12 @@ pub trait ClipScale {
 
 #[enum_dispatch]
 pub trait LookupWaveshape {
-    fn lookup_waveshape(&self, entry: i32, x: f32) -> f32;
+    fn lookup_waveshape(&self, entry: usize, x: f32) -> f32;
 }
 
 #[enum_dispatch]
 pub trait LookupWaveshapeWarp {
-    fn lookup_waveshape_warp(&self, entry: i32, x: f32) -> f32;
+    fn lookup_waveshape_warp(&self, entry: usize, x: f32) -> f32;
 }
 
 #[enum_dispatch]

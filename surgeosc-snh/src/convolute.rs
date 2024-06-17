@@ -63,7 +63,7 @@ impl Convolute for SampleAndHoldOscillator {
 
         // add time until next statechange
         let t: f32 = {
-            if self.params[SampleAndHoldOscillatorParam::UniCount].absolute {
+            if self.params[SampleAndHoldOscillatorParam::UniCount].is_absolute() {
 
                 // see the comment in SurgeSuperOscillator in the absolute branch
                 let t = self.tuner.n2pinv::<f32,true>(

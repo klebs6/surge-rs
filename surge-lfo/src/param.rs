@@ -34,6 +34,12 @@ pub enum LfoParam {
     Release,
 }
 
+impl CheckIfAbsolute for LfoParam {
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl_trait_defaults!{
     LfoParam;
     CheckIfAffectsOtherParameters,

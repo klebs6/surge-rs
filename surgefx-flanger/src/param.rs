@@ -34,6 +34,13 @@ impl_trait_defaults!{
     GetExtendRange,
 }
 
+impl CheckIfAbsolute for FlangerParam {
+
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl GetControlGroup for FlangerParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 

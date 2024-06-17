@@ -11,7 +11,7 @@ impl SampleAndHoldOscillator {
         let mut x = Self {
             out:                 OscillatorOut::default(),
             params:              SampleAndHoldOscillatorParam::new_runtime(),
-            osc_params:          OscillatorParam::runtime_array(),
+            osc_params:          OscillatorParam::new_runtime(),
             master_osc:          std::ptr::null_mut(),//TODO
             drift:               0.0,
             blitter:             AbstractBlitter::new(&srunit),

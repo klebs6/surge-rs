@@ -27,6 +27,13 @@ impl_trait_defaults!{
     GetExtendRange,
 }
 
+impl CheckIfAbsolute for FreqShiftParam {
+
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl GetControlGroup for FreqShiftParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 

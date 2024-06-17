@@ -80,7 +80,6 @@ impl Distortion {
         feedback:     f32
 
     ) {
-
         for k in 0..N {
             self.do_distortion_block::<N,128>(
                 k,

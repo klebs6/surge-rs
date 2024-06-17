@@ -4,6 +4,9 @@ version = "1.0"
 [dependencies.surge-imports]
 path = "../surge-imports"
 version = "0.2.12-alpha.0"
+[dependencies.surge-derive]
+path = "../surge-derive"
+version = "0.2.12-alpha.0"
 [dependencies.surge-adsr]
 path = "../surge-adsr"
 version = "0.2.12-alpha.0"

@@ -12,7 +12,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
             (p.value_type() != (ValType::VtFloat)),
 
-            (!p.per_voice_processing && !modsource.can_modulate_monophonic_target()),
+            (!p.is_per_voice_processing() && !modsource.can_modulate_monophonic_target()),
 
             ((p.control_group() == ControlGroup::Lfo) && !modsource.is_scenelevel()),
 

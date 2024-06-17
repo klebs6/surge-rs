@@ -32,6 +32,13 @@ impl_trait_defaults!{
     GetExtendRange,
 }
 
+impl CheckIfAbsolute for VocoderParam {
+
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl GetControlGroup for VocoderParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 

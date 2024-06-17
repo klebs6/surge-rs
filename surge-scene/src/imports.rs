@@ -1,4 +1,5 @@
 pub(crate) use surge_adsr::*;
+pub(crate) use surge_derive::*;
 pub(crate) use surge_biquad::*;
 pub(crate) use surge_constants::*;
 pub(crate) use surge_halfrate::*;

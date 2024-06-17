@@ -9,7 +9,7 @@ impl SineWaveOscillator {
             master_osc:  std::ptr::null_mut(),//TODO
             out:         OscillatorOut::default(),
             params:      SineWaveOscillatorParam::new_runtime(),
-            osc_params:  OscillatorParam::runtime_array(),
+            osc_params:  OscillatorParam::new_runtime(),
             sine:        QuadrOsc::default(),
             phase:       0.0,
             driftlfo1:   0.0,

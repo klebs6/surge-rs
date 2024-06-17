@@ -15,6 +15,29 @@ pub enum RingModulatorParam {
     ReturnLevel,
 }
 
+impl_trait_defaults!{
+    RingModulatorParam;
+    CheckIfAffectsOtherParameters,
+    CheckIfCanBeAbsolute,
+    CheckIfCanExtendRange,
+    CheckIfCanSnap,
+    CheckIfCanTemposync,
+    GetControlStyle,
+    GetDefaultValueF01,
+    GetModulation,
+    GetSnap,
+    SetModulation,
+    GetExtendedValue,
+    GetExtendRange,
+}
+
+impl CheckIfAbsolute for RingModulatorParam {
+
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl GetControlGroup for RingModulatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 

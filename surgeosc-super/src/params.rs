@@ -29,6 +29,12 @@ impl_trait_defaults!{
     SetModulation,
 }
 
+impl CheckIfAbsolute for SSOParam {
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl GetControlGroup for SSOParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 

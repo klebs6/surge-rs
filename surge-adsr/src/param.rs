@@ -13,6 +13,12 @@ pub enum AdsrParam {
     Mode,
 }
 
+impl CheckIfAbsolute for AdsrParam {
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl_trait_defaults!{
     AdsrParam;
     CheckIfAffectsOtherParameters,

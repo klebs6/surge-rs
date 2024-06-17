@@ -29,6 +29,13 @@ pub struct AllpassVerb {
     pub srunit              : SampleRateHandle,
 }
 
+impl Reset for AllpassVerb {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 effect!           [AllpassVerb, AllpassReverbParam];
 update_on_init!   [AllpassVerb];
 default_default!  [AllpassVerb];

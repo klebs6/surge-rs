@@ -15,7 +15,7 @@ impl SurgePatch {
             mpe_enabled:           MpeEnableSwitch(false),
         };
 
-        x.params[PatchParam::PolyLimit].val = PData::Int(8);
+        x.params[PatchParam::PolyLimit].set_value(PData::Int(8));
 
         x
     }

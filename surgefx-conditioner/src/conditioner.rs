@@ -27,6 +27,13 @@ pub struct Conditioner {
     pub vu:                A1d::<f32>, 
 }
 
+impl Reset for Conditioner {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 effect!          [Conditioner, ConditionerParam];
 no_op!           [Conditioner,          Suspend];
 default_default! [Conditioner                  ];

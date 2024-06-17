@@ -39,6 +39,13 @@ pub struct DualDelay {
     pub srunit:          SampleRateHandle,
 }
 
+impl Reset for DualDelay {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 effect!      [DualDelay, DualDelayParam];
 no_op!       [DualDelay, Suspend       ];
 has_timeunit![DualDelay, DualDelayParam];

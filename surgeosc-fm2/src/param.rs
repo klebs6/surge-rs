@@ -28,6 +28,12 @@ impl_trait_defaults!{
     GetExtendRange,
 }
 
+impl CheckIfAbsolute for FM2OscillatorParam {
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl GetControlGroup for FM2OscillatorParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Osc } 

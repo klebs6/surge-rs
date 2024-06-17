@@ -30,6 +30,13 @@ impl_trait_defaults!{
     GetExtendRange,
 }
 
+impl CheckIfAbsolute for ChorusParam {
+
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl GetControlGroup for ChorusParam {
 
     fn control_group(&self) -> ControlGroup { ControlGroup::Fx } 

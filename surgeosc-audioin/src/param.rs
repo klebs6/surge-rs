@@ -7,6 +7,12 @@ pub enum AudioInputOscillatorParam {
     Gain,
 }
 
+impl CheckIfAbsolute for AudioInputOscillatorParam {
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl_trait_defaults!{
     AudioInputOscillatorParam;
     CheckIfAffectsOtherParameters,

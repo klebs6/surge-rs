@@ -21,6 +21,7 @@ pub trait ParameterInterface
 + CheckIfCanTemposync
 + CheckIfCanExtendRange
 + CheckIfCanBeAbsolute
++ CheckIfAbsolute
 + CheckIfCanSnap
 + GetModulation
 + SetModulation

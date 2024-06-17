@@ -28,6 +28,13 @@ pub struct Distortion {
     pub wetblock:       WetBlock2::<128>,
 }
 
+impl Reset for Distortion {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 no_op! [Distortion, ProcessOnlyControl];
 effect![Distortion,    DistortionParam];
 no_op! [Distortion,            Suspend];

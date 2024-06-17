@@ -33,7 +33,7 @@ impl NTables for WaveshapeTables {
 }
 
 impl LookupWaveshape for WaveshapeTables {
-    fn lookup_waveshape(&self, entry: i32, mut x: f32) -> f32 {
+    fn lookup_waveshape(&self, entry: usize, mut x: f32) -> f32 {
 
         x *= 32.0;
         x += 512.0;
@@ -59,7 +59,7 @@ impl LookupWaveshape for WaveshapeTables {
 }
 
 impl LookupWaveshapeWarp for WaveshapeTables {
-    fn lookup_waveshape_warp(&self, entry: i32, mut x: f32) -> f32 {
+    fn lookup_waveshape_warp(&self, entry: usize, mut x: f32) -> f32 {
 
         x *= 256.0;
         x += 512.0;

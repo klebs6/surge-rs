@@ -68,14 +68,14 @@ impl ClipScale for TablesHandle {
 
 impl LookupWaveshape for TablesHandle {
 
-    #[inline] fn lookup_waveshape(&self, entry: i32, x: f32) -> f32 {
+    #[inline] fn lookup_waveshape(&self, entry: usize, x: f32) -> f32 {
         self.inner.borrow().lookup_waveshape(entry,x) 
     }
 }
 
 impl LookupWaveshapeWarp for TablesHandle {
 
-    #[inline] fn lookup_waveshape_warp(&self, entry: i32, x: f32) -> f32 {
+    #[inline] fn lookup_waveshape_warp(&self, entry: usize, x: f32) -> f32 {
         self.inner.borrow().lookup_waveshape_warp(entry,x) 
     }
 }

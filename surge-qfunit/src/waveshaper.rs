@@ -15,6 +15,12 @@ pub enum WaveshaperParam {
     Drive,
 }
 
+impl CheckIfAbsolute for WaveshaperParam {
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
+}
+
 impl_trait_defaults!{
     WaveshaperParam;
     CheckIfAffectsOtherParameters,

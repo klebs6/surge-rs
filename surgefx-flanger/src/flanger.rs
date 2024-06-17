@@ -36,6 +36,13 @@ pub struct Flanger {
     pub srunit:         SampleRateHandle,
 }
 
+impl Reset for Flanger {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 no_op!         [Flanger, ProcessOnlyControl];
 effect!        [Flanger,       FlangerParam];
 has_timeunit!  [Flanger,       FlangerParam];

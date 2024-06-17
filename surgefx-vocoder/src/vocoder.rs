@@ -21,6 +21,13 @@ pub struct Vocoder {
     pub srunit:       SampleRateHandle,
 }
 
+impl Reset for Vocoder {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 effect!          [Vocoder,       VocoderParam];
 no_op!           [Vocoder, ProcessOnlyControl];
 update_on_init!  [Vocoder                    ];

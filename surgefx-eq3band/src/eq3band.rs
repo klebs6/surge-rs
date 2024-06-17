@@ -18,6 +18,13 @@ pub struct Eq3Band {
     pub params:           Eq3BandParamArrayRT,
 }
 
+impl Reset for Eq3Band {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 no_op!  [Eq3Band, ProcessOnlyControl];
 effect! [Eq3Band,       Eq3BandParam];
 no_op!  [Eq3Band,            Suspend];

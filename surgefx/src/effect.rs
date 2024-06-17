@@ -20,6 +20,28 @@ pub enum SurgeEffect {
     Vocoder(Box<Vocoder>),
 }
 
+impl Reset for SurgeEffect { 
+
+    fn reset(&mut self) {
+        match self {
+            SurgeEffect::Eq3Band(x)       => x.reset(),
+            SurgeEffect::Distortion(x)    => x.reset(),
+            SurgeEffect::Conditioner(x)   => x.reset(),
+            SurgeEffect::AllpassVerb(x)   => x.reset(),
+            SurgeEffect::DualDelay(x)     => x.reset(),
+            SurgeEffect::Flanger(x)       => x.reset(),
+            SurgeEffect::Phaser(x)        => x.reset(),
+            SurgeEffect::Reverb(x)        => x.reset(),
+            SurgeEffect::Chorus(x)        => x.reset(),
+            SurgeEffect::Emphasize(x)     => x.reset(),
+            SurgeEffect::FreqShift(x)     => x.reset(),
+            SurgeEffect::RingModulator(x) => x.reset(),
+            SurgeEffect::RotarySpeaker(x) => x.reset(),
+            SurgeEffect::Vocoder(x)       => x.reset(),
+        }
+    }
+}
+
 impl Effect for SurgeEffect { }
 
 impl StereoProcess for SurgeEffect { 
@@ -28,20 +50,20 @@ impl StereoProcess for SurgeEffect {
         data_r: &mut [f32; N])
     {
         match self {
-            SurgeEffect::Eq3Band(x)       => x.process::<N>(data_l, data_r),
-            SurgeEffect::Distortion(x)    => x.process::<N>(data_l, data_r),
-            SurgeEffect::Conditioner(x)   => x.process::<N>(data_l, data_r),
-            SurgeEffect::AllpassVerb(x)   => x.process::<N>(data_l, data_r),
-            SurgeEffect::DualDelay(x)     => x.process::<N>(data_l, data_r),
-            SurgeEffect::Flanger(x)       => x.process::<N>(data_l, data_r),
-            SurgeEffect::Phaser(x)        => x.process::<N>(data_l, data_r),
-            SurgeEffect::Reverb(x)        => x.process::<N>(data_l, data_r),
-            SurgeEffect::Chorus(x)        => x.process::<N>(data_l, data_r),
-            SurgeEffect::Emphasize(x)     => x.process::<N>(data_l, data_r),
-            SurgeEffect::FreqShift(x)     => x.process::<N>(data_l, data_r),
-            SurgeEffect::RingModulator(x) => x.process::<N>(data_l, data_r),
-            SurgeEffect::RotarySpeaker(x) => x.process::<N>(data_l, data_r),
-            SurgeEffect::Vocoder(x)       => x.process::<N>(data_l, data_r),
+            SurgeEffect::Eq3Band(x)       => x.stereo_process::<N>(data_l, data_r),
+            SurgeEffect::Distortion(x)    => x.stereo_process::<N>(data_l, data_r),
+            SurgeEffect::Conditioner(x)   => x.stereo_process::<N>(data_l, data_r),
+            SurgeEffect::AllpassVerb(x)   => x.stereo_process::<N>(data_l, data_r),
+            SurgeEffect::DualDelay(x)     => x.stereo_process::<N>(data_l, data_r),
+            SurgeEffect::Flanger(x)       => x.stereo_process::<N>(data_l, data_r),
+            SurgeEffect::Phaser(x)        => x.stereo_process::<N>(data_l, data_r),
+            SurgeEffect::Reverb(x)        => x.stereo_process::<N>(data_l, data_r),
+            SurgeEffect::Chorus(x)        => x.stereo_process::<N>(data_l, data_r),
+            SurgeEffect::Emphasize(x)     => x.stereo_process::<N>(data_l, data_r),
+            SurgeEffect::FreqShift(x)     => x.stereo_process::<N>(data_l, data_r),
+            SurgeEffect::RingModulator(x) => x.stereo_process::<N>(data_l, data_r),
+            SurgeEffect::RotarySpeaker(x) => x.stereo_process::<N>(data_l, data_r),
+            SurgeEffect::Vocoder(x)       => x.stereo_process::<N>(data_l, data_r),
         }
     }
 }

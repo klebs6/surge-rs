@@ -8,7 +8,7 @@ impl FMOscillator {
             out:             OscillatorOut::default(),
             master_osc:      std::ptr::null_mut(),
             params:          FMOscillatorParam::new_runtime(),
-            osc_params:      OscillatorParam::runtime_array(),
+            osc_params:      OscillatorParam::new_runtime(),
             phase:           0.0,
             lastoutput:      0.0,
             rm1:             QuadrOsc::default(),

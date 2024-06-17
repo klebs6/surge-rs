@@ -18,6 +18,13 @@ pub struct Emphasize {
     pub right:             f32,
 }
 
+impl Reset for Emphasize {
+
+    fn reset(&mut self) {
+        todo!();
+    }
+}
+
 no_op!     [Emphasize, ProcessOnlyControl];
 effect!    [Emphasize,     EmphasizeParam];
 no_op!     [Emphasize,            Suspend];

@@ -141,7 +141,7 @@ impl SurgeScene {
     }
 
     #[inline] pub fn pitch_extend_range(&self) -> bool {
-        self.params[SceneParam::Pitch].extend_range
+        self.params[SceneParam::Pitch].extend_range()
     }
 
     #[inline] pub fn do_poly_aftertouch(&self) -> bool {
@@ -209,7 +209,7 @@ impl SurgeScene {
     }
 
     #[inline] pub fn portamento_temposync(&self) -> bool {
-        self.params[SceneParam::Portamento].temposync
+        self.params[SceneParam::Portamento].get_temposync()
     }
 
     #[inline] pub fn polymode(&self) -> PolyMode {
@@ -322,7 +322,7 @@ impl SurgeScene {
 
         self.osc[idx].osc_params_const( 
             OscillatorParam::Pitch
-        ).absolute
+        ).is_absolute()
     }
 
     #[inline] pub fn filter_balance(&self) -> f32 {

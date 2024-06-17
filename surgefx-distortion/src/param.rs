@@ -34,6 +34,14 @@ impl_trait_defaults!{
     GetSnap,
     SetModulation,
     GetExtendedValue,
+    GetExtendRange,
+}
+
+impl CheckIfAbsolute for DistortionParam {
+
+    fn is_absolute(&self) -> bool {
+        todo!();
+    }
 }
 
 impl GetControlGroup for DistortionParam {
