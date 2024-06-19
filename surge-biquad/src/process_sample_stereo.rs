@@ -1,5 +1,25 @@
 crate::ix!();
 
+/// `ProcessSampleStereo` trait is used to define
+/// a process for a pair of stereo audio samples. 
+///
+pub trait ProcessSampleStereo {
+
+    /// The `process_sample_stereo` method takes
+    /// two input `f32` samples, one for the left
+    /// channel and the other for the right
+    /// channel, and outputs two processed output
+    /// `f32` samples, one for the left channel
+    /// and the other for the right channel.
+    ///
+    fn process_sample_stereo(
+        &mut self, 
+        l: f32, 
+        r: f32, 
+        l_out: &mut f32, 
+        r_out: &mut f32);
+}
+
 impl ProcessSampleStereo for BiquadFilter {
 
     /// This defines a method named `process_sample_stereo` which takes a mutable reference to

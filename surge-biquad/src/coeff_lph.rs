@@ -11,6 +11,25 @@
 
 crate::ix!();
 
+/// A trait defining a function `coeff_lph_morph`
+/// to set the coefficients of
+/// a low-pass/high-pass filter morph. 
+///
+/// This morph is a type of filter that gradually
+/// morphs from a low-pass filter to a high-pass
+/// filter as a morphing parameter is
+/// changed. This trait is used for creating and
+/// modifying low-pass/high-pass filter morphs.
+///
+pub trait BiquadCoeffLPHMorph {
+
+    fn coeff_lph_morph(
+        &mut self, 
+        omega:          f64, 
+        quality_factor: f64, 
+        morph:          f64);
+}
+
 /// Implements the `BiquadCoeffLPHMorph` trait for
 /// the `BiquadFilter` struct, providing a method
 /// for computing the coefficients for
@@ -110,4 +129,3 @@ impl BiquadCoeffLPHMorph for BiquadFilter {
         self.set_coef(a0, a1, a2, b0, b1, b2);
     }
 }
-

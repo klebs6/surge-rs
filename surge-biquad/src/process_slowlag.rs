@@ -1,5 +1,30 @@
 crate::ix!();
 
+/// Trait for processing a block of stereo audio
+/// samples with a slower lag.
+///
+pub trait ProcessBlockSlowlag {
+
+    /// # Safety
+    ///
+    /// `data_l` and `data_r` must each point to
+    /// `BLOCK_SIZE` valid contiguous data
+    /// elements.
+    ///
+    unsafe fn process_block_slowlag(
+        &mut self, 
+        data_l: *mut f32, 
+        data_r: *mut f32);
+
+    fn process_slowlag_block(
+        &mut self,
+        _input_left: &[f32],
+        _input_right: &[f32]
+    ) {
+        unimplemented!();
+    }
+}
+
 impl ProcessBlockSlowlag for BiquadFilter {
 
     /// takes two raw pointers to `f32` data,

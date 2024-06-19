@@ -1,5 +1,23 @@
 crate::ix!();
 
+/// `ProcessSampleNolagNoinput` trait is similar
+/// to `ProcessSampleNolag`, but it doesn't take
+/// any input sample. 
+///
+pub trait ProcessSampleNolagNoinput {
+
+    /// The `process_sample_nolag_noinput` method
+    /// takes two mutable output `f32` samples,
+    /// one for the left channel and the other for
+    /// the right channel, and processes them
+    /// directly.
+    ///
+    fn process_sample_nolag_noinput(
+        &mut self, 
+        l_out: &mut f32, 
+        r_out: &mut f32);
+}
+
 /// The third implementation is for processing
 /// a single sample without any input
 /// (`ProcessSampleNolagNoinput`). 

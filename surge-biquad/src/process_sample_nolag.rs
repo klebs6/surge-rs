@@ -1,5 +1,22 @@
 crate::ix!();
 
+/// `ProcessSampleNolag` trait is used to define
+/// a process that operates directly on the audio
+/// samples, without any delay or lag. 
+///
+pub trait ProcessSampleNolag {
+
+    /// The `process_sample_nolag` method takes two
+    /// mutable input `f32` samples, one for the left
+    /// channel and the other for the right channel,
+    /// and processes them in place.
+    ///
+    fn process_sample_nolag(
+        &mut self, 
+        l: &mut f32, 
+        r: &mut f32);
+}
+
 /// The first implementation is for processing
 /// a single sample without any latency
 /// (`ProcessSampleNolag`). 

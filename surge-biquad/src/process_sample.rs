@@ -1,5 +1,19 @@
 crate::ix!();
 
+/// `ProcessSample` trait is used to define
+/// a process for a single audio sample. 
+///
+pub trait ProcessSample {
+
+    /// The `process_sample` method takes an input
+    /// `f32` sample and returns a processed
+    /// output `f32` sample.
+    ///
+    fn process_sample(
+        &mut self, 
+        input: f32) -> f32;
+}
+
 impl ProcessSample for BiquadFilter {
 
     #[inline] fn process_sample(&mut self, input: f32) -> f32 

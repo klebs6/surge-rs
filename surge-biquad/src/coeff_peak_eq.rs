@@ -1,5 +1,18 @@
 crate::ix!();
 
+pub trait BiquadCoeffEQ {
+
+    /// takes in a radian frequency `omega`, bandwidth
+    /// `bandwidth`, and gain `gain` as `f64` and sets
+    /// the coefficients of an equalizer filter in the
+    /// implementing struct.
+    ///
+    fn coeff_peak_eq(&mut self, 
+        omega: f64, 
+        bandwidth: f64, 
+        gain: f64);
+}
+
 impl BiquadCoeffEQ for BiquadFilter {
 
     /// This is the implementation of the

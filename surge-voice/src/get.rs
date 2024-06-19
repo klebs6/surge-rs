@@ -2,8 +2,7 @@ crate::ix!();
 
 impl SurgeVoice {
 
-    #[inline(always)] pub fn get_table_pitch(&mut self, 
-        idx: i32) -> f32 
+    #[inline(always)] pub fn get_table_pitch(&mut self, idx: i32) -> f32 
     {
         self.tuner.get_tablepitch(idx) as f32
     }

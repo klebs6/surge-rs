@@ -1,5 +1,27 @@
 crate::ix!();
 
+/// `ProcessSampleStereoNolag` trait is similar to
+/// `ProcessSampleNolag`, but it processes stereo
+/// audio samples instead of individual audio
+/// samples. 
+///
+pub trait ProcessSampleStereoNolag {
+
+    /// The `process_sample_stereo_nolag` method takes
+    /// two mutable input `f32` samples, one for the
+    /// left channel and the other for the right
+    /// channel, and two mutable output `f32` samples,
+    /// one for the left channel and the other for the
+    /// right channel, and processes them in place.
+    ///
+    fn process_sample_stereo_nolag(
+        &mut self, 
+        l: &mut f32, 
+        r: &mut f32, 
+        l_out: &mut f32, 
+        r_out: &mut f32);
+}
+
 /// This is for processing a stereo pair of
 /// samples without any latency
 /// (`ProcessSampleStereoNolag`). 

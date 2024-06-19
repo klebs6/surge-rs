@@ -1,5 +1,33 @@
 crate::ix!();
 
+/// Trait for processing a block of mono audio
+/// samples.
+///
+pub trait ProcessBlockMono {
+
+     /// # Safety
+     ///
+     /// `data` must point to `BLOCK_SIZE` valid
+     /// contiguous data elements.
+     ///
+     /// If `out` is not `None`, `out.unwrap()`
+     /// must also point to `BLOCK_SIZE` valid
+     /// contiguous data elements.
+     ///
+    unsafe fn process_block_mono(
+        &mut self, 
+        data: *mut f32, 
+        out: Option<*mut f32>);
+
+    fn process_mono_block(
+        &mut self,
+        _input: &[f32],
+        _output: Option<&mut [f32]>
+    ) {
+        unimplemented!();
+    }
+}
+
 impl ProcessBlockMono for BiquadFilter {
 
     /// This is a function that processes a block

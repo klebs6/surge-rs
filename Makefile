@@ -1,17 +1,17 @@
 .PHONY: default test vendor build all clippy
 
-CARGO  := MAKEFLAGS= env CARGO_BUILD_JOBS=12 NUM_JOBS=12 cargo
+CARGO      := MAKEFLAGS= env CARGO_BUILD_JOBS=12 NUM_JOBS=12 cargo
+CARGO_TEST := $(CARGO) test
 
-#DEFAULT         := test_file
+DEFAULT         := test_file
 DEFAULT         := test
-DEFAULT         := test_all
-DEFAULT         := build
-DEFAULT         := all
+#DEFAULT         := test_all
+#DEFAULT         := build
+#DEFAULT         := all
 #DEFAULT         := test_file_one
 
-TEST            := test
 TEST_FILE       := surge-math/tests/absmax.rs
-INDIVIDUAL_TEST := test_add_block
+INDIVIDUAL_TEST := test_get_absmax_2
 
 default: $(DEFAULT)
 
@@ -22,22 +22,22 @@ TAIL_FLAGS :=
 #RUSTFLAGS := "-Awarnings"
 RUSTFLAGS := ""
 
-ACTIVE_PACKAGE := surge-adsr
-ACTIVE_PACKAGE := surge-biquad
-ACTIVE_PACKAGE := surge-blitter
-ACTIVE_PACKAGE := surge-coeffmaker
-ACTIVE_PACKAGE := surge-constants
-ACTIVE_PACKAGE := surge-derive
-ACTIVE_PACKAGE := surge-filter
-ACTIVE_PACKAGE := surge-halfrate
-ACTIVE_PACKAGE := surge-hound
-ACTIVE_PACKAGE := surge-imports
-ACTIVE_PACKAGE := surge-input
-ACTIVE_PACKAGE := surge-lag
-ACTIVE_PACKAGE := surge-lfo
-ACTIVE_PACKAGE := surge-lipol
-ACTIVE_PACKAGE := surge-macros
-#ACTIVE_PACKAGE := surge-math
+#ACTIVE_PACKAGE := surge-adsr
+#ACTIVE_PACKAGE := surge-biquad
+#ACTIVE_PACKAGE := surge-blitter
+#ACTIVE_PACKAGE := surge-coeffmaker
+#ACTIVE_PACKAGE := surge-constants
+#ACTIVE_PACKAGE := surge-derive
+#ACTIVE_PACKAGE := surge-filter
+#ACTIVE_PACKAGE := surge-halfrate
+#ACTIVE_PACKAGE := surge-hound
+#ACTIVE_PACKAGE := surge-imports
+#ACTIVE_PACKAGE := surge-input
+#ACTIVE_PACKAGE := surge-lag
+#ACTIVE_PACKAGE := surge-lfo
+#ACTIVE_PACKAGE := surge-lipol
+#ACTIVE_PACKAGE := surge-macros
+ACTIVE_PACKAGE := surge-math
 #ACTIVE_PACKAGE := surge-midi
 #ACTIVE_PACKAGE := surge-modulation
 #ACTIVE_PACKAGE := surge-mpe
@@ -108,22 +108,22 @@ tracemacro:
 	RUSTFLAGS="-Z macro-backtrace -Awarnings" $(CARGO) build -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS)
 
 test:
-	RUST_BACKTRACE=1 RUSTFLAGS=$(RUSTFLAGS) $(CARGO) $(TEST) -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS) -- --nocapture
+	RUST_BACKTRACE=1 RUSTFLAGS=$(RUSTFLAGS) $(CARGO_TEST) -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS) -- --nocapture
 
 bench:
 	RUST_BACKTRACE=1 RUSTFLAGS=$(RUSTFLAGS) $(CARGO) bench -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS) -- --nocapture
 
 test_all:
-	RUST_BACKTRACE=full RUSTFLAGS=$(RUSTFLAGS) $(CARGO) $(TEST)
+	RUST_BACKTRACE=full RUSTFLAGS=$(RUSTFLAGS) $(CARGO_TEST)
 
 
 TEST_FILE_TARGET := $(basename $(notdir $(TEST_FILE)))
 
 test_file:
-	RUSTFLAGS=$(RUSTFLAGS) $(CARGO) $(TEST) -p $(ACTIVE_PACKAGE) --test $(TEST_FILE_TARGET) -- --nocapture
+	RUSTFLAGS=$(RUSTFLAGS) $(CARGO_TEST) -p $(ACTIVE_PACKAGE) --test $(TEST_FILE_TARGET) -- --nocapture
 
 test_file_one:
-	RUSTFLAGS=$(RUSTFLAGS) $(CARGO) $(TEST) -p $(ACTIVE_PACKAGE) --test $(TEST_FILE_TARGET) $(INDIVIDUAL_TEST) -- --nocapture
+	RUSTFLAGS=$(RUSTFLAGS) $(CARGO_TEST) -p $(ACTIVE_PACKAGE) --test $(TEST_FILE_TARGET) $(INDIVIDUAL_TEST) -- --nocapture
 
 vendor:
 	$(CARGO) vendor

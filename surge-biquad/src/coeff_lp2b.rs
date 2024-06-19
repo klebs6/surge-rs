@@ -65,6 +65,22 @@
   */
 crate::ix!();
 
+/// This trait defines a function for calculating
+/// the coefficients of a second-order low-pass
+/// filter:
+/// 
+pub trait BiquadCoeffLP2B {
+
+    /// This function takes an angular frequency
+    /// (`omega`) and a quality factor
+    /// (`quality_factor`) and sets the filter
+    /// coefficients to produce a second-order
+    /// low-pass filter with the specified cutoff
+    /// frequency and resonance.
+    ///
+    fn coeff_lp2b(&mut self, omega: f64, quality_factor: f64);
+}
+
 impl BiquadCoeffLP2B for BiquadFilter {
 
     /// This method takes in two arguments: `omega`, which is the angular frequency of the desired

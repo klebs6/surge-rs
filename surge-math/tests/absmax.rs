@@ -1,4 +1,3 @@
-/*
 use surge_math::*;
 use surge_imports::*;
 
@@ -67,7 +66,7 @@ fn test_with_zeros_and_extremes() {
 }
 
 #[test]
-fn test_get_absmax_2_typical_scenario() {
+fn test_typical_get_absmax_2() {
     let d1 = align16![[-1.0, 2.0, -3.0, 4.0, -5.0, 6.0, -7.0, 8.0]];
     let d2 = align16![[1.0, -2.0, 3.0, -4.0, 5.0, -6.0, 7.0, -9.0]];
 
@@ -75,4 +74,3 @@ fn test_get_absmax_2_typical_scenario() {
 
     assert_eq!(result, 9.0);
 }
-*/

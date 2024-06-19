@@ -10,6 +10,24 @@
 
 crate::ix!();
 
+/// This trait defines two functions for
+/// calculating the coefficients of a low-pass
+/// filter:
+/// 
+pub trait BiquadCoeffLP {
+
+    /// Sets the filter coefficients to produce
+    /// a low-pass filter with the specified
+    /// cutoff frequency and resonance.
+    ///
+    fn coeff_lp(&mut self, omega: f64, quality_factor: f64);
+
+    /// Sets the filter coefficients for a given
+    /// cutoff frequency and bandwidth
+    ///
+    fn coeff_lp_with_bw(&mut self, omega: f64, bandwidth: f64);
+}
+
 /// The `BiquadCoeffLP` trait represents
 /// a low-pass biquad filter. It provides methods
 /// for calculating the filter coefficients based

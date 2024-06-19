@@ -1,5 +1,21 @@
 crate::ix!();
 
+/// This trait defines a function for calculating
+/// the coefficients of a peaking EQ filter:
+/// 
+pub trait BiquadCoeffPKA {
+
+    /// This function takes an angular frequency
+    /// (`omega`), a quality factor
+    /// (`quality_factor`), and a gain (`gain`)
+    /// and sets the filter coefficients to
+    /// produce a peaking EQ filter with the
+    /// specified center frequency, bandwidth, and
+    /// gain.
+    ///
+    fn coeff_pka(&mut self, omega: f64, quality_factor: f64);
+}
+
 /// Based on the name of the struct and the method
 /// `coeff_pka`, it appears that this code is
 /// implementing a biquad filter with peak/notch

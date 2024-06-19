@@ -43,6 +43,40 @@
 
 crate::ix!();
 
+/// Trait for processing a block of stereo audio
+/// samples.
+///
+pub trait ProcessBlockStereo {
+
+    /// # Safety
+    ///
+    /// `data_l` and `data_r` must each point to
+    /// `BLOCK_SIZE` valid contiguous data
+    /// elements.
+    ///
+    /// If `out` is not `None`, `out.unwrap()`
+    /// must be a tuple of two pointers each
+    /// pointing to `BLOCK_SIZE` valid contiguous
+    /// data elements.
+    ///
+    unsafe fn process_block_stereo(
+        &mut self, 
+        data_l: *mut f32, 
+        data_r: *mut f32, 
+        out: Option<(*mut f32, *mut f32)>
+    );
+
+    fn process_stereo_block(
+        &mut self,
+        _input_left: &[f32],
+        _input_right: &[f32],
+        _output_left: Option<&mut [f32]>,
+        _output_right: Option<&mut [f32]>
+    ) {
+        unimplemented!();
+    }
+}
+
 /// A trait implementation that provides a method
 /// for processing stereo audio data in blocks.
 ///
