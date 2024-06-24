@@ -2,13 +2,13 @@
 
 #[macro_use] mod imports; use imports::*;
 
-x![asym];
+x!{asym}
 
 #[cfg(not(target_arch = "x86_64"))] 
-x![sse1];
+x!{sse1}
 
 #[cfg(target_arch = "x86_64")] 
-x![sse2];
+x!{sse2}
 
 #[cfg(test)]
 mod tests {

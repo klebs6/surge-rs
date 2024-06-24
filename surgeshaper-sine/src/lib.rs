@@ -2,12 +2,12 @@
 
 #[macro_use] mod imports; use imports::*;
 
-x![sine];
+x!{sine}
 
 #[cfg(not(target_arch = "x86_64"))] 
-x![sse1];
+x!{sse1}
 
 #[cfg(target_arch = "x86_64")] 
-x![sse2];
+x!{sse2}
 
-x![test_sineshaper];
+x!{test_sineshaper}

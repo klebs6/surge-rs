@@ -192,10 +192,12 @@ impl SurgeScene {
         self.voices.is_empty()
     }
 
-    pub fn do_routing_critical_secion(
+    pub fn do_routing_critical_section(
         &mut self, 
         mut fb_entry: i32, 
-        mut vcount:   i32) -> (i32, i32) {
+        mut vcount:   i32
+
+    ) -> Result<(i32, i32),AlignmentError> {
 
         let mut to_free = vec![];
 
@@ -207,7 +209,7 @@ impl SurgeScene {
                 voice_runtime.clone(), 
                 &mut self.fbq.state[(fb_entry >> 2) as usize], 
                 fb_entry & 3
-            );
+            )?;
 
             fb_entry += 1;
             vcount += 1;
@@ -221,7 +223,7 @@ impl SurgeScene {
             self.free_voice(*idx);
         }
 
-        (fb_entry, vcount)
+        Ok((fb_entry, vcount))
     }
 
     pub fn post_process(&mut self) {

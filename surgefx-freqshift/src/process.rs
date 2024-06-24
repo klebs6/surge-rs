@@ -2,9 +2,12 @@ crate::ix!();
 
 impl StereoProcess for FreqShift {
 
-    fn stereo_process<const N: usize>(&mut self, 
-        data_l: &mut [f32; N], data_r: &mut [f32; N]) 
-    {
+    fn stereo_process<const N: usize>(
+        &mut self, 
+        data_l: &mut [f32; N], 
+        data_r: &mut [f32; N]
+
+    ) -> Result<(),AlignmentError> {
 
         self.update();
 
@@ -60,5 +63,7 @@ impl StereoProcess for FreqShift {
 
         self.wpos += BLOCK_SIZE as i32;
         self.wpos &= (FREQSHIFT_MAX_DELAY_LENGTH as i32) - 1;
+
+        Ok(())
     }
 }

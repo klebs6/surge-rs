@@ -19,8 +19,10 @@ impl StereoProcess for Vocoder {
     fn stereo_process<const N: usize>(
         &mut self, 
         data_l: &mut [f32; N], 
-        data_r: &mut [f32; N]) 
-    {
+        data_r: &mut [f32; N]
+
+    ) -> Result<(),AlignmentError> {
+
         self.bi = (self.bi + 1) & 0x3f;
 
         if self.bi == 0 {
@@ -33,7 +35,8 @@ impl StereoProcess for Vocoder {
             self.synth_in.non_os_audio_in0_ptr(0), 
             self.synth_in.non_os_audio_in1_ptr(0), 
             modulator_in.buf.as_mut_ptr(), 
-            BLOCK_SIZE_QUAD);
+            BLOCK_SIZE_QUAD
+        )?;
 
         self.set_gain();
 
@@ -46,5 +49,7 @@ impl StereoProcess for Vocoder {
         for k in 0..BLOCK_SIZE {
             self.do_vocoder_block(k, &mut modulator_in, &cfg, data_l, data_r);
         }
+
+        Ok(())
     }
 }

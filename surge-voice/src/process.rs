@@ -2,18 +2,24 @@ crate::ix!();
 
 impl SurgeVoice {
 
-    pub fn clear_output_stereo(&mut self) {
+    pub fn clear_output_stereo(&mut self) -> Result<(),AlignmentError> {
+
         unsafe {
-            clear_block::<BLOCK_SIZE_OS_QUAD>(self.output[0].as_mut_ptr());
-            clear_block::<BLOCK_SIZE_OS_QUAD>(self.output[1].as_mut_ptr());
+            clear_block::<BLOCK_SIZE_OS_QUAD>(self.output[0].as_mut_ptr())?;
+            clear_block::<BLOCK_SIZE_OS_QUAD>(self.output[1].as_mut_ptr())?;
         }
+
+        Ok(())
     }
 
-    pub fn process_block(&mut self, 
+    pub fn process_block(
+        &mut self, 
         cfg: VoiceRuntimeHandle,
         qfcs:   &mut QuadFilterChainState, 
-        qfcs_idx:  i32) -> ShouldKeepPlaying 
-    {
+        qfcs_idx:  i32
+
+    ) -> Result<ShouldKeepPlaying,AlignmentError> {
+
         self.calc_ctrldata::<false>(cfg.clone(), Some(qfcs), qfcs_idx);
 
         self.clear_output_stereo();
@@ -59,7 +65,8 @@ impl SurgeVoice {
                     osc_1l, 
                     osc_2l, 
                     self.fmbuffer.as_mut_ptr(), 
-                    BLOCK_SIZE_OS_QUAD);
+                    BLOCK_SIZE_OS_QUAD
+                )?;
             }
 
             self.process_osc(&mut runtime,0);
@@ -110,6 +117,6 @@ impl SurgeVoice {
             self.age_release += 1;
         }
 
-        ShouldKeepPlaying(self.state.keep_playing)
+        Ok(ShouldKeepPlaying(self.state.keep_playing))
     }
 }

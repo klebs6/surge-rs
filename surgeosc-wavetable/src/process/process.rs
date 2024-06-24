@@ -2,7 +2,7 @@ crate::ix!();
 
 impl OscillatorProcess for WTOscillator {
 
-    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) { 
+    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) -> Result<(),AlignmentError> {
 
         let stereo = cfg.stereo;
         let drift  = cfg.drift;
@@ -48,12 +48,12 @@ impl OscillatorProcess for WTOscillator {
         unsafe {
             clear_block::<BLOCK_SIZE_OS_QUAD>(
                 &mut self.blitter.oscbuffer_l[self.blitter.bufpos as usize]
-            );
+            )?;
 
             if stereo {
                 clear_block::<BLOCK_SIZE_OS_QUAD>(
                     &mut self.blitter.oscbuffer_r[self.blitter.bufpos as usize]
-                );
+                )?;
             }
         }
 
@@ -61,5 +61,7 @@ impl OscillatorProcess for WTOscillator {
             (self.blitter.bufpos + BLOCK_SIZE_OS as i32) & ((OB_LENGTH - 1) as i32);
 
         self.maybe_handle_overlap(stereo);
+
+        Ok(())
     }
 }

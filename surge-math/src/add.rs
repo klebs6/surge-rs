@@ -16,12 +16,25 @@ pub fn add_block<NQ>(
     src1: *const f32, 
     src2: *const f32, 
     dst:  *mut f32, 
-    nquads: NQ)
+    nquads: NQ
+) -> Result<(),AlignmentError>
 
 where <NQ as TryInto<u32>>::Error: fmt::Debug,
       NQ: TryInto<u32>
 
 {
+    if (src1 as usize) % 16 != 0 {
+        return Err(AlignmentError::SrcPtr { idx: 0, required_align: 16 });
+    }
+
+    if (src2 as usize) % 16 != 0 {
+        return Err(AlignmentError::SrcPtr { idx: 1, required_align: 16 });
+    }
+
+    if (dst as usize) % 16 != 0 {
+        return Err(AlignmentError::DstPtr { idx: 0, required_align: 16 });
+    }
+
     let add = |offset: usize| {
 
         unsafe {
@@ -44,5 +57,6 @@ where <NQ as TryInto<u32>>::Error: fmt::Debug,
         add(i + 2);
         add(i + 3);
     }
-}
 
+    Ok(())
+}

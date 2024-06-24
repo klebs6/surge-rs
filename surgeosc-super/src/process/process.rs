@@ -2,7 +2,7 @@ crate::ix!();
 
 impl OscillatorProcess for SurgeSuperOscillator {
 
-    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) {
+    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) -> Result<(),AlignmentError> {
         let pitch0 = cfg.pitch;
 
         /* So lets tie these comments back to the description at the top. 
@@ -78,13 +78,13 @@ impl OscillatorProcess for SurgeSuperOscillator {
            let bufidx = self.blitter.bufpos as usize;
 
            /* And clean up and advance our buffer pointer */
-           clear_block::<BLOCK_SIZE_OS_QUAD>(&mut self.blitter.oscbuffer_l[bufidx]);
+           clear_block::<BLOCK_SIZE_OS_QUAD>(&mut self.blitter.oscbuffer_l[bufidx])?;
 
            if cfg.stereo {
-               clear_block::<BLOCK_SIZE_OS_QUAD>(&mut self.blitter.oscbuffer_r[bufidx]);
+               clear_block::<BLOCK_SIZE_OS_QUAD>(&mut self.blitter.oscbuffer_r[bufidx])?;
            }
 
-           clear_block::<BLOCK_SIZE_OS_QUAD>(&mut self.blitter.dcbuffer[bufidx]);
+           clear_block::<BLOCK_SIZE_OS_QUAD>(&mut self.blitter.dcbuffer[bufidx])?;
 
            self.blitter.bufpos = ((bufidx + BLOCK_SIZE_OS) & (OB_LENGTH - 1)) as i32;
 
@@ -92,5 +92,7 @@ impl OscillatorProcess for SurgeSuperOscillator {
        }
 
        self.first_run = false;
+
+       Ok(())
     }
 }

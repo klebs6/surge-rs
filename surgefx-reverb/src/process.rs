@@ -2,8 +2,9 @@ crate::ix!();
 
 impl StereoProcess for Reverb {
 
-    fn stereo_process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
-
+    fn stereo_process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) 
+        -> Result<(),AlignmentError> 
+    {
         let mix   = self.pvalf(ReverbParam::Mix);
         let width = self.pvalf(ReverbParam::Width);
 
@@ -28,6 +29,8 @@ impl StereoProcess for Reverb {
         self.process_filter_bands(&mut wetblock);
 
         self.process_mid_side(data_l, data_r, &mut wetblock);
+
+        Ok(())
     }
 }
 

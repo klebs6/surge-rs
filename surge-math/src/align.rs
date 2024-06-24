@@ -1,5 +1,26 @@
 crate::ix!();
 
+pub unsafe fn allocate_aligned_memory(size: usize) -> *mut f32 {
+    let layout = Layout::from_size_align(size * std::mem::size_of::<f32>(), 16).unwrap();
+    let ptr = alloc(layout) as *mut f32;
+    ptr
+}
+
+pub unsafe fn deallocate_aligned_memory(ptr: *mut f32, size: usize) {
+    let layout = Layout::from_size_align(size * std::mem::size_of::<f32>(), 16).unwrap();
+    dealloc(ptr as *mut u8, layout);
+}
+
+pub unsafe fn create_aligned_buffer(size: usize) -> *mut f32 {
+    let align = mem::align_of::<__m128>();
+    let layout = std::alloc::Layout::from_size_align(size * mem::size_of::<f32>(), align).unwrap();
+    let ptr = std::alloc::alloc(layout) as *mut f32;
+    if ptr.is_null() {
+        std::alloc::handle_alloc_error(layout);
+    }
+    ptr
+}
+
 // Declare the external SIMD functions for inserting and
 // extracting elements
 //

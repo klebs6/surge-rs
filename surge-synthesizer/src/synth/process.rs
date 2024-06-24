@@ -68,8 +68,9 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
         accumulate_block(scene_b_r, self.synth_out.out_r(), BLOCK_SIZE_QUAD);
     }
 
-    #[inline] pub fn apply_inserts<const N: usize>(&mut self, sc_a: &mut bool, sc_b: &mut bool) {
-
+    #[inline] pub fn apply_inserts<const N: usize>(&mut self, sc_a: &mut bool, sc_b: &mut bool) 
+    -> Result<(),AlignmentError> 
+    {
         let bypass_type = self.get_fx_bypass_type();
 
         // apply insert effects
@@ -83,37 +84,57 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
             let scene_b_r: *mut f32 = self.active_patch.scene[1].out.buf[1].as_mut_ptr();
 
             unsafe {
+
                 if (disable_flags & (1 << 0)) == 0 {
+
                     *sc_a = self.fx_unit.fx[0].process_ringout::<N>(
-                        scene_a_l, scene_a_r, *sc_a);
+                        scene_a_l, scene_a_r, *sc_a
+                    )?;
                 }
 
                 if (disable_flags & (1 << 1)) == 0 {
+
                     *sc_a = self.fx_unit.fx[1].process_ringout::<N>(
-                        scene_a_l, scene_a_r, *sc_a);
+                        scene_a_l, scene_a_r, *sc_a
+                    )?;
                 }
 
                 if (disable_flags & (1 << 2))  == 0 {
+
                     *sc_b = self.fx_unit.fx[2].process_ringout::<N>(
-                        scene_b_l, scene_b_r, *sc_b);
+                        scene_b_l, 
+                        scene_b_r, 
+                        *sc_b
+                    )?;
                 }
 
                 if (disable_flags & (1 << 3)) == 0 {
+
                     *sc_b = self.fx_unit.fx[3].process_ringout::<N>(
-                        scene_b_l, scene_b_r, *sc_b);
+                        scene_b_l, 
+                        scene_b_r, 
+                        *sc_b
+                    )?;
                 }
             }
         }
+
+        Ok(())
     }
 
     #[inline] pub fn get_fx_disable(&self) -> i32 {
         pvali![self.active_patch.params[PatchParam::FxDisable]]
     }
 
-    #[inline] pub fn apply_effects<const N: usize>(&mut self, sc_a: bool, sc_b: bool, 
+    #[inline] pub fn apply_effects<const N: usize>(
+        &mut self, 
+        sc_a: bool, 
+        sc_b: bool, 
         sceneout: &mut TwoByTwoBlock::<BLOCK_SIZE_OS>,
-        fxsendout: &mut TwoByTwoBlock::<BLOCK_SIZE_OS>) 
-    {
+        fxsendout: &mut TwoByTwoBlock::<BLOCK_SIZE_OS>
+
+    ) -> Result<(),AlignmentError> {
+
         let bypass_type = self.get_fx_bypass_type();
 
         let mut added_send_a: bool = false;
@@ -121,8 +142,8 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
         // add send effects
         if bypass_type == FxBypassType::AllFX {
-            added_send_a = self.maybe_add_send_a::<N>(sc_a, sc_b, sceneout, fxsendout);
-            added_send_b = self.maybe_add_send_b::<N>(sc_a, sc_b, sceneout, fxsendout);
+            added_send_a = self.maybe_add_send_a::<N>(sc_a, sc_b, sceneout, fxsendout)?;
+            added_send_b = self.maybe_add_send_b::<N>(sc_a, sc_b, sceneout, fxsendout)?;
         }
 
         // apply global effects
@@ -140,16 +161,18 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
                     //TODO: we shouldn't need to try_into().unwrap() below because 
                     //we should know N at compile time
                     if (fx_disable & (1 << 6)) == 0 { 
-                        self.fx_unit.fx[6].process_ringout::<N>(l, r, glob);
+                        self.fx_unit.fx[6].process_ringout::<N>(l, r, glob)?;
                     }
 
                     if (fx_disable & (1 << 7)) == 0 { 
-                        self.fx_unit.fx[7].process_ringout::<N>(l, r, glob);
+                        self.fx_unit.fx[7].process_ringout::<N>(l, r, glob)?;
                     }
                 }
             },
             _ => {},
         }
+
+        Ok(())
     }
 
     #[inline] pub fn apply_amp(&mut self) {
@@ -212,11 +235,14 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
         }
     }
 
-    #[inline] pub fn maybe_add_send_a<const N: usize>(&mut self,
+    #[inline] pub fn maybe_add_send_a<const N: usize>(
+        &mut self,
         sc_a:     bool,
         sc_b:     bool,
         sceneout:  &mut TwoByTwoBlock::<BLOCK_SIZE_OS>,
-        fxsendout: &mut TwoByTwoBlock::<BLOCK_SIZE_OS>) -> bool {
+        fxsendout: &mut TwoByTwoBlock::<BLOCK_SIZE_OS>
+
+    ) -> Result<bool,AlignmentError> {
 
         let patch = &mut self.active_patch;
 
@@ -242,7 +268,8 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
                 added_send_a = self.fx_unit.fx[4].process_ringout::<N>(
                     fxsendout.buf[0][0].as_mut_ptr(), 
                     fxsendout.buf[0][1].as_mut_ptr(), 
-                    sc_a || sc_b);
+                    sc_a || sc_b
+                )?;
 
                 self.active_patch.scene[0].returnfx.mac_2_blocks_to(
                     fxsendout.buf[0][0].as_mut_ptr(), 
@@ -253,14 +280,17 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
             }
         }
 
-        added_send_a
+        Ok(added_send_a)
     }
 
-    #[inline] pub fn maybe_add_send_b<const N: usize>(&mut self, 
+    #[inline] pub fn maybe_add_send_b<const N: usize>(
+        &mut self, 
         sc_a: bool,
         sc_b: bool,
         sceneout:  &mut TwoByTwoBlock::<BLOCK_SIZE_OS>,
-        fxsendout: &mut TwoByTwoBlock::<BLOCK_SIZE_OS>) -> bool {
+        fxsendout: &mut TwoByTwoBlock::<BLOCK_SIZE_OS>
+
+    ) -> Result<bool,AlignmentError> {
 
         let patch = &mut self.active_patch;
 
@@ -269,42 +299,50 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
         if (pvali![patch.params[PatchParam::FxDisable]] & (1 << 5)) == 0
         { 
             unsafe {
+
                 self.active_patch.scene[1].send[0].mac_2_blocks_to(
                     sceneout.buf[0][0].as_mut_ptr(), 
                     sceneout.buf[0][1].as_mut_ptr(), 
                     fxsendout.buf[1][0].as_mut_ptr(), 
                     fxsendout.buf[1][1].as_mut_ptr(), 
-                    BLOCK_SIZE_QUAD);
+                    BLOCK_SIZE_QUAD
+                );
 
                 self.active_patch.scene[1].send[1].mac_2_blocks_to(
                     sceneout.buf[1][0].as_mut_ptr(), 
                     sceneout.buf[1][1].as_mut_ptr(), 
                     fxsendout.buf[1][0].as_mut_ptr(), 
                     fxsendout.buf[1][1].as_mut_ptr(), 
-                    BLOCK_SIZE_QUAD);
+                    BLOCK_SIZE_QUAD
+                );
 
                 added_send_b = self.fx_unit.fx[5].process_ringout::<N>(
                     fxsendout.buf[1][0].as_mut_ptr(), 
                     fxsendout.buf[1][1].as_mut_ptr(), 
-                    sc_a || sc_b);
+                    sc_a || sc_b
+                )?;
 
                 self.active_patch.scene[1].returnfx.mac_2_blocks_to(
                     fxsendout.buf[1][0].as_mut_ptr(), 
                     fxsendout.buf[1][1].as_mut_ptr(), 
                     self.synth_out.out_l(), 
                     self.synth_out.out_r(), 
-                    BLOCK_SIZE_QUAD);
+                    BLOCK_SIZE_QUAD
+                );
             }
         }
 
-        added_send_b
+        Ok(added_send_b)
     }
 
-    #[inline] pub fn do_halt(&mut self) {
+    #[inline] pub fn do_halt(&mut self) -> Result<(),AlignmentError> {
+
         unsafe {
-            clear_block::<BLOCK_SIZE_QUAD>(self.synth_out.out_l());
-            clear_block::<BLOCK_SIZE_QUAD>(self.synth_out.out_r());
+            clear_block::<BLOCK_SIZE_QUAD>(self.synth_out.out_l())?;
+            clear_block::<BLOCK_SIZE_QUAD>(self.synth_out.out_r())?;
         }
+
+        Ok(())
     }
 
     #[inline] pub fn do_process_inputs(&mut self) {
@@ -347,11 +385,12 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
         }
     }
 
-    fn process<const N: usize>(&mut self) {
-
+    fn process<const N: usize>(&mut self) 
+        -> Result<(),AlignmentError> 
+    {
         if self.controller.halt_engine {
             self.do_halt();
-            return;
+            return Ok(());
         }
 
         if self.patchid_queue >= Some(0) {
@@ -383,8 +422,8 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
             let mut fb_entry: [i32; 2] = [0; 2];
             let mut vcount = 0;
 
-            (fb_entry[0], vcount) = self.active_patch.scene[0].do_routing_critical_secion(fb_entry[0], vcount);
-            (fb_entry[1], vcount) = self.active_patch.scene[1].do_routing_critical_secion(fb_entry[1], vcount);
+            (fb_entry[0], vcount) = self.active_patch.scene[0].do_routing_critical_section(fb_entry[0], vcount)?;
+            (fb_entry[1], vcount) = self.active_patch.scene[1].do_routing_critical_section(fb_entry[1], vcount)?;
 
             self.controller.polydisplay.store(vcount, atomic::Ordering::SeqCst);
 
@@ -408,9 +447,9 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
         let mut sc_a: bool = playscene[0];
         let mut sc_b: bool = playscene[1];
 
-        self.apply_inserts::<N>(&mut sc_a, &mut sc_b);
+        self.apply_inserts::<N>(&mut sc_a, &mut sc_b)?;
         self.sum_scenes();
-        self.apply_effects::<N>(sc_a, sc_b, &mut sceneout, &mut fxsendout);
+        self.apply_effects::<N>(sc_a, sc_b, &mut sceneout, &mut fxsendout)?;
 
         self.apply_amp();
         self.apply_amp_mute();
@@ -439,5 +478,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
             hardclip_block8(out_l, BLOCK_SIZE_QUAD);
             hardclip_block8(out_r, BLOCK_SIZE_QUAD);
         }
+
+        Ok(())
     }
 }

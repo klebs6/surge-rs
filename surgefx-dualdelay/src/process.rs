@@ -2,9 +2,13 @@ crate::ix!();
 
 impl StereoProcess for DualDelay {
 
-    fn stereo_process<const N: usize>(&mut self, 
-        data_l: &mut [f32; N], data_r: &mut [f32; N]) 
-    {
+    fn stereo_process<const N: usize>(
+        &mut self, 
+        data_l: &mut [f32; N], 
+        data_r: &mut [f32; N]
+
+    ) -> Result<(),AlignmentError> {
+
         self.update();
 
         self.maybe_instantize_all();
@@ -34,6 +38,8 @@ impl StereoProcess for DualDelay {
         }
 
         self.update_wpos();
+
+        Ok(())
     }
 }
 

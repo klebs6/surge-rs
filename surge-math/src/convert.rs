@@ -71,11 +71,11 @@ crate::ix!();
 ///
 /// The resulting value will be clamped between 0.0 and 1.0.
 ///
-#[inline] pub fn seconds_to_envtime(input: f32)  -> f32 // ff rev2
-{
+#[inline] pub fn seconds_to_envtime(input: f32) -> f32 {
     let base: f32 = input / 30.0;
-    let v: f32 = base.powf( 1.0 / 3.0 );
-    limit_range(v, 0.0, 1.0)
+    let v: f32 = base.powf(1.0 / 3.0);
+    let clamped_v = limit_range(v, 0.0, 1.0);
+    clamped_v
 }
 
 /// Convert a timecent value to an envelope time value.

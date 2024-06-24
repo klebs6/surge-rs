@@ -12,8 +12,16 @@ version = "0.2.12-alpha.0"
 
 [dependencies]
 delegate      = "*"
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3", default-features = false, features = ["fmt", "std", "env-filter"] }
+traced-test = "*"
+tracing-setup = "*"
+disable_macro = "*"
 approx        = "0.5.0"
 approx_eq     = "0.1.8"
+export-magic  = "0.1.0"
+error-tree    = "0.1.0"
+rustfft       = "*"
 atomic_float  = "0.1.0"
 auto_impl     = "0.4.1"
 automod       = "1.0.2"

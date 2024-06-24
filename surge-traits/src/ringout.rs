@@ -23,10 +23,13 @@ StereoProcess
     ///
     /// must be able to access N valid contiguous items 
     /// from data_l and data_r
-    unsafe fn process_ringout<const N: usize>(&mut self, 
+    unsafe fn process_ringout<const N: usize>(
+        &mut self, 
         data_l: *mut f32, 
         data_r: *mut f32, 
-        indata_present: bool) -> OutputDataPresent
+        indata_present: bool
+
+    ) -> Result<OutputDataPresent,AlignmentError>
     {
         let data_l: &mut [f32; N] = std::slice::from_raw_parts_mut(data_l, N).try_into().unwrap();
         let data_r: &mut [f32; N] = std::slice::from_raw_parts_mut(data_r, N).try_into().unwrap();
@@ -53,11 +56,11 @@ StereoProcess
         }
 
         if (self.get_ringout_counter() < decay_max) || do_process {
-            self.stereo_process::<N>(data_l,data_r);
-            true
+            self.stereo_process::<N>(data_l,data_r)?;
+            Ok(true)
         } else {
             self.process_only_control::<N>();
-            false
+            Ok(false)
         }
     }
 }

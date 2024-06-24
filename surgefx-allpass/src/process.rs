@@ -2,9 +2,12 @@ crate::ix!();
 
 impl StereoProcess for crate::AllpassVerb {
 
-    fn stereo_process<const N: usize>(&mut self, 
+    fn stereo_process<const N: usize>(
+        &mut self, 
         data_l: &mut [f32; N], 
-        data_r: &mut [f32; N]) {
+        data_r: &mut [f32; N]
+
+    ) -> Result<(),AlignmentError> {
 
         let scale: f32 = 2.0_f32.powf(1.0 * pvalf![self.params[AllpassReverbParam::RoomSize]]);
 
@@ -84,5 +87,7 @@ impl StereoProcess for crate::AllpassVerb {
                 data_r.as_mut_ptr(), 
                 N >> 2);
         }
+
+        Ok(())
     }
 }

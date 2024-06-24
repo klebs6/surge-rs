@@ -2,10 +2,13 @@ crate::ix!();
 
 impl StereoProcess for RotarySpeaker {
 
-    fn stereo_process<const N: usize>(&mut self, 
+    fn stereo_process<const N: usize>(
+        &mut self, 
         data_l: &mut [f32; N], 
-        data_r: &mut [f32; N]) 
-    {
+        data_r: &mut [f32; N]
+
+    ) -> Result<(),AlignmentError> {
+
         self.set_lfos();
 
         let precalc0: f32 = -2.0 - (self.lfo.i as f32);
@@ -81,6 +84,8 @@ impl StereoProcess for RotarySpeaker {
 
         self.wpos += BLOCK_SIZE as i32;
         self.wpos &= ROTARY_SPEAKER_MAX_DELAY_LENGTH as i32 - 1;
+
+        Ok(())
     }
 }
 

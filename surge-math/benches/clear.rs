@@ -12,7 +12,7 @@ fn bench_functions(c: &mut Criterion) {
         const NQUADS: usize = 4;
         let mut input: [f32; NQUADS * 4] = [1.0; NQUADS * 4];
         b.iter(|| {
-            unsafe { clear_block::<NQUADS>(black_box(input.as_mut_ptr())) };
+            unsafe { clear_block::<NQUADS>(black_box(input.as_mut_ptr())).unwrap() };
         })
     });
 

@@ -45,26 +45,32 @@ impl Reset for SurgeEffect {
 impl Effect for SurgeEffect { }
 
 impl StereoProcess for SurgeEffect { 
-    fn stereo_process<const N: usize>(&mut self, 
+
+    fn stereo_process<const N: usize>(
+        &mut self, 
         data_l: &mut [f32; N], 
-        data_r: &mut [f32; N])
-    {
+        data_r: &mut [f32; N]
+
+    ) -> Result<(),AlignmentError> {
+
         match self {
-            SurgeEffect::Eq3Band(x)       => x.stereo_process::<N>(data_l, data_r),
-            SurgeEffect::Distortion(x)    => x.stereo_process::<N>(data_l, data_r),
-            SurgeEffect::Conditioner(x)   => x.stereo_process::<N>(data_l, data_r),
-            SurgeEffect::AllpassVerb(x)   => x.stereo_process::<N>(data_l, data_r),
-            SurgeEffect::DualDelay(x)     => x.stereo_process::<N>(data_l, data_r),
-            SurgeEffect::Flanger(x)       => x.stereo_process::<N>(data_l, data_r),
-            SurgeEffect::Phaser(x)        => x.stereo_process::<N>(data_l, data_r),
-            SurgeEffect::Reverb(x)        => x.stereo_process::<N>(data_l, data_r),
-            SurgeEffect::Chorus(x)        => x.stereo_process::<N>(data_l, data_r),
-            SurgeEffect::Emphasize(x)     => x.stereo_process::<N>(data_l, data_r),
-            SurgeEffect::FreqShift(x)     => x.stereo_process::<N>(data_l, data_r),
-            SurgeEffect::RingModulator(x) => x.stereo_process::<N>(data_l, data_r),
-            SurgeEffect::RotarySpeaker(x) => x.stereo_process::<N>(data_l, data_r),
-            SurgeEffect::Vocoder(x)       => x.stereo_process::<N>(data_l, data_r),
+            SurgeEffect::Eq3Band(x)       => x.stereo_process::<N>(data_l, data_r)?,
+            SurgeEffect::Distortion(x)    => x.stereo_process::<N>(data_l, data_r)?,
+            SurgeEffect::Conditioner(x)   => x.stereo_process::<N>(data_l, data_r)?,
+            SurgeEffect::AllpassVerb(x)   => x.stereo_process::<N>(data_l, data_r)?,
+            SurgeEffect::DualDelay(x)     => x.stereo_process::<N>(data_l, data_r)?,
+            SurgeEffect::Flanger(x)       => x.stereo_process::<N>(data_l, data_r)?,
+            SurgeEffect::Phaser(x)        => x.stereo_process::<N>(data_l, data_r)?,
+            SurgeEffect::Reverb(x)        => x.stereo_process::<N>(data_l, data_r)?,
+            SurgeEffect::Chorus(x)        => x.stereo_process::<N>(data_l, data_r)?,
+            SurgeEffect::Emphasize(x)     => x.stereo_process::<N>(data_l, data_r)?,
+            SurgeEffect::FreqShift(x)     => x.stereo_process::<N>(data_l, data_r)?,
+            SurgeEffect::RingModulator(x) => x.stereo_process::<N>(data_l, data_r)?,
+            SurgeEffect::RotarySpeaker(x) => x.stereo_process::<N>(data_l, data_r)?,
+            SurgeEffect::Vocoder(x)       => x.stereo_process::<N>(data_l, data_r)?,
         }
+
+        Ok(())
     }
 }
 
@@ -172,11 +178,15 @@ impl SetRingout for SurgeEffect {
 }
 
 impl ProcessRingout for SurgeEffect { 
-    unsafe fn process_ringout<const N: usize>(&mut self, 
+
+    unsafe fn process_ringout<const N: usize>(
+        &mut self, 
         data_l: *mut f32, 
         data_r: *mut f32, 
-        indata_present: bool) -> OutputDataPresent
-    {
+        indata_present: bool
+
+    ) -> Result<OutputDataPresent,AlignmentError> {
+
         match self {
             SurgeEffect::Eq3Band(x)       => x.process_ringout::<N>(data_l, data_r, indata_present),
             SurgeEffect::Distortion(x)    => x.process_ringout::<N>(data_l, data_r, indata_present),

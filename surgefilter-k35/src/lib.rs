@@ -2,6 +2,6 @@
 
 #[cfg(test)] mod tests;
 
-x![k35];
-x![coeff];
-x![process];
+x!{k35}
+x!{coeff}
+x!{process}

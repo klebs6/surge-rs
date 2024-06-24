@@ -14,7 +14,12 @@ impl Flanger {
 
 impl StereoProcess for Flanger {
 
-    fn stereo_process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) {
+    fn stereo_process<const N: usize>(
+        &mut self, 
+        data_l: &mut [f32; N], 
+        data_r: &mut [f32; N]
+
+    ) -> Result<(),AlignmentError> {
 
         // So here is a flanger with everything fixed
         let rate_temposyncratio = self.maybe_temposyncratio(FlangerParam::Rate);
@@ -68,5 +73,7 @@ impl StereoProcess for Flanger {
             self.do_flanger_block(b, mtype, &mut combs, &mut vweights, data_l, data_r);
 
         }
+
+        Ok(())
     }
 }

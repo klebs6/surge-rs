@@ -2,6 +2,6 @@
 
 #[cfg(test)] mod tests;
 
-x![process];
-x![coeff];
-x![moog];
+x!{process}
+x!{coeff}
+x!{moog}

@@ -6,10 +6,13 @@ impl StereoProcess for Distortion {
 
     // eventually loosen the constraint on N
     #[allow(clippy::assertions_on_constants)] 
-    fn stereo_process<const N: usize>( &mut self, 
+    fn stereo_process<const N: usize>(
+        &mut self, 
         data_l: &mut [f32; N], 
-        data_r: &mut [f32; N]) 
-    {
+        data_r: &mut [f32; N]
+
+    ) -> Result<(),AlignmentError> {
+
         assert!(DISTORTION_OS_BITS == 2);
         assert!(32 == N);
 
@@ -42,6 +45,8 @@ impl StereoProcess for Distortion {
         self.process_outgain(data_l, data_r);
 
         self.process_band2(data_l, data_r);
+
+        Ok(())
     }
 }
 

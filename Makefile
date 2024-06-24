@@ -3,15 +3,18 @@
 CARGO      := MAKEFLAGS= env CARGO_BUILD_JOBS=12 NUM_JOBS=12 cargo
 CARGO_TEST := $(CARGO) test
 
-DEFAULT         := test_file
 DEFAULT         := test
+DEFAULT         := test_file
 #DEFAULT         := test_all
 #DEFAULT         := build
-#DEFAULT         := all
 #DEFAULT         := test_file_one
+#DEFAULT         := all
 
-TEST_FILE       := surge-math/tests/absmax.rs
-INDIVIDUAL_TEST := test_get_absmax_2
+RUST_LOG       := info
+TEST_FILE       := surge-math/tests/convert.rs
+
+#INDIVIDUAL_TEST := test_get_absmax_2
+INDIVIDUAL_TEST := xxx
 
 default: $(DEFAULT)
 
@@ -99,37 +102,37 @@ ACTIVE_PACKAGE := surge-math
 #ACTIVE_PACKAGE := surgeshaper-tanh
 
 all:
-	RUSTFLAGS=$(RUSTFLAGS) $(CARGO) build $(TAIL_FLAGS)
+	RUST_LOG=$(RUST_LOG) RUSTFLAGS=$(RUSTFLAGS) $(CARGO) build $(TAIL_FLAGS)
 
 build:
-	RUSTFLAGS=$(RUSTFLAGS) $(CARGO) build -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS)
+	RUST_LOG=$(RUST_LOG) RUSTFLAGS=$(RUSTFLAGS) $(CARGO) build -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS)
 
 tracemacro:
-	RUSTFLAGS="-Z macro-backtrace -Awarnings" $(CARGO) build -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS)
+	RUST_LOG=$(RUST_LOG) RUSTFLAGS="-Z macro-backtrace -Awarnings" $(CARGO) build -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS)
 
 test:
-	RUST_BACKTRACE=1 RUSTFLAGS=$(RUSTFLAGS) $(CARGO_TEST) -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS) -- --nocapture
+	RUST_LOG=$(RUST_LOG) RUST_BACKTRACE=1 RUSTFLAGS=$(RUSTFLAGS) $(CARGO_TEST) -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS) -- --nocapture
 
 bench:
-	RUST_BACKTRACE=1 RUSTFLAGS=$(RUSTFLAGS) $(CARGO) bench -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS) -- --nocapture
+	RUST_LOG=$(RUST_LOG) RUST_BACKTRACE=1 RUSTFLAGS=$(RUSTFLAGS) $(CARGO) bench -p $(ACTIVE_PACKAGE) $(TAIL_FLAGS) -- --nocapture
 
 test_all:
-	RUST_BACKTRACE=full RUSTFLAGS=$(RUSTFLAGS) $(CARGO_TEST)
+	RUST_LOG=$(RUST_LOG) RUST_BACKTRACE=full RUSTFLAGS=$(RUSTFLAGS) $(CARGO_TEST)
 
 
 TEST_FILE_TARGET := $(basename $(notdir $(TEST_FILE)))
 
 test_file:
-	RUSTFLAGS=$(RUSTFLAGS) $(CARGO_TEST) -p $(ACTIVE_PACKAGE) --test $(TEST_FILE_TARGET) -- --nocapture
+	RUST_LOG=$(RUST_LOG) RUSTFLAGS=$(RUSTFLAGS) $(CARGO_TEST) -p $(ACTIVE_PACKAGE) --test $(TEST_FILE_TARGET) -- --nocapture
 
 test_file_one:
-	RUSTFLAGS=$(RUSTFLAGS) $(CARGO_TEST) -p $(ACTIVE_PACKAGE) --test $(TEST_FILE_TARGET) $(INDIVIDUAL_TEST) -- --nocapture
+	RUST_LOG=$(RUST_LOG) RUSTFLAGS=$(RUSTFLAGS) $(CARGO_TEST) -p $(ACTIVE_PACKAGE) --test $(TEST_FILE_TARGET) $(INDIVIDUAL_TEST) -- --nocapture
 
 vendor:
-	$(CARGO) vendor
+	RUST_LOG=$(RUST_LOG) $(CARGO) vendor
 
 fixhelp:
-	$(CARGO) help fix
+	RUST_LOG=$(RUST_LOG) $(CARGO) help fix
 
 protogen: 
 	protoc \
@@ -140,11 +143,11 @@ protogen:
 	    --proto_path \
 	    ./surge-protos/protos ./surge-protos/protos/surge.proto
 clippy:
-	RUSTFLAGS=$(RUSTFLAGS) $(CARGO) clippy -p $(ACTIVE_PACKAGE)  -- \
+	RUST_LOG=$(RUST_LOG) RUSTFLAGS=$(RUSTFLAGS) $(CARGO) clippy -p $(ACTIVE_PACKAGE)  -- \
 		  -A clippy::redundant_field_names \
 		  -W clippy::all 
 
 clippy_all:
-	RUSTFLAGS=$(RUSTFLAGS) $(CARGO) clippy  -- \
+	RUST_LOG=$(RUST_LOG) RUSTFLAGS=$(RUSTFLAGS) $(CARGO) clippy  -- \
 		  -A clippy::redundant_field_names \
 		  -W clippy::all 

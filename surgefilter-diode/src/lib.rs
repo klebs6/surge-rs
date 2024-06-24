@@ -2,8 +2,8 @@
 
 #[cfg(test)] mod tests;
 
-x![process_quad];
-x![coeff];
-x![diode];
-x![lpf];
+x!{process_quad}
+x!{coeff}
+x!{diode}
+x!{lpf}
 

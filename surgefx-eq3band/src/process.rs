@@ -2,10 +2,13 @@ crate::ix!();
 
 impl StereoProcess for Eq3Band {
 
-    fn stereo_process<const N: usize>(&mut self, 
+    fn stereo_process<const N: usize>(
+        &mut self, 
         data_l: &mut [f32; N], 
-        data_r: &mut [f32; N]) 
-    {
+        data_r: &mut [f32; N]
+
+    ) -> Result<(),AlignmentError> {
+
         self.maybe_update();
 
         self.process_bands(data_l, data_r);
@@ -13,6 +16,8 @@ impl StereoProcess for Eq3Band {
         self.update_gain();
 
         self.apply_gain(data_l, data_r);
+
+        Ok(())
     }
 }
 

@@ -67,9 +67,10 @@ impl<const N: usize> AllpassFilter<N> {
 
     /// Update the write position for the buffer
     ///
-    fn update_wpos(&mut self) {
+    pub fn update_wpos(&mut self) {
         self.wpos = (self.wpos + 1) % N;
     }
+
 
     /// Process a sample through the AllpassFilter
     /// 
@@ -84,9 +85,29 @@ impl<const N: usize> AllpassFilter<N> {
         y + self.buffer[self.wpos] * self.a
     }
 
+    pub fn get_a(&self) -> f64 {
+        self.a
+    }
+
     /// Set the filter coefficient 'a'
     ///
     pub fn set_a(&mut self, a: f64) {
         self.a = a;
+    }
+
+    pub fn get_wpos(&self) -> usize {
+        self.wpos
+    }
+
+    pub fn set_wpos(&mut self, x: usize) {
+        self.wpos = x;
+    }
+
+    pub fn get_buffer(&self) -> [f64;N] {
+        self.buffer
+    }
+
+    pub fn get_buffer_at(&self, pos: usize) -> f64 {
+        self.buffer[pos]
     }
 }

@@ -12,10 +12,10 @@
 
 #[macro_use] extern crate vst;
 
-x![synth_traits];
-x![freq];
-x![host];
-x![vst_host];
-x![synth];
-x![run_host];
+x!{synth_traits}
+x!{freq}
+x!{host}
+x!{vst_host}
+x!{synth}
+x!{run_host}
 

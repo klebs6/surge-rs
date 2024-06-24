@@ -8,10 +8,13 @@ impl Phaser {
         }
     }
 
-    pub fn clear_blocks(&mut self) {
+    pub fn clear_blocks(&mut self) -> Result<(),AlignmentError> {
+
         unsafe {
-            clear_block::<BLOCK_SIZE_QUAD>(self.l.as_mut_ptr());
-            clear_block::<BLOCK_SIZE_QUAD>(self.r.as_mut_ptr());
+            clear_block::<BLOCK_SIZE_QUAD>(self.l.as_mut_ptr())?;
+            clear_block::<BLOCK_SIZE_QUAD>(self.r.as_mut_ptr())?;
         }
+
+        Ok(())
     }
 }

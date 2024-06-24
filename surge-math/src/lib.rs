@@ -10,6 +10,8 @@
 #[macro_use] pub mod m128;
 
 x!{align}
+x!{error}
+x!{fill}
 x!{allpass}
 x!{basic_ops}
 x!{clamp}
@@ -44,7 +46,7 @@ x!{softclip}
 x!{square}
 x!{tanh}
 x!{trixpan}
-x!{util}
+x!{utility}
 x!{value_cast}
 x!{white_noise}
 x!{window}

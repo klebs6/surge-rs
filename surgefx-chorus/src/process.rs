@@ -5,8 +5,10 @@ impl StereoProcess for Chorus {
     fn stereo_process<const N: usize>(
         &mut self, 
         data_l: &mut [f32; N], 
-        data_r: &mut [f32; N]) 
-    {
+        data_r: &mut [f32; N]
+
+    ) -> Result<(),AlignmentError> {
+
         self.update();
 
         let mut tbuffer = TBuffer::new(N);
@@ -32,7 +34,8 @@ impl StereoProcess for Chorus {
             tbuffer.l(), 
             tbuffer.r(), 
             tbuffer.fb(), 
-            block_size_quad![N]);
+            block_size_quad![N]
+        )?;
 
         unsafe {
             self.feedback.multiply_block(tbuffer.fb(), block_size_quad![N]);
@@ -106,6 +109,8 @@ impl StereoProcess for Chorus {
 
         self.wpos += N as i32;
         self.wpos &= (CHORUS_MAX_DELAY_LENGTH - 1) as i32;
+
+        Ok(())
     }
 }
 

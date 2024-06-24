@@ -2,14 +2,14 @@ crate::ix!();
 
 pub const OBXD_SSEW: i32 = 4;
 
-coeffidx![
+coeffidx!{
     Obxd12dBCoeff;
     G12,
     R12,
     MultiMode,
     BandPass,
     SelfOscPush
-];
+}
 
 coeffidx![
     Obxd24dBCoeff;

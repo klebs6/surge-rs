@@ -14,8 +14,10 @@ impl StereoProcess for Conditioner {
     fn stereo_process<const N: usize>(
         &mut self, 
         data_l: &mut [f32; N], 
-        data_r: &mut [f32; N]) 
-    {
+        data_r: &mut [f32; N]
+
+    ) -> Result<(),AlignmentError> {
+
         let cfg = ConditionerProcessCfg::new(self);
 
         write_vu_from_falloff![self,cfg];
@@ -47,6 +49,8 @@ impl StereoProcess for Conditioner {
         self.vu[2] = self.gain;
 
         self.set_vu45(data_l, data_r);
+
+        Ok(())
     }
 }
 

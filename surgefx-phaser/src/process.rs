@@ -5,8 +5,10 @@ impl StereoProcess for Phaser {
     fn stereo_process<const N: usize>(
         &mut self, 
         data_l: &mut [f32; N], 
-        data_r: &mut [f32; N])
-    {
+        data_r: &mut [f32; N]
+
+    ) -> Result<(),AlignmentError> {
+
         if self.bi == 0 {
             self.update();
         }
@@ -32,6 +34,8 @@ impl StereoProcess for Phaser {
                 data_r.as_mut_ptr(), 
                 block_size_quad![N]);
         }
+
+        Ok(())
     }
 }
 

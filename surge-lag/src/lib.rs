@@ -1,4 +1,4 @@
 #[macro_use] mod imports; use imports::*;
 
-x![lag];
-x![vlag];
+x!{lag}
+x!{vlag}

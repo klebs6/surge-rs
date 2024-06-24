@@ -34,7 +34,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
     }
 
     #[allow(unreachable_code)]
-    pub fn handle_patchid_queue(&mut self) {
+    pub fn handle_patchid_queue(&mut self) -> Result<(),AlignmentError> {
 
         //let mut mfade: f32 = 1.0;
         let old_masterfade = self.synth_out.masterfade();
@@ -57,9 +57,11 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
             });
             */
              unsafe {
-                 clear_block::<BLOCK_SIZE_QUAD>(self.synth_out.out_l());
-                 clear_block::<BLOCK_SIZE_QUAD>(self.synth_out.out_r());
+                 clear_block::<BLOCK_SIZE_QUAD>(self.synth_out.out_l())?;
+                 clear_block::<BLOCK_SIZE_QUAD>(self.synth_out.out_r())?;
              }
         }
+
+        Ok(())
     }
 }

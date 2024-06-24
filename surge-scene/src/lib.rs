@@ -2,5 +2,5 @@
 
 #[macro_use] mod imports; use imports::*;
 
-x![scene];
-x![patch];
+x!{scene}
+x!{patch}
