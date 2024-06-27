@@ -2,7 +2,7 @@ crate::ix!();
 
 impl ClearBuffers for Reverb {
 
-    fn clear_buffers(&mut self) -> Result<(),AlignmentError> {
+    fn clear_buffers(&mut self) -> Result<(),SurgeError> {
 
         unsafe {
             clear_block::<REVERB_PREDELAY_QUADS>(self.predelay.as_mut_ptr())?;

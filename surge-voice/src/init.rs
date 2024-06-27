@@ -63,7 +63,7 @@ impl SurgeVoice {
         ]
     }
 
-    pub fn new(cfg: VoiceConstructor) -> Self
+    pub fn new(cfg: VoiceConstructor) -> Result<Self,SurgeError>
     {
         let mut voice = Self {
             output:              Align16([[0.0; BLOCK_SIZE_OS]; 2]),
@@ -93,7 +93,7 @@ impl SurgeVoice {
                 cfg.timeunit.clone(),
                 cfg.tables.clone(),
                 cfg.srunit.clone()
-            ),
+            )?,
 
             tables:             cfg.tables.clone(),
             time_unit:          cfg.timeunit.clone(),
@@ -107,7 +107,7 @@ impl SurgeVoice {
 
         voice.mpe_unit.set_lastkey(cfg.key);
 
-        voice.init_modsources();
+        voice.init_modsources()?;
 
         //AmpEg, FilterEg, Voice_LFO[1..6]
         voice.modsource_attack();
@@ -125,7 +125,8 @@ impl SurgeVoice {
         // It is imposrtant that switch_toggled comes last since it 
         // creates and activates the oscillators which need the 
         // modulation state set in calc_ctrldata to get sample 0 right.
-        voice.switch_toggled(cfg.voice_runtime.clone());
-        voice
+        voice.switch_toggled(cfg.voice_runtime.clone())?;
+
+        Ok(voice)
     }
 }

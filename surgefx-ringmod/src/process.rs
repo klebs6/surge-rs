@@ -8,7 +8,7 @@ impl StereoProcess for RingModulator {
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N]
 
-    ) -> Result<(),AlignmentError> {
+    ) -> Result<(),SurgeError> {
 
         let mut dphase = A1d::<f32>::zeros(RINGMOD_MAX_UNISON as usize);
 

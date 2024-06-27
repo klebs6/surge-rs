@@ -29,7 +29,7 @@ StereoProcess
         data_r: *mut f32, 
         indata_present: bool
 
-    ) -> Result<OutputDataPresent,AlignmentError>
+    ) -> Result<OutputDataPresent,SurgeError>
     {
         let data_l: &mut [f32; N] = std::slice::from_raw_parts_mut(data_l, N).try_into().unwrap();
         let data_r: &mut [f32; N] = std::slice::from_raw_parts_mut(data_r, N).try_into().unwrap();

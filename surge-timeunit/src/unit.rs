@@ -13,7 +13,7 @@ pub struct TimeUnit {
 }
 
 impl Initialize for TimeUnit {
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
         self.temposyncratio = 1.0;
 
         /*
@@ -25,11 +25,14 @@ impl Initialize for TimeUnit {
         self.temposyncratio_inv = 0.0;
 
         self.songpos = 0.0;
+
+        Ok(())
     }
 }
 
 impl TimeUnit {
-    pub fn new(srunit: & SampleRateHandle) -> Self {
+
+    pub fn new(srunit: & SampleRateHandle) -> Result<Self,SurgeError> {
         let mut x = Self {
             ppq_pos:                0.0,
             tempo:                  0.0,
@@ -40,8 +43,8 @@ impl TimeUnit {
             songpos:                0.0,
             srunit:                 srunit.clone(),
         };
-        x.init();
-        x
+        x.init()?;
+        Ok(x)
     }
 
     pub fn update(&mut self) {
@@ -57,10 +60,10 @@ pub struct TimeUnitHandle {
 }
 
 impl TimeUnitHandle {
-    pub fn new(srunit: & SampleRateHandle) -> Self {
-        Self {
-            inner: Rc::new(RefCell::new(TimeUnit::new(srunit))),
-        }
+    pub fn new(srunit: &SampleRateHandle) -> Result<Self,SurgeError> {
+        Ok(Self {
+            inner: Rc::new(RefCell::new(TimeUnit::new(srunit)?)),
+        })
     }
 
     #[inline] pub fn temposyncratio(&self)     -> f32 { self.inner.borrow().temposyncratio }

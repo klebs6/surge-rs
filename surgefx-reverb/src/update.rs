@@ -70,7 +70,9 @@ impl Reverb {
         self.ringout = Ringout::blocks(t as NumberOfBlocks);
     }
 
-    pub fn update_rsize(&mut self) {
-        self.load_preset(self.preset);
+    pub fn update_rsize(&mut self) -> Result<(),SurgeError> {
+        self.load_preset(self.preset)?;
+
+        Ok(())
     }
 }

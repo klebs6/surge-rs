@@ -22,6 +22,7 @@ Default for SynthOutput<N>
 }
 
 #[derive(Debug,Clone)]
+#[allow(dead_code)]
 pub struct SynthOutputHandle<const N: usize> {
     inner: Rc<RefCell<SynthOutput<N>>>,
 }

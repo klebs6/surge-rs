@@ -19,7 +19,7 @@ impl Default for SineTables {
     }
 }
 impl Initialize for SineTables {
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         for i in 0_usize..SIN_TABLE_SIZE_U {
 
@@ -31,5 +31,7 @@ impl Initialize for SineTables {
                 ((t + (2.0 * PI / SIN_TABLE_SIZE_D)).sin() 
                  - t.sin()) as f32;
         }
+
+        Ok(())
     }
 }

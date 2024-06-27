@@ -2,19 +2,21 @@ crate::ix!();
 
 impl Initialize for Distortion {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         self.update_all_bands();
         self.zero_drives();
 
-        self.band1.suspend();
-        self.band2.suspend();
-        self.lp1.suspend();
-        self.lp2.suspend();
+        self.band1.suspend()?;
+        self.band2.suspend()?;
+        self.lp1.suspend()?;
+        self.lp2.suspend()?;
 
         self.block_increment = 0;
         self.left  = 0.0;
         self.right = 0.0;
+
+        Ok(())
     }
 }
 

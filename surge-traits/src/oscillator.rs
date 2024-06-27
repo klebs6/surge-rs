@@ -33,7 +33,12 @@ impl Default for OscillatorProcessBlockCfg {
 }
 
 pub trait OscillatorProcess {
-    fn process_block(&mut self, _cfg: OscillatorProcessBlockCfg) {}
+
+    fn process_block(&mut self, _cfg: OscillatorProcessBlockCfg) 
+        -> Result<(),SurgeError> 
+    {
+        Ok(())
+    }
 }
 
 pub trait LoadOscillatorAlgos {

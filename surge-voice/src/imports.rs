@@ -1,6 +1,8 @@
+
 pub(crate) use surge_adsr::*;
 pub(crate) use surge_coeffmaker::*;
 pub(crate) use surge_constants::*;
+pub(crate) use surge_errors::*;
 pub(crate) use surge_filter::*;
 pub(crate) use surge_imports::*;
 pub(crate) use surge_input::*;

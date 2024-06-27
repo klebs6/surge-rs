@@ -7,7 +7,7 @@ impl StereoProcess for Chorus {
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N]
 
-    ) -> Result<(),AlignmentError> {
+    ) -> Result<(),SurgeError> {
 
         self.update();
 

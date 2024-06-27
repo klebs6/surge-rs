@@ -3,12 +3,14 @@ crate::ix!();
 impl SurgeScene {
 
     #[allow(unreachable_code)]
-    pub fn play_voice(&mut self, 
-        _channel: i32, 
-        _key: u8, 
+    pub fn play_voice(
+        &mut self, 
+        _channel:  i32, 
+        _key:      u8, 
         _velocity: u8, 
-        _detune: u8) 
-    {
+        _detune:   u8
+
+    ) -> Result<(),SurgeError> {
 
         let non_released_voices = self.get_non_released_voices();
 
@@ -33,7 +35,7 @@ impl SurgeScene {
             self.softkill_voice();
         }
 
-        self.enforce_polyphony_limit(polylimit, 3);
+        self.enforce_polyphony_limit(polylimit, 3)?;
 
         let polymode = self.get_polymode();
 
@@ -45,14 +47,16 @@ impl SurgeScene {
                     _channel,
                     _key,
                     _velocity,
-                    _detune)
+                    _detune
+                )?
             },
             PolyMode::Mono | PolyMode::MonoFingeredPortamento | PolyMode::LatchMonophonic => {
                 self.play_voice_mono(
                     _channel,
                     _key,
                     _velocity,
-                    _detune)
+                    _detune
+                )?
             },
 
             PolyMode::MonoSingleTriggerEG | PolyMode::MonoSingleTriggerFingeredPortamento => {
@@ -60,8 +64,11 @@ impl SurgeScene {
                     _channel,
                     _key,
                     _velocity,
-                    _detune)
+                    _detune
+                )?
             },
         }
+
+        Ok(())
     }
 }

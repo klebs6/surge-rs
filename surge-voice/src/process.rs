@@ -2,7 +2,7 @@ crate::ix!();
 
 impl SurgeVoice {
 
-    pub fn clear_output_stereo(&mut self) -> Result<(),AlignmentError> {
+    pub fn clear_output_stereo(&mut self) -> Result<(),SurgeError> {
 
         unsafe {
             clear_block::<BLOCK_SIZE_OS_QUAD>(self.output[0].as_mut_ptr())?;
@@ -18,11 +18,11 @@ impl SurgeVoice {
         qfcs:   &mut QuadFilterChainState, 
         qfcs_idx:  i32
 
-    ) -> Result<ShouldKeepPlaying,AlignmentError> {
+    ) -> Result<ShouldKeepPlaying,SurgeError> {
 
         self.calc_ctrldata::<false>(cfg.clone(), Some(qfcs), qfcs_idx);
 
-        self.clear_output_stereo();
+        self.clear_output_stereo()?;
 
         let osc2_or_ring1          = self.osc_enable[2] || self.ring_enable[1];
         let osc0or1                = self.osc_enable[0] || self.osc_enable[1];
@@ -47,13 +47,12 @@ impl SurgeVoice {
         let mut runtime = self.gen_oscillator_runtime(cfg.clone());
 
         if gate2 {
-            self.process_osc(&mut runtime,2);
+            self.process_osc(&mut runtime,2)?;
         }
 
         if gate1 {
-            self.process_osc(&mut runtime,1);
+            self.process_osc(&mut runtime,1)?;
         }
-
 
         if self.osc_enable[0] || self.ring_enable[0] {
 
@@ -69,7 +68,7 @@ impl SurgeVoice {
                 )?;
             }
 
-            self.process_osc(&mut runtime,0);
+            self.process_osc(&mut runtime,0)?;
         }
 
         if self.ring_enable[0] {

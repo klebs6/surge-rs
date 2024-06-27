@@ -20,7 +20,7 @@ pub struct KeyboardMapping {
 }
 
 impl Initialize for KeyboardMapping {
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
         self.is_valid             = true;
         self.is_standard_mapping  = true;
         self.count                = 12;
@@ -33,6 +33,8 @@ impl Initialize for KeyboardMapping {
         self.keys                 = vec![0,1,2,3,4,5,6,7,8,9,10,11];
         self.raw_text             = MappingData("".to_string());
         self.name                 = "".to_string();
+
+        Ok(())
     }
 }
 

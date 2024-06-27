@@ -77,7 +77,7 @@ impl LookupWaveshapeWarp for WaveshapeTables {
 }
 
 impl Initialize for WaveshapeTables {
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         let mult: f64 = 1.0 / 32.0;
 
@@ -100,5 +100,7 @@ impl Initialize for WaveshapeTables {
             self.table[3][[i]] = (t * PI / 512.0).sin() as f32;     //wst_sine
             self.table[4][[i]] = (t * mult).tanh() as f32;          //wst_digi
         }
+
+        Ok(())
     }
 }

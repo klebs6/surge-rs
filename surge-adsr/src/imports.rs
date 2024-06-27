@@ -1,4 +1,5 @@
 pub(crate) use surge_constants::*;
+pub(crate) use surge_errors::*;
 pub(crate) use surge_derive::*;
 pub(crate) use surge_macros::*;
 pub(crate) use surge_math::*;

@@ -7,7 +7,7 @@ impl StereoProcess for Phaser {
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N]
 
-    ) -> Result<(),AlignmentError> {
+    ) -> Result<(),SurgeError> {
 
         if self.bi == 0 {
             self.update();

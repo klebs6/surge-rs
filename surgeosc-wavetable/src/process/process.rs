@@ -2,7 +2,7 @@ crate::ix!();
 
 impl OscillatorProcess for WTOscillator {
 
-    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) -> Result<(),AlignmentError> {
+    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) -> Result<(),SurgeError> {
 
         let stereo = cfg.stereo;
         let drift  = cfg.drift;

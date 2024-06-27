@@ -2,7 +2,7 @@ crate::ix!();
 
 impl OscillatorProcess for FM2Oscillator {
 
-    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) { 
+    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) -> Result<(),SurgeError> {
 
         self.driftlfo = drift_noise(self.driftlfo2) * cfg.drift;
 
@@ -45,5 +45,7 @@ impl OscillatorProcess for FM2Oscillator {
         {
             self.out.dup_channel_to_stereo(StereoChannel::Left);
         }
+
+        Ok(())
     }
 }

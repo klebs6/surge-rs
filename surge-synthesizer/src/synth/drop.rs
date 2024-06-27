@@ -2,7 +2,7 @@ crate::ix!();
 
 impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
-    pub fn all_notes_off(&mut self) {
+    pub fn all_notes_off(&mut self) -> Result<(),SurgeError> {
 
         for i in 0..16 {
             self.midi_unit.set_hold(i,false);
@@ -13,8 +13,8 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
             }
         }
 
-        self.active_patch.scene[0].all_notes_off();
-        self.active_patch.scene[1].all_notes_off();
+        self.active_patch.scene[0].all_notes_off()?;
+        self.active_patch.scene[1].all_notes_off()?;
 
         self.active_patch.scene[0].hold_pedal_unit.clear_holdbuffer();
         self.active_patch.scene[1].hold_pedal_unit.clear_holdbuffer();
@@ -24,12 +24,14 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
         self.halfband_in.reset();
 
-        self.active_patch.scene[0].highpass.suspend();
-        self.active_patch.scene[1].highpass.suspend();
+        self.active_patch.scene[0].highpass.suspend()?;
+        self.active_patch.scene[1].highpass.suspend()?;
 
         for i in 0..8 {
-            self.fx_unit.fx[i].suspend()
+            self.fx_unit.fx[i].suspend()?
         }
+
+        Ok(())
     }
 }
 
@@ -38,10 +40,10 @@ impl<'plugin_layer> Drop for SurgeSynthesizer<'plugin_layer>  {
 
     fn drop(&mut self) {
 
-        self.all_notes_off();
+        self.all_notes_off().expect("should be able to turn all notes off here");
 
-        for state in self.active_patch.scene[0].fbq.state.iter_mut() { state.init(); }
-        for state in self.active_patch.scene[1].fbq.state.iter_mut() { state.init(); }
+        for state in self.active_patch.scene[0].fbq.state.iter_mut() { state.init().expect("should be able to reinitialize the state here"); }
+        for state in self.active_patch.scene[1].fbq.state.iter_mut() { state.init().expect("should be able to reinitialize the state here"); }
 
         let patch = &mut self.active_patch;
 

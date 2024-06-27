@@ -21,7 +21,7 @@ impl Waveshaper for AsymShaper {
             e = _mm_packs_epi32(e, e);
             e = _mm_max_epi16(_mm_min_epi16(e, ub), _mm_setzero_si128());
 
-            if !cfg![macos] {
+            if !cfg![target_os="macos"] {
                 println!("on PC write to memory & back as XMM -> GPR is slow on K8");
                 /*let mut e4 = WetBlock1t::<i16,8>::new();
                   _mm_store_si128((__m128i*)&e4, e);*/

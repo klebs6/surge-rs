@@ -13,8 +13,8 @@ pub struct SceneConstructorHandles<'a> {
 
 impl SurgeScene {
 
-    pub fn new<'a>(ctor: SceneConstructorHandles<'a>) -> Self {
-        Self {
+    pub fn new<'a>(ctor: SceneConstructorHandles<'a>) -> Result<Self,SurgeError> {
+        Ok(Self {
             osc:                 vec![
                 Box::new(SurgeSuperOscillator::new(ctor.tuner.clone(),ctor.tables.clone(),ctor.srunit.clone())),
                 Box::new(SurgeSuperOscillator::new(ctor.tuner.clone(),ctor.tables.clone(),ctor.srunit.clone())),
@@ -29,8 +29,8 @@ impl SurgeScene {
                 WaveshaperUnit::default(),
             ],
             asdr:                vec![
-                AdsrEnvelope::new(ctor.timeunit.clone(),ctor.tables.clone(),ctor.srunit.clone()),
-                AdsrEnvelope::new(ctor.timeunit.clone(),ctor.tables.clone(),ctor.srunit.clone()),
+                AdsrEnvelope::new(ctor.timeunit.clone(),ctor.tables.clone(),ctor.srunit.clone())?,
+                AdsrEnvelope::new(ctor.timeunit.clone(),ctor.tables.clone(),ctor.srunit.clone())?,
             ],
             lfo:                 vec![
                 Lfo::new(ctor.timeunit.clone(),ctor.tables.clone()),
@@ -88,6 +88,6 @@ impl SurgeScene {
             timeunit:               ctor.timeunit.clone(),
             synth_in:               ctor.synth_in.clone(),
             switch_toggled_queued:   false,
-        }
+        })
     }
 }

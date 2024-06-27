@@ -2,15 +2,16 @@ crate::ix!();
 
 impl RemapToStandardKeyboard for SurgeTuner {
 
-    fn remap_to_standard_keyboard(&mut self) -> bool 
+    fn remap_to_standard_keyboard(&mut self) -> Result<bool,SurgeError> 
     {
-        self.remap_to_keyboard(&KeyboardMapping::default())
+        Ok(self.remap_to_keyboard(&KeyboardMapping::default())?)
     }
 }
 
 impl RemapKeyboard for SurgeTuner {
 
-    fn remap_to_keyboard(&mut self, mapping: &KeyboardMapping) -> bool 
+    fn remap_to_keyboard(&mut self, mapping: &KeyboardMapping) 
+        -> Result<bool,SurgeError> 
     {
         self.current_mapping = Align16(mapping.clone());
 
@@ -31,7 +32,7 @@ impl RemapKeyboard for SurgeTuner {
         if self.current_mapping.is_standard_mapping 
             && self.current_tuning.is_standard_tuning 
         {
-            self.retune_to_standard_tuning();
+            self.retune_to_standard_tuning()?;
 
         } 
         else if !self.current_mapping.is_standard_mapping 
@@ -47,6 +48,6 @@ impl RemapKeyboard for SurgeTuner {
 
         }
 
-        true
+        Ok(true)
     }
 }

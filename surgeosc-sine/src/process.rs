@@ -2,9 +2,12 @@ crate::ix!();
 
 impl OscillatorProcess for SineWaveOscillator {
 
-    fn process_block(&mut self, 
-        cfg: OscillatorProcessBlockCfg)
-    {
+    fn process_block(
+        &mut self, 
+        cfg: OscillatorProcessBlockCfg
+
+    ) -> Result<(),SurgeError> {
+
         let fm       = cfg.fm;
         let fm_depth = cfg.fm_depth;
         let stereo   = cfg.stereo;
@@ -20,7 +23,7 @@ impl OscillatorProcess for SineWaveOscillator {
                 fm, 
                 fm_depth 
             );
-            return;
+            return Ok(());
         }
 
         self.driftlfo1 = drift_noise(self.driftlfo2);
@@ -48,5 +51,7 @@ impl OscillatorProcess for SineWaveOscillator {
             self.out.dup_channel_to_stereo(
                 StereoChannel::Left);
         }
+
+        Ok(())
     }
 }

@@ -1,5 +1,4 @@
 #![feature(trait_alias)]
-#![feature(associated_type_bounds)]
 
 #[macro_use] mod imports; use imports::*;
 

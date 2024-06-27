@@ -2,7 +2,7 @@ crate::ix!();
 
 impl Initialize for Eq3Band {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         let gain_override = self.instantize_unity_gain();
 
@@ -10,11 +10,13 @@ impl Initialize for Eq3Band {
 
         self.coeff_instantize_all_bands();
 
-        self.band1.suspend();
-        self.band2.suspend();
-        self.band3.suspend();
+        self.band1.suspend()?;
+        self.band2.suspend()?;
+        self.band3.suspend()?;
 
         self.block_increment = 0;
+
+        Ok(())
     }
 }
 

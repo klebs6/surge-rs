@@ -164,16 +164,18 @@ impl SurgeScene {
         }))
     }
 
-    pub fn switch_toggled(&mut self) {
+    pub fn switch_toggled(&mut self) -> Result<(),SurgeError> {
 
         let voice_runtime = self.create_voice_runtime();
 
         for voice in self.voices.iter_mut() {
-            voice.borrow_mut().switch_toggled(voice_runtime.clone());
+            voice.borrow_mut().switch_toggled(voice_runtime.clone())?;
         }
+
+        Ok(())
     }
 
-    pub fn all_notes_off(&mut self) {
+    pub fn all_notes_off(&mut self) -> Result<(),SurgeError> {
 
         let mut to_free = vec![];
 
@@ -182,10 +184,12 @@ impl SurgeScene {
         }
 
         for idx in to_free.iter() {
-            self.free_voice(*idx);
+            self.free_voice(*idx)?;
         }
 
         self.voices.clear();
+
+        Ok(())
     }
 
     #[inline] pub fn playscene(&self) -> bool {
@@ -197,7 +201,7 @@ impl SurgeScene {
         mut fb_entry: i32, 
         mut vcount:   i32
 
-    ) -> Result<(i32, i32),AlignmentError> {
+    ) -> Result<(i32, i32),SurgeError> {
 
         let mut to_free = vec![];
 
@@ -220,7 +224,7 @@ impl SurgeScene {
         }
 
         for idx in to_free.iter() {
-            self.free_voice(*idx);
+            self.free_voice(*idx)?;
         }
 
         Ok((fb_entry, vcount))

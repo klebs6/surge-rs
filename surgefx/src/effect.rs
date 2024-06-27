@@ -51,7 +51,7 @@ impl StereoProcess for SurgeEffect {
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N]
 
-    ) -> Result<(),AlignmentError> {
+    ) -> Result<(),SurgeError> {
 
         match self {
             SurgeEffect::Eq3Band(x)       => x.stereo_process::<N>(data_l, data_r)?,
@@ -185,9 +185,9 @@ impl ProcessRingout for SurgeEffect {
         data_r: *mut f32, 
         indata_present: bool
 
-    ) -> Result<OutputDataPresent,AlignmentError> {
+    ) -> Result<OutputDataPresent,SurgeError> {
 
-        match self {
+        let maybe_data_present = match self {
             SurgeEffect::Eq3Band(x)       => x.process_ringout::<N>(data_l, data_r, indata_present),
             SurgeEffect::Distortion(x)    => x.process_ringout::<N>(data_l, data_r, indata_present),
             SurgeEffect::Conditioner(x)   => x.process_ringout::<N>(data_l, data_r, indata_present),
@@ -202,49 +202,55 @@ impl ProcessRingout for SurgeEffect {
             SurgeEffect::RingModulator(x) => x.process_ringout::<N>(data_l, data_r, indata_present),
             SurgeEffect::RotarySpeaker(x) => x.process_ringout::<N>(data_l, data_r, indata_present),
             SurgeEffect::Vocoder(x)       => x.process_ringout::<N>(data_l, data_r, indata_present),
-        }
+        };
+
+        Ok(maybe_data_present?)
     }
 }
 
 impl Suspend for SurgeEffect { 
-    fn suspend(&mut self) {
+    fn suspend(&mut self) -> Result<(),SurgeError> {
         match self {
-            SurgeEffect::Eq3Band(x)       => x.suspend(),
-            SurgeEffect::Distortion(x)    => x.suspend(),
-            SurgeEffect::Conditioner(x)   => x.suspend(),
-            SurgeEffect::AllpassVerb(x)   => x.suspend(),
-            SurgeEffect::DualDelay(x)     => x.suspend(),
-            SurgeEffect::Flanger(x)       => x.suspend(),
-            SurgeEffect::Phaser(x)        => x.suspend(),
-            SurgeEffect::Reverb(x)        => x.suspend(),
-            SurgeEffect::Chorus(x)        => x.suspend(),
-            SurgeEffect::Emphasize(x)     => x.suspend(),
-            SurgeEffect::FreqShift(x)     => x.suspend(),
-            SurgeEffect::RingModulator(x) => x.suspend(),
-            SurgeEffect::RotarySpeaker(x) => x.suspend(),
-            SurgeEffect::Vocoder(x)       => x.suspend(),
+            SurgeEffect::Eq3Band(x)       => x.suspend()?,
+            SurgeEffect::Distortion(x)    => x.suspend()?,
+            SurgeEffect::Conditioner(x)   => x.suspend()?,
+            SurgeEffect::AllpassVerb(x)   => x.suspend()?,
+            SurgeEffect::DualDelay(x)     => x.suspend()?,
+            SurgeEffect::Flanger(x)       => x.suspend()?,
+            SurgeEffect::Phaser(x)        => x.suspend()?,
+            SurgeEffect::Reverb(x)        => x.suspend()?,
+            SurgeEffect::Chorus(x)        => x.suspend()?,
+            SurgeEffect::Emphasize(x)     => x.suspend()?,
+            SurgeEffect::FreqShift(x)     => x.suspend()?,
+            SurgeEffect::RingModulator(x) => x.suspend()?,
+            SurgeEffect::RotarySpeaker(x) => x.suspend()?,
+            SurgeEffect::Vocoder(x)       => x.suspend()?,
         }
+
+        Ok(())
     }
 }
 
 impl Initialize for SurgeEffect {
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
         match self {
-            SurgeEffect::Eq3Band(x)       => x.init(),
-            SurgeEffect::Distortion(x)    => x.init(),
-            SurgeEffect::Conditioner(x)   => x.init(),
-            SurgeEffect::AllpassVerb(x)   => x.init(),
-            SurgeEffect::DualDelay(x)     => x.init(),
-            SurgeEffect::Flanger(x)       => x.init(),
-            SurgeEffect::Phaser(x)        => x.init(),
-            SurgeEffect::Reverb(x)        => x.init(),
-            SurgeEffect::Chorus(x)        => x.init(),
-            SurgeEffect::Emphasize(x)     => x.init(),
-            SurgeEffect::FreqShift(x)     => x.init(),
-            SurgeEffect::RingModulator(x) => x.init(),
-            SurgeEffect::RotarySpeaker(x) => x.init(),
-            SurgeEffect::Vocoder(x)       => x.init(),
+            SurgeEffect::Eq3Band(x)       => x.init()?,
+            SurgeEffect::Distortion(x)    => x.init()?,
+            SurgeEffect::Conditioner(x)   => x.init()?,
+            SurgeEffect::AllpassVerb(x)   => x.init()?,
+            SurgeEffect::DualDelay(x)     => x.init()?,
+            SurgeEffect::Flanger(x)       => x.init()?,
+            SurgeEffect::Phaser(x)        => x.init()?,
+            SurgeEffect::Reverb(x)        => x.init()?,
+            SurgeEffect::Chorus(x)        => x.init()?,
+            SurgeEffect::Emphasize(x)     => x.init()?,
+            SurgeEffect::FreqShift(x)     => x.init()?,
+            SurgeEffect::RingModulator(x) => x.init()?,
+            SurgeEffect::RotarySpeaker(x) => x.init()?,
+            SurgeEffect::Vocoder(x)       => x.init()?,
         }
+
+        Ok(())
     }
 }
 
@@ -270,7 +276,7 @@ impl Update for SurgeEffect {
 }
 
 impl ClearBuffers for SurgeEffect {
-    fn clear_buffers(&mut self) {
+    fn clear_buffers(&mut self) -> Result<(),SurgeError> {
         match self {
             SurgeEffect::Eq3Band(_x)       => {},
             SurgeEffect::Distortion(_x)    => {},
@@ -287,6 +293,8 @@ impl ClearBuffers for SurgeEffect {
             SurgeEffect::RotarySpeaker(_x) => {},
             SurgeEffect::Vocoder(_x)       => {},
         }
+
+        Ok(())
     }
 }
 

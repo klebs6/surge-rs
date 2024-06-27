@@ -2,8 +2,7 @@ crate::ix!();
 
 impl SurgeVoice {
 
-    pub fn switch_toggled(&mut self, 
-        cfg: VoiceRuntimeHandle) 
+    pub fn switch_toggled(&mut self, cfg: VoiceRuntimeHandle) -> Result<(),SurgeError>
     {
         {
             let cfg = cfg.borrow();
@@ -24,9 +23,11 @@ impl SurgeVoice {
             }
         }
 
-        self.maybe_toggle_osc(cfg.clone());
+        self.maybe_toggle_osc(cfg.clone())?;
         self.maybe_toggle_fm(&cfg.borrow().fm_cfg);
         self.maybe_toggle_solo(cfg.clone());
-        self.maybe_toggle_filter(cfg.clone());
+        self.maybe_toggle_filter(cfg.clone())?;
+
+        Ok(())
     }
 }

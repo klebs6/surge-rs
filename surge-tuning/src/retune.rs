@@ -2,8 +2,9 @@ crate::ix!();
 
 impl RetuneToStandardTuning for SurgeTuner {
 
-    fn retune_to_standard_tuning(&mut self) {
-        self.init();
+    fn retune_to_standard_tuning(&mut self) -> Result<(),SurgeError> {
+        self.init()?;
+        Ok(())
     }
 }
 
@@ -75,7 +76,7 @@ impl RetuneToScale for SurgeTuner {
 
                     self.tables.table_pitch[idx] = 2.0_f64.powf( (*pitch + pitch_mod).into() );
 
-                    if cfg![debug_scales] && idx > 296 && idx < 340
+                    if cfg![feature = "debug_scales"] && idx > 296 && idx < 340
                     {
                         println!("PITCH: i={}, n={}, p={}, tp={}, fr={}",
                             idx,
@@ -132,7 +133,7 @@ impl RetuneToScale for SurgeTuner {
                             let rounds     = (distance_from_scale0 - push - 1) / scale_count;
                             let this_round = (distance_from_scale0 - push - 1) % scale_count;
 
-                            if cfg![debug_scales] &&  idx > 296 && idx < 340 {
+                            if cfg![feature = "debug_scales"] &&  idx > 296 && idx < 340 {
                                 println!("MAPPING n={}, pushes ds0={}, cmc={}, tr={}, r={}, mk={}, cm={}, push={}, dis={}, mk-p-1={}",
                                     idx - 256,
                                     distance_from_scale0,
@@ -168,7 +169,7 @@ impl RetuneToScale for SurgeTuner {
 
                     self.tables.table_pitch[idx] = 2.0_f64.powf( (*pitch + pitch_mod).into() );
 
-                    if cfg![debug_scales] && idx > 296 && idx < 340 {
+                    if cfg![feature = "debug_scales"] && idx > 296 && idx < 340 {
                         println!(
                             "PITCH: i={}, n={}, ds0={}, dp0={}, r={}, t={}, p={}, t={} {}, dis={}, tp={}, fr={}, otp={}, tcpo={}, diff={}",
                             idx,

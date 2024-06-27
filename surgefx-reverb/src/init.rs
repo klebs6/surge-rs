@@ -2,21 +2,21 @@ crate::ix!();
 
 impl Initialize for Reverb {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
-        self.init_band1();
-        self.init_lowcut();
-        self.init_hicut();
+        self.init_band1()?;
+        self.init_lowcut()?;
+        self.init_hicut()?;
 
         self.ringout = Ringout::blocks(10000000);
 
         self.b = 0;
 
-        self.load_preset(ReverbPreset::A);
+        self.load_preset(ReverbPreset::A)?;
 
         self.modphase = 0.0;
 
-        self.update_rsize();
+        self.update_rsize()?;
 
         // Should be the smoothest
         self.mix.set_target(1.0); 
@@ -28,6 +28,8 @@ impl Initialize for Reverb {
         self.init_taps();
 
         self.delay_pos = 0;
+
+        Ok(())
     }
 }
 
@@ -55,7 +57,7 @@ impl Reverb {
         }
     }
 
-    fn init_band1(&mut self) {
+    fn init_band1(&mut self) -> Result<(),SurgeError> {
 
         let f1: f64 = self.pvalf(ReverbParam::Band1Freq).into();
         let g1: f64 = self.pvalf(ReverbParam::Band1Gain).into();
@@ -67,10 +69,11 @@ impl Reverb {
         );
 
         self.band1.coeff_instantize();
-        self.band1.suspend();
+        self.band1.suspend()?;
+        Ok(())
     }
 
-    fn init_lowcut(&mut self) {
+    fn init_lowcut(&mut self) -> Result<(),SurgeError> {
 
         let lc: f64  = self.pvalf(ReverbParam::LowCut).into();
 
@@ -80,10 +83,12 @@ impl Reverb {
         );
 
         self.locut.coeff_instantize();
-        self.locut.suspend();
+        self.locut.suspend()?;
+
+        Ok(())
     }
 
-    fn init_hicut(&mut self) {
+    fn init_hicut(&mut self) -> Result<(),SurgeError> {
 
         let hc: f64  = self.pvalf(ReverbParam::HighCut).into();
 
@@ -94,6 +99,8 @@ impl Reverb {
 
         self.hicut.coeff_instantize();
 
-        self.hicut.suspend();
+        self.hicut.suspend()?;
+
+        Ok(())
     }
 }

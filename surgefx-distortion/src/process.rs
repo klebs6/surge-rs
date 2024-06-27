@@ -11,7 +11,7 @@ impl StereoProcess for Distortion {
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N]
 
-    ) -> Result<(),AlignmentError> {
+    ) -> Result<(),SurgeError> {
 
         assert!(DISTORTION_OS_BITS == 2);
         assert!(32 == N);

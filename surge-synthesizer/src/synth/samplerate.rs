@@ -8,14 +8,14 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
       | to be tuning aware and reapply tuning if
       | needed
       */
-    pub fn set_samplerate(&mut self, sr: f64) {
+    pub fn set_samplerate(&mut self, sr: f64) -> Result<(),SurgeError> {
 
         let scale = self.tuner.current_scale();
         let was_st = self.tuner.current_tuning_is_standard();
 
         self.srunit.set_samplerate(sr);
 
-        self.tables.init();
+        self.tables.init()?;
 
         self.hold_pedal_unit.set_quadrosc_rate(
             1000.0 * 
@@ -26,6 +26,8 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
             self.tuner.retune_to_scale(&scale);
         }
+
+        Ok(())
     }
 }
 

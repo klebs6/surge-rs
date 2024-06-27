@@ -3,12 +3,15 @@ crate::ix!();
 impl SurgeScene {
 
     #[allow(unreachable_code)]
-    pub fn play_voice_portamento(&mut self, 
-        channel: u8, 
-        key: u8, 
+    pub fn play_voice_portamento(
+        &mut self, 
+        channel:  u8, 
+        key:      u8, 
         velocity: u8, 
-        detune: u8) 
-    {
+        detune:   u8
+
+    ) -> Result<(),SurgeError> {
+
         let voices = &mut self.voices;
 
         let mut found_one: bool = false;
@@ -47,11 +50,13 @@ impl SurgeScene {
 
             if let Some(nvoice) = self.get_unused_voice() {
 
-                *nvoice = Some(SurgeVoice::new(cfg));
+                *nvoice = Some(SurgeVoice::new(cfg)?);
 
                 //todo: how do we do this?
                 //self.voices.push(nvoice.as_mut().unwrap());
             }
         }
+
+        Ok(())
     }
 }

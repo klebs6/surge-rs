@@ -2,18 +2,21 @@ crate::ix!();
 
 impl OscillatorProcess for AudioInputOscillator {
 
-    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) { 
+    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) 
+        -> Result<(),SurgeError> 
+    {
         match cfg.stereo {
             true  => self.process_block_stereo(cfg),
             false => self.process_block_mono(cfg),
-        };
+        }
     }
 }
 
 impl AudioInputOscillator {
 
-    fn process_block_mono(&mut self, _cfg: OscillatorProcessBlockCfg) { 
-
+    fn process_block_mono(&mut self, _cfg: OscillatorProcessBlockCfg) 
+        -> Result<(),SurgeError> 
+    {
         let g: f32 = {
             let gain = self.pvalf(AudioInputOscillatorParam::Gain);
             self.tables.db_to_linear(gain)
@@ -34,9 +37,11 @@ impl AudioInputOscillator {
 
             self.out.l[k] = a * in0 + b * in1;
         }
+
+        Ok(())
     }
 
-    fn process_block_stereo(&mut self, _cfg: OscillatorProcessBlockCfg) { 
+    fn process_block_stereo(&mut self, _cfg: OscillatorProcessBlockCfg) -> Result<(),SurgeError> {
 
         let g:   f32 = {
             let gain = self.pvalf(AudioInputOscillatorParam::Gain);
@@ -56,5 +61,7 @@ impl AudioInputOscillator {
             self.out.l[k] = a * self.synth_in.audio_in0(k);
             self.out.r[k] = b * self.synth_in.audio_in1(k);
         }
+
+        Ok(())
     }
 }

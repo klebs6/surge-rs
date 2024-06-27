@@ -15,8 +15,8 @@ pub struct SynthEnvironment<'a> {
 
 impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
-    pub fn new_default_patch<'synth_out>(environment: &SynthEnvironment<'synth_out>) -> Box<SurgePatch> {
-        Box::new(SurgePatch::new(
+    pub fn new_default_patch<'synth_out>(environment: &SynthEnvironment<'synth_out>) -> Result<Box<SurgePatch>,SurgeError> {
+        Ok(Box::new(SurgePatch::new(
                 SceneConstructorHandles{
                     timeunit:         environment.timeunit, 
                     tables:           environment.tables, 
@@ -27,19 +27,19 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
                     mpe_unit:         environment.mpe_unit,
                     synth_in:         environment.synth_in
                 }
-        ))
+        )?))
     }
 
-    pub fn new_fx_unit<'synth_out>(environment: &SynthEnvironment<'synth_out>) -> FXUnit {
-        FXUnit::new(
+    pub fn new_fx_unit<'synth_out>(environment: &SynthEnvironment<'synth_out>) -> Result<FXUnit,SurgeError> {
+        Ok(FXUnit::new(
             environment.tuner,
             environment.tables,
             environment.timeunit,
             environment.srunit
-        )
+        )?)
     }
 
-    pub fn new_default<'synth_out>(environment: SynthEnvironment<'synth_out>) -> Self {
+    pub fn new_default<'synth_out>(environment: SynthEnvironment<'synth_out>) -> Result<Self,SurgeError> {
 
         let mut x = Self {
             synth_out:                 environment.output.clone(),
@@ -56,7 +56,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
             cc0:                       0,
             pch:                       0,
             controller:                SynthControl::default(),
-            fx_unit:                   Self::new_fx_unit(&environment),
+            fx_unit:                   Self::new_fx_unit(&environment)?,
             hold_pedal_unit:           environment.hold_pedal_unit.clone(),
             midi_unit:                 environment.midi_unit.clone(),
             mpe_unit:                  environment.mpe_unit.clone(),
@@ -64,7 +64,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
             patchid:                   None,
             current_category_id:       None,
             patchid_queue:             None,
-            active_patch:              Self::new_default_patch(&environment),
+            active_patch:              Self::new_default_patch(&environment)?,
             patches:                   vec![],
             patch_categories:          vec![],
             active_patch_category:     vec![],
@@ -77,7 +77,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
         x.initialize_customcontrollers();
         x.initialize_midi_controllers();
-        x
+        Ok(x)
     }
 
     pub fn initialize_customcontrollers(&mut self) {

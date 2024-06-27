@@ -51,8 +51,10 @@ impl DbToLinear for TablesHandle {
 
 impl Initialize for TablesHandle {
 
-    #[inline] fn init(&mut self) { 
-        self.inner.borrow_mut().init();
+    #[inline] fn init(&mut self) -> Result<(),SurgeError> { 
+        self.inner.borrow_mut().init()?;
+
+        Ok(())
     }
 }
 

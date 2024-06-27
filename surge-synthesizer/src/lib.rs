@@ -2,7 +2,6 @@
 #![feature(const_mut_refs)]
 #![feature(associated_type_defaults)]
 #![feature(trait_alias)]
-#![feature(associated_type_bounds)]
 #![feature(box_patterns)]
 #![feature(stdarch_x86_mm_shuffle)]
 #![allow(non_camel_case_types)]

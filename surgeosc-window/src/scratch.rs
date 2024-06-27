@@ -6,7 +6,7 @@ impl WindowOscillator {
 
         let mut wetblock  = WetBlock1::<4>::default();
 
-        if cfg![macos] {
+        if cfg![target_os = "macos"] {
 
             // this should be very fast on C2D/C1D (and there are no macs with K8's)
             wetblock.buf[0]  = _mm_cvtsi128_si32(input) as f32;

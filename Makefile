@@ -8,7 +8,7 @@ DEFAULT         := test_file
 #DEFAULT         := test_all
 #DEFAULT         := build
 #DEFAULT         := test_file_one
-#DEFAULT         := all
+DEFAULT         := all
 
 RUST_LOG       := info
 TEST_FILE       := surge-math/tests/convert.rs

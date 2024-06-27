@@ -7,19 +7,21 @@ pub struct TwoByTwoBlock<const LEN: usize>  {
 }
 
 impl<const LEN: usize> TwoByTwoBlock<LEN> {
-    pub fn clear(&mut self) {
+    pub fn clear(&mut self) -> Result<(),SurgeError> {
         unsafe {
-            clear_block_antidenormalnoise::<LEN>(self.buf[0][0].as_mut_ptr());
-            clear_block_antidenormalnoise::<LEN>(self.buf[0][1].as_mut_ptr());
-            clear_block_antidenormalnoise::<LEN>(self.buf[1][0].as_mut_ptr());
-            clear_block_antidenormalnoise::<LEN>(self.buf[1][1].as_mut_ptr());
+            clear_block_antidenormalnoise::<LEN>(self.buf[0][0].as_mut_ptr())?;
+            clear_block_antidenormalnoise::<LEN>(self.buf[0][1].as_mut_ptr())?;
+            clear_block_antidenormalnoise::<LEN>(self.buf[1][0].as_mut_ptr())?;
+            clear_block_antidenormalnoise::<LEN>(self.buf[1][1].as_mut_ptr())?;
         }
+
+        Ok(())
     }
 }
 
-impl<const LEN: usize> Default for TwoByTwoBlock<LEN> {
+impl<const LEN: usize> TwoByTwoBlock<LEN> {
 
-    fn default() -> Self {
+    pub fn new() -> Result<Self,SurgeError> {
 
         let z = f32::zero();
 
@@ -27,9 +29,9 @@ impl<const LEN: usize> Default for TwoByTwoBlock<LEN> {
             buf: Align16([[[z; LEN]; 2]; 2]), 
         };
 
-        x.clear();
+        x.clear()?;
 
-        x
+        Ok(x)
     }
 }
 
@@ -69,7 +71,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
     }
 
     #[inline] pub fn apply_inserts<const N: usize>(&mut self, sc_a: &mut bool, sc_b: &mut bool) 
-    -> Result<(),AlignmentError> 
+    -> Result<(),SurgeError> 
     {
         let bypass_type = self.get_fx_bypass_type();
 
@@ -133,7 +135,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
         sceneout: &mut TwoByTwoBlock::<BLOCK_SIZE_OS>,
         fxsendout: &mut TwoByTwoBlock::<BLOCK_SIZE_OS>
 
-    ) -> Result<(),AlignmentError> {
+    ) -> Result<(),SurgeError> {
 
         let bypass_type = self.get_fx_bypass_type();
 
@@ -242,7 +244,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
         sceneout:  &mut TwoByTwoBlock::<BLOCK_SIZE_OS>,
         fxsendout: &mut TwoByTwoBlock::<BLOCK_SIZE_OS>
 
-    ) -> Result<bool,AlignmentError> {
+    ) -> Result<bool,SurgeError> {
 
         let patch = &mut self.active_patch;
 
@@ -290,7 +292,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
         sceneout:  &mut TwoByTwoBlock::<BLOCK_SIZE_OS>,
         fxsendout: &mut TwoByTwoBlock::<BLOCK_SIZE_OS>
 
-    ) -> Result<bool,AlignmentError> {
+    ) -> Result<bool,SurgeError> {
 
         let patch = &mut self.active_patch;
 
@@ -335,7 +337,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
         Ok(added_send_b)
     }
 
-    #[inline] pub fn do_halt(&mut self) -> Result<(),AlignmentError> {
+    #[inline] pub fn do_halt(&mut self) -> Result<(),SurgeError> {
 
         unsafe {
             clear_block::<BLOCK_SIZE_QUAD>(self.synth_out.out_l())?;
@@ -376,40 +378,42 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
             Some(BLOCK_SIZE_QUAD));
     }
 
-    #[inline] fn clear_inputs(&mut self) {
+    #[inline] fn clear_inputs(&mut self) -> Result<(),SurgeError> {
         unsafe {
-            clear_block_antidenormalnoise::<BLOCK_SIZE_OS_QUAD>(self.synth_in.audio_in_left());
-            clear_block_antidenormalnoise::<BLOCK_SIZE_OS_QUAD>(self.synth_in.audio_in_right());
-            clear_block_antidenormalnoise::<BLOCK_SIZE_QUAD>(self.synth_in.non_os_audio_in_right());
-            clear_block_antidenormalnoise::<BLOCK_SIZE_QUAD>(self.synth_in.non_os_audio_in_right());
+            clear_block_antidenormalnoise::<BLOCK_SIZE_OS_QUAD>(self.synth_in.audio_in_left())?;
+            clear_block_antidenormalnoise::<BLOCK_SIZE_OS_QUAD>(self.synth_in.audio_in_right())?;
+            clear_block_antidenormalnoise::<BLOCK_SIZE_QUAD>(self.synth_in.non_os_audio_in_right())?;
+            clear_block_antidenormalnoise::<BLOCK_SIZE_QUAD>(self.synth_in.non_os_audio_in_right())?;
         }
+
+        Ok(())
     }
 
     fn process<const N: usize>(&mut self) 
-        -> Result<(),AlignmentError> 
+        -> Result<(),SurgeError> 
     {
         if self.controller.halt_engine {
-            self.do_halt();
+            self.do_halt()?;
             return Ok(());
         }
 
         if self.patchid_queue >= Some(0) {
-            self.handle_patchid_queue();
+            self.handle_patchid_queue()?;
         }
 
         match self.controller.process_input {
             true  => self.do_process_inputs(),
-            false => self.clear_inputs(),
+            false => self.clear_inputs()?,
         }
 
-        let mut sceneout  = TwoByTwoBlock::<BLOCK_SIZE_OS>::default();
-        let mut fxsendout = TwoByTwoBlock::<BLOCK_SIZE_OS>::default();
+        let mut sceneout  = TwoByTwoBlock::<BLOCK_SIZE_OS>::new()?;
+        let mut fxsendout = TwoByTwoBlock::<BLOCK_SIZE_OS>::new()?;
 
         let (playscene, fb_entry) = {
 
             let _critical_section = CS_MOD_ROUTING.lock().unwrap();
 
-            self.process_control();
+            self.process_control()?;
             self.set_amp_from_volume();
             self.set_amp_mute_from_masterfade();
             self.maybe_apply_sends();

@@ -2,11 +2,13 @@ crate::ix!();
 
 impl SurgeScene {
 
-    pub fn play_voice_mono(&mut self, 
+    pub fn play_voice_mono(
+        &mut self, 
         channel: u8, 
         key: u8, 
         velocity: u8, 
-        detune: u8) 
+        detune: u8
+    ) -> Result<(),SurgeError>
     {
         let voices = &mut self.voices;
 
@@ -29,7 +31,7 @@ impl SurgeScene {
 
             do_set_last_key = true;
 
-            *nvoice = Some(SurgeVoice::new(cfg));
+            *nvoice = Some(SurgeVoice::new(cfg)?);
         }
 
         if do_set_last_key 
@@ -38,5 +40,7 @@ impl SurgeScene {
         {
             self.mpe_unit.set_lastkey(key as i32);
         }
+
+        Ok(())
     }
 }

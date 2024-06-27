@@ -3,14 +3,14 @@ crate::ix!();
 impl StereoProcess for Reverb {
 
     fn stereo_process<const N: usize>(&mut self, data_l: &mut [f32; N], data_r: &mut [f32; N]) 
-        -> Result<(),AlignmentError> 
+        -> Result<(),SurgeError> 
     {
         let mix   = self.pvalf(ReverbParam::Mix);
         let width = self.pvalf(ReverbParam::Width);
 
         let need_update_rtime = self.decaytime_diff() > 0.001;
 
-        self.maybe_update_preset();
+        self.maybe_update_preset()?;
 
         if need_update_rtime {
             self.update_rtime();
@@ -43,7 +43,7 @@ impl Reverb {
         (decay_time - self.lastf[ReverbParam::DecayTime as usize]).abs()
     }
 
-    #[inline] fn maybe_update_preset(&mut self) 
+    #[inline] fn maybe_update_preset(&mut self) -> Result<(),SurgeError>
     {
         let f_roomsize    = self.pvalf(ReverbParam::RoomSize);
         let last_roomsize = self.lastf[ReverbParam::RoomSize as usize];
@@ -59,8 +59,10 @@ impl Reverb {
         || preset_update_requested 
         {
             let new_preset = ReverbPreset::try_from(i_shape as usize).unwrap();
-            self.load_preset(new_preset);
+            self.load_preset(new_preset)?;
         }
+
+        Ok(())
     }
 
     fn process_mid_side<const N: usize>(

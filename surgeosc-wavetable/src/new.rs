@@ -6,8 +6,9 @@ impl WTOscillator {
         tuner:  TunerHandle,
         tables: TablesHandle,
         srunit: SampleRateHandle,
-    ) -> Self 
-    {
+
+    ) -> Result<Self,SurgeError> {
+
         let mut x = Self {
             drift:               0.0,
             master_osc:          std::ptr::null_mut(),
@@ -51,8 +52,10 @@ impl WTOscillator {
             tuner,
             srunit,
         };
-        x.init();
+
+        x.init()?;
         x.set_pitch(432.0,false);
-        x
+
+        Ok(x)
     }
 }

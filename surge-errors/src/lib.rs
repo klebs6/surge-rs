@@ -2,6 +2,10 @@ use error_tree::*;
 
 error_tree!{
 
+    pub enum SurgeError {
+        AlignmentError(AlignmentError),
+    }
+
     pub enum ConvertError {
         Default,
     }

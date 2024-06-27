@@ -2,7 +2,7 @@ crate::ix!();
 
 impl Initialize for Chorus {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         self.buffer = Align16(Self::new_chorus_buffer());
 
@@ -32,6 +32,8 @@ impl Initialize for Chorus {
         }
 
         self.initial_update();
+
+        Ok(())
     }
 }
 

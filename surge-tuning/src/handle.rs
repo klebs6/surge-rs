@@ -39,17 +39,18 @@ pub struct TunerHandle {
 }
 
 impl TunerHandle {
-    pub fn new(srunit: &SampleRateHandle) -> Self {
-        Self {
-            inner: Rc::new(RefCell::new(SurgeTuner::new(srunit))),
-        }
+    pub fn new(srunit: &SampleRateHandle) -> Result<Self,SurgeError> {
+        Ok(Self {
+            inner: Rc::new(RefCell::new(SurgeTuner::new(srunit)?)),
+        })
     }
 }
 
 impl Initialize for TunerHandle {
 
-    fn init(&mut self) {
-        self.inner.borrow_mut().init()
+    fn init(&mut self) -> Result<(),SurgeError> {
+        self.inner.borrow_mut().init()?;
+        Ok(())
     }
 }
 
@@ -144,22 +145,24 @@ impl RetuneToScale for TunerHandle {
 
 impl RetuneToStandardTuning for TunerHandle { 
 
-    #[inline] fn retune_to_standard_tuning(&mut self) {
-        self.inner.borrow_mut().retune_to_standard_tuning()
+    #[inline] fn retune_to_standard_tuning(&mut self) -> Result<(),SurgeError> {
+        Ok(self.inner.borrow_mut().retune_to_standard_tuning()?)
     }
 }
 
 impl RemapKeyboard for TunerHandle {
 
-    #[inline] fn remap_to_keyboard(&mut self, kb: &KeyboardMapping) -> bool {
-        self.inner.borrow_mut().remap_to_keyboard(kb)
+    #[inline] fn remap_to_keyboard(&mut self, kb: &KeyboardMapping) 
+    -> Result<bool,SurgeError> 
+    {
+        Ok(self.inner.borrow_mut().remap_to_keyboard(kb)?)
     }
 }
 
 impl RemapToStandardKeyboard for TunerHandle {
 
-    #[inline] fn remap_to_standard_keyboard(&mut self) -> bool {
-        self.inner.borrow_mut().remap_to_standard_keyboard()
+    #[inline] fn remap_to_standard_keyboard(&mut self) -> Result<bool,SurgeError> {
+        Ok(self.inner.borrow_mut().remap_to_standard_keyboard()?)
     }
 }
 

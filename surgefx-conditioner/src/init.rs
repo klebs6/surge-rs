@@ -2,7 +2,7 @@ crate::ix!();
 
 impl Initialize for Conditioner {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         self.update_bands();
 
@@ -19,6 +19,8 @@ impl Initialize for Conditioner {
         self.vu[2] = 1.0;
         self.vu[4] = 0.0;
         self.vu[5] = 0.0;
+
+        Ok(())
     }
 }
 

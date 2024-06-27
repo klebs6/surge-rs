@@ -2,7 +2,7 @@ crate::ix!();
 
 impl OscillatorProcess for FMOscillator {
 
-    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg)
+    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) -> Result<(),SurgeError>
     {
         let a1: f64 = self.pvalf(FMOscillatorParam::M1Amount).into();
         let a2: f64 = self.pvalf(FMOscillatorParam::M2Amount).into();
@@ -63,5 +63,7 @@ impl OscillatorProcess for FMOscillator {
         if cfg.stereo {
             self.out.dup_channel_to_stereo(StereoChannel::Left);
         }
+
+        Ok(())
     }
 }

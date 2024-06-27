@@ -21,7 +21,7 @@ impl DualDelay {
 
 impl Initialize for DualDelay {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         self.clear_buffers();
 
@@ -31,8 +31,8 @@ impl Initialize for DualDelay {
         self.lfo_val       = 0.0;
         self.lfo_direction = true;
 
-        self.lp.suspend();
-        self.hp.suspend();
+        self.lp.suspend()?;
+        self.hp.suspend()?;
 
         self.update();
         self.instantize_all();
@@ -43,6 +43,8 @@ impl Initialize for DualDelay {
         if self.time_unit.temposyncratio_inv() == 0.0 {
             self.inithadtempo = false;
         }
+
+        Ok(())
     }
 }
 

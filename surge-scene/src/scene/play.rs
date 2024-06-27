@@ -2,19 +2,21 @@ crate::ix!();
 
 impl SurgeScene {
 
-    #[inline] pub fn maybe_play_note(&mut self, play: bool, channel: u8) {
+    #[inline] pub fn maybe_play_note(&mut self, play: bool, channel: u8) -> Result<(),SurgeError> {
 
         let polymode = self.get_polymode();
 
         if let (true, true, true) = (play, polymode == PolyMode::LatchMonophonic, self.voices.is_empty()) 
         {
-            self.play_note(channel,60, 100, 0);
+            self.play_note(channel,60, 100, 0)?;
         }
+
+        Ok(())
     }
 
-    pub fn play_note(&mut self, channel: u8, key: u8, velocity: u8, detune: u8) {
+    pub fn play_note(&mut self, channel: u8, key: u8, velocity: u8, detune: u8) -> Result<(),SurgeError> {
 
-        self.play_voice(channel as i32, key, velocity, detune);
+        self.play_voice(channel as i32, key, velocity, detune)?;
 
         self.midi_unit.set_keystate(channel, key, velocity);
         self.midi_unit.set_lastdetune(channel, key, detune);
@@ -42,5 +44,7 @@ impl SurgeScene {
                 self.hold_pedal_unit.reset(channel,key);
             }
         }
+
+        Ok(())
     }
 }

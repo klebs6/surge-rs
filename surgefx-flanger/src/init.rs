@@ -2,7 +2,7 @@ crate::ix!();
 
 impl Initialize for Flanger {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         for c in 0..2 {
             for i in 0..FLANGER_COMBS_PER_CHANNEL {
@@ -21,16 +21,20 @@ impl Initialize for Flanger {
                   / (FLANGER_LFO_TABLE_SIZE as f32) 
                 ).sin();
         }
+
+        Ok(())
     }
 }
 
 impl Flanger {
+
     pub fn new( 
         tuner:     & TunerHandle,
         tables:    & TablesHandle,
         srunit:    & SampleRateHandle,
-        time_unit: & TimeUnitHandle) -> Self 
-    {
+        time_unit: & TimeUnitHandle
+    ) -> Result<Self,SurgeError> {
+
         let mut x = Self {
             ringout:        Ringout::blocks(1024),
             params:         FlangerParam::new_runtime(), 
@@ -56,8 +60,8 @@ impl Flanger {
             tuner:          tuner.clone(),
             srunit:         srunit.clone(),
         };
-        x.init();
-        x
+        x.init()?;
+        Ok(x)
     }
 
     #[inline] fn new_comb_channels() -> A2d::<LiPol::<f32>> {

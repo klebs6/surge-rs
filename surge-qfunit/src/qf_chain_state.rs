@@ -65,7 +65,7 @@ impl Initialize for QuadFilterChainState {
       | of the array is __align_malloced
       |
       */
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
         self.gain            = unsafe { z128![] };
         self.feedback        = unsafe { z128![] };
         self.mix1            = unsafe { z128![] };
@@ -93,6 +93,8 @@ impl Initialize for QuadFilterChainState {
         self.out_2r   = unsafe { z128![] };
         self.dout_2l  = unsafe { z128![] };
         self.dout_2r  = unsafe { z128![] };
+
+        Ok(())
     }
 }
 

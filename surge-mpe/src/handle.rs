@@ -5,11 +5,11 @@ pub struct MPEUnitHandle {
     inner: Rc<RefCell<MPEUnit>>,
 }
 
-impl Default for MPEUnitHandle {
-    fn default() -> Self {
-        Self {
-            inner: Rc::new(RefCell::new(MPEUnit::default())),
-        }
+impl MPEUnitHandle {
+    pub fn new() -> Result<Self,SurgeError> {
+        Ok(Self {
+            inner: Rc::new(RefCell::new(MPEUnit::new()?)),
+        })
     }
 }
 

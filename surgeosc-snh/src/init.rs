@@ -4,7 +4,7 @@ pub const INITIAL_RATE: f64 = 0.05;
 
 impl Initialize for SampleAndHoldOscillator {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         self.first_run = true;
 
@@ -35,5 +35,7 @@ impl Initialize for SampleAndHoldOscillator {
         clear_buffer![self.last_level];
         clear_buffer![self.last_level2];
         clear_buffer![self.elapsed_time];
+
+        Ok(())
     }
 }

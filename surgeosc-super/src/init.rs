@@ -2,7 +2,7 @@ crate::ix!();
 
 impl Initialize for SurgeSuperOscillator {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         self.first_run = true;
 
@@ -26,5 +26,7 @@ impl Initialize for SurgeSuperOscillator {
         self.blitter.clear_buffers();
 
         self.clear_tracking();
+
+        Ok(())
     }
 }

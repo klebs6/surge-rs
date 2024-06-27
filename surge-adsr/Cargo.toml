@@ -1,6 +1,9 @@
 [dependencies.surge-constants]
 path = "../surge-constants"
 version = "0.2.12-alpha.0"
+[dependencies.surge-errors]
+path = "../surge-errors"
+version = "0.1.0"
 [dependencies.surge-derive]
 path = "../surge-derive"
 version = "0.2.12-alpha.0"

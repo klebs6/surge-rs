@@ -2,25 +2,30 @@ crate::ix!();
 
 impl SurgeScene {
 
-    pub fn play_voice_poly(&mut self, 
-        channel: u8, 
-        key: u8, 
+    pub fn play_voice_poly(
+        &mut self, 
+        channel:  u8, 
+        key:      u8, 
         velocity: u8, 
-        detune: u8) 
-    {
+        detune:   u8
+
+    ) -> Result<(),SurgeError> {
+
         let cfg = self.voice_constructor(channel, key, velocity, detune);
 
         if let Some(nvoice) = self.get_unused_voice() {
 
-            *nvoice = Some(SurgeVoice::new(cfg));
+            *nvoice = Some(SurgeVoice::new(cfg)?);
 
             todo!( "how do we do this?" );
             //self.voices.push(nvoice);
         }
+
+        Ok(())
     }
 
     /// only allow 'margin' number of voices to be softkilled simultaneously
-    pub fn enforce_polyphony_limit(&mut self, limit: i32, margin: i32) {
+    pub fn enforce_polyphony_limit(&mut self, limit: i32, margin: i32) -> Result<(),SurgeError> {
 
         let num_scene_voices = self.voices.len();
 
@@ -45,8 +50,10 @@ impl SurgeScene {
             }
 
             for idx in idx_to_free.iter() {
-                self.free_voice(*idx);
+                self.free_voice(*idx)?;
             }
         }
+
+        Ok(())
     }
 }

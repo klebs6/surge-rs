@@ -7,7 +7,7 @@ impl StereoProcess for Eq3Band {
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N]
 
-    ) -> Result<(),AlignmentError> {
+    ) -> Result<(),SurgeError> {
 
         self.maybe_update();
 

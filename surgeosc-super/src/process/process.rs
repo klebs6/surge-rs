@@ -2,7 +2,7 @@ crate::ix!();
 
 impl OscillatorProcess for SurgeSuperOscillator {
 
-    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) -> Result<(),AlignmentError> {
+    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) -> Result<(),SurgeError> {
         let pitch0 = cfg.pitch;
 
         /* So lets tie these comments back to the description at the top. 

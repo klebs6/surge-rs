@@ -2,9 +2,7 @@ crate::ix!();
 
 impl SurgeVoice {
 
-    pub fn maybe_toggle_filter(
-        &mut self, 
-        cfg: VoiceRuntimeHandle) 
+    pub fn maybe_toggle_filter(&mut self, cfg: VoiceRuntimeHandle) -> Result<(),SurgeError>
     {
         let cfg = cfg.borrow();
 
@@ -18,7 +16,7 @@ impl SurgeVoice {
 
             if (f_ty != fu_ty) || (f_subty != fu_subty) {
 
-                self.fbp.fu[u].init();
+                self.fbp.fu[u].init()?;
 
                 self.fbp.fu[u].ty    = f_ty;
                 self.fbp.fu[u].subty = f_subty;
@@ -26,7 +24,7 @@ impl SurgeVoice {
                 let fbc = cfg.filterblock_cfg;
 
                 if fbc.is_wide() {
-                    self.fbp.fu[u+2].init();
+                    self.fbp.fu[u+2].init()?;
                     self.fbp.fu[u+2].ty    = f_ty;
                     self.fbp.fu[u+2].subty = f_subty;
                 }
@@ -34,5 +32,7 @@ impl SurgeVoice {
                 self.coeffmaker[u].reset();
             }
         }
+
+        Ok(())
     }
 }

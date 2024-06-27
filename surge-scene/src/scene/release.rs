@@ -15,18 +15,20 @@ impl SurgeScene {
         !no_hold
     }
 
-    #[inline] pub fn maybe_release(&mut self, play: bool) {
+    #[inline] pub fn maybe_release(&mut self, play: bool) -> Result<(),SurgeError> {
 
         if self.release_if_latched
         {
             if !play || self.release_anyway 
             {
-                self.free();
+                self.free()?;
             }
 
             self.release_if_latched = false;
             self.release_anyway     = false;
         }
+
+        Ok(())
     }
 
     #[inline] pub fn set_release_if_latched(&mut self, val: bool) {
@@ -34,27 +36,33 @@ impl SurgeScene {
         self.release_anyway     = false;
     }
 
-    #[inline] pub fn release_note_post(&mut self, 
-        channel: u8, 
-        key: u8, 
+    #[inline] pub fn release_note_post(
+        &mut self, 
+        channel:  u8, 
+        key:      u8, 
         velocity: u8,
-        keyrange: Option<KeyRange>) 
-    {
+        keyrange: Option<KeyRange>
+
+    ) -> Result<(),SurgeError> {
+
         if self.hold(channel) {
             // hold pedal is down, add to bufffer
             self.hold_pedal_unit.push(channel, key);
 
         } else {
-            self.release_note_post_hold_check(channel, key, velocity, keyrange);
+            self.release_note_post_hold_check(channel, key, velocity, keyrange)?;
         }
+
+        Ok(())
     }
 
-    #[inline] pub fn release_note_post_hold_check(&mut self, 
-        channel: u8, 
-        key: u8, 
+    #[inline] pub fn release_note_post_hold_check(
+        &mut self, 
+        channel:  u8, 
+        key:      u8, 
         velocity: u8, 
-        keyrange: Option<KeyRange>) 
-    {
+        keyrange: Option<KeyRange>) -> Result<(),SurgeError> {
+
         self.clear_channel_state(channel,key);
 
         for voice_idx in 0..self.voices.len() 
@@ -65,7 +73,7 @@ impl SurgeScene {
                 velocity, 
                 &keyrange
             );
-            self.release_voice(voice_idx, cfg);
+            self.release_voice(voice_idx, cfg)?;
         }
 
         if self.get_non_released_voices() == 0 {
@@ -78,10 +86,12 @@ impl SurgeScene {
 
             }
         }
+
+        Ok(())
     }
 
-    pub fn release_note(&mut self, channel: u8, key: u8, velocity: u8, keyrange: Option<KeyRange>) 
-    {
+    pub fn release_note(&mut self, channel: u8, key: u8, velocity: u8, keyrange: Option<KeyRange>) -> Result<(),SurgeError> {
+
         for voice in self.voices.iter_mut() 
         {
             if voice.borrow().state.key == (key as i32) 
@@ -91,13 +101,13 @@ impl SurgeScene {
             }
         }
 
-        self.release_note_post(channel, key, velocity, keyrange);
+        self.release_note_post(channel, key, velocity, keyrange)?;
+
+        Ok(())
     }
 
-    pub fn release_voice(&mut self, 
-        voice_idx: usize, 
-        cfg: ReleaseCfg) 
-    {
+    pub fn release_voice(&mut self, voice_idx: usize, cfg: ReleaseCfg) -> Result<(),SurgeError> {
+
         let polymode = self.get_polymode();
 
         match polymode {
@@ -105,12 +115,14 @@ impl SurgeScene {
                 self.release_poly(voice_idx, cfg);
             },
             PolyMode::Mono | PolyMode::MonoFingeredPortamento | PolyMode::LatchMonophonic => {
-                self.release_monophonic(voice_idx, cfg);
+                self.release_monophonic(voice_idx, cfg)?;
             },
             PolyMode::MonoSingleTriggerEG | PolyMode::MonoSingleTriggerFingeredPortamento => {
                 self.release_single_triggered(voice_idx, cfg);
             },
         }
+
+        Ok(())
     }
 
     pub fn release_poly(&mut self, 

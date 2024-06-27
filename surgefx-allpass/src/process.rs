@@ -7,7 +7,7 @@ impl StereoProcess for crate::AllpassVerb {
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N]
 
-    ) -> Result<(),AlignmentError> {
+    ) -> Result<(),SurgeError> {
 
         let scale: f32 = 2.0_f32.powf(1.0 * pvalf![self.params[AllpassReverbParam::RoomSize]]);
 

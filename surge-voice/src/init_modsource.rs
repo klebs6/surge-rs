@@ -2,16 +2,18 @@ crate::ix!();
 
 impl SurgeVoice {
 
-    #[inline] pub fn init_modsources(&mut self) {
+    #[inline] pub fn init_modsources(&mut self) -> Result<(),SurgeError> {
         self.init_lfos();
         self.init_aftertouch();
         self.init_velocitysource();
         self.init_releasevelocitysource();
         self.init_keytracksource();
-        self.init_amp_eg();
-        self.init_filter_eg();
+        self.init_amp_eg()?;
+        self.init_filter_eg()?;
         self.init_channel_aftertouch();
         self.init_modsource_timbre();
+
+        Ok(())
     }
 
     #[inline] pub fn init_aftertouch(&mut self) {
@@ -53,22 +55,26 @@ impl SurgeVoice {
         }
     }
 
-    #[inline] pub fn init_amp_eg(&mut self) {
+    #[inline] pub fn init_amp_eg(&mut self) -> Result<(),SurgeError> {
 
         if let Some(ModulationSource::AdsrEnvelope(ref mut amp_eg)) = 
             &mut self.modsources[ModSource::AmpEg].as_deref_mut()
         { 
-            amp_eg.init();
+            amp_eg.init()?;
         }
+
+        Ok(())
     }
 
-    #[inline] pub fn init_filter_eg(&mut self) {
+    #[inline] pub fn init_filter_eg(&mut self) -> Result<(),SurgeError> {
 
         if let Some(ModulationSource::AdsrEnvelope(ref mut filter_eg)) = 
             &mut self.modsources[ModSource::FilterEg].as_deref_mut()
         { 
-            filter_eg.init();
+            filter_eg.init()?;
         }
+
+        Ok(())
     }
 
     #[inline] pub fn init_channel_aftertouch(&mut self) {

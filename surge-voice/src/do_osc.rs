@@ -9,8 +9,9 @@ const OSC2:  usize = 2;
 
 impl SurgeVoice {
 
-    pub fn process_osc(&mut self,runtime: &mut OscillatorRuntime, idx: usize) {
-
+    pub fn process_osc(&mut self,runtime: &mut OscillatorRuntime, idx: usize) 
+        -> Result<(),SurgeError> 
+    {
         let cfg = match idx {
             0 => {
                 match self.fm_mode.on() {
@@ -44,7 +45,7 @@ impl SurgeVoice {
         };
 
         match self.osc[idx] {
-            Some(ref mut x) => x.process_block(cfg),
+            Some(ref mut x) => x.process_block(cfg)?,
             _ => panic!("where is the oscillator!?"),
         }
 
@@ -86,5 +87,7 @@ impl SurgeVoice {
                     BLOCK_SIZE_OS_QUAD);
             }
         }
+
+        Ok(())
     }
 }

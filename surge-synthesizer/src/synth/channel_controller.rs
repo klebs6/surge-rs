@@ -15,13 +15,15 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
         }
     }
 
-    pub fn maybe_switch_toggled(&mut self) {
+    pub fn maybe_switch_toggled(&mut self) -> Result<(),SurgeError> {
         for scene in self.active_patch.scene.iter_mut() {
-            scene.maybe_switch_toggled();
+            scene.maybe_switch_toggled()?;
         }
+
+        Ok(())
     }
 
-    pub fn channel_controller(&mut self, channel: u8, cc: u8, value: i32) {
+    pub fn channel_controller(&mut self, channel: u8, cc: u8, value: i32) -> Result<(),SurgeError> {
 
         let mut fval: f32 = (value as f32) * (1.0 / 127.0);
 
@@ -33,7 +35,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
             6   => self.channel_controller_cc6(channel,cc,value),
             10  => self.channel_controller_cc10(channel,cc,value),
             38  => self.channel_controller_cc38(channel,cc,value),
-            64  => self.channel_controller_cc64(channel,cc,value),
+            64  => self.channel_controller_cc64(channel,cc,value)?,
             74  => self.channel_controller_cc74(channel,cc,value),
             98  => self.channel_controller_cc98(channel,cc,value),
             99  => self.channel_controller_cc99(channel,cc,value),
@@ -51,7 +53,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
         };
 
         if return_now {
-            return;
+            return Ok(());
         }
 
         let cc_encoded = self.channel_controller_handle_rpn_nrpn(channel, cc, &mut fval);
@@ -61,5 +63,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
         self.store_learn_custom(cc_encoded);
         //self.maybe_set_global_params_smoothed(cc_encoded,fval);
         //self.maybe_set_scene_params_smoothed(cc_encoded,fval);
+
+        Ok(())
     }
 }

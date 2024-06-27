@@ -24,7 +24,7 @@ impl Default for SincTables {
 }
 
 impl Initialize for SincTables {
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         fn get_table_t(i: usize, j: usize, rows: usize, cols: usize) -> f64 {
             let i    = i as f64;
@@ -73,5 +73,7 @@ impl Initialize for SincTables {
                 self.table_i16[widx] = ((val + 16384.0 ) as f32) as i16;
             }
         }
+
+        Ok(())
     }
 }

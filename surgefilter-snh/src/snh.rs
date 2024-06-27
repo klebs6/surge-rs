@@ -1,5 +1,6 @@
 crate::ix!();
 
+#[allow(dead_code)]
 pub struct SnhFilter {
     tuner:  TunerHandle, 
     srunit: SampleRateHandle,

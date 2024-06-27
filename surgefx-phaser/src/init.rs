@@ -2,15 +2,20 @@ crate::ix!();
 
 impl Initialize for Phaser {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
+
         self.lfophase = 0.25;
-        self.suspend_all_biquads();
-        self.clear_blocks();
+
+        self.suspend_all_biquads()?;
+        self.clear_blocks()?;
         self.mix.set_target(1.0);
         self.mix.instantize();
-        self.bi = 0;
+
+        self.bi  = 0;
         self.d_l = 0.0;
         self.d_r = 0.0;
+
+        Ok(())
     }
 }
 

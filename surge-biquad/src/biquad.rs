@@ -54,7 +54,7 @@ impl SetBlockSize for BiquadFilter {
 
 impl Initialize for BiquadFilter {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
         self.a1        = Align16(VLag::new_x87());
         self.a2        = Align16(VLag::new_x87());
         self.b0        = Align16(VLag::new_x87());
@@ -63,6 +63,8 @@ impl Initialize for BiquadFilter {
         self.reg0      = Align16(VDouble::default());
         self.reg1      = Align16(VDouble::default());
         self.first_run = true;
+
+        Ok(())
     }
 }
 

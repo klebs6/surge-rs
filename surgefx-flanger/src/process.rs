@@ -19,7 +19,7 @@ impl StereoProcess for Flanger {
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N]
 
-    ) -> Result<(),AlignmentError> {
+    ) -> Result<(),SurgeError> {
 
         // So here is a flanger with everything fixed
         let rate_temposyncratio = self.maybe_temposyncratio(FlangerParam::Rate);

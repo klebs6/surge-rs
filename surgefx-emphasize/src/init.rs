@@ -23,7 +23,7 @@ impl Emphasize {
 }
 
 impl Initialize for Emphasize {
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
         todo!();
     }
 }

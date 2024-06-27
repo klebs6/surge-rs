@@ -68,7 +68,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
         false
     }
 
-    #[inline] pub fn channel_controller_cc64(&mut self, channel: u8, _cc: u8, value: i32) -> bool {
+    #[inline] pub fn channel_controller_cc64(&mut self, channel: u8, _cc: u8, value: i32) -> Result<bool,SurgeError> {
 
         let scenemode = SceneMode::try_from(
             pvali![ self.active_patch.params[PatchParam::SceneMode] ] as usize).unwrap();
@@ -84,35 +84,35 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
                 let scene_active = 
                     pvali![self.active_patch.params[PatchParam::SceneActive]] as usize;
 
-                self.active_patch.scene[scene_active].purge_holdbuffer();
+                self.active_patch.scene[scene_active].purge_holdbuffer()?;
             },
             SceneMode::KeySplit | SceneMode::Dual => {
-                self.active_patch.scene[0].purge_holdbuffer();
-                self.active_patch.scene[1].purge_holdbuffer();
+                self.active_patch.scene[0].purge_holdbuffer()?;
+                self.active_patch.scene[1].purge_holdbuffer()?;
             },
             SceneMode::ChannelSplit => {
 
                 // a control channel message
                 match (self.mpe_unit.enabled(), channel) {
                     (MpeEnableSwitch(true), 0) => {
-                        self.active_patch.scene[0].purge_holdbuffer();
-                        self.active_patch.scene[1].purge_holdbuffer();
+                        self.active_patch.scene[0].purge_holdbuffer()?;
+                        self.active_patch.scene[1].purge_holdbuffer()?;
                     },
                     _ => {
 
                         let splitkey = pvali![self.active_patch.params[PatchParam::SplitKey]];
 
                         if channel < (((( splitkey / 8 ) as i32) + 1 ) as u8) {
-                            self.active_patch.scene[0].purge_holdbuffer();
+                            self.active_patch.scene[0].purge_holdbuffer()?;
                         } else {
-                            self.active_patch.scene[1].purge_holdbuffer();
+                            self.active_patch.scene[1].purge_holdbuffer()?;
                         }
                     }
                 }
             },
         }
 
-        true
+        Ok(true)
     }
 
     #[inline] pub fn channel_controller_cc74(&mut self, channel: u8, _cc: u8, value: i32) -> bool {

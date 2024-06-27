@@ -6,7 +6,7 @@ impl SampleAndHoldOscillator {
         tuner:  TunerHandle, 
         tables: TablesHandle,
         srunit: SampleRateHandle,
-    ) -> Self {
+    ) -> Result<Self,SurgeError> {
 
         let mut x = Self {
             out:                 OscillatorOut::default(),
@@ -40,8 +40,8 @@ impl SampleAndHoldOscillator {
             tuner,
             srunit,
         };
-        x.init();
+        x.init()?;
         x.set_pitch(432.0, false);
-        x
+        Ok(x)
     }
 }

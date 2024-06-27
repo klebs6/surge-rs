@@ -43,10 +43,12 @@ impl ClipScale for GainTables {
 
 impl Initialize for GainTables {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         for i in 0..512 {
             self.table_db[i] = 10.0_f32.powf(0.05 * (i as f32 - 384.0));
         }
+
+        Ok(())
     }
 }

@@ -2,9 +2,12 @@ crate::ix!();
 
 impl OscillatorProcess for WindowOscillator {
 
-    fn process_block(&mut self, 
-        cfg: OscillatorProcessBlockCfg)
-    {
+    fn process_block(
+        &mut self, 
+        cfg: OscillatorProcessBlockCfg
+
+    ) -> Result<(),SurgeError> {
+
         let fmdepth = cfg.fm_depth;
         let fm      = cfg.fm;
         let pitch   = cfg.pitch;
@@ -133,5 +136,7 @@ impl OscillatorProcess for WindowOscillator {
                 }
             }
         }
+
+        Ok(())
     }
 }

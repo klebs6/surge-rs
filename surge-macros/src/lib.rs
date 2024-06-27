@@ -32,8 +32,9 @@ macro_rules! impl_trait_defaults {
     ($ty:ident $(< $( $life:lifetime ),* >)? ) => {
 
         impl $(<$( $life ),* >)? Initialize for $ty $(< $( $life ),* >)? {
-            fn init(&mut self) {
+            fn init(&mut self) -> Result<(),SurgeError> {
                 self.update();
+                Ok(())
             }
         }
     };

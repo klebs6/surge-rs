@@ -3,7 +3,7 @@ crate::ix!();
 impl OscillatorProcess for SampleAndHoldOscillator {
 
     ///defaults: float drift = 0.0, bool stereo = false, bool fm = false, float self.fm_depth = 0.0
-    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg)
+    fn process_block(&mut self, cfg: OscillatorProcessBlockCfg) -> Result<(),SurgeError>
     {
         let stereo = cfg.stereo;
         let pitch0 = cfg.pitch;
@@ -125,7 +125,7 @@ impl OscillatorProcess for SampleAndHoldOscillator {
             _mm_store_ss(&mut self.dc, mdc);
         }
 
-        self.clear_blocks(stereo);
+        self.clear_blocks(stereo)?;
 
         self.blitter.bufpos = (self.blitter.bufpos + BLOCK_SIZE_OS as i32) & (OB_LENGTH as i32 - 1);
 
@@ -160,5 +160,7 @@ impl OscillatorProcess for SampleAndHoldOscillator {
 
             }
         }
+
+        Ok(())
     }
 }

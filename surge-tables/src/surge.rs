@@ -124,11 +124,13 @@ impl GetWaveshaperPtr for SurgeTables {
 
 impl Initialize for SurgeTables {
 
-    fn init(&mut self) {
-        self.envelope.init();
-        self.gain.init();
-        self.sinc.init();
-        self.sine.init();
-        self.waveshape.init();
+    fn init(&mut self) -> Result<(),SurgeError> {
+        self.envelope.init()?;
+        self.gain.init()?;
+        self.sinc.init()?;
+        self.sine.init()?;
+        self.waveshape.init()?;
+
+        Ok(())
     }
 }

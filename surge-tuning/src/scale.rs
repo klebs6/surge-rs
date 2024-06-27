@@ -61,12 +61,14 @@ pub struct Scale {
 
 impl Initialize for Scale {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
         self.name         = "empty scale".to_string();
         self.description  = "".to_string();
         self.raw_text     = TuningData("".to_string());
         self.count        = 0;
         self.tones        = vec![];
+
+        Ok(())
     }
 }
 

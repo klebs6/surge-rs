@@ -16,7 +16,7 @@ impl StereoProcess for Conditioner {
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N]
 
-    ) -> Result<(),AlignmentError> {
+    ) -> Result<(),SurgeError> {
 
         let cfg = ConditionerProcessCfg::new(self);
 

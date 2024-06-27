@@ -2,15 +2,17 @@ crate::ix!();
 
 impl SurgeScene {
 
-    pub fn free_voice(&mut self, idx: usize) {
+    pub fn free_voice(&mut self, idx: usize) -> Result<(),SurgeError> {
 
         //TODO: does this work? 
-        self.voices[idx].borrow_mut().free_allocated_elements();
+        self.voices[idx].borrow_mut().free_allocated_elements()?;
 
         self.voices.remove(idx);
+
+        Ok(())
     }
 
-    pub fn free(&mut self) {
+    pub fn free(&mut self) -> Result<(),SurgeError> {
 
         let mut to_free = vec![];
 
@@ -21,13 +23,15 @@ impl SurgeScene {
         }
 
         for idx in to_free.iter() {
-            self.free_voice(*idx);
+            self.free_voice(*idx)?;
         }
 
         self.voices.clear();
+
+        Ok(())
     }
 
-    pub fn purge_holdbuffer(&mut self) {
+    pub fn purge_holdbuffer(&mut self) -> Result<(),SurgeError> {
 
         let channel_state0 = self.midi_unit.channel_state_ptr(0) as *const MidiChannelState;
 
@@ -36,8 +40,10 @@ impl SurgeScene {
         };
 
         for (channel, key) in release_buffer.iter() {
-            self.release_note_post_hold_check(*channel as u8, *key as u8, 127, None);
+            self.release_note_post_hold_check(*channel as u8, *key as u8, 127, None)?;
         }
+
+        Ok(())
     }
 
     #[inline] pub fn clear_channel_state(&mut self, 

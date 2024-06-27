@@ -70,7 +70,7 @@ impl AdsrEnvelope {
     pub fn new( 
         time_unit: TimeUnitHandle,
         tables:    TablesHandle,
-        srunit:    SampleRateHandle) -> Self {
+        srunit:    SampleRateHandle) -> Result<Self,SurgeError> {
 
         let mut x = Self {
             time_unit:     time_unit,
@@ -89,9 +89,9 @@ impl AdsrEnvelope {
             enabled:       true
         };
 
-        x.init();
+        x.init()?;
 
-        x
+        Ok(x)
     }
 
     pub fn get_samplerate(&self) -> f32 {

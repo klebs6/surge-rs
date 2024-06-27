@@ -10,10 +10,13 @@ pub struct PlayConfig {
 
 impl SurgeScene {
 
-    pub fn release_monophonic(&mut self, 
+    pub fn release_monophonic(
+        &mut self, 
         voice_idx: usize,
-        cfg: ReleaseCfg) 
-    {
+        cfg: ReleaseCfg
+
+    ) -> Result<(),SurgeError> {
+
         let scene_non_ultra_release_voices: i32 = 
             self.get_non_ultra_release_voices();
 
@@ -120,7 +123,9 @@ impl SurgeScene {
                 item.active_voice_key as u8, 
                 item.velocity as u8, 
                 item.lastdetune,
-            );
+            )?;
         }
+
+        Ok(())
     }
 }

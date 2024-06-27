@@ -2,7 +2,7 @@ crate::ix!();
 
 impl SampleAndHoldOscillator {
 
-    pub fn clear_blocks(&mut self, stereo: bool) -> Result<(),AlignmentError> {
+    pub fn clear_blocks(&mut self, stereo: bool) -> Result<(),SurgeError> {
 
         unsafe {
             clear_block::<BLOCK_SIZE_OS_QUAD>(

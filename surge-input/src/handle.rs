@@ -9,8 +9,10 @@ pub struct SynthInput {
 }
 
 impl Initialize for SynthInput {
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
         self.audio_in.fill(0.0);
+
+        Ok(())
     }
 }
 

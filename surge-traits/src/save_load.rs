@@ -1,9 +1,13 @@
 crate::ix!();
 
 pub trait LoadPreset {
+
     type PresetType;
-    fn load_preset(&mut self, 
-        preset: Self::PresetType);
+
+    fn load_preset(
+        &mut self, 
+        preset: Self::PresetType
+    ) -> Result<(),SurgeError>;
 }
 
 pub trait Save {

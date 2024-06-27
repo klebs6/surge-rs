@@ -27,7 +27,7 @@ impl TuningTables {
 }
 
 impl Initialize for TuningTables {
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         for i in 0..512 {
 
@@ -60,5 +60,7 @@ impl Initialize for TuningTables {
             self.table_note_omega_ignoring_tuning[[0,i]] = self.table_note_omega[[0,i]];
             self.table_note_omega_ignoring_tuning[[1,i]] = self.table_note_omega[[1,i]];
         }
+
+        Ok(())
     }
 }

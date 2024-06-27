@@ -15,7 +15,9 @@ pub type MaybeEffects = Vec<MaybeEffect>;
 
 #[enum_dispatch]
 pub trait Initialize {
-    fn init(&mut self) {}
+    fn init(&mut self) -> Result<(),SurgeError> {
+        Ok(())
+    }
 }
 
 #[enum_dispatch]
@@ -25,7 +27,7 @@ pub trait Update {
 
 #[enum_dispatch]
 pub trait Suspend: Initialize {
-    fn suspend(&mut self) { self.init() }
+    fn suspend(&mut self) -> Result<(),SurgeError> { Ok(self.init()?) }
 }
 
 #[enum_dispatch]
@@ -35,7 +37,7 @@ pub trait Reset {
 
 #[enum_dispatch]
 pub trait ClearBuffers {
-    fn clear_buffers(&mut self);
+    fn clear_buffers(&mut self) -> Result<(),SurgeError>;
 }
 
 #[enum_dispatch]

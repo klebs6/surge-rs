@@ -86,17 +86,17 @@ pub trait RetuneToScale {
 
 #[enum_dispatch]
 pub trait RetuneToStandardTuning {
-    fn retune_to_standard_tuning(&mut self);
+    fn retune_to_standard_tuning(&mut self) -> Result<(),SurgeError>;
 }
 
 #[enum_dispatch]
 pub trait RemapKeyboard {
-    fn remap_to_keyboard(&mut self, kb: &KeyboardMapping) -> bool;
+    fn remap_to_keyboard(&mut self, kb: &KeyboardMapping) -> Result<bool,SurgeError>;
 }
 
 #[enum_dispatch]
 pub trait RemapToStandardKeyboard {
-    fn remap_to_standard_keyboard(&mut self) -> bool;
+    fn remap_to_standard_keyboard(&mut self) -> Result<bool,SurgeError>;
 }
 
 #[enum_dispatch]

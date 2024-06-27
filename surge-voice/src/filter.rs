@@ -68,11 +68,15 @@ impl Default for FU {
 }
 
 impl Initialize for FU {
-    fn init(&mut self) {
+
+    fn init(&mut self) -> Result<(),SurgeError> {
+
         self.coeff               = [0.0; N_COEFFMAKER_COEFFS];
         self.reg                 = [0.0; N_FILTER_REGISTERS];
         self.comb_write_position = 0;
         self.ty                  = FilterType::Off;
         self.subty               = FilterSubType::SVF;
+
+        Ok(())
     }
 }

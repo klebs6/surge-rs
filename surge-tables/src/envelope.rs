@@ -49,7 +49,7 @@ impl EnvelopeTables {
 }
 
 impl Initialize for EnvelopeTables {
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         let sr = self.srunit.dsamplerate_os();
 
@@ -67,5 +67,7 @@ impl Initialize for EnvelopeTables {
             self.table_envrate_linear[i] = 
                 (1.0 / k) as f32;
         }
+
+        Ok(())
     }
 }

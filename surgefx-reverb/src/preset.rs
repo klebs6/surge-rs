@@ -54,11 +54,12 @@ impl LoadPreset for Reverb {
 
     type PresetType = ReverbPreset;
 
-    fn load_preset(&mut self, preset: Self::PresetType) {
-
+    fn load_preset(&mut self, preset: Self::PresetType) 
+        -> Result<(),SurgeError> 
+    {
         self.preset = preset;
 
-        self.clear_buffers();
+        self.clear_buffers()?;
 
         self.delay_time = Align16(preset.delay_time_buffer());
 
@@ -71,7 +72,10 @@ impl LoadPreset for Reverb {
                     2.0_f32 * room_size * (self.delay_time[t] as f32)
                 ) as usize;
         }
+
         self.lastf[ReverbParam::RoomSize as usize] = room_size;
         self.update_rtime();
+
+        Ok(())
     }
 }

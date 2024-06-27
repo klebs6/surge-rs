@@ -2,7 +2,7 @@ crate::ix!();
 
 impl Initialize for FMOscillator {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         self.phase      = 0.0;
         self.lastoutput = 0.0;
@@ -12,5 +12,7 @@ impl Initialize for FMOscillator {
         self.am.set_phase(0.0);
         self.rm1.set_phase(0.0);
         self.rm2.set_phase(0.0);
+
+        Ok(())
     }
 }

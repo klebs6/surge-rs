@@ -12,14 +12,14 @@ pub struct SurgeTuner {
 
 impl SurgeTuner {
 
-    pub fn new(srunit: &SampleRateHandle) -> Self {
-        Self {
-            current_tuning:  Align16(SurgeTuning::default()),
+    pub fn new(srunit: &SampleRateHandle) -> Result<Self,SurgeError> {
+        Ok(Self {
+            current_tuning:  Align16(SurgeTuning::new()?),
             current_mapping: Align16(KeyboardMapping::default()),
             current_scale:   Align16(Scale::default()),
             tables:          Align16(TuningTables::new(srunit)),
             srunit:          srunit.clone(),
-        }
+        })
     }
 
     #[inline] pub fn default_scale_count<T>() -> T 
@@ -41,11 +41,13 @@ impl ScaleNote for SurgeTuner {
 }
 
 impl Initialize for SurgeTuner {
-    fn init(&mut self) {
-        self.current_tuning.init();
-        self.current_mapping.init();
-        self.current_scale.init();
-        self.tables.init();
+    fn init(&mut self) -> Result<(),SurgeError> {
+        self.current_tuning.init()?;
+        self.current_mapping.init()?;
+        self.current_scale.init()?;
+        self.tables.init()?;
+
+        Ok(())
     }
 }
 

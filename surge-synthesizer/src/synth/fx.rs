@@ -21,32 +21,35 @@ impl FXUnit {
         tuner:    & TunerHandle,
         tables:   & TablesHandle,
         timeunit: & TimeUnitHandle,
-        srunit:   & SampleRateHandle)  -> Vec<SurgeEffect> {
-        vec![
+        srunit:   & SampleRateHandle
+
+    )  -> Result<Vec<SurgeEffect>,SurgeError> {
+
+        Ok(vec![
             SurgeEffect::Conditioner(Box::new(Conditioner::new(tuner,tables,srunit))),
             SurgeEffect::AllpassVerb(Box::new(AllpassVerb::new(srunit))),
             SurgeEffect::DualDelay(Box::new(DualDelay::new(tuner,tables,srunit,timeunit))),
-            SurgeEffect::Flanger(Box::new(Flanger::new(tuner,tables,srunit,timeunit))),
+            SurgeEffect::Flanger(Box::new(Flanger::new(tuner,tables,srunit,timeunit)?)),
             SurgeEffect::Phaser(Box::new(Phaser::new(tuner,tables,srunit,timeunit))),
             SurgeEffect::Reverb(Box::new(Reverb::new(tuner,tables,srunit,timeunit))),
             SurgeEffect::Distortion(Box::new(Distortion::new(tuner,tables,srunit))),
             SurgeEffect::Eq3Band(Box::new(Eq3Band::new(tuner,tables,srunit))),
-        ]
+        ])
     }
 
     pub fn new(
         tuner:    & TunerHandle,
         tables:   & TablesHandle,
         timeunit: & TimeUnitHandle,
-        srunit:   & SampleRateHandle)  -> Self {
+        srunit:   & SampleRateHandle)  -> Result<Self,SurgeError> {
 
-        Self {
+        Ok(Self {
             load_fx_needed:     true,
-            fx:                 Self::new_fx(tuner,tables,timeunit,srunit),
+            fx:                 Self::new_fx(tuner,tables,timeunit,srunit)?,
             fx_reload:          [false; 8],
             fx_enable:          [true; 8],
             fx_suspend_bitmask: 0,
-        }
+        })
     }
 
     /*
@@ -55,7 +58,7 @@ impl FXUnit {
       |
       |todo: do we still need fx_sync?
       */
-    pub fn load_fx(&mut self, initp: bool, force_reload_all: bool) -> bool 
+    pub fn load_fx(&mut self, initp: bool, force_reload_all: bool) -> Result<bool,SurgeError> 
     {
         self.load_fx_needed = false;
 
@@ -67,7 +70,7 @@ impl FXUnit {
 
             if self.fx_reload[idx] || force_reload_all 
             {
-                effect.init();
+                effect.init()?;
                 if initp {
                     //effect.set_default_params();
                 }
@@ -76,6 +79,6 @@ impl FXUnit {
             }
         }
 
-        something_changed
+        Ok(something_changed)
     }
 }

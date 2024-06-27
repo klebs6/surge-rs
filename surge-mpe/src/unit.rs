@@ -12,17 +12,21 @@ pub struct MPEUnit {
 }
 
 impl Initialize for MPEUnit {
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
         self.last_key = 60;
         self.pitchbend = PitchBendValue(0.0);
         for cc in 0..128 {
             self.poly_aftertouch[cc] = 0.0;
         }
+
+        Ok(())
     }
 }
 
-impl Default for MPEUnit {
-    fn default() -> Self {
+impl MPEUnit {
+
+    pub fn new() -> Result<Self,SurgeError> {
+
         let mut x = Self {
             enabled:                   MpeEnableSwitch(false),
             num_voices:                NumVoices(0),
@@ -34,12 +38,12 @@ impl Default for MPEUnit {
             poly_aftertouch:           [0.0; 128],
             last_key:                  0,
         };
-        x.init();
-        x
-    }
-}
 
-impl MPEUnit {
+        x.init()?;
+
+        Ok(x)
+    }
+
     pub fn get_mpe_main_channel(&self, voice_channel: u8, _key: u8) -> u8 {
         match self.enabled {
             MpeEnableSwitch(true)  => 0,

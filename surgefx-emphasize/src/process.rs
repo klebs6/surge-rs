@@ -7,7 +7,7 @@ impl StereoProcess for Emphasize {
         _data_l: &mut [f32; N], 
         _data_r: &mut [f32; N]
 
-    ) -> Result<(),AlignmentError> {
+    ) -> Result<(),SurgeError> {
 
         //todo!();
 

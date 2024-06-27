@@ -2,7 +2,7 @@ crate::ix!();
 
 impl Initialize for WTOscillator {
 
-    fn init(&mut self) { 
+    fn init(&mut self) -> Result<(),SurgeError> { 
 
         self.first_run = true;
         unsafe {
@@ -28,5 +28,7 @@ impl Initialize for WTOscillator {
             self.blitter.n_unison = 1;
         }
         self.clear_last_level();
+
+        Ok(())
     }
 }

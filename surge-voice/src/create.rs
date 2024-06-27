@@ -30,24 +30,24 @@ pub fn some_new_boxed_envelope(
     time_unit: TimeUnitHandle,
     tables:    TablesHandle,
     srunit:    SampleRateHandle,
-) -> Option<Box<ModulationSource>> 
+) -> Result<Option<Box<ModulationSource>>,SurgeError> 
 {
     let env = AdsrEnvelope::new(
         time_unit.clone(), 
         tables.clone(), 
         srunit.clone()
-    );
+    )?;
 
     let ms = ModulationSource::AdsrEnvelope(env);
 
-    Some(Box::new(ms))
+    Ok(Some(Box::new(ms)))
 }
 
 pub fn create_voice_modsources(
     time_unit: TimeUnitHandle,
     tables:    TablesHandle,
     srunit:    SampleRateHandle,
-) -> VoiceModSourceArray 
+) -> Result<VoiceModSourceArray,SurgeError> 
 {
     let mut x = ModSourceArray::<Option<Box<ModulationSource>>>::new_with(|_x| {
         None
@@ -64,9 +64,9 @@ pub fn create_voice_modsources(
     x[ModSource::KeyTrack]             = some_new_boxed_controller(srunit.clone());
     x[ModSource::ChannelAfterTouch]    = some_new_boxed_controller(srunit.clone());
     x[ModSource::Timbre]               = some_new_boxed_controller(srunit.clone());
-    x[ModSource::AmpEg]                = some_new_boxed_envelope(time_unit.clone(),tables.clone(),srunit.clone());
-    x[ModSource::FilterEg]             = some_new_boxed_envelope(time_unit.clone(),tables.clone(),srunit.clone());
-    x
+    x[ModSource::AmpEg]                = some_new_boxed_envelope(time_unit.clone(),tables.clone(),srunit.clone())?;
+    x[ModSource::FilterEg]             = some_new_boxed_envelope(time_unit.clone(),tables.clone(),srunit.clone())?;
+    Ok(x)
 }
 
 pub fn create_voice_osclevels() -> VoiceOscLevels {

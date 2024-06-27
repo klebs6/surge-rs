@@ -2,7 +2,7 @@ crate::ix!();
 
 impl Initialize for FreqShift {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         self.buffer = Self::new_buffer();
 
@@ -19,6 +19,8 @@ impl Initialize for FreqShift {
         if self.time_unit.temposyncratio_inv() == 0.0 {
             self.inithadtempo = false;
         }
+
+        Ok(())
     }
 }
 
@@ -28,7 +30,7 @@ impl FreqShift {
         tuner:     & TunerHandle,
         tables:    & TablesHandle,
         srunit:    & SampleRateHandle,
-        time_unit: & TimeUnitHandle) -> Self {
+        time_unit: & TimeUnitHandle) -> Result<Self,SurgeError> {
 
         let mut x = Self {
             fr:             Align16(HalfRateFilterSSE::new(6, true)),
@@ -52,8 +54,8 @@ impl FreqShift {
             tuner:          tuner.clone(),
             srunit:         srunit.clone(),
         };
-        x.init();
-        x
+        x.init()?;
+        Ok(x)
     }
 
     #[inline] fn new_buffer() -> A2d::<f32> {
@@ -62,8 +64,9 @@ impl FreqShift {
 }
 
 impl Suspend for FreqShift {
-    fn suspend(&mut self) {
-        self.init();
+    fn suspend(&mut self) -> Result<(),SurgeError> {
+        self.init()?;
         self.ringout = Ringout::blocks(10000000);
+        Ok(())
     }
 }

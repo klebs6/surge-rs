@@ -2,7 +2,7 @@ crate::ix!();
 
 impl Initialize for WindowOscillator {
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(),SurgeError> {
 
         self.clear();
 
@@ -90,5 +90,7 @@ impl Initialize for WindowOscillator {
                 }
             }
         }
+
+        Ok(())
     }
 }

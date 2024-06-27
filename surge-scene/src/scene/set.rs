@@ -65,11 +65,14 @@ impl SurgeScene {
         need_refresh
     }
 
-    #[inline] pub fn maybe_switch_toggled(&mut self) {
+    #[inline] pub fn maybe_switch_toggled(&mut self) -> Result<(),SurgeError> {
+
         if self.switch_toggled_queued 
         {
-            self.switch_toggled();
+            self.switch_toggled()?;
             self.switch_toggled_queued = false;
         }
+
+        Ok(())
     }
 }

@@ -17,7 +17,7 @@ pub trait StereoProcess {
         &mut self, 
         data_l: &mut [f32; N], 
         data_r: &mut [f32; N]
-    ) -> Result<(),AlignmentError>;
+    ) -> Result<(),SurgeError>;
 }
 
 #[enum_dispatch]

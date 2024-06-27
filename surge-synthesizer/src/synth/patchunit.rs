@@ -2,11 +2,14 @@ crate::ix!();
 
 impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
-    pub fn reset_patch(&mut self) {
-        self.active_patch.init();
+    pub fn reset_patch(&mut self) -> Result<(),SurgeError> {
+
+        self.active_patch.init()?;
+
+        Ok(())
     }
 
-    pub fn process_threadunsafe_operations(&mut self) {
+    pub fn process_threadunsafe_operations(&mut self) -> Result<(),SurgeError> {
 
         if !self.audio_processing_active {
 
@@ -18,7 +21,7 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
             if self.patchid_queue.unwrap() >= 0 {
 
                 //self.load_patch(self.patchid_queue);
-                if cfg![target_lv2] {
+                if cfg![feature="target_lv2"] {
                     self.plugin_layer.patch_changed();
                 }
 
@@ -27,14 +30,16 @@ impl<'plugin_layer> SurgeSynthesizer<'plugin_layer> {
 
             if self.fx_unit.load_fx_needed {
 
-                self.fx_unit.load_fx(false, false);
+                self.fx_unit.load_fx(false, false)?;
 
             }
         }
+
+        Ok(())
     }
 
     #[allow(unreachable_code)]
-    pub fn handle_patchid_queue(&mut self) -> Result<(),AlignmentError> {
+    pub fn handle_patchid_queue(&mut self) -> Result<(),SurgeError> {
 
         //let mut mfade: f32 = 1.0;
         let old_masterfade = self.synth_out.masterfade();
